@@ -1,0 +1,16 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# Redirect requests to the appropriate PHP file
+
+# Handle login
+RewriteRule ^login$ login.php [L]
+
+# Handle registration
+RewriteRule ^register$ register.php [L]
+
+# Optionally, handle other paths or file extensions
+# Example for handling requests to non-existent files
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /404.php [L]
