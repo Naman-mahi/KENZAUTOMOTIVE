@@ -1,6 +1,4 @@
-<?php
-include 'head.php';
-?>
+<?php include 'head.php'; ?>
 <div class="main-content">
     <div class="page-content">
         <div class="container-fluid">
@@ -19,266 +17,260 @@ include 'head.php';
                 </div>
             </div>
             <!-- end page title -->
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title mb-4">Add New Car</h4>
 
-                            <div id="basic-pills-wizard" class="twitter-bs-wizard">
-                                <ul class="twitter-bs-wizard-nav">
-                                    <li class="nav-item">
-                                        <a href="#seller-details" class="nav-link active" data-toggle="tab">
-                                            <span class="step-number">01</span>
-                                            <span class="step-title">Seller Details</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#company-document" class="nav-link" data-toggle="tab">
-                                            <span class="step-number">02</span>
-                                            <span class="step-title">Company Document</span>
-                                        </a>
-                                    </li>
+                            <form id="car-form" action="submit_car.php" method="post" enctype="multipart/form-data">
+                                <div id="basic-pills-wizard" class="twitter-bs-wizard">
+                                    <ul class="twitter-bs-wizard-nav">
+                                        <li class="nav-item">
+                                            <a href="#car-details" class="nav-link active" data-toggle="tab">
+                                                <span class="step-number">01</span>
+                                                <span class="step-title">Car Details</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#car-specifications" class="nav-link" data-toggle="tab">
+                                                <span class="step-number">02</span>
+                                                <span class="step-title">Specifications</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#car-features" class="nav-link" data-toggle="tab">
+                                                <span class="step-number">03</span>
+                                                <span class="step-title">Features</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#car-images" class="nav-link" data-toggle="tab">
+                                                <span class="step-number">04</span>
+                                                <span class="step-title">Upload Images</span>
+                                            </a>
+                                        </li>
+                                    </ul>
 
-                                    <li class="nav-item">
-                                        <a href="#bank-detail" class="nav-link" data-toggle="tab">
-                                            <span class="step-number">03</span>
-                                            <span class="step-title">Bank Details</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#confirm-detail" class="nav-link" data-toggle="tab">
-                                            <span class="step-number">04</span>
-                                            <span class="step-title">Confirm Detail</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content twitter-bs-wizard-tab-content">
-                                    <div class="tab-pane active" id="seller-details">
-                                        <form>
+                                    <div class="tab-content twitter-bs-wizard-tab-content">
+                                        <!-- Car Details -->
+                                        <div class="tab-pane active" id="car-details">
                                             <div class="row">
+
                                                 <div class="col-lg-6">
                                                     <div class="mb-3">
-                                                        <label class="form-label"
-                                                            for="basicpill-firstname-input">First Name</label>
-                                                        <input type="text" class="form-control"
-                                                            id="basicpill-firstname-input"
-                                                            placeholder="Enter your First Name">
+                                                        <label class="form-label" for="car">Car</label>
+                                                        <input type="text" class="form-control" id="car" name="car" placeholder="Enter Car name" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-3">
-                                                        <label class="form-label"
-                                                            for="basicpill-lastname-input">Last Name</label>
-                                                        <input type="text" class="form-control"
-                                                            id="basicpill-lastname-input"
-                                                            placeholder="Enter your Last Name">
+                                                        <label class="form-label" for="model">Model</label>
+                                                        <input type="text" class="form-control" id="model" name="model" placeholder="Enter Car Model" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="year">Year</label>
+                                                        <input type="number" class="form-control" id="year" name="year" placeholder="Enter Year" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="price">Price</label>
+                                                        <input type="number" class="form-control" id="price" name="price" placeholder="Enter Price" step="0.01" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="color">Color</label>
+                                                        <input type="text" class="form-control" id="color" name="color" placeholder="Enter Color" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="bodytype">Body Type</label>
+                                                        <input type="text" class="form-control" id="bodytype" name="bodytype" placeholder="Enter Body Type" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="doors">Doors</label>
+                                                        <input type="number" class="form-control" id="doors" name="doors" placeholder="Enter Number of Doors" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="seats">Seats</label>
+                                                        <input type="number" class="form-control" id="seats" name="seats" placeholder="Enter Number of Seats" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="car_description">Description</label>
+                                                        <textarea class="form-control" id="car_description" name="car_description" rows="3" placeholder="Enter Description" required></textarea>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
 
+                                        <!-- Specifications -->
+                                        <div class="tab-pane" id="car-specifications">
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="mb-3">
-                                                        <label class="form-label"
-                                                            for="basicpill-phoneno-input">Phone</label>
-                                                        <input type="text" class="form-control"
-                                                            id="basicpill-phoneno-input"
-                                                            placeholder="Enter your Phone No.">
+                                                        <label class="form-label" for="engine">Engine</label>
+                                                        <input type="text" class="form-control" id="engine" name="engine" placeholder="Enter Engine Specifications" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-3">
-                                                        <label class="form-label"
-                                                            for="basicpill-email-input">Email</label>
-                                                        <input type="email" class="form-control"
-                                                            id="basicpill-email-input"
-                                                            placeholder="Enter your Email Id">
+                                                        <label class="form-label" for="power">Power</label>
+                                                        <input type="text" class="form-control" id="power" name="power" placeholder="Enter Power Specifications" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="torque">Torque</label>
+                                                        <input type="text" class="form-control" id="torque" name="torque" placeholder="Enter Torque Specifications" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="transmission-spec">Transmission</label>
+                                                        <input type="text" class="form-control" id="transmission-spec" name="transmission_spec" placeholder="Enter Transmission Type" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="fueltype">Fuel Type</label>
+                                                        <input type="text" class="form-control" id="fueltype" name="fueltype" placeholder="Enter Fuel Type" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="mileage">Mileage</label>
+                                                        <input type="text" class="form-control" id="mileage" name="mileage" placeholder="Enter Mileage" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Features -->
+                                        <div class="tab-pane" id="car-features">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="top-features">Top Features</label>
+                                                        <textarea class="form-control" id="top-features" name="top_features" rows="3" placeholder="Enter Top Features" required></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="stand-out-features">Stand Out Features</label>
+                                                        <textarea class="form-control" id="stand-out-features" name="stand_out_features" rows="3" placeholder="Enter Stand Out Features" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Upload Images -->
+                                        <div class="tab-pane" id="car-images">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="desktop-image">Desktop Image</label>
+                                                        <input type="file" class="form-control" id="desktop-image" name="desktop_image" accept="image/*">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="mobile-image">Mobile Image</label>
+                                                        <input type="file" class="form-control" id="mobile-image" name="mobile_image" accept="image/*">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="mb-3">
-                                                        <label class="form-label"
-                                                            for="basicpill-address-input">Address</label>
-                                                        <textarea id="basicpill-address-input" class="form-control"
-                                                            rows="2" placeholder="Enter your Address"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="tab-pane" id="company-document">
-                                        <div>
-                                            <form>
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label class="form-label"
-                                                                for="basicpill-pancard-input">PAN Card</label>
-                                                            <input type="text" class="form-control"
-                                                                id="basicpill-pancard-input"
-                                                                placeholder="Enter your PAN Card No.">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label class="form-label"
-                                                                for="basicpill-vatno-input">VAT/TIN No.</label>
-                                                            <input type="text" class="form-control"
-                                                                id="basicpill-vatno-input"
-                                                                placeholder="Enter your VAT/TIN No.">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label class="form-label"
-                                                                for="basicpill-cstno-input">CST No.</label>
-                                                            <input type="text" class="form-control"
-                                                                id="basicpill-cstno-input"
-                                                                placeholder="Enter your CST No.">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label class="form-label"
-                                                                for="basicpill-servicetax-input">Service Tax
-                                                                No.</label>
-                                                            <input type="text" class="form-control"
-                                                                id="basicpill-servicetax-input"
-                                                                placeholder="Enter your Service Tax No.">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label class="form-label"
-                                                                for="basicpill-companyuin-input">Company UIN</label>
-                                                            <input type="text" class="form-control"
-                                                                id="basicpill-companyuin-input"
-                                                                placeholder="Enter your Company UIN No.">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label class="form-label"
-                                                                for="basicpill-declaration-input">Declaration</label>
-                                                            <input type="text" class="form-control"
-                                                                id="basicpill-declaration-input"
-                                                                placeholder="Enter your Declaration">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="bank-detail">
-                                        <div>
-                                            <form>
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label class="form-label"
-                                                                for="basicpill-namecard-input">Name on Card</label>
-                                                            <input type="text" class="form-control"
-                                                                id="basicpill-namecard-input"
-                                                                placeholder="Enter your Name on Card">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label>Credit Card Type</label>
-                                                            <select class="form-select">
-                                                                <option selected>Select Card Type</option>
-                                                                <option value="AE">American Express</option>
-                                                                <option value="VI">Visa</option>
-                                                                <option value="MC">MasterCard</option>
-                                                                <option value="DI">Discover</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label class="form-label"
-                                                                for="basicpill-cardno-input">Credit Card
-                                                                Number</label>
-                                                            <input type="text" class="form-control"
-                                                                id="basicpill-cardno-input"
-                                                                placeholder="Enter your  Credit Card Number">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label class="form-label"
-                                                                for="basicpill-card-verification-input">Card
-                                                                Verification Number</label>
-                                                            <input type="text" class="form-control"
-                                                                id="basicpill-card-verification-input"
-                                                                placeholder="Enter your Card Verification Number">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label class="form-label"
-                                                                for="basicpill-expiration-input">Expiration
-                                                                Date</label>
-                                                            <input type="text" class="form-control"
-                                                                id="basicpill-expiration-input"
-                                                                placeholder="Enter your Expiration Date">
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="confirm-detail">
-                                        <div class="row justify-content-center">
-                                            <div class="col-lg-6">
-                                                <div class="text-center">
-                                                    <div class="mb-4">
-                                                        <i
-                                                            class="mdi mdi-check-circle-outline text-success display-4"></i>
-                                                    </div>
-                                                    <div>
-                                                        <h5>Confirm Detail</h5>
-                                                        <p class="text-muted">If several languages coalesce, the
-                                                            grammar of the resulting</p>
+                                                        <label class="form-label" for="additional-images">Additional Images</label>
+                                                        <input type="file" class="form-control" id="additional-images" name="additional_images[]" accept="image/*" multiple>
+                                                        <small class="text-muted">You can upload multiple images.</small>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
+                                    <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                        <li class="previous"><a href="javascript:void(0);" onclick="prevStep()">Previous</a></li>
+                                        <li class="next"><a href="javascript:void(0);" onclick="nextStep()">Next</a></li>
+                                        <li class="finish"><a href="javascript:void(0);" onclick="submitForm()">Finish</a></li>
+                                    </ul>
                                 </div>
-                                <ul class="pager wizard twitter-bs-wizard-pager-link">
-                                    <li class="previous"><a href="javascript: void(0);">Previous</a></li>
-                                    <li class="next"><a href="javascript: void(0);">Next</a></li>
-                                </ul>
-                            </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>
-
             </div> <!-- end row -->
         </div> <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
 </div>
 <!-- end main content-->
-<?php
-include 'footer.php';
-?>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        var $wizard = $('#basic-pills-wizard');
+        var $tabs = $wizard.find('.twitter-bs-wizard-nav li');
+        var $tabContent = $wizard.find('.tab-content');
+
+        function showStep(index) {
+            $tabs.removeClass('active');
+            $tabs.eq(index).addClass('active');
+            $tabContent.find('.tab-pane').removeClass('active');
+            $tabContent.find('.tab-pane').eq(index).addClass('active');
+        }
+
+        function nextStep() {
+            var currentIndex = $tabs.filter('.active').index();
+            if (currentIndex < $tabs.length - 1) {
+                showStep(currentIndex + 1);
+            }
+        }
+
+        function prevStep() {
+            var currentIndex = $tabs.filter('.active').index();
+            if (currentIndex > 0) {
+                showStep(currentIndex - 1);
+            }
+        }
+
+        function submitForm() {
+            if ($('#car-form')[0].checkValidity()) {
+                $('#car-form').submit();
+            } else {
+                $('#car-form')[0].reportValidity();
+            }
+        }
+
+        // Bind click events to wizard pager buttons
+        $('.pager .next').click(nextStep);
+        $('.pager .previous').click(prevStep);
+        $('.pager .finish').click(submitForm);
+
+        // Initialize by showing the first step
+        showStep(0);
+    });
+</script>
+
+<?php include 'footer.php'; ?>

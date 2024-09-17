@@ -22,14 +22,14 @@ include 'head.php';
 
             <div class="row">
                 <div class="col-xl-3 col-sm-6">
-                    <div class="card">
+                    <div class="card card-dashboard">
                         <div class="card-body">
                             <div class="d-flex text-muted">
                                 <div class="flex-shrink-0 me-3 align-self-center">
                                     <div class="avatar-sm">
                                         <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                        <i class="mdi mdi-car fs-2"></i>
-                                    </div>
+                                            <i class="mdi mdi-car fs-2"></i>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="flex-grow-1 overflow-hidden">
@@ -46,13 +46,13 @@ include 'head.php';
                 <!-- end col -->
 
                 <div class="col-xl-3 col-sm-6">
-                    <div class="card">
+                    <div class="card card-dashboard">
                         <div class="card-body">
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3 align-self-center">
                                     <div class="avatar-sm">
                                         <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                        <i class="mdi mdi-comment-question-outline fs-2"></i>
+                                            <i class="mdi mdi-comment-question-outline fs-2"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -70,13 +70,13 @@ include 'head.php';
                 <!-- end col -->
 
                 <div class="col-xl-3 col-sm-6">
-                    <div class="card">
+                    <div class="card card-dashboard">
                         <div class="card-body">
                             <div class="d-flex text-muted">
                                 <div class="flex-shrink-0 me-3 align-self-center">
                                     <div class="avatar-sm">
                                         <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                        <i class="mdi mdi-car fs-2"></i>
+                                            <i class="mdi mdi-car fs-2"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -94,13 +94,13 @@ include 'head.php';
                 <!-- end col -->
 
                 <div class="col-xl-3 col-sm-6">
-                    <div class="card">
+                    <div class="card card-dashboard">
                         <div class="card-body">
                             <div class="d-flex text-muted">
                                 <div class="flex-shrink-0  me-3 align-self-center">
                                     <div class="avatar-sm">
                                         <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                        <i class="mdi mdi-cash fs-2"></i>
+                                            <i class="mdi mdi-cash fs-2"></i>
                                         </div>
                                     </div>
                                 </div>

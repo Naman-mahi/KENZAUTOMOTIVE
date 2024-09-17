@@ -33,6 +33,8 @@
 
 <!-- form wizard init -->
 <script src="assets/js/pages/form-wizard.init.js"></script>
+<script src="assets/js/pages/bootstrap-toasts.init.js"></script>
+
 <script src="assets/js/app.js"></script>
 </body>
 

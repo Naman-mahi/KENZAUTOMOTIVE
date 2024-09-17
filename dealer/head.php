@@ -21,6 +21,9 @@
      <link rel="stylesheet" href="assets/libs/twitter-bootstrap-wizard/prettify.css">
     <!-- App Css-->
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.css" id="app-style" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Include SweetAlert2 JS -->
+
 </head>
 
 <body data-sidebar="dark">
