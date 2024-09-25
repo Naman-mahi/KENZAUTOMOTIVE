@@ -4,8 +4,8 @@ $environment = getenv('APP_ENV') ?: 'development'; // Default to 'development' i
 
 // Define the base URL constant based on the environment
 if ($environment === 'production') {
-    define('BASE_URL', 'https://yourdomain.com/');
+    define('BASE_URL', 'https://kenzmarketplace.com/');
 } else {
-    define('BASE_URL', 'http://localhost/kenzautomotive/');
+    define('BASE_URL', 'http://localhost/marketplace/');
 }
 ?>
