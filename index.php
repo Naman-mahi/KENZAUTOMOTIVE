@@ -1,5 +1,24 @@
 <!doctype html>
 <html lang="en">
+<?php
+session_start(); // Start the session
+include '../includes/db.php'; // Include your database connection file
+
+// Check if the user is already logged in
+if (isset($_SESSION['role'])) {
+    // Redirect based on user role
+    if ($_SESSION['role'] === 'admin') {
+        header("Location: Manage/dashboard.php"); // Redirect to admin dashboard
+    } elseif ($_SESSION['role'] === 'dealer') {
+        header("Location: Manage/dashboard.php"); // Redirect to admin dashboard
+    } else {
+        header("Location: mypage.php"); // Redirect to mypage for unrecognized roles
+    }
+    exit(); // Stop script execution
+}
+
+// If the user is not logged in, show the login form
+?>
 
 <head>
     <meta charset="utf-8" />
