@@ -99,42 +99,43 @@ if (isset($_GET['id'])) {
             </div>
             <!-- end page title -->
             <div class="row">
-                <div class="col-lg-12 col-md-12">
+                <div class="col-12">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">You Can Publish Your Product On:</h4>
                             <p>Choose where you'd like your product to be visible to potential buyers and other dealers:</p>
-                            <form method="POST" action="ProductPublish.php" class="d-flex justify-content-between align-items-center">
+                            <form method="POST" action="ProductPublish.php" class="d-flex flex-column flex-md-row justify-content-between align-items-center">
                                 <input type="hidden" name="product_id" value="<?= $Products_publish['product_id'] ?>">
-                                <div class="d-flex align-items-center">
-                                    <div class="me-3 d-flex align-items-center">
-                                        <span class="me-2 fw-bold">On Marketplace <a class=" waves-effect" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Visible to a wide audience including other dealers.">
+                                <div class="d-flex flex-column flex-md-row align-items-center mb-3">
+                                    <div class="me-md-3 d-flex align-items-center mb-2 mb-md-0">
+                                        <span class="me-2 fw-bold">On Marketplace <a class="waves-effect" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Visible to a wide audience including other dealers.">
                                                 <i class="ri-question-line"></i>
                                             </a></span>
-                                        <input class="form-check form-switch ms-2" type="checkbox" name="marketplace" id="switch1" switch="success" <?php echo $Products_publish['marketplace'] ? 'checked' : ''; ?>>
+                                        <input class="form-check form-switch" type="checkbox" name="marketplace" id="switch1" switch="success" <?php echo $Products_publish['marketplace'] ? 'checked' : ''; ?>>
                                         <label class="form-label" for="switch1" data-on-label="Yes" data-off-label="No"></label>
                                     </div>
-                                    <div class="me-3 d-flex align-items-center">
-                                        <span class="me-2 fw-bold">On Website <a class=" waves-effect" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Displayed on our official site for increased visibility.">
+                                    <div class="me-md-3 d-flex align-items-center mb-2 mb-md-0">
+                                        <span class="me-2 fw-bold">On Website <a class="waves-effect" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Displayed on our official site for increased visibility.">
                                                 <i class="ri-question-line"></i>
                                             </a></span>
-                                        <input class="form-check form-switch ms-2" type="checkbox" name="website" id="switch2" switch="success" <?php echo $Products_publish['website'] ? 'checked' : ''; ?>>
+                                        <input class="form-check form-switch" type="checkbox" name="website" id="switch2" switch="success" <?php echo $Products_publish['website'] ? 'checked' : ''; ?>>
                                         <label class="form-label" for="switch2" data-on-label="Yes" data-off-label="No"></label>
                                     </div>
                                     <div class="d-flex align-items-center">
-                                        <span class="me-2 fw-bold">On Your Own Website <a class=" waves-effect" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Promote your listing directly on your personal website.">
+                                        <span class="me-2 fw-bold">On Your Own Website <a class="waves-effect" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Promote your listing directly on your personal website.">
                                                 <i class="ri-question-line"></i>
                                             </a></span>
-                                        <input class="form-check form-switch ms-2" type="checkbox" name="own_website" id="switch3" switch="success" <?php echo $Products_publish['own_website'] ? 'checked' : ''; ?>>
+                                        <input class="form-check form-switch" type="checkbox" name="own_website" id="switch3" switch="success" <?php echo $Products_publish['own_website'] ? 'checked' : ''; ?>>
                                         <label class="form-label" for="switch3" data-on-label="Yes" data-off-label="No"></label>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-sm btn-primary ms-3">Update Publish</button>
+                                <button type="submit" class="btn btn-sm btn-primary">Update Publish</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-flex align-items-end">
