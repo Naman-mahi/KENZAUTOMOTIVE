@@ -2,7 +2,7 @@
 <html lang="en">
 <?php
 session_start(); // Start the session
-include '../includes/db.php'; // Include your database connection file
+// include '../includes/db.php'; // Include your database connection file
 
 // Check if the user is already logged in
 if (isset($_SESSION['role'])) {
@@ -43,12 +43,12 @@ if (isset($_SESSION['role'])) {
                 <div class="col-xl-4 col-lg-6 col-md-8">
                     <div class="card">
                         <div class="card-body p-4">
-                            <div class="text-center mb-4">
+                            <!-- <div class="text-center mb-4">
                                 <a href="index.html" class="d-inline-block">
                                     <img src="Manage/assets/images/logo_new-removebg.png" alt="" height="24" class="auth-logo logo-dark mx-auto">
                                     <img src="Manage/assets/images/logo_new-removebg.png" alt="" height="24" class="auth-logo logo-light mx-auto">
                                 </a>
-                            </div>
+                            </div> -->
                             <!-- <h4 class="font-size-18 text-muted mt-2 text-center">Welcome Back !</h4> -->
                             <p class="mb-5 text-center">Sign in to continue to Kenz Automotive.</p>
                             <form class="form-horizontal" method="POST" action="login.php">

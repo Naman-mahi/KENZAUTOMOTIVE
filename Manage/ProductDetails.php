@@ -29,32 +29,57 @@ if (isset($_GET['id'])) {
     echo "<script>window.location.href = 'MyProducts.php';</script>";
     exit;
 }
+
+// Check if 'id' is set in the URL
 if (isset($_GET['id'])) {
-    $product_id = intval($_GET['id']); // Sanitize input
-    $category_id = $product_category_id; // Sanitize dealer ID
-    // Query to fetch car details with dealer ID condition
-    $sql = "
-    SELECT *
-    FROM product_images
-    WHERE product_id = ?  ";
+    // Sanitize input
+    $product_id = intval($_GET['id']);
+
+    // Prepare SQL statement to fetch product images
+    $sql = "SELECT * FROM product_images WHERE product_id = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $product_id); // Bind both carid and dealerid
-    $stmt->execute();
-    $result = $stmt->get_result();
-    // Check if a car was found
-    if ($result->num_rows > 0) {
-        $productImages = $result->fetch_assoc();
-        // Proceed with displaying car details...
+
+    if ($stmt) {
+        // Bind parameters
+        $stmt->bind_param("i", $product_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            // Fetch the product images
+            $productImages = $result->fetch_all(MYSQLI_ASSOC); // Fetch all images for the product
+
+            // Prepend the image path to each image URL
+            foreach ($productImages as &$image) {
+                $image['image_url'] = 'uploads/products/' . htmlspecialchars($image['image_url']);
+            }
+            unset($image); // Break the reference with the last element
+        } else {
+            // No images found for the given product ID
+            redirectToMyProducts();
+        }
+
+
+        // Close the statement
+        $stmt->close();
     } else {
-        // Car ID not found or dealer ID mismatch, redirect to MyCars.php using JavaScript
-        echo "<script>window.location.href = 'MyProducts.php';</script>";
+        // SQL preparation error, handle accordingly
+        echo "Error preparing statement: " . $conn->error;
         exit;
     }
 } else {
-    // No car ID or dealer ID provided, redirect to MyCars.php using JavaScript
+    // No product ID provided, redirect to MyProducts.php
+    redirectToMyProducts();
+}
+
+// Function to handle redirection
+function redirectToMyProducts()
+{
     echo "<script>window.location.href = 'MyProducts.php';</script>";
     exit;
 }
+
+
 if (isset($_GET['id'])) {
     $product_id = intval($_GET['id']); // Sanitize input
     // Query to fetch car publish details
@@ -147,8 +172,32 @@ if (isset($_GET['id'])) {
             <div class="row">
                 <div class="col-lg-6 col-md-12">
                     <div class="card">
-                        <div class="card-body">
-                            <img src="uploads/products/<?php echo htmlspecialchars($productImages['image_url']); ?>" class="img-fluid" alt="<?php echo htmlspecialchars($Products['product_name']); ?>">
+                        <div class="card-body p-0 m-0">
+                            <!-- Inside your HTML -->
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <a id="mainImageLink" href="<?php echo $productImages[0]['image_url']; ?>" data-fancybox="gallery" data-caption="<?php echo htmlspecialchars($Products['product_name']); ?>">
+                                                <img id="mainImage" src="<?php echo $productImages[0]['image_url']; ?>" alt="<?php echo htmlspecialchars($Products['product_name']); ?>" class="img-fluid main-image">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex flex-wrap justify-content-center">
+                                        <?php foreach ($productImages as $index => $image): ?>
+                                            <button class="thumbnail mb-2" data-index="<?php echo $index; ?>" onclick="changeImage('<?php echo $image['image_url']; ?>')">
+                                                <img src="<?php echo $image['image_url']; ?>" alt="Thumbnail <?php echo $index + 1; ?>" class="img-fluid" style="width: 100px; height: auto;">
+                                            </button>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -200,52 +249,71 @@ if (isset($_GET['id'])) {
                                 <div class="tab-pane" id="product-specifications" role="tabpanel">
                                     <table class="table table-bordered">
                                         <tbody>
-                                            <tr>
-                                                <th>Model:</th>
-                                                <td><?php echo htmlspecialchars($Products['model']); ?></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Year:</th>
-                                                <td><?php echo htmlspecialchars($Products['year']); ?></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Body Type:</th>
-                                                <td><?php echo htmlspecialchars($Products['bodytype']); ?></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Doors:</th>
-                                                <td><?php echo htmlspecialchars($Products['doors']); ?></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Seats:</th>
-                                                <td><?php echo htmlspecialchars($Products['seats']); ?></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Mileage:</th>
-                                                <td><?php echo htmlspecialchars($Products['mileage']); ?> km</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Transmission:</th>
-                                                <td><?php echo htmlspecialchars($Products['transmission']); ?></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Fuel Type:</th>
-                                                <td><?php echo htmlspecialchars($Products['fueltype']); ?></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Engine:</th>
-                                                <td><?php echo htmlspecialchars($Products['engine']); ?></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Power:</th>
-                                                <td><?php echo htmlspecialchars($Products['power']); ?> hp</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Torque:</th>
-                                                <td><?php echo htmlspecialchars($Products['torque']); ?> Nm</td>
-                                            </tr>
+                                            <?php
+                                            // Check if 'id' is set in the URL
+                                            if (isset($_GET['id'])) {
+                                                // Sanitize input
+                                                $product_id = intval($_GET['id']);
+                                                $category_id = $product_category_id; // Ensure $product_category_id is defined
+
+                                                // SQL statement to fetch attributes and custom attributes
+                                                $sql = "
+            SELECT 
+                pa.pf_name AS label,
+                COALESCE(pav.value, 'No Value') AS value
+            FROM 
+                product_attributes pa
+            LEFT JOIN 
+                product_attributes_value pav ON pa.pf_id = pav.attribute_id AND pav.product_id = ?
+            WHERE 
+                pa.category_id = ?
+
+            UNION ALL
+
+            SELECT 
+                pca.attribute_name AS label,
+                COALESCE(pca.attribute_value, 'No Custom Value') AS value
+            FROM 
+                product_custom_attributes pca
+            WHERE 
+                pca.product_id = ?";
+
+                                                $stmt = $conn->prepare($sql);
+
+                                                if ($stmt) {
+                                                    // Bind parameters
+                                                    $stmt->bind_param("iii", $product_id, $category_id, $product_id);
+                                                    $stmt->execute();
+                                                    $result = $stmt->get_result();
+
+                                                    if ($result->num_rows > 0) {
+                                                        // Fetch and display attributes
+                                                        while ($row = $result->fetch_assoc()) {
+                                                            echo '<tr>';
+                                                            echo '<th>' . htmlspecialchars($row['label']) . ':</th>';
+                                                            echo '<td>' . htmlspecialchars($row['value']) . '</td>';
+                                                            echo '</tr>';
+                                                        }
+                                                    } else {
+                                                        // No attributes found for the given product ID
+                                                        echo '<tr><td colspan="2">No attributes found for this product.</td></tr>';
+                                                    }
+
+                                                    // Close the statement
+                                                    $stmt->close();
+                                                } else {
+                                                    // SQL preparation error, handle accordingly
+                                                    echo "<tr><td colspan='2'>Error preparing statement: " . htmlspecialchars($conn->error) . "</td></tr>";
+                                                }
+                                            } else {
+                                                // No product ID provided, redirect to MyProducts.php
+                                                echo "<tr><td colspan='2'>No product ID provided.</td></tr>";
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
+
+
                                 </div>
                                 <div class="tab-pane" id="other-details" role="tabpanel">
                                     <table class="table table-bordered">
@@ -275,6 +343,12 @@ if (isset($_GET['id'])) {
 </div>
 <!-- end main content -->
 <!-- HTML and JavaScript for Cloudinary Gallery -->
+<script>
+    function changeImage(imageSrc) {
+        document.getElementById('mainImage').src = imageSrc;
+        document.getElementById('mainImageLink').href = imageSrc;
+    }
+</script>
 
 <?php
 include 'footer.php';

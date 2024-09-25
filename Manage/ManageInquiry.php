@@ -1,5 +1,14 @@
 <?php
 include 'head.php';
+
+// Fetch inquiries
+$sql = "SELECT pi.inquiry_id, u.first_name, u.last_name, u.email, u.mobile_number, pi.inquiry_date, pi.status, pi.notes 
+        FROM product_inquiries pi 
+        JOIN users u ON pi.user_id = u.user_id";
+
+$result = $conn->query($sql);
+
+
 ?>
 <div class="main-content">
     <div class="page-content">
@@ -33,54 +42,35 @@ include 'head.php';
                                         <th>Phone</th>
                                         <th>Date</th>
                                         <th>Time</th>
+                                        <th>Status</th>
+                                        <th>Notes</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>INQ001</td>
-                                        <td>John Doe</td>
-                                        <td>john.doe@example.com</td>
-                                        <td>(123) 456-7890</td>
-                                        <td>2024/09/01</td>
-                                        <td>10:30 AM</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>INQ002</td>
-                                        <td>Jane Smith</td>
-                                        <td>jane.smith@example.com</td>
-                                        <td>(987) 654-3210</td>
-                                        <td>2024/09/02</td>
-                                        <td>11:45 AM</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>INQ003</td>
-                                        <td>Robert Johnson</td>
-                                        <td>robert.johnson@example.com</td>
-                                        <td>(555) 123-4567</td>
-                                        <td>2024/09/03</td>
-                                        <td>01:00 PM</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>INQ004</td>
-                                        <td>Emily Davis</td>
-                                        <td>emily.davis@example.com</td>
-                                        <td>(555) 765-4321</td>
-                                        <td>2024/09/04</td>
-                                        <td>02:15 PM</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>INQ005</td>
-                                        <td>Michael Brown</td>
-                                        <td>michael.brown@example.com</td>
-                                        <td>(555) 987-6543</td>
-                                        <td>2024/09/05</td>
-                                        <td>03:30 PM</td>
-                                    </tr>
+                                    <?php
+                                    if ($result->num_rows > 0) {
+                                        $counter = 1;
+                                        while ($row = $result->fetch_assoc()) {
+                                            $customer_name = $row['first_name'] . ' ' . $row['last_name'];
+                                            $inquiry_id = "INQ" . str_pad($row['inquiry_id'], 3, '0', STR_PAD_LEFT);
+                                            $dateTime = new DateTime($row['inquiry_date']);
+                                            echo "<tr>
+                                                <td>{$counter}</td>
+                                                <td>{$inquiry_id}</td>
+                                                <td>{$customer_name}</td>
+                                                <td>{$row['email']}</td>
+                                                <td>{$row['mobile_number']}</td>
+                                                <td>" . $dateTime->format('Y/m/d') . "</td>
+                                                <td>" . $dateTime->format('h:i A') . "</td>
+                                                <td>{$row['status']}</td>
+                                                <td>{$row['notes']}</td>
+                                            </tr>";
+                                            $counter++;
+                                        }
+                                    } else {
+                                        echo "<tr><td colspan='9'>No inquiries found</td></tr>";
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>

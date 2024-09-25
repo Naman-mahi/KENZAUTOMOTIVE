@@ -34,6 +34,7 @@
 <script src="assets/libs/table-edits/build/table-edits.min.js"></script>
 
 <script src="assets/js/pages/table-editable.init.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0.28/dist/fancybox.umd.js"></script>
 
 <!-- form wizard init -->
 <script src="assets/js/pages/form-wizard.init.js"></script>

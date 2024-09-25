@@ -58,3 +58,19 @@
   .pager .finish {
     display: none; /* Initially hide the finish button */
 }
+
+
+.thumbnail {
+  cursor: pointer;
+  transition: transform 0.2s;
+  border: 2px solid transparent; /* Default border */
+}
+.thumbnail:hover {
+  transform: scale(1.05);
+  border: 2px solid #007bff; /* Highlight on hover */
+}
+.main-image {
+  max-height: 500px; /* Limit the maximum height */
+  width: 100%; /* Make sure the width is full */
+  object-fit: contain; /* Maintain aspect ratio */
+}

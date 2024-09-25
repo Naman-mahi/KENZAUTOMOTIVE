@@ -15,6 +15,8 @@
     <!-- Bootstrap Css -->
     <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0.28/dist/fancybox.css" />
+
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- twitter-bootstrap-wizard css -->
     <link rel="stylesheet" href="assets/libs/twitter-bootstrap-wizard/prettify.css">
