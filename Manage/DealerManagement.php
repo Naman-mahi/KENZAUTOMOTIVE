@@ -1,5 +1,11 @@
 <?php
 include 'head.php';
+require_once '../includes/db.php'; // Ensure database connection is included
+
+// Fetch inquiries securely
+$sql = "SELECT u.*, d.* FROM `users` u JOIN `dealers` d ON u.user_id = d.user_id WHERE u.role = 'dealer'";
+$result = $conn->query($sql);
+
 ?>
 <div class="main-content">
     <div class="page-content">
@@ -27,60 +33,49 @@ include 'head.php';
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Inquiry ID</th>
-                                        <th>Customer Name</th>
+                                        <th>Company Name</th>
+                                        <th>Person Name</th>
                                         <th>Email</th>
                                         <th>Phone</th>
-                                        <th>Date</th>
-                                        <th>Time</th>
+                                        <th>Location</th>
+                                        <th>Date Time</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>INQ001</td>
-                                        <td>John Doe</td>
-                                        <td>john.doe@example.com</td>
-                                        <td>(123) 456-7890</td>
-                                        <td>2024/09/01</td>
-                                        <td>10:30 AM</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>INQ002</td>
-                                        <td>Jane Smith</td>
-                                        <td>jane.smith@example.com</td>
-                                        <td>(987) 654-3210</td>
-                                        <td>2024/09/02</td>
-                                        <td>11:45 AM</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>INQ003</td>
-                                        <td>Robert Johnson</td>
-                                        <td>robert.johnson@example.com</td>
-                                        <td>(555) 123-4567</td>
-                                        <td>2024/09/03</td>
-                                        <td>01:00 PM</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>INQ004</td>
-                                        <td>Emily Davis</td>
-                                        <td>emily.davis@example.com</td>
-                                        <td>(555) 765-4321</td>
-                                        <td>2024/09/04</td>
-                                        <td>02:15 PM</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>INQ005</td>
-                                        <td>Michael Brown</td>
-                                        <td>michael.brown@example.com</td>
-                                        <td>(555) 987-6543</td>
-                                        <td>2024/09/05</td>
-                                        <td>03:30 PM</td>
-                                    </tr>
+                                    <?php
+                                    if ($result && $result->num_rows > 0) {
+                                        $counter = 1;
+                                        while ($row = $result->fetch_assoc()) {
+                                            $customer_name = htmlspecialchars($row['first_name'] . ' ' . $row['last_name']);
+                                            $dateTime = new DateTime($row['created_at']);
+                                            $formattedDateTime = $dateTime->format('d F, Y h:i A');
+                                            $current_status = $row['user_status'];
+
+                                            echo "<tr data-user-id='{$row['user_id']}'>
+                                            <td>{$counter}</td>
+                                            <td>" . htmlspecialchars($row['company_name']) . "</td>
+                                            <td>{$customer_name}</td>
+                                            <td>" . htmlspecialchars($row['email']) . "</td>
+                                            <td>" . htmlspecialchars($row['mobile_number']) . "</td>
+                                            <td>" . htmlspecialchars($row['city']) . "</td>
+                                            <td>{$formattedDateTime}</td>
+                                            <td>
+                                                <select class='form-select m-0 p-1 status-select' name='status' required>
+                                                    <option value=''>Select Status</option>
+                                                    <option value='active'" . ($current_status === 'active' ? ' selected' : '') . ">Active</option>
+                                                    <option value='inactive'" . ($current_status === 'inactive' ? ' selected' : '') . ">Inactive</option>
+                                                    <option value='pending'" . ($current_status === 'pending' ? ' selected' : '') . ">Pending</option>
+                                                    <option value='suspended'" . ($current_status === 'suspended' ? ' selected' : '') . ">Suspend</option>
+                                                </select>
+                                            </td>
+                                        </tr>";
+                                            $counter++;
+                                        }
+                                    } else {
+                                        echo "<tr><td colspan='8'>No dealers found</td></tr>";
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
@@ -92,6 +87,42 @@ include 'head.php';
     <!-- End Page-content -->
 </div>
 <!-- end main content-->
+
+<script>
+$(document).ready(function() {
+    $('.status-select').change(function() {
+        const status = $(this).val();
+        const userId = $(this).closest('tr').data('user-id');
+        if (status) {
+            $.ajax({
+                url: 'UpdateStatus.php',
+                type: 'POST',
+                data: {
+                    status: status,
+                    dealer_id: userId
+                },
+                success: function(response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Status Updated!',
+                        text: 'The status has been updated successfully.',
+                    });
+                    // Optionally, you can add code to change the row color based on new status.
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Update Failed!',
+                        text: 'There was an error updating the status. Please try again.',
+                    });
+                }
+            });
+        }
+    });
+});
+</script>
+
 <?php
 include 'footer.php';
 ?>
+

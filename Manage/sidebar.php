@@ -15,7 +15,7 @@
 
                 <?php if ($_SESSION['role'] === 'admin'): ?>
                     <li>
-                        <a href="UserManagement.php" class="waves-effect">
+                        <a href="CustomerManagement.php" class="waves-effect">
                             <i class="mdi mdi-account-circle-outline"></i> <!-- User Management Icon -->
                             <span>User Management</span>
                         </a>

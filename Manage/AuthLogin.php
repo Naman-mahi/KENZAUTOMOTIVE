@@ -17,7 +17,6 @@
 </head>
 
 <body data-sidebar="light">
-
     <div class="account-pages d-flex align-items-center min-vh-100 py-5">
         <div class="container">
             <div class="row justify-content-center">

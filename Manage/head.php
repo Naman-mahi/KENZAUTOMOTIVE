@@ -16,6 +16,9 @@
     <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0.28/dist/fancybox.css" />
+    <link href="assets/libs/sweetalert2/sweetalert2.min.css"rel="stylesheet" type="text/css" />
+    <script src="assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
+<script src="assets/libs/jquery/jquery.min.js"></script>
 
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- twitter-bootstrap-wizard css -->
