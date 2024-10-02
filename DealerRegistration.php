@@ -48,7 +48,7 @@ if (isset($_SESSION['role'])) {
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label" for="mobile-number">Mobile Number</label>
-                                    <input type="text" class="form-control" id="mobile-number" name="mobile_number" placeholder="Enter Mobile Number" required>
+                                    <input type="number" class="form-control" id="mobile-number" name="mobile_number" placeholder="Enter Mobile Number" required>
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label" for="email">Email</label>

@@ -44,7 +44,7 @@ if (isset($_SESSION['role'])) {
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label" for="otp">OTP</label>
-                                    <input type="text" class="form-control" id="otp" name="otp" placeholder="Enter your OTP" required>
+                                    <input type="number" class="form-control" id="otp" name="otp" placeholder="Enter your OTP" required>
                                 </div>
                                 <div class="d-grid">
                                     <button class="btn btn-primary" type="submit">Verify OTP</button>
