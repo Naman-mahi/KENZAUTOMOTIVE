@@ -101,7 +101,7 @@
                                                     echo '<div class="col-lg-6 specification-item mb-3">
                                                             <div class="mb-3">
                                                                 <label class="form-label" for="' . htmlspecialchars($spec['name']) . '">' . htmlspecialchars($spec['label']) . '</label>
-                                                                <input type="text" class="form-control" id="' . htmlspecialchars($spec['name']) . '" name="' . htmlspecialchars($spec['name']) . '" required>
+                                                                <input type="text" class="form-control" id="' . htmlspecialchars($spec['name']) . '" name="' . htmlspecialchars($spec['id']) . '" required>
                                                             </div>
                                                         </div>';
                                                 }
@@ -121,6 +121,7 @@
                                                     <div class="mb-3">
                                                         <label class="form-label" for="top-features">Top Features</label>
                                                         <textarea class="form-control" id="top-features" name="top_features" rows="3" required></textarea>
+                                                        <input type="hidden" name="category_id" value="<?= $categoryId ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">

@@ -56,7 +56,7 @@
 $categoryId = $product_category_id; // Make sure you set this in the first script
 
 // SQL to fetch existing specifications
-$sql = "SELECT `pf_name` FROM `product_attributes` WHERE `category_id` = ?";
+$sql = "SELECT `pf_name`, `pf_id` FROM `product_attributes` WHERE `category_id` = ?";
 $stmt = $conn->prepare($sql);
 
 if (!$stmt) {
@@ -76,6 +76,7 @@ $specs = [];
 while ($row = $result->fetch_assoc()) {
     $specs[] = [
         'label' => $row['pf_name'], // Using pf_name as label
+        'id' => $row['pf_id'], // Using pf_name as label
         'name' => strtolower(str_replace(' ', '_', $row['pf_name'])) // Create a name from the label
     ];
 }
