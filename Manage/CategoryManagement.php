@@ -28,7 +28,7 @@ $result = $conn->query($sql);
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-flex align-items-end">
-                        <button type="button" class="btn btn-dark btn-sm waves-effect waves-light ms-auto" data-toggle="modal" data-target="#addCategoryModal">Add Category</button>
+                        <button type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto" data-toggle="modal" data-target="#addCategoryModal">Add Category</button>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@ $result = $conn->query($sql);
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" id="submitCategory">Add Category</button>
+                            <button type="button" class="btn rounded-0  btn-primary" id="submitCategory">Add Category</button>
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@ $result = $conn->query($sql);
                                             echo "<td>{$counter}</td>";
                                             echo "<td>{$row['category_name']}</td>";
                                             echo "<td>
-                                                    <button class='btn btn-info btn-sm' onclick='viewCategory({$row['category_id']})'>
+                                                    <button class='btn rounded-0  btn-info btn-sm' onclick='viewCategory({$row['category_id']})'>
                                                         <i class='mdi mdi-eye'></i> View
                                                     </button>
                                                 </td>";
@@ -173,7 +173,7 @@ $result = $conn->query($sql);
                              <div class="d-flex align-items-center">
                                 <span class="badge fs-6 badge-soft-warning p-2 m-1">${attr.attribute_name}</span>
                                 <input type="hidden" id="customAttribute_${attr.product_id}" class="form-control" placeholder="" value="${attr.attribute_name}" />
-                                <button class="btn btn-sm btn-success rounded-4 ms-2" onclick="addCustomAttribute(${categoryId}, '${attr.product_id}', document.getElementById('customAttribute_${attr.product_id}').value)">Add</button>
+                                <button class="btn rounded-0  btn-sm btn-success rounded-4 ms-2" onclick="addCustomAttribute(${categoryId}, '${attr.product_id}', document.getElementById('customAttribute_${attr.product_id}').value)">Add</button>
                             </div>
                         `).join(' ') :
                                     'None';
@@ -186,7 +186,7 @@ $result = $conn->query($sql);
                         ${customAttributeList}
                         <br>
                         <input type="text" id="newAttributeName" class="form-control" placeholder="New Attribute" />
-                        <button class="btn btn-primary mt-2" onclick="addCustomAttribute(${categoryId}, null, document.getElementById('newAttributeName').value)">Add Custom Attribute</button>
+                        <button class="btn rounded-0  btn-primary mt-2" onclick="addCustomAttribute(${categoryId}, null, document.getElementById('newAttributeName').value)">Add Custom Attribute</button>
                     `;
                             } else {
                                 document.getElementById('details').innerHTML = 'Category not found.';

@@ -52,7 +52,7 @@
                                     </div>
                                 </div>
                                 <div class="d-grid">
-                                    <button class="btn btn-primary waves-effect waves-light" type="submit">Log In</button>
+                                    <button class="btn rounded-0  btn-primary waves-effect waves-light" type="submit">Log In</button>
                                 </div>
                             </form>
                         </div>

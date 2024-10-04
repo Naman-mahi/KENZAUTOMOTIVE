@@ -69,8 +69,8 @@ $conn->close();
                                     <p class="text-muted"><?= htmlspecialchars($user['email']) ?></p>
                                     <p class="text-muted"><strong>Joined:</strong> <?= date("F j, Y", strtotime($user['created_at'])) ?></p>
                                     <div class="d-flex justify-content-start mt-3">
-                                        <a href="logout.php" class="btn text-danger me-2"><i class="mdi mdi-logout-variant"></i> Logout</a>
-                                        <a class="btn text-primary" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Change Password</a>
+                                        <a href="logout.php" class="btn rounded-0  text-danger me-2"><i class="mdi mdi-logout-variant"></i> Logout</a>
+                                        <a class="btn rounded-0  text-primary" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Change Password</a>
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@ $conn->close();
                                             </div>
                                         </div>
                                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                            <button type="submit" class="btn btn-sm btn-primary">Update Personal Info</button>
+                                            <button type="submit" class="btn rounded-0  btn-sm btn-primary">Update Personal Info</button>
                                         </div>
                                     </div>
                                 </div>
@@ -141,7 +141,7 @@ $conn->close();
                                             </div>
                                         </div>
                                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                            <button type="submit" class="btn btn-sm btn-primary">Update Address</button>
+                                            <button type="submit" class="btn rounded-0  btn-sm btn-primary">Update Address</button>
                                         </div>
                                     </div>
                                 </div>
@@ -163,7 +163,7 @@ $conn->close();
                                             </div>
                                         </div>
                                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                            <button type="submit" class="btn btn-sm btn-primary">Update Company Info</button>
+                                            <button type="submit" class="btn rounded-0  btn-sm btn-primary">Update Company Info</button>
                                         </div>
                                     </div>
                                 </div>
@@ -199,8 +199,8 @@ $conn->close();
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" form="changePasswordForm" class="btn btn-primary">Change Password</button>
+                            <button type="button" class="btn rounded-0  btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" form="changePasswordForm" class="btn rounded-0  btn-primary">Change Password</button>
                         </div>
                     </div>
                 </div>

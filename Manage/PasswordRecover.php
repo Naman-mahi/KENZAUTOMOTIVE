@@ -43,7 +43,7 @@
                                     <input type="email" class="form-control" id="email" placeholder="Enter Email">
                                 </div>
                                 <div class="d-grid">
-                                    <button class="btn btn-primary waves-effect waves-light" type="submit">Submit</button>
+                                    <button class="btn rounded-0  btn-primary waves-effect waves-light" type="submit">Submit</button>
                                 </div>
                             </form>
                         </div>

@@ -43,7 +43,7 @@ include 'head.php';
                                             <td data-field="unit_price">$10.00</td>
                                             <td>2024-09-24 10:30 AM</td>
                                             <td style="width: 100px">
-                                                <a class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                                                <a class="btn rounded-0  btn-outline-secondary btn-sm edit" title="Edit">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
                                             </td>
@@ -55,7 +55,7 @@ include 'head.php';
                                             <td data-field="unit_price">$15.00</td>
                                             <td>2024-09-24 11:00 AM</td>
                                             <td>
-                                                <a class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                                                <a class="btn rounded-0  btn-outline-secondary btn-sm edit" title="Edit">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
                                             </td>
@@ -67,7 +67,7 @@ include 'head.php';
                                             <td data-field="unit_price">$20.00</td>
                                             <td>2024-09-24 11:30 AM</td>
                                             <td>
-                                                <a class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                                                <a class="btn rounded-0  btn-outline-secondary btn-sm edit" title="Edit">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
                                             </td>
@@ -79,7 +79,7 @@ include 'head.php';
                                             <td data-field="unit_price">$25.00</td>
                                             <td>2024-09-24 12:00 PM</td>
                                             <td>
-                                                <a class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                                                <a class="btn rounded-0  btn-outline-secondary btn-sm edit" title="Edit">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
                                             </td>
@@ -91,7 +91,7 @@ include 'head.php';
                                             <td data-field="unit_price">$30.00</td>
                                             <td>2024-09-24 12:30 PM</td>
                                             <td>
-                                                <a class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                                                <a class="btn rounded-0  btn-outline-secondary btn-sm edit" title="Edit">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
                                             </td>

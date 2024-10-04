@@ -59,7 +59,7 @@ if (isset($_SESSION['role'])) {
                                     <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
                                 </div>
                                 <div class="d-grid">
-                                    <button class="btn btn-primary waves-effect waves-light" type="submit">Register</button>
+                                    <button class="btn rounded-0 btn-primary waves-effect waves-light" type="submit">Register</button>
                                 </div>
                             </form>
                         </div>

@@ -154,7 +154,7 @@ if (isset($_GET['id'])) {
                                         <label class="form-label" for="switch3" data-on-label="Yes" data-off-label="No"></label>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-sm btn-primary">Update Publish</button>
+                                <button type="submit" class="btn rounded-0  btn-sm btn-primary">Update Publish</button>
                             </form>
                         </div>
                     </div>
@@ -164,7 +164,7 @@ if (isset($_GET['id'])) {
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-flex align-items-end">
-                        <a href="NewCar.php" type="button" class="btn btn-dark btn-sm waves-effect waves-light ms-auto">Update Product Info</a>
+                        <a href="NewCar.php" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Update Product Info</a>
                     </div>
                 </div>
             </div>

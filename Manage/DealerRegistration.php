@@ -34,10 +34,10 @@
             <h2>Select Subscription Duration</h2>
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                 <input type="radio" class="btn-check" name="options" id="monthly" autocomplete="off" checked>
-                <label class="btn btn-outline-primary" for="monthly">Monthly</label>
+                <label class="btn rounded-0  btn-outline-primary" for="monthly">Monthly</label>
 
                 <input type="radio" class="btn-check" name="options" id="yearly" autocomplete="off">
-                <label class="btn btn-outline-primary" for="yearly">Yearly</label>
+                <label class="btn rounded-0  btn-outline-primary" for="yearly">Yearly</label>
             </div>
         </div>
 
@@ -61,7 +61,7 @@
                             <li class="gap-2 m-2">✔️ Access to one product category</li>
                         </ul>
                         <div class="d-grid gap-2 col-6 mx-auto">
-                            <button class="btn btn-primary" onclick="alert('Selected Professional Plan')">Select</button>
+                            <button class="btn rounded-0  btn-primary" onclick="alert('Selected Professional Plan')">Select</button>
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                             <li class="gap-2 m-2">✔️ Advanced marketing automation tools</li>
                         </ul>
                         <div class="d-grid gap-2 col-6 mx-auto">
-                            <button class="btn btn-success" onclick="alert('Selected Enterprise Plan')">Select</button>
+                            <button class="btn rounded-0  btn-success" onclick="alert('Selected Enterprise Plan')">Select</button>
                         </div>
                     </div>
                 </div>

@@ -55,7 +55,7 @@ include 'head.php';
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-flex align-items-end">
-                        <a href="AddProduct.php" type="button" class="btn btn-dark btn-sm waves-effect waves-light ms-auto">Add Product</a>
+                        <a href="AddProduct.php" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Add Product</a>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@ include 'head.php';
 
                                         <h3 class="text-center">No Products found</h3>
                                         <br>
-                                        <a href="AddProduct.php" type="button" class="btn btn-dark btn-sm waves-effect waves-light ms-auto">Add Product</a>
+                                        <a href="AddProduct.php" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Add Product</a>
                                     </div>
                                 <?php
 

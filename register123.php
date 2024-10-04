@@ -35,7 +35,7 @@ include('head.php');
                 <option value="dealer">Admin</option>
               </select>
             </div>
-            <button type="submit" name="register" class="btn btn-primary w-100">Register</button>
+            <button type="submit" name="register" class="btn rounded-0  btn-primary w-100">Register</button>
           </form>
           <p class="mt-3 text-center">Already have an account? <a href="login">Login</a></p>
         </div>

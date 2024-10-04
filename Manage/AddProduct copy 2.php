@@ -92,7 +92,7 @@
                                                 ?>
                                             </div>
                                             <div class="text-end">
-                                                <button type="button" class="btn btn-primary" id="add-specification">Add Another Specification</button>
+                                                <button type="button" class="btn rounded-0  btn-primary" id="add-specification">Add Another Specification</button>
                                             </div>
                                         </div>
 
@@ -158,7 +158,7 @@
                         <label class="form-label" for="specification-${specCount}">Specification ${specCount}</label>
                         <input type="text" class="form-control" id="specification-${specCount}" name="specifications[]" required>
                     </div>
-                    <button type="button" class="btn btn-danger remove-specification">Remove</button>
+                    <button type="button" class="btn rounded-0  btn-danger remove-specification">Remove</button>
                 </div>
             `;
 

@@ -103,7 +103,7 @@ if (isset($_SESSION['role'])) {
                                                 <input type="text" class="form-control" id="otp" placeholder="Enter the OTP sent to your email" required>
                                             </div>
                                             <div class="text-center">
-                                                <button type="button" class="btn btn-primary" id="sendOtpBtn">Send OTP</button>
+                                                <button type="button" class="btn rounded-0  btn-primary" id="sendOtpBtn">Send OTP</button>
                                             </div>
                                         </form>
                                     </div>
@@ -203,9 +203,9 @@ if (isset($_SESSION['role'])) {
                                 </div>
 
                                 <div class="actions clearfix">
-                                    <button type="button" class="btn btn-primary next">Next</button>
-                                    <button type="button" class="btn btn-secondary previous disabled">Previous</button>
-                                    <button type="button" class="btn btn-success submit" style="display:none;">Submit</button>
+                                    <button type="button" class="btn rounded-0  btn-primary next">Next</button>
+                                    <button type="button" class="btn rounded-0  btn-secondary previous disabled">Previous</button>
+                                    <button type="button" class="btn rounded-0  btn-success submit" style="display:none;">Submit</button>
                                 </div>
                             </div>
                         </div>

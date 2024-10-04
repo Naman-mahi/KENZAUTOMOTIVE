@@ -147,7 +147,7 @@ include 'includes/db.php';
 </div>
 
                                 <div class="d-grid">
-                                    <button class="btn btn-primary waves-effect waves-light" type="submit" id="submit-button">Submit</button>
+                                    <button class="btn btn-primary rounded-0 waves-effect waves-light" type="submit" id="submit-button">Submit</button>
                                 </div>
                             </form>
                         </div>

@@ -110,7 +110,7 @@
 
                                             </div>
                                             <div class="text-end">
-                                                <button type="button" class="btn btn-primary" id="add-specification">Add Another Specification</button>
+                                                <button type="button" class="btn rounded-0  btn-primary" id="add-specification">Add Another Specification</button>
                                             </div>
                                         </div>
 
@@ -173,7 +173,7 @@
                 <div class="col-lg-6 specification-item-custom">
                     <input type="text" class="form-control" name="specification_labels[]" placeholder="Ex. Color" required>
                     <input type="text" class="form-control" name="specification_values[]" placeholder="Ex. Red" required>
-                    <a type="button" class="btn text-danger btn-sm remove-specification"><i class="mdi mdi-delete-circle fs-3"></i> </a>
+                    <a type="button" class="btn rounded-0  text-danger btn-sm remove-specification"><i class="mdi mdi-delete-circle fs-3"></i> </a>
                 </div>`;
 
             // Append the new specification to the container
