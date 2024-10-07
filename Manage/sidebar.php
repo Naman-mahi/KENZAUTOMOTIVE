@@ -39,6 +39,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="SalesAgentManagement.php" class="waves-effect">
+                            <i class="mdi mdi-calendar-check-outline"></i> <!-- Subscriptions Icon -->
+                            <span>Sales Agent</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="AppearanceManagement.php" class="waves-effect">
                             <i class="mdi mdi-calendar-check-outline"></i> <!-- Subscriptions Icon -->
                             <span>Appearance</span>

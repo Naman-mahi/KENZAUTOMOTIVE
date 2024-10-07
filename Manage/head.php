@@ -1,6 +1,22 @@
 <!doctype html>
 <html lang="en">
+<?php
+session_start(); // Start the session
+include '../includes/db.php'; // Include your database connection file
 
+// Check if the session variable 'role' is set
+if (!isset($_SESSION['role'])) {
+    // If the user is not logged in, redirect to index page
+    header("Location: ../index.php");
+    exit();
+} elseif ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'dealer') {
+    // If the role is not recognized, redirect to mypage
+    header("Location: mypage.php");
+    exit();
+}
+
+// Continue with the rest of your page
+?>
 <head>
     <meta charset="utf-8" />
     <title>Kenz Automotive</title>
@@ -31,6 +47,35 @@
 
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
     <link href="assets/css/style.css" id="app-style" rel="stylesheet" type="text/css" />
+    <?php 
+    
+$sql = "SELECT * FROM settings ORDER BY id DESC LIMIT 1"; // Fetch the latest settings
+$result = $conn->query($sql);
+
+$settings = null;
+
+if ($result && $result->num_rows > 0) {
+    $settings = $result->fetch_assoc();
+} else {
+    echo "No settings found.";
+} 
+// Define CSS variables based on settings
+echo "<style>
+    :root {
+        --text-color: " . ($settings['text_color'] ?? '#000000') . ";
+        --button-color: " . ($settings['button_color'] ?? '#007bff') . ";
+        --active-button-color: " . ($settings['active_button_color'] ?? '#0056b3') . ";
+        --active-text-color: " . ($settings['active_text_color'] ?? '#ffffff') . ";
+        --button-padding: " . ($settings['button_padding'] ?? '0.375rem 0.75rem') . ";
+        --button-rounded: " . ($settings['button_rounded'] ?? '0.25rem') . ";
+        --button-active: " . ($settings['button_active'] ?? '0.2') . ";
+    }
+
+   
+</style>";
+
+    
+    ?>
 </head>
 
 <body data-sidebar="light">

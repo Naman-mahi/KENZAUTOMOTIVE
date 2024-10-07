@@ -1,20 +1,4 @@
-<?php
-session_start(); // Start the session
-include '../includes/db.php'; // Include your database connection file
 
-// Check if the session variable 'role' is set
-if (!isset($_SESSION['role'])) {
-    // If the user is not logged in, redirect to index page
-    header("Location: ../index.php");
-    exit();
-} elseif ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'dealer') {
-    // If the role is not recognized, redirect to mypage
-    header("Location: mypage.php");
-    exit();
-}
-
-// Continue with the rest of your page
-?>
 
 
 <header id="page-topbar">
