@@ -38,6 +38,12 @@
                             <span>Subscriptions</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="AppearanceManagement.php" class="waves-effect">
+                            <i class="mdi mdi-calendar-check-outline"></i> <!-- Subscriptions Icon -->
+                            <span>Appearance</span>
+                        </a>
+                    </li>
 
                 <?php elseif ($_SESSION['role'] === 'dealer'): ?>
                     <li>

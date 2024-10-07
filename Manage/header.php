@@ -87,5 +87,5 @@ if (!isset($_SESSION['role'])) {
             </div>
 
         </div>
-    </div>
+    </div>   
 </header>
