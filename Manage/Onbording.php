@@ -137,21 +137,21 @@ $result = $stmt->get_result();
                                         </div>
                                     </div>
                                     <h4>Verification</h4>
-<form id="verificationForm">
-    <input type="hidden" id="user_id" name="user_id" value="<!-- PHP echo for user_id here -->">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="form-group">
-                <label for="note">Note (optional):</label>
-                <textarea id="note" name="note" class="form-control" rows="3" placeholder="Add any comments or notes here..."></textarea>
-            </div>
-        </div>
-        <div class="col-md-12 mt-3">
-            <button type="button" id="approveBtn" class="btn btn-primary">Approve</button>
-            <button type="button" id="rejectBtn" class="btn btn-danger">Reject</button>
-        </div>
-    </div> <!-- end row -->
-</form>
+                                    <form id="verificationForm">
+                                        <input type="hidden" id="user_id" name="user_id" value="<?php echo $row['user_id']; ?>">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="note">Note (optional):</label>
+                                                    <textarea id="note" name="note" class="form-control" rows="3" placeholder="Add any comments or notes here..."></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mt-3">
+                                                <button type="button" id="approveBtn" class="btn btn-primary">Approve</button>
+                                                <button type="button" id="rejectBtn" class="btn btn-danger">Reject</button>
+                                            </div>
+                                        </div> <!-- end row -->
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -173,62 +173,63 @@ $result = $stmt->get_result();
 </div>
 <!-- end main content-->
 <script>
-$(document).ready(function() {
-    // Approve button click handler
-    $('#approveBtn').click(function() {
-        submitForm('approve');
-    });
-
-    // Reject button click handler
-    $('#rejectBtn').click(function() {
-        submitForm('reject');
-    });
-
-    function submitForm(action) {
-        const note = $('#note').val();
-        const userId = $('#user_id').val(); // Get the user_id from the hidden input
-
-        // SweetAlert confirmation
-        Swal.fire({
-            title: 'Are you sure?',
-            text: `You are about to ${action} this verification.`,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: action === 'approve' ? '#3085d6' : '#d33',
-            cancelButtonColor: '#999',
-            confirmButtonText: action === 'approve' ? 'Yes, approve!' : 'Yes, reject!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // AJAX request to submit the form
-                $.ajax({
-                    url: 'process_verification.php', // Your processing script
-                    type: 'POST',
-                    data: {
-                        note: note,
-                        action: action,
-                        user_id: userId // Include user_id in the request
-                    },
-                    success: function(response) {
-                        // Show success message
-                        Swal.fire(
-                            'Success!',
-                            response,
-                            'success'
-                        );
-                    },
-                    error: function(xhr, status, error) {
-                        // Show error message
-                        Swal.fire(
-                            'Error!',
-                            'An error occurred while processing your request.',
-                            'error'
-                        );
-                    }
-                });
-            }
+    $(document).ready(function() {
+        // Approve button click handler
+        $('#approveBtn').click(function() {
+            submitForm('approve');
         });
-    }
-});
+
+        // Reject button click handler
+        $('#rejectBtn').click(function() {
+            submitForm('reject');
+        });
+
+        function submitForm(action) {
+            const note = $('#note').val();
+            const userId = $('#user_id').val(); // Get the user_id from the hidden input
+
+            // SweetAlert confirmation
+            Swal.fire({
+                title: 'Are you sure?',
+                text: `You are about to ${action} this verification.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: action === 'approve' ? '#3085d6' : '#d33',
+                cancelButtonColor: '#999',
+                confirmButtonText: action === 'approve' ? 'Yes, approve!' : 'Yes, reject!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // AJAX request to submit the form
+                    $.ajax({
+                        url: 'process_verification.php', // Your processing script
+                        type: 'POST',
+                        data: {
+                            note: note,
+                            action: action,
+                            user_id: userId // Include user_id in the request
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            // Show success message
+                            Swal.fire(
+                                'Success!',
+                                response,
+                                'success'
+                            );
+                        },
+                        error: function(xhr, status, error) {
+                            // Show error message
+                            Swal.fire(
+                                'Error!',
+                                'An error occurred while processing your request.',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            });
+        }
+    });
 </script>
 <?php
 include 'footer.php';

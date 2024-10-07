@@ -5,7 +5,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $note = isset($_POST['note']) ? htmlspecialchars(trim($_POST['note'])) : '';
     $action = $_POST['action'];
     $user_id = $_POST['user_id']; // Assuming you are passing user_id from the form
-
     // Prepare the update query
     if ($action === 'approve') {
         $verification_status = 'Approved';
