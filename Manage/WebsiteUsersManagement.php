@@ -24,6 +24,13 @@ $result = $conn->query($sql);
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-end">
+                        <a href="AddNewUser.php" class="btn btn-sm btn-primary">Add New User</a>
+                    </div>
+                </div>
+            </div>
 
             <!-- end page title -->
             <div class="row">
@@ -34,7 +41,7 @@ $result = $conn->query($sql);
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Agent Name</th>
+                                        <th>User Name</th>
                                         <th>Email</th>
                                         <th>Phone</th>
                                         <th>Registration Date</th>

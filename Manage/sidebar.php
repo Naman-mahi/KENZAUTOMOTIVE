@@ -15,41 +15,48 @@
 
                 <?php if ($_SESSION['role'] === 'admin'): ?>
                     <li>
-                        <a href="CustomerManagement.php" class="waves-effect">
-                            <i class="mdi mdi-account-circle-outline"></i> <!-- User Management Icon -->
-                            <span>User Management</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="DealerManagement.php" class="waves-effect">
-                            <i class="mdi mdi-account-tie-outline"></i> <!-- Dealer Management Icon -->
-                            <span>Dealer Management</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="CategoryManagement.php" class="waves-effect">
-                            <i class="mdi mdi-tag-outline"></i> <!-- Category Management Icon -->
-                            <span>Category Management</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="SubscriptionManagement.php" class="waves-effect">
-                            <i class="mdi mdi-calendar-check-outline"></i> <!-- Subscriptions Icon -->
-                            <span>Subscriptions</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="SalesAgentManagement.php" class="waves-effect">
-                            <i class="mdi mdi-calendar-check-outline"></i> <!-- Subscriptions Icon -->
-                            <span>Sales Agent</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="AppearanceManagement.php" class="waves-effect">
-                            <i class="mdi mdi-calendar-check-outline"></i> <!-- Subscriptions Icon -->
-                            <span>Appearance</span>
-                        </a>
-                    </li>
+    <a href="CustomerManagement.php" class="waves-effect">
+        <i class="mdi mdi-account-circle-outline"></i> <!-- User Management Icon -->
+        <span>User Management</span>
+    </a>
+</li>
+<li>
+    <a href="DealerManagement.php" class="waves-effect">
+        <i class="mdi mdi-account-tie-outline"></i> <!-- Dealer Management Icon -->
+        <span>Dealer Management</span>
+    </a>
+</li>
+<li>
+    <a href="CategoryManagement.php" class="waves-effect">
+        <i class="mdi mdi-tag-outline"></i> <!-- Category Management Icon -->
+        <span>Category Management</span>
+    </a>
+</li>
+<li>
+    <a href="SubscriptionManagement.php" class="waves-effect">
+        <i class="mdi mdi-calendar-check-outline"></i> <!-- Subscriptions Icon -->
+        <span>Subscriptions</span>
+    </a>
+</li>
+<li>
+    <a href="SalesAgentManagement.php" class="waves-effect">
+        <i class="mdi mdi-account-star-outline"></i> <!-- Sales Agent Icon -->
+        <span>Sales Agent</span>
+    </a>
+</li>
+<li>
+    <a href="WebsiteUsersManagement.php" class="waves-effect">
+        <i class="mdi mdi-web"></i> <!-- Website Users Icon -->
+        <span>Website Users</span>
+    </a>
+</li>
+<li>
+    <a href="AppearanceManagement.php" class="waves-effect">
+        <i class="mdi mdi-palette"></i> <!-- Appearance Icon -->
+        <span>Appearance</span>
+    </a>
+</li>
+
 
                 <?php elseif ($_SESSION['role'] === 'dealer'): ?>
                     <li>
