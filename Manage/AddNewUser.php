@@ -1,11 +1,9 @@
 <?php
 include 'head.php';
 require_once '../includes/db.php'; // Ensure database connection is included
-
 // Fetch inquiries securely
 $sql = "SELECT * FROM `users` WHERE role = 'sales_agent'";
 $result = $conn->query($sql);
-
 ?>
 <div class="main-content">
     <div class="page-content">
@@ -24,8 +22,6 @@ $result = $conn->query($sql);
                     </div>
                 </div>
             </div>
-
-
             <!-- end page title -->
             <div class="row">
                 <div class="col-12">
@@ -40,7 +36,6 @@ $result = $conn->query($sql);
                                             Please provide your first name.
                                         </div>
                                     </div>
-
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label" for="userName">User Name</label>
                                         <input type="text" class="form-control" id="userName" name="username" required>
@@ -48,7 +43,6 @@ $result = $conn->query($sql);
                                             Please provide a user name.
                                         </div>
                                     </div>
-
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label" for="email">Email</label>
                                         <input type="email" class="form-control" id="email" name="email" required>
@@ -56,7 +50,6 @@ $result = $conn->query($sql);
                                             Please provide a valid email address.
                                         </div>
                                     </div>
-
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label" for="phone">Phone</label>
                                         <input type="tel" class="form-control" id="phone" name="phone" required pattern="[0-9]{10}">
@@ -64,7 +57,6 @@ $result = $conn->query($sql);
                                             Please provide a valid phone number (10 digits).
                                         </div>
                                     </div>
-
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label" for="password">Password</label>
                                         <input type="password" class="form-control" id="password" name="password" required>
@@ -72,7 +64,6 @@ $result = $conn->query($sql);
                                             Please provide a password.
                                         </div>
                                     </div>
-
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label" for="confirmPassword">Confirm Password</label>
                                         <input type="password" class="form-control" id="confirmPassword" name="confirm_password" required>
@@ -80,7 +71,6 @@ $result = $conn->query($sql);
                                             Please confirm your password.
                                         </div>
                                     </div>
-
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label" for="role">Role</label>
                                         <select class="form-select" id="role" name="role" required>
@@ -93,20 +83,20 @@ $result = $conn->query($sql);
                                             Please select a role.
                                         </div>
                                     </div>
-
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label" for="status">Status</label>
+                                        <label class="form-label" for="role">Status</label>
                                         <select class="form-select" id="status" name="status" required>
                                             <option value="" disabled selected>Select</option>
                                             <option value="active">Active</option>
                                             <option value="inactive">Inactive</option>
+                                            <option value="pending">Pending</option>
+                                            <option value="suspended">Suspended</option>
                                         </select>
                                         <div class="invalid-feedback">
                                             Please select a status.
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-md-12 text-end">
                                         <button type="submit" class="btn btn-primary">Add User</button>
@@ -114,9 +104,6 @@ $result = $conn->query($sql);
                                 </div>
                             </form>
                         </div>
-
-
-
                     </div>
                 </div>
             </div> <!-- end col -->
@@ -126,7 +113,6 @@ $result = $conn->query($sql);
 <!-- End Page-content -->
 </div>
 <!-- end main content-->
-
 <script>
     $(document).ready(function() {
         $('.status-select').change(function() {

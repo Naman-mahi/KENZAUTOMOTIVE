@@ -1,11 +1,9 @@
 <?php
 include 'head.php';
 require_once '../includes/db.php'; // Ensure database connection is included
-
 // Fetch inquiries securely
 $sql = "SELECT * FROM `users` WHERE role = 'sales_agent'";
 $result = $conn->query($sql);
-
 ?>
 <div class="main-content">
     <div class="page-content">
@@ -31,7 +29,6 @@ $result = $conn->query($sql);
                     </div>
                 </div>
             </div>
-
             <!-- end page title -->
             <div class="row">
                 <div class="col-12">
@@ -59,7 +56,6 @@ $result = $conn->query($sql);
                                         'pending' => 'badge-soft-warning', // Yellowish background
                                         'suspended' => 'badge-soft-danger', // Red background
                                     ];
-
                                     if ($result && $result->num_rows > 0) {
                                         $counter = 1;
                                         while ($row = $result->fetch_assoc()) {
@@ -68,7 +64,6 @@ $result = $conn->query($sql);
                                             $formattedDateTime = $dateTime->format('d F, Y h:i A');
                                             $current_status = $row['user_status'];
                                             $badgeColor = isset($statusColors[$current_status]) ? $statusColors[$current_status] : 'bg-soft-primary';
-
                                             echo "<tr data-user-id='{$row['user_id']}'>
                                             <td>{$counter}</td>
                                             <td>{$agent_name}</td>
@@ -97,7 +92,6 @@ $result = $conn->query($sql);
                                     }
                                     ?>
                                 </tbody>
-
                             </table>
                         </div>
                     </div>
@@ -108,7 +102,6 @@ $result = $conn->query($sql);
     <!-- End Page-content -->
 </div>
 <!-- end main content-->
-
 <script>
     $(document).ready(function() {
         $('.status-select').change(function() {
@@ -143,7 +136,6 @@ $result = $conn->query($sql);
         });
     });
 </script>
-
 <?php
 include 'footer.php';
 ?>
