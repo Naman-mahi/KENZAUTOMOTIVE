@@ -2,7 +2,7 @@
 include 'head.php';
 require_once '../includes/db.php'; // Ensure database connection is included
 // Fetch inquiries securely
-$sql = "SELECT * FROM `users` WHERE role = 'sales_agent'";
+$sql = "SELECT * FROM `users` WHERE role = 'website_user'";
 $result = $conn->query($sql);
 ?>
 <div class="main-content">
@@ -12,11 +12,11 @@ $result = $conn->query($sql);
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Sales Agent Management</h4>
+                        <h4 class="mb-sm-0">Website Users Management</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="Dashboard.php">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Sales Agent</li>
+                                <li class="breadcrumb-item active">Website Users</li>
                             </ol>
                         </div>
                     </div>

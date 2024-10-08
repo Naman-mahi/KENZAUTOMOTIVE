@@ -27,7 +27,7 @@ $result = $conn->query($sql);
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="" method="post" novalidate>
+                            <form id="registrationForm" class="form-horizontal" novalidate>
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label" for="firstName">First Name</label>
@@ -37,10 +37,10 @@ $result = $conn->query($sql);
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label" for="userName">User Name</label>
-                                        <input type="text" class="form-control" id="userName" name="username" required>
+                                        <label class="form-label" for="lastName">Last Name</label>
+                                        <input type="text" class="form-control" id="lastName" name="last_name" placeholder="Last name" required>
                                         <div class="invalid-feedback">
-                                            Please provide a user name.
+                                            Please provide your last name.
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
@@ -75,7 +75,6 @@ $result = $conn->query($sql);
                                         <label class="form-label" for="role">Role</label>
                                         <select class="form-select" id="role" name="role" required>
                                             <option value="" disabled selected>Select</option>
-                                            <option value="admin">Admin</option>
                                             <option value="sales_agent">Sales Agent</option>
                                             <option value="website_user">Website User</option>
                                         </select>
@@ -83,19 +82,7 @@ $result = $conn->query($sql);
                                             Please select a role.
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label" for="role">Status</label>
-                                        <select class="form-select" id="status" name="status" required>
-                                            <option value="" disabled selected>Select</option>
-                                            <option value="active">Active</option>
-                                            <option value="inactive">Inactive</option>
-                                            <option value="pending">Pending</option>
-                                            <option value="suspended">Suspended</option>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Please select a status.
-                                        </div>
-                                    </div>
+                                   
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 text-end">
@@ -113,40 +100,7 @@ $result = $conn->query($sql);
 <!-- End Page-content -->
 </div>
 <!-- end main content-->
-<script>
-    $(document).ready(function() {
-        $('.status-select').change(function() {
-            const status = $(this).val();
-            const userId = $(this).closest('tr').data('user-id');
-            if (status) {
-                $.ajax({
-                    url: 'UpdateStatus.php',
-                    type: 'POST',
-                    data: {
-                        status: status,
-                        dealer_id: userId
-                    },
-                    success: function(response) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Status Updated!',
-                            text: 'The status has been updated successfully.',
-                        });
-                        // Optionally, you can add code to change the row color based on new status.
-                        location.reload();
-                    },
-                    error: function(xhr, status, error) {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Update Failed!',
-                            text: 'There was an error updating the status. Please try again.',
-                        });
-                    }
-                });
-            }
-        });
-    });
-</script>
+
 <script>
     // Form validation
     (function() {
@@ -162,6 +116,51 @@ $result = $conn->query($sql);
             });
         });
     })();
+
+    $(document).ready(function() {
+        $('#registrationForm').on('submit', function(e) {
+            e.preventDefault(); // Prevent the form from submitting normally
+
+            if (this.checkValidity()) {
+                const formData = $(this).serialize(); // Serialize form data
+                console.log(formData);
+                $.ajax({
+    type: 'POST',
+    url: 'registerUser.php',
+    data: formData,
+    success: function(response) {
+        console.log(response); // Log the raw response for debugging
+        const result = JSON.parse(response);
+        if (result.success) {
+            Swal.fire({
+                title: 'Success!',
+                text: 'User registered successfully.',
+                icon: 'success',
+            }).then(() => {
+                window.location.href = 'WebsiteUsersManagement.php';
+            });
+        } else {
+            Swal.fire({
+                title: 'Error!',
+                text: result.message,
+                icon: 'error',
+            });
+        }
+    },
+    error: function() {
+        Swal.fire({
+            title: 'Error!',
+            text: 'An error occurred. Please try again later.',
+            icon: 'error',
+        });
+    }
+});
+
+            } else {
+                this.classList.add('was-validated'); // Add validation class
+            }
+        });
+    });
 </script>
 <?php
 include 'footer.php';

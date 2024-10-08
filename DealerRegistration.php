@@ -2,7 +2,6 @@
 <html lang="en">
 <?php
 session_start(); // Start the session
-
 // Check if the user is already logged in
 if (isset($_SESSION['role'])) {
     // Redirect based on user role
@@ -37,28 +36,33 @@ if (isset($_SESSION['role'])) {
                     <div class="card">
                         <div class="card-body p-4">
                             <h5 class="text-center mb-4">Dealer Registration</h5>
-                            <form id="registrationForm" class="form-horizontal">
-                                <div class="mb-4">
+                            <form id="registrationForm" class="form-horizontal" novalidate>
+                                <div class="mb-3">
                                     <label class="form-label" for="first-name">First Name</label>
                                     <input type="text" class="form-control" id="first-name" name="first_name" placeholder="Enter First Name" required>
+                                    <div class="invalid-feedback">Please enter your first name.</div>
                                 </div>
-                                <div class="mb-4">
+                                <div class="mb-3">
                                     <label class="form-label" for="last-name">Last Name</label>
                                     <input type="text" class="form-control" id="last-name" name="last_name" placeholder="Enter Last Name" required>
+                                    <div class="invalid-feedback">Please enter your last name.</div>
                                 </div>
-                                <div class="mb-4">
+                                <div class="mb-3">
                                     <label class="form-label" for="mobile-number">Mobile Number</label>
-                                    <input type="number" class="form-control" id="mobile-number" name="mobile_number" placeholder="Enter Mobile Number" required>
+                                    <input type="tel" class="form-control" id="mobile-number" name="mobile_number" placeholder="Enter Mobile Number" required pattern="[0-9]{10}">
+                                    <div class="invalid-feedback">Please enter a valid mobile number (10 digits).</div>
                                 </div>
-                                <div class="mb-4">
+                                <div class="mb-3">
                                     <label class="form-label" for="email">Email</label>
                                     <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+                                    <div class="invalid-feedback">Please enter a valid email address.</div>
                                 </div>
-                                <div class="mb-4">
+                                <div class="mb-3">
                                     <label class="form-label" for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required minlength="6">
+                                    <div class="invalid-feedback">Please enter a password (at least 6 characters).</div>
                                 </div>
-                                <div class="d-grid">
+                                <div class="mb-3">
                                     <button class="btn rounded-0 btn-primary waves-effect waves-light" type="submit">Register</button>
                                 </div>
                             </form>
@@ -71,7 +75,6 @@ if (isset($_SESSION['role'])) {
             </div>
         </div>
     </div>
-
     <!-- JAVASCRIPT -->
     <script src="manage/assets/libs/jquery/jquery.min.js"></script>
     <script src="manage/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -79,48 +82,52 @@ if (isset($_SESSION['role'])) {
     <script src="manage/assets/libs/simplebar/simplebar.min.js"></script>
     <script src="manage/assets/libs/node-waves/waves.min.js"></script>
     <script src="manage/assets/js/app.js"></script>
-
     <script>
-$(document).ready(function() {
-    $('#registrationForm').on('submit', function(e) { // Ensure the form ID is correct
-        e.preventDefault(); // Prevent default form submission
-
-        $.ajax({
-            url: 'register.php', // Your PHP script to handle registration
-            type: 'POST',
-            data: $(this).serialize(), // Serialize form data
-            dataType: 'json', // Expect JSON response
-            success: function(data) {
-                if (data.success) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: data.message,
-                        text: 'Redirecting to OTP verification...',
-                        timer: 1500,
-                        onClose: () => {
-                            window.location.href = data.redirect; // Redirect to OTP verification page
+        $(document).ready(function() {
+            // Form validation
+            $('#registrationForm').on('submit', function(e) {
+                e.preventDefault(); // Prevent default form submission
+                // Check if the form is valid
+                if (this.checkValidity()) {
+                    $.ajax({
+                        url: 'register.php', // Your PHP script to handle registration
+                        type: 'POST',
+                        data: $(this).serialize(), // Serialize form data
+                        dataType: 'json', // Expect JSON response
+                        success: function(data) {
+                            if (data.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: data.message,
+                                    text: 'Redirecting to OTP verification...',
+                                    timer: 1500,
+                                    onClose: () => {
+                                        window.location.href = data.redirect; // Redirect to OTP verification page
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: data.message,
+                                });
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'An error occurred',
+                                text: 'Please try again later. Error: ' + errorThrown,
+                            });
                         }
                     });
                 } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: data.message,
-                    });
+                    // Show validation errors
+                    this.classList.add('was-validated');
                 }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'An error occurred',
-                    text: 'Please try again later. Error: ' + errorThrown,
-                });
-            }
+            });
         });
-    });
-});
-</script>
-
+    </script>
 </body>
-</html>
 
+</html>
