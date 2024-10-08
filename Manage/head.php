@@ -9,7 +9,7 @@ if (!isset($_SESSION['role'])) {
     // If the user is not logged in, redirect to index page
     header("Location: ../index.php");
     exit();
-} elseif ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'dealer') {
+} elseif ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'dealer' && $_SESSION['role'] !== 'website_user' && $_SESSION['role'] !== 'sales_agent') {
     // If the role is not recognized, redirect to mypage
     header("Location: mypage.php");
     exit();

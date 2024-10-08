@@ -29,7 +29,7 @@ $result = $stmt->get_result();
             </div>
             <!-- end page title -->
             <?php
-            if ($_SESSION['role'] === 'admin') {
+            if ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'website_user') {
                 // Check if any results were returned
                 if ($row = $result->fetch_assoc()) {
             ?>

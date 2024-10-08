@@ -149,23 +149,23 @@ $result = $conn->query($sql);
                                                 $DealerId = $row['user_id'];
 
                                                 echo "<tr data-user-id='{$row['user_id']}'>
-                <td>{$counter}</td>
-                <td>" . htmlspecialchars($row['company_name']) . "</td>
-                <td>{$customer_name}</td>
-                <td>" . htmlspecialchars($row['email']) . "</td>
-                <td>" . htmlspecialchars($row['mobile_number']) . "</td>
-                <td>" . htmlspecialchars($row['city']) . "</td>
-                <td>{$formattedDateTime}</td>
-                <td>
-                    <div class='d-flex align-items-center'>
-                        <a class='btn btn-link p-0 me-2' href='Onbording.php?dealerId=$DealerId' role='button'>
-                            <i class='fas fa-eye'></i> View
-                        </a>
-                       
-                       
-                    </div>
-                </td>
-            </tr>";
+                                                    <td>{$counter}</td>
+                                                    <td>" . htmlspecialchars($row['company_name']) . "</td>
+                                                    <td>{$customer_name}</td>
+                                                    <td>" . htmlspecialchars($row['email']) . "</td>
+                                                    <td>" . htmlspecialchars($row['mobile_number']) . "</td>
+                                                    <td>" . htmlspecialchars($row['city']) . "</td>
+                                                    <td>{$formattedDateTime}</td>
+                                                    <td>
+                                                        <div class='d-flex align-items-center'>
+                                                            <a class='btn btn-link p-0 me-2' href='Onbording.php?dealerId=$DealerId' role='button'>
+                                                                <i class='fas fa-eye'></i> View
+                                                            </a>
+                                                        
+                                                        
+                                                        </div>
+                                                    </td>
+                                                </tr>";
                                                 $counter++;
                                             }
                                         } else {
@@ -183,6 +183,96 @@ $result = $conn->query($sql);
 
             <?php
             } elseif ($_SESSION['role'] === 'dealer') {
+            ?>
+                <div class="row">
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="card card-dashboard shadow-lg">
+                            <div class="card-body">
+                                <div class="d-flex text-muted">
+                                    <div class="flex-shrink-0 me-3 align-self-center">
+                                        <div class="avatar-sm">
+                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
+                                                <i class="mdi mdi-package-variant-closed fs-2"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <p class="mb-1">My Products</p>
+                                        <h5 class="mb-3">120</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="card card-dashboard shadow-lg">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0 me-3 align-self-center">
+                                        <div class="avatar-sm">
+                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
+                                                <i class="mdi mdi-comment-question-outline fs-2"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <p class="mb-1">Total Inquiries</p>
+                                        <h5 class="mb-3">25</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="card card-dashboard shadow-lg">
+                            <div class="card-body">
+                                <div class="d-flex text-muted">
+                                    <div class="flex-shrink-0 me-3 align-self-center">
+                                        <div class="avatar-sm">
+                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
+                                                <i class="mdi mdi-eye fs-2"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <p class="mb-1">Total Product Views</p>
+                                        <h5 class="mb-3">40</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="card card-dashboard shadow-lg">
+                            <div class="card-body">
+                                <div class="d-flex text-muted">
+                                    <div class="flex-shrink-0 me-3 align-self-center">
+                                        <div class="avatar-sm">
+                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
+                                                <i class="mdi mdi-cash fs-2"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <p class="mb-1">Total Sales</p>
+                                        <h5 class="mb-3">200</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+
+            <?php
+            } elseif ($_SESSION['role'] === 'website_user') {
             ?>
                 <div class="row">
                     <div class="col-xl-3 col-sm-6">

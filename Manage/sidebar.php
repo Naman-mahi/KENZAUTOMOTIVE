@@ -31,6 +31,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="CouponsManagement.php" class="waves-effect">
+                            <i class="mdi mdi-ticket-percent-outline"></i> <!-- Coupons Management Icon -->
+                            <span>Coupons Management</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="SubscriptionManagement.php" class="waves-effect">
                             <i class="mdi mdi-calendar-check-outline"></i> <!-- Subscriptions Icon -->
                             <span>Subscriptions</span>
@@ -79,6 +85,20 @@
                             <span>Product Inventry</span>
                         </a>
                     </li>
+                <?php elseif ($_SESSION['role'] === 'website_user'): ?>
+                    <li>
+    <a href="OnboardDealer.php" class="waves-effect">
+        <i class="mdi mdi-account-check-outline"></i> <!-- Alternative Onboard Dealer Icon -->
+        <span>Onboard Dealer</span>
+    </a>
+</li>
+<li>
+    <a href="DealerManagement.php" class="waves-effect">
+        <i class="mdi mdi-cogs"></i> <!-- Alternative Dealer Management Icon -->
+        <span>Dealer Management</span>
+    </a>
+</li>
+
                 <?php endif; ?>
             </ul>
         </div>

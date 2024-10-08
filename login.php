@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Success response
             echo json_encode([
                 'success' => true,
-                'redirect' => $_SESSION['role'] === 'admin' ? 'Manage/dashboard.php' : ($_SESSION['role'] === 'dealer' ? 'Manage/dashboard.php' : 'mypage.php')
+                'redirect' => $_SESSION['role'] === 'admin' ? 'Manage/dashboard.php' : ($_SESSION['role'] === 'website_user' ? 'Manage/dashboard.php'  : ($_SESSION['role'] === 'sales_agent' ? 'Manage/dashboard.php' : ($_SESSION['role'] === 'dealer' ? 'Manage/dashboard.php' : 'mypage.php')))
             ]);
         } else {
             // Invalid password
