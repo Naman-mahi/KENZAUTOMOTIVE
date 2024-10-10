@@ -55,7 +55,7 @@ $result = $conn->query($sql);
                                     <!-- SELECT coupon_id, code, discount_type, discount_value, expiration_date, status, created_at FROM coupons WHERE 1 -->
                                     <?php
                                     if ($result->num_rows > 0) {
-                                        $counter = 1;
+                                        $counter = 1; 
                                         while ($row = $result->fetch_assoc()) {
                                             // status badge
                                             $status = $row['status'] === 'active' ? 'success' : 'danger';
