@@ -1,5 +1,9 @@
 <?php
 include 'head.php';
+#SELECT `subscription_id`, `user_id`, `subscription_start`, `subscription_end`, `status`, `coupon_id`, `discount_value`, `subscription_amount`, `created_at`, `updated_at` FROM `subscriptions` WHERE 1
+// Fetch subscriptions from the database
+$sql = "SELECT * FROM subscriptions JOIN users ON subscriptions.user_id = users.user_id JOIN coupons ON subscriptions.coupon_id = coupons.coupon_id";
+$result = $conn->query($sql);
 ?>
 <div class="main-content">
     <div class="page-content">
@@ -8,11 +12,11 @@ include 'head.php';
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Manage Inquiry</h4>
+                        <h4 class="mb-sm-0">Manage Subscription</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="Dashboard.php">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Inquiry</li>
+                                <li class="breadcrumb-item active">Subscription</li>
                             </ol>
                         </div>
                     </div>
@@ -27,60 +31,44 @@ include 'head.php';
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Inquiry ID</th>
                                         <th>Customer Name</th>
                                         <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Date</th>
-                                        <th>Time</th>
+                                        <th>Mobile Number</th>
+                                        <th>Amount</th>
+                                        <th>Coupon</th>
+                                        <th> start date</th>
+                                        <th> end date</th>
+                                        <th>Subscription status</th>
+                                      
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>INQ001</td>
-                                        <td>John Doe</td>
-                                        <td>john.doe@example.com</td>
-                                        <td>(123) 456-7890</td>
-                                        <td>2024/09/01</td>
-                                        <td>10:30 AM</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>INQ002</td>
-                                        <td>Jane Smith</td>
-                                        <td>jane.smith@example.com</td>
-                                        <td>(987) 654-3210</td>
-                                        <td>2024/09/02</td>
-                                        <td>11:45 AM</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>INQ003</td>
-                                        <td>Robert Johnson</td>
-                                        <td>robert.johnson@example.com</td>
-                                        <td>(555) 123-4567</td>
-                                        <td>2024/09/03</td>
-                                        <td>01:00 PM</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>INQ004</td>
-                                        <td>Emily Davis</td>
-                                        <td>emily.davis@example.com</td>
-                                        <td>(555) 765-4321</td>
-                                        <td>2024/09/04</td>
-                                        <td>02:15 PM</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>INQ005</td>
-                                        <td>Michael Brown</td>
-                                        <td>michael.brown@example.com</td>
-                                        <td>(555) 987-6543</td>
-                                        <td>2024/09/05</td>
-                                        <td>03:30 PM</td>
-                                    </tr>
+                                    <?php
+                                    if ($result->num_rows > 0) {
+                                        $count = 1;
+                                        
+                                        while ($row = $result->fetch_assoc()) {
+                                            $status = $row['status'] === 'active' ? 'success' : 'danger';
+
+                                            echo "<tr>";
+                                            echo "<td>" . $count++ . "</td>";
+                                            echo "<td>" . $row['first_name'] . " " . $row['last_name'] . "</td>";
+                                            echo "<td>" . $row['email'] . "</td>";
+                                            echo "<td>" . $row['mobile_number'] . "</td>";
+                                            echo "<td>" . $row['subscription_amount'] . "</td>";
+                                            echo "<td>" . $row['coupon_name'] . "</td>";
+                                            echo "<td>" . $row['subscription_start'] . "</td>";
+                                            echo "<td>" . $row['subscription_end'] . "</td>";
+                                            echo "<td> <span class='badge p-2 fs-6 badge-soft-{$status}'>{$row['status']}</span>  </td>";
+
+                                            echo "</tr>";
+                                        }
+                                    } else {
+                                        echo "<tr><td colspan='7'>No subscriptions found</td></tr>";
+                                    }
+                                    ?>
+                                    
+                                   
                                 </tbody>
                             </table>
                         </div>

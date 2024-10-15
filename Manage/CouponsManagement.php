@@ -37,13 +37,15 @@ $result = $conn->query($sql);
             </div>
 
             <div class="row">
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Note!</strong> The coupon will be applied on the subscription amount.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                <div class="alert alert-info alert-dismissible fade show" role="alert">
-                    <strong>Note!</strong> On clicking the coupon status will be changed.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <div class="col-md-12">
+                    <div class="alert alert-warning alert-dismissible fade show border-0" role="alert">
+                        <strong>Note!</strong> The coupon will be applied on the subscription amount.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <div class="alert alert-info alert-dismissible fade show border-0" role="alert">
+                        <strong>Note!</strong> On clicking the coupon status will be changed.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                 </div>
             </div>
 
@@ -235,33 +237,33 @@ $result = $conn->query($sql);
                     }).then((result) => {
                         if (result.isConfirmed) {
                             fetch('add_coupon.php', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify({
-                                    coupon_name: couponName,
-                                    coupon_code: couponCode,
-                                    discount_type: discountType,
-                                    discount_value: discountValue,
-                                    expiration_date: expirationDate,
-                                    status: couponStatus
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({
+                                        coupon_name: couponName,
+                                        coupon_code: couponCode,
+                                        discount_type: discountType,
+                                        discount_value: discountValue,
+                                        expiration_date: expirationDate,
+                                        status: couponStatus
+                                    })
                                 })
-                            })
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.success) {
-                                    $('#addCouponModal').modal('hide');
-                                    Swal.fire('Added!', 'The coupon has been added.', 'success');
-                                    location.reload();
-                                } else {
-                                    Swal.fire('Error!', data.message || 'Something went wrong.', 'error');
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                                Swal.fire('Error!', 'Failed to add coupon. Please try again.', 'error');
-                            });
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        $('#addCouponModal').modal('hide');
+                                        Swal.fire('Added!', 'The coupon has been added.', 'success');
+                                        location.reload();
+                                    } else {
+                                        Swal.fire('Error!', data.message || 'Something went wrong.', 'error');
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    Swal.fire('Error!', 'Failed to add coupon. Please try again.', 'error');
+                                });
                         }
                     });
                 });
@@ -269,29 +271,37 @@ $result = $conn->query($sql);
 
             function changeStatus(coupon_id) {
                 fetch('change_status.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ coupon_id })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        Swal.fire('Success!', 'The coupon status has been changed.', 'success');
-                        location.reload();
-                    } else {
-                        Swal.fire('Error!', 'Failed to change the coupon status.', 'error');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    Swal.fire('Error!', 'Failed to change status. Please try again.', 'error');
-                });
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            coupon_id
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            Swal.fire('Success!', 'The coupon status has been changed.', 'success');
+                            location.reload();
+                        } else {
+                            Swal.fire('Error!', 'Failed to change the coupon status.', 'error');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        Swal.fire('Error!', 'Failed to change status. Please try again.', 'error');
+                    });
             }
 
             function editCoupon(coupon_id, button) {
                 const row = button.closest('tr');
+
+                // Set the coupon_id in the modal's data attribute
+                const modal = document.getElementById('editCouponModal');
+                modal.dataset.couponId = coupon_id; // Set the coupon ID
+
+                // Populate the modal input fields with data from the row
                 document.getElementById('editCouponName').value = row.dataset.couponName;
                 document.getElementById('editCouponCode').value = row.dataset.couponCode;
                 document.getElementById('editDiscountType').value = row.dataset.discountType;
@@ -299,6 +309,7 @@ $result = $conn->query($sql);
                 document.getElementById('editExpirationDate').value = row.dataset.expirationDate;
                 document.getElementById('editCouponStatus').value = row.dataset.status;
 
+                // Show the modal
                 $('#editCouponModal').modal('show');
             }
 
@@ -309,38 +320,62 @@ $result = $conn->query($sql);
                 const discountValue = document.getElementById('editDiscountValue').value;
                 const expirationDate = document.getElementById('editExpirationDate').value;
                 const couponStatus = document.getElementById('editCouponStatus').value;
-                const couponId = document.querySelector('.modal.show').dataset.couponId;
+                const couponId = document.getElementById('editCouponModal').dataset.couponId; // Ensure this is set correctly
+
+                // Log the data being sent
+                console.log(JSON.stringify({
+                    coupon_id: couponId,
+                    coupon_name: couponName,
+                    coupon_code: couponCode,
+                    discount_type: discountType,
+                    discount_value: discountValue,
+                    expiration_date: expirationDate,
+                    status: couponStatus
+                }));
+
+                // Validate input fields
+                if (!couponId || !couponName || !couponCode || !discountType || !discountValue || !expirationDate || !couponStatus) {
+                    Swal.fire('Error!', 'Please fill in all fields.', 'error');
+                    return;
+                }
 
                 // Perform AJAX request to update coupon
                 fetch('update_coupon.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        coupon_id: couponId,
-                        coupon_name: couponName,
-                        coupon_code: couponCode,
-                        discount_type: discountType,
-                        discount_value: discountValue,
-                        expiration_date: expirationDate,
-                        status: couponStatus
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            coupon_id: couponId,
+                            coupon_name: couponName,
+                            coupon_code: couponCode,
+                            discount_type: discountType,
+                            discount_value: discountValue,
+                            expiration_date: expirationDate,
+                            status: couponStatus
+                        })
                     })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        $('#editCouponModal').modal('hide');
-                        Swal.fire('Updated!', 'The coupon has been updated.', 'success');
-                        location.reload();
-                    } else {
-                        Swal.fire('Error!', data.message || 'Something went wrong.', 'error');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    Swal.fire('Error!', 'Failed to update coupon. Please try again.', 'error');
-                });
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            $('#editCouponModal').modal('hide');
+                            Swal.fire('Updated!', 'The coupon has been updated.', 'success')
+                                .then(() => {
+                                    location.reload();
+                                });
+                        } else {
+                            Swal.fire('Error!', data.message || 'Something went wrong.', 'error');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        Swal.fire('Error!', 'Failed to update coupon. Please try again.', 'error');
+                    });
             });
         </script>
 
