@@ -11,7 +11,7 @@
                         <div class="fs-5 fw-bold"> KENZ</div>
                     </span>
                     <span class="logo-lg">
-                        <div class="fs-5 fw-bold"> KENZ MARKETPLACE</div>
+                        <div class="fs-4 fw-bold"> KENZ WHEELS</div>
                     </span>
                 </a>
             </div>

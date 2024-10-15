@@ -1,8 +1,7 @@
 <?php
 include 'head.php';
-#SELECT `subscription_id`, `user_id`, `subscription_start`, `subscription_end`, `status`, `coupon_id`, `discount_value`, `subscription_amount`, `created_at`, `updated_at` FROM `subscriptions` WHERE 1
 // Fetch subscriptions from the database
-$sql = "SELECT * FROM subscriptions JOIN users ON subscriptions.user_id = users.user_id JOIN coupons ON subscriptions.coupon_id = coupons.coupon_id";
+$sql = "SELECT * FROM subscriptions JOIN users ON subscriptions.user_id = users.user_id LEFT JOIN coupons ON subscriptions.coupon_id = coupons.coupon_id left join dealers on users.user_id = dealers.user_id";
 $result = $conn->query($sql);
 ?>
 <div class="main-content">
@@ -29,8 +28,9 @@ $result = $conn->query($sql);
                         <div class="card-body">
                             <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-center text-uppercase">
                                         <th>#</th>
+                                        <th>Company Name</th>
                                         <th>Customer Name</th>
                                         <th>Email</th>
                                         <th>Mobile Number</th>
@@ -52,14 +52,15 @@ $result = $conn->query($sql);
 
                                             echo "<tr>";
                                             echo "<td>" . $count++ . "</td>";
+                                            echo "<td>" . $row['company_name'] . "</td>";
                                             echo "<td>" . $row['first_name'] . " " . $row['last_name'] . "</td>";
                                             echo "<td>" . $row['email'] . "</td>";
                                             echo "<td>" . $row['mobile_number'] . "</td>";
                                             echo "<td>" . $row['subscription_amount'] . "</td>";
                                             echo "<td>" . $row['coupon_name'] . "</td>";
-                                            echo "<td>" . $row['subscription_start'] . "</td>";
-                                            echo "<td>" . $row['subscription_end'] . "</td>";
-                                            echo "<td> <span class='badge p-2 fs-6 badge-soft-{$status}'>{$row['status']}</span>  </td>";
+                                            echo "<td>" . date('d-m-Y A', strtotime($row['subscription_start'])) . "</td>";
+                                            echo "<td>" . date('d-m-Y A', strtotime($row['subscription_end'])) . "</td>";
+                                            echo "<td> <span class='badge p-1 fs-6 badge-soft-{$status}'>{$row['status']}</span>  </td>";
 
                                             echo "</tr>";
                                         }
