@@ -75,6 +75,7 @@ $conn->close();
                                 </div>
                             </div>
                         </div>
+                        <?php if ($_SESSION['role'] == 'dealer') { ?>
                         <div class="col-md-9">
                             <!-- Personal Information Form -->
                             <form action="update_personal.php" method="POST">
@@ -169,7 +170,42 @@ $conn->close();
                                 </div>
                             </form>
                         </div>
-
+                        <?php }else{ ?>
+                        <div class="col-md-9">
+                           <!-- Personal Information Form -->
+                           <form action="update_personal.php" method="POST">
+                                <div class="card mb-3 shadow-lg">
+                                    <div class="card-body">
+                                        <h5 class="mb-4">Profile Details</h5>
+                                        <h6 class="card-title">Personal Information</h6>
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label for="first_name" class="form-label">First Name</label>
+                                                <input type="text" id="first_name" name="first_name" class="form-control" value="<?= htmlspecialchars($user['first_name']) ?>" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="last_name" class="form-label">Last Name</label>
+                                                <input type="text" id="last_name" name="last_name" class="form-control" value="<?= htmlspecialchars($user['last_name']) ?>" required>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label for="email" class="form-label">Email</label>
+                                                <input type="email" id="email" name="email" class="form-control" value="<?= htmlspecialchars($user['email']) ?>" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="phone_number" class="form-label">Phone Number</label>
+                                                <input type="tel" id="phone_number" name="phone_number" class="form-control" value="<?= htmlspecialchars($user['mobile_number']) ?>" required>
+                                            </div>
+                                        </div>
+                                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                            <button type="submit" class="btn rounded-0  btn-sm btn-primary">Update Personal Info</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
