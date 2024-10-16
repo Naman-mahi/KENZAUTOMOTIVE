@@ -6,7 +6,7 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box text-center">
-                <a href="Dashboard.php" class="logo logo-dark">
+                <a href="Dashboard" class="logo logo-dark">
                     <span class="logo-sm">
                         <div class="fs-5 fw-bold"> KENZ</div>
                     </span>
@@ -55,19 +55,19 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- Profile option for all users -->
-                    <a class="dropdown-item" href="Profile.php"><i class="ri-user-line align-middle me-1"></i> Profile</a>
-                    <a class="dropdown-item" href="MyReferral.php"><i class="ri-user-add-line align-middle me-1"></i> My Referral</a>
+                    <a class="dropdown-item" href="Profile"><i class="ri-user-line align-middle me-1"></i> Profile</a>
+                    <a class="dropdown-item" href="MyReferral"><i class="ri-user-add-line align-middle me-1"></i> My Referral</a>
 
                     <!-- Role-based options -->
                     <?php if ($_SESSION['role'] === 'admin'): ?>
-                        <!-- <a class="dropdown-item" href="UserManagement.php"><i class="ri-admin-line align-middle me-1"></i> User Management</a>
-                        <a class="dropdown-item" href="ProductManagement.php"><i class="ri-settings-2-line align-middle me-1"></i> Product Management</a> -->
+                        <!-- <a class="dropdown-item" href="UserManagement"><i class="ri-admin-line align-middle me-1"></i> User Management</a>
+                        <a class="dropdown-item" href="ProductManagement"><i class="ri-settings-2-line align-middle me-1"></i> Product Management</a> -->
                     <?php elseif ($_SESSION['role'] === 'dealer'): ?>
-                        <a class="dropdown-item" href="MySubscription.php"><i class="ri-car-line align-middle me-1"></i> Subscription</a>
+                        <a class="dropdown-item" href="MySubscription"><i class="ri-car-line align-middle me-1"></i> Subscription</a>
                     <?php endif; ?>
 
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="logout.php"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                    <a class="dropdown-item text-danger" href="logout"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
                 </div>
             </div>
 
