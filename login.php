@@ -2,15 +2,35 @@
 session_start();
 include 'includes/db.php'; // Include your database connection file
 
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_POST['email']) || !isset($_POST['password'])) {
+        echo json_encode(['success' => false, 'message' => 'Email and password are required.']);
+        exit;
+    }
+
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     // Prepare SQL statement
-    $sql = "SELECT user_id, first_name, last_name, profile_pic, password_hash, role FROM Users WHERE email = ?";
+    $sql = "SELECT user_id, first_name, last_name, profile_pic, password_hash, role FROM users WHERE email = ?";
+   
     $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        echo json_encode(['success' => false, 'message' => 'SQL statement preparation failed: ' . $conn->error]);
+        exit;
+    }
+
     $stmt->bind_param("s", $email);
-    $stmt->execute();
+    
+    if (!$stmt->execute()) {
+        echo json_encode(['success' => false, 'message' => 'Database query failed: ' . $stmt->error]);
+        exit;
+    }
+    
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
@@ -27,7 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Success response
             echo json_encode([
                 'success' => true,
-                'redirect' => $_SESSION['role'] === 'admin' ? 'Manage/dashboard.php' : ($_SESSION['role'] === 'website_user' ? 'Manage/dashboard.php'  : ($_SESSION['role'] === 'sales_agent' ? 'Manage/dashboard.php' : ($_SESSION['role'] === 'dealer' ? 'Manage/dashboard.php' : 'mypage.php')))
+                'redirect' => $_SESSION['role'] === 'admin' ? 'Manage/dashboard.php' : 
+                              ($_SESSION['role'] === 'website_user' ? 'Manage/dashboard.php' : 
+                              ($_SESSION['role'] === 'sales_agent' ? 'Manage/dashboard.php' : 
+                              ($_SESSION['role'] === 'dealer' ? 'Manage/dashboard.php' : 'mypage.php')))
             ]);
         } else {
             // Invalid password

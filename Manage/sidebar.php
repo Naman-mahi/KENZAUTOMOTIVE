@@ -67,11 +67,16 @@
                         </a>
                     </li>
                 <?php elseif ($_SESSION['role'] === 'dealer'): ?>
+                    
                     <li>
-                        <a href="MyProducts.php" class="waves-effect">
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="mdi mdi-plus-circle-outline"></i>
-                            <span>My Product</span>
+                            <span>My Products</span>
                         </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="MyProducts.php">My Product</a></li>
+                            <li><a href="MySpareParts.php">My Spare Parts</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="ManageInquiry.php" class="waves-effect">

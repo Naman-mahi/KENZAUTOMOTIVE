@@ -85,6 +85,7 @@ echo "<style>
         include 'sidebar.php';
         ?>
         <?php
+            $product_category_id = null; // Initialize before use
         if (isset($_SESSION['role']) && $_SESSION['role'] === 'dealer') {
             $userId = $_SESSION['user_id'];
             $sql = "SELECT product_category_id FROM dealers WHERE user_id = ?";

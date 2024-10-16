@@ -163,7 +163,7 @@ if (isset($_GET['id'])) {
 
             <div class="row">
                 <div class="col-12">
-                    <div class="page-title-box d-flex align-items-end">
+                    <div class="mb-3 d-flex align-items-end">
                         <a href="NewCar.php" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Update Product Info</a>
                     </div>
                 </div>

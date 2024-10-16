@@ -42,11 +42,11 @@ include 'head.php';
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">My Product</h4>
+                        <h4 class="mb-sm-0">My Spare Parts</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                                <li class="breadcrumb-item active">My Products</li>
+                                <li class="breadcrumb-item active">My Spare Parts</li>
                             </ol>
                         </div>
                     </div>
@@ -55,7 +55,7 @@ include 'head.php';
             <div class="row">
                 <div class="col-12">
                     <div class="mb-3 d-flex align-items-end">
-                        <a href="AddProduct.php" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Add Product</a>
+                        <a href="AddSpareParts.php" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Add Spare Parts</a>
                     </div>
                 </div>
             </div>

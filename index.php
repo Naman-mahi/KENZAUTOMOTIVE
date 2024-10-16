@@ -71,7 +71,7 @@ if (isset($_SESSION['role'])) {
                         </div>
                     </div>
                     <div class="mt-5 text-center">
-                        <p class="text-dark-50">Don't have an account? <a href="DealerRegistration" class="fw-medium text-primary">Register</a></p>
+                        <p class="text-dark-50">Don't have an account? <a href="DealerRegistration.php" class="fw-medium text-primary">Register</a></p>
                     </div>
                 </div>
             </div>

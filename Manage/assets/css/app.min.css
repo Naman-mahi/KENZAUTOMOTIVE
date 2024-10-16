@@ -243,6 +243,7 @@ body[data-layout="horizontal"] .page-content {
 }
 .page-title-box {
   padding-bottom: 1.5rem;
+  margin-top: 50px;
 }
 .page-title-box .breadcrumb {
   background-color: transparent;

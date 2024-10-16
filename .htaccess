@@ -1,21 +1,24 @@
 # Enable URL rewriting
 RewriteEngine On
 
-# Remove .php extension
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^(.*)$ $1.php [L]
+# Set the base URL (if necessary)
+RewriteBase /marketplace/
 
 # Handle login
 RewriteRule ^login/?$ login.php [L]
 
 # Handle registration
-RewriteRule ^register/?$ register.php [L]
+RewriteRule ^DealerRegistration/?$ DealerRegistration.php [L]
+
+# Remove .php extension for existing files
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
 
 # Handle 404 errors
-ErrorDocument 404 /404.php
+ErrorDocument 404 /marketplace/404.php
 
 # Redirect all non-existent files or directories to 404.php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /404.php [L,QSA]
+RewriteRule ^(.*)$ /marketplace/404.php [L,QSA]
