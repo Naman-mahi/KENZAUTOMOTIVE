@@ -55,6 +55,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="ReferralManagement.php" class="waves-effect">
+                            <i class="mdi mdi-account-group"></i> <!-- Website Users Icon -->
+                            <span>Referral</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="AppearanceManagement.php" class="waves-effect">
                             <i class="mdi mdi-palette"></i> <!-- Appearance Icon -->
                             <span>Appearance</span>
@@ -87,17 +93,17 @@
                     </li>
                 <?php elseif ($_SESSION['role'] === 'website_user'): ?>
                     <li>
-    <a href="OnboardDealer.php" class="waves-effect">
-        <i class="mdi mdi-account-check-outline"></i> <!-- Alternative Onboard Dealer Icon -->
-        <span>Onboard Dealer</span>
-    </a>
-</li>
-<li>
-    <a href="DealerManagement.php" class="waves-effect">
-        <i class="mdi mdi-cogs"></i> <!-- Alternative Dealer Management Icon -->
-        <span>Dealer Management</span>
-    </a>
-</li>
+                        <a href="OnboardDealer.php" class="waves-effect">
+                            <i class="mdi mdi-account-check-outline"></i> <!-- Alternative Onboard Dealer Icon -->
+                            <span>Onboard Dealer</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="DealerManagement.php" class="waves-effect">
+                            <i class="mdi mdi-cogs"></i> <!-- Alternative Dealer Management Icon -->
+                            <span>Dealer Management</span>
+                        </a>
+                    </li>
 
                 <?php endif; ?>
             </ul>

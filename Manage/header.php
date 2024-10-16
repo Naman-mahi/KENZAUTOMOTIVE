@@ -56,6 +56,7 @@
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- Profile option for all users -->
                     <a class="dropdown-item" href="Profile.php"><i class="ri-user-line align-middle me-1"></i> Profile</a>
+                    <a class="dropdown-item" href="MyReferral.php"><i class="ri-user-add-line align-middle me-1"></i> My Referral</a>
 
                     <!-- Role-based options -->
                     <?php if ($_SESSION['role'] === 'admin'): ?>

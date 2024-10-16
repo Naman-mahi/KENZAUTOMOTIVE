@@ -1,16 +1,21 @@
 # Enable URL rewriting
 RewriteEngine On
 
-# Redirect requests to the appropriate PHP file
+# Remove .php extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
 
 # Handle login
-RewriteRule ^login$ login.php [L]
+RewriteRule ^login/?$ login.php [L]
 
 # Handle registration
-RewriteRule ^register$ register.php [L]
+RewriteRule ^register/?$ register.php [L]
 
-# Optionally, handle other paths or file extensions
-# Example for handling requests to non-existent files
+# Handle 404 errors
+ErrorDocument 404 /404.php
+
+# Redirect all non-existent files or directories to 404.php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /404.php [L]
+RewriteRule ^(.*)$ /404.php [L,QSA]

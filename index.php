@@ -7,9 +7,9 @@ session_start(); // Start the session
 if (isset($_SESSION['role'])) {
     // Redirect based on user role
     if ($_SESSION['role'] === 'admin') {
-        header("Location: Manage/dashboard.php"); // Redirect to admin dashboard
+        header("Location: Manage/Dashboard.php"); // Redirect to admin Dashboard
     } elseif ($_SESSION['role'] === 'dealer') {
-        header("Location: Manage/dashboard.php"); // Redirect to dealer dashboard
+        header("Location: Manage/Dashboard.php"); // Redirect to dealer Dashboard
     } else {
         header("Location: mypage.php"); // Redirect to mypage for unrecognized roles
     }
@@ -25,8 +25,8 @@ if (isset($_SESSION['role'])) {
     <link href="Manage/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="Manage/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="Manage/assets/css/app.min.css" rel="stylesheet" type="text/css" />
-    <link href="manage/assets/libs/sweetalert2/sweetalert2.min.css"rel="stylesheet" type="text/css" />
-    <script src="manage/assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
+    <link href="Manage/assets/libs/sweetalert2/sweetalert2.min.css"rel="stylesheet" type="text/css" />
+    <script src="Manage/assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
 
     <style>
         /* body {
@@ -71,7 +71,7 @@ if (isset($_SESSION['role'])) {
                         </div>
                     </div>
                     <div class="mt-5 text-center">
-                        <p class="text-dark-50">Don't have an account? <a href="DealerRegistration.php" class="fw-medium text-primary">Register</a></p>
+                        <p class="text-dark-50">Don't have an account? <a href="DealerRegistration" class="fw-medium text-primary">Register</a></p>
                     </div>
                 </div>
             </div>
@@ -79,12 +79,12 @@ if (isset($_SESSION['role'])) {
     </div>
 
     <!-- JAVASCRIPT -->
-    <script src="manage/assets/libs/jquery/jquery.min.js"></script>
-    <script src="manage/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="manage/assets/libs/metismenu/metisMenu.min.js"></script>
-    <script src="manage/assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="manage/assets/libs/node-waves/waves.min.js"></script>
-    <script src="manage/assets/js/app.js"></script>
+    <script src="Manage/assets/libs/jquery/jquery.min.js"></script>
+    <script src="Manage/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="Manage/assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="Manage/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="Manage/assets/libs/node-waves/waves.min.js"></script>
+    <script src="Manage/assets/js/app.js"></script>
 
     <script>
         $(document).ready(function() {

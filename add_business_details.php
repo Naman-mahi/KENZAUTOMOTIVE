@@ -17,8 +17,8 @@ include 'includes/db.php';
     <link href="Manage/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="Manage/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="Manage/assets/css/app.min.css" rel="stylesheet" type="text/css" />
-    <link href="manage/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
-    <script src="manage/assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
+    <link href="Manage/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <script src="Manage/assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
 </head>
 
 <body data-sidebar="light">
@@ -162,12 +162,12 @@ include 'includes/db.php';
     </div>
 
     <!-- JAVASCRIPT -->
-    <script src="manage/assets/libs/jquery/jquery.min.js"></script>
-    <script src="manage/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="manage/assets/libs/metismenu/metisMenu.min.js"></script>
-    <script src="manage/assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="manage/assets/libs/node-waves/waves.min.js"></script>
-    <script src="manage/assets/js/app.js"></script>
+    <script src="Manage/assets/libs/jquery/jquery.min.js"></script>
+    <script src="Manage/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="Manage/assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="Manage/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="Manage/assets/libs/node-waves/waves.min.js"></script>
+    <script src="Manage/assets/js/app.js"></script>
 
     <script>
         $(document).ready(function() {

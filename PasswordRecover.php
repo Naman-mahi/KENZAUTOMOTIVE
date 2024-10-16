@@ -18,7 +18,7 @@ if (isset($_SESSION['role'])) {
 
 <head>
     <meta charset="utf-8" />
-    <title>Dealer Registration</title>
+    <title>Password Recover</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="Manage/assets/images/favicon.ico">
     <link href="Manage/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -35,35 +35,14 @@ if (isset($_SESSION['role'])) {
                 <div class="col-xl-4 col-lg-6 col-md-8">
                     <div class="card">
                         <div class="card-body p-4">
-                            <h5 class="text-center mb-4">Dealer Registration</h5>
+                            <h5 class="text-center mb-4">Password Recover</h5>
                             <form id="registrationForm" class="form-horizontal" novalidate>
                                 <div class="mb-3">
-                                    <label class="form-label" for="first-name">First Name</label>
-                                    <input type="text" class="form-control" id="first-name" name="first_name" placeholder="Enter First Name" required>
-                                    <div class="invalid-feedback">Please enter your first name.</div>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label" for="last-name">Last Name</label>
-                                    <input type="text" class="form-control" id="last-name" name="last_name" placeholder="Enter Last Name" required>
-                                    <div class="invalid-feedback">Please enter your last name.</div>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label" for="mobile-number">Mobile Number</label>
-                                    <input type="tel" class="form-control" id="mobile-number" name="mobile_number" placeholder="Enter Mobile Number" required pattern="[0-9]{10}">
-                                    <div class="invalid-feedback">Please enter a valid mobile number (10 digits).</div>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label" for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your registered email" required>
                                     <div class="invalid-feedback">Please enter a valid email address.</div>
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label" for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required minlength="6">
-                                    <div class="invalid-feedback">Please enter a password (at least 6 characters).</div>
-                                </div>
-                                <div class="mb-3">
-                                    <button class="btn rounded-0 btn-primary waves-effect waves-light" type="submit">Register</button>
+                                <div class="d-grid">
+                                    <button class="btn rounded-0  btn-primary waves-effect waves-light" type="submit">Send OTP</button>
                                 </div>
                             </form>
                         </div>
@@ -90,7 +69,7 @@ if (isset($_SESSION['role'])) {
                 // Check if the form is valid
                 if (this.checkValidity()) {
                     $.ajax({
-                        url: 'register.php', // Your PHP script to handle registration
+                        url: 'PasswordRecover.php', // Your PHP script to handle registration
                         type: 'POST',
                         data: $(this).serialize(), // Serialize form data
                         dataType: 'json', // Expect JSON response
