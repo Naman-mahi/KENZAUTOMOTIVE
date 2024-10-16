@@ -1,7 +1,7 @@
 <?php
 include 'head.php';
 // Fetch subscriptions from the database
-$sql = "SELECT * FROM subscriptions JOIN users ON subscriptions.user_id = users.user_id LEFT JOIN coupons ON subscriptions.coupon_id = coupons.coupon_id left join dealers on users.user_id = dealers.user_id";
+$sql = "SELECT subscriptions.*, users.first_name, users.last_name, users.email, users.mobile_number, dealers.company_name, coupons.coupon_name FROM subscriptions JOIN users ON subscriptions.user_id = users.user_id LEFT JOIN coupons ON subscriptions.coupon_id = coupons.coupon_id left join dealers on users.user_id = dealers.user_id";
 $result = $conn->query($sql);
 ?>
 <div class="main-content">
@@ -39,16 +39,22 @@ $result = $conn->query($sql);
                                         <th> start date</th>
                                         <th> end date</th>
                                         <th>Subscription status</th>
-                                      
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     if ($result->num_rows > 0) {
                                         $count = 1;
-                                        
+
                                         while ($row = $result->fetch_assoc()) {
-                                            $status = $row['status'] === 'active' ? 'success' : 'danger';
+                                            $statusMap = [
+                                                'active' => 'success',
+                                                'inactive' => 'warning',
+                                                'canceled' => 'danger'
+                                            ];
+
+                                            $status = $statusMap[$row['status']] ?? 'default'; // Default class if status is unknown                                            
 
                                             echo "<tr>";
                                             echo "<td>" . $count++ . "</td>";
@@ -57,7 +63,7 @@ $result = $conn->query($sql);
                                             echo "<td>" . $row['email'] . "</td>";
                                             echo "<td>" . $row['mobile_number'] . "</td>";
                                             echo "<td>" . $row['subscription_amount'] . "</td>";
-                                            echo "<td>" . $row['coupon_name'] . "</td>";
+                                            echo "<td>" . ($row['coupon_name'] ? $row['coupon_name'] : 'NA') . "</td>";
                                             echo "<td>" . date('d-m-Y A', strtotime($row['subscription_start'])) . "</td>";
                                             echo "<td>" . date('d-m-Y A', strtotime($row['subscription_end'])) . "</td>";
                                             echo "<td> <span class='badge p-1 fs-6 badge-soft-{$status}'>{$row['status']}</span>  </td>";
@@ -68,8 +74,8 @@ $result = $conn->query($sql);
                                         echo "<tr><td colspan='7'>No subscriptions found</td></tr>";
                                     }
                                     ?>
-                                    
-                                   
+
+
                                 </tbody>
                             </table>
                         </div>
