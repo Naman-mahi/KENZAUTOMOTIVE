@@ -27,7 +27,7 @@ $result = $conn->query($sql);
             <!-- end page title -->
             <div class="row">
                 <div class="col-12">
-                    <div class="page-title-box d-flex align-items-end">
+                    <div class="mb-3 d-flex align-items-end">
                         <button type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto" data-toggle="modal" data-target="#addCategoryModal">Add Category</button>
                     </div>
                 </div>

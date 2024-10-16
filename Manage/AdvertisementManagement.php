@@ -3,9 +3,10 @@ include 'head.php';
 include '../includes/db.php'; // Include your database connection file
 
 // Fetch coupons from the database
-$sql = "SELECT * FROM coupons";
+$sql = "SELECT * FROM advertisement";
 $result = $conn->query($sql);
 ?>
+
 <div class="main-content">
     <div class="page-content">
         <div class="container-fluid">
@@ -13,11 +14,11 @@ $result = $conn->query($sql);
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Coupons Management</h4>
+                        <h4 class="mb-sm-0">Advertisement Management</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="Dashboard.php">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Coupons Management</li>
+                                <li class="breadcrumb-item active">Advertisement Management</li>
                             </ol>
                         </div>
                     </div>
@@ -29,7 +30,7 @@ $result = $conn->query($sql);
                 <div class="col-12">
                     <div class="mb-3 d-sm-flex align-items-center justify-content-end">
                         <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#addCouponModal">
-                            Add New Coupon
+                            Add New Advertisement
                         </button>
                     </div>
                 </div>
@@ -38,11 +39,11 @@ $result = $conn->query($sql);
             <div class="row">
                 <div class="col-md-12">
                     <div class="alert alert-warning alert-dismissible fade show border-0" role="alert">
-                        <strong>Note!</strong> The coupon will be applied on the subscription amount.
+                        <strong>Note!</strong> The advertisement will be applied on the subscription amount.
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     <div class="alert alert-info alert-dismissible fade show border-0" role="alert">
-                        <strong>Note!</strong> On clicking the coupon status will be changed.
+                        <strong>Note!</strong> On clicking the advertisement status will be changed.
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 </div>
@@ -56,8 +57,8 @@ $result = $conn->query($sql);
                                 <thead class="text-center">
                                     <tr>
                                         <th>#</th>
-                                        <th>Coupon Name</th>
-                                        <th>Coupon Code</th>
+                                        <th>Advertisement Name</th>
+                                        <th>Advertisement Code</th>
                                         <th>Discount Type</th>
                                         <th>Discount Value</th>
                                         <th>Expiration Date</th>
@@ -106,22 +107,22 @@ $result = $conn->query($sql);
         <!-- End Page-content -->
 
         <!-- Add Coupon Modal -->
-        <div class="modal fade" id="addCouponModal" tabindex="-1" role="dialog" aria-labelledby="addCouponModalLabel" aria-hidden="true">
+        <div class="modal fade" id="addAdvertisementModal" tabindex="-1" role="dialog" aria-labelledby="addAdvertisementModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addCouponModalLabel">Add New Coupon</h5>
+                        <h5 class="modal-title" id="addAdvertisementModalLabel">Add New Advertisement</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form id="addCouponForm">
                             <div class="form-group">
-                                <label for="addCouponName">Coupon Name</label>
-                                <input type="text" class="form-control" id="addCouponName" required>
+                                <label for="addAdvertisementName">Advertisement Name</label>
+                                <input type="text" class="form-control" id="addAdvertisementName" required>
                             </div>
                             <div class="form-group">
-                                <label for="addCouponCode">Coupon Code</label>
-                                <input type="text" class="form-control" id="addCouponCode" required>
+                                <label for="addAdvertisementCode">Advertisement Code</label>
+                                <input type="text" class="form-control" id="addAdvertisementCode" required>
                             </div>
                             <div class="form-group">
                                 <label for="addDiscountType">Discount Type</label>

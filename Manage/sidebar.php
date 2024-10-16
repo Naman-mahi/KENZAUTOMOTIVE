@@ -37,6 +37,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="AdvertisementManagement" class="waves-effect">
+                            <i class="mdi mdi-image-outline"></i> <!-- Advertisement Icon -->
+                            <span>Advertisement</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="SubscriptionManagement" class="waves-effect">
                             <i class="mdi mdi-calendar-check-outline"></i> <!-- Subscriptions Icon -->
                             <span>Subscriptions</span>
