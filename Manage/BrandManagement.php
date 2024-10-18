@@ -3,8 +3,13 @@ include 'head.php';
 include '../includes/db.php'; // Include your database connection file
 
 // Fetch brands from the database
-$sql = "SELECT * FROM Brands LEFT JOIN Categories ON Brands.category_id = Categories.category_id";
-$result = $conn->query($sql);
+$sqlBrands = "SELECT Brands.*, Categories.category_name FROM Brands 
+              LEFT JOIN Categories ON Brands.category_id = Categories.category_id";
+$resultBrands = $conn->query($sqlBrands);
+
+// Fetch categories from the database for the dropdown
+$sqlCategories = "SELECT * FROM Categories";
+$resultCategories = $conn->query($sqlCategories);
 ?>
 <div class="main-content">
     <div class="page-content">
@@ -52,13 +57,13 @@ $result = $conn->query($sql);
                                 </thead>
                                 <tbody class="text-center">
                                     <?php
-                                    if ($result->num_rows > 0) {
+                                    if ($resultBrands->num_rows > 0) {
                                         $counter = 1;
-                                        while ($row = $result->fetch_assoc()) {
+                                        while ($row = $resultBrands->fetch_assoc()) {
                                             echo "<tr data-brand-id='{$row['brand_id']}' data-brand-name='{$row['brand_name']}' data-brand-logo='{$row['brand_logo']}' data-category-id='{$row['category_id']}' data-created-date='{$row['created_date']}'>";
                                             echo "<td>{$counter}</td>";
                                             echo "<td>{$row['brand_name']}</td>";
-                                            echo "<td><img src='{$row['brand_logo']}' alt='{$row['brand_name']}' style='width:50px;'></td>";
+                                            echo "<td><img src='uploads/BrandLogo/{$row['brand_logo']}' alt='{$row['brand_name']}' style='width:50px;'></td>";
                                             echo "<td>{$row['category_name']}</td>";
                                             echo "<td>" . date('d M, Y', strtotime($row['created_date'])) . "</td>";
                                             echo "<td>
@@ -101,8 +106,13 @@ $result = $conn->query($sql);
                                 <input type="text" class="form-control" id="addBrandLogo" required>
                             </div>
                             <div class="form-group">
-                                <label for="addCategoryId">Category ID</label>
-                                <input type="number" class="form-control" id="addCategoryId" value="3" required>
+                                <label for="addCategoryId">Category</label>
+                                <select class="form-control" id="addCategoryId" required>
+                                    <option value="" disabled selected>Select Category</option>
+                                    <?php while ($category = $resultCategories->fetch_assoc()): ?>
+                                        <option value="<?= $category['category_id'] ?>"><?= $category['category_name'] ?></option>
+                                    <?php endwhile; ?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="addCreatedDate">Created Date</label>
@@ -136,8 +146,15 @@ $result = $conn->query($sql);
                                 <input type="text" class="form-control" id="editBrandLogo" required>
                             </div>
                             <div class="form-group">
-                                <label for="editCategoryId">Category ID</label>
-                                <input type="number" class="form-control" id="editCategoryId" required>
+                                <label for="editCategoryId">Category</label>
+                                <select class="form-control" id="editCategoryId" required>
+                                    <?php 
+                                    // Resetting the categories cursor to the beginning
+                                    $resultCategories->data_seek(0); 
+                                    while ($category = $resultCategories->fetch_assoc()): ?>
+                                        <option value="<?= $category['category_id'] ?>"><?= $category['category_name'] ?></option>
+                                    <?php endwhile; ?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="editCreatedDate">Created Date</label>
@@ -219,8 +236,8 @@ $result = $conn->query($sql);
                 // Populate the modal input fields with data from the row
                 document.getElementById('editBrandName').value = row.dataset.brandName;
                 document.getElementById('editBrandLogo').value = row.dataset.brandLogo;
-                document.getElementById('editCategoryId').value = row.dataset.categoryId;
                 document.getElementById('editCreatedDate').value = row.dataset.createdDate;
+                document.getElementById('editCategoryId').value = row.dataset.categoryId; // Set selected category
 
                 // Show the modal
                 $('#editBrandModal').modal('show');
