@@ -1,18 +1,17 @@
 <?php
 include 'head.php';
 
+
 if (isset($_GET['id'])) {
     $product_id = intval($_GET['id']); // Sanitize input
-    $dealerid = $_SESSION['user_id']; // Sanitize dealer ID
-    $category_id = $product_category_id; // Sanitize dealer ID
     // Query to fetch car details with dealer ID condition
     $sql = "
     SELECT *
     FROM products
-    WHERE product_id = ? AND dealer_id = ?
+    WHERE product_id = ?
     ";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ii", $product_id, $dealerid); // Bind both carid and dealerid
+    $stmt->bind_param("i", $product_id); // Bind both carid and dealerid
     $stmt->execute();
     $result = $stmt->get_result();
     // Check if a car was found
@@ -112,63 +111,17 @@ if (isset($_GET['id'])) {
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Product Details</h4>
+                        <h4 class="mb-sm-0">Dealer Connect</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="MyProducts.php">My Products</a></li>
-                                <li class="breadcrumb-item active">Product Details</li>
+                                <li class="breadcrumb-item"><a href="Dashboard">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Dealer Connect</li>
                             </ol>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- end page title -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">You Can Publish Your Product On:</h4>
-                            <p>Choose where you'd like your product to be visible to potential buyers and other dealers:</p>
-                            <form method="POST" action="ProductPublish.php" class="d-flex flex-column flex-md-row justify-content-between align-items-center">
-                                <input type="hidden" name="product_id" value="<?= $Products_publish['product_id'] ?>">
-                                <div class="d-flex flex-column flex-md-row align-items-center mb-3">
-                                    <div class="me-md-3 d-flex align-items-center mb-2 mb-md-0">
-                                        <span class="me-2 fw-bold">On Marketplace <a class="waves-effect" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Visible to a wide audience including other dealers.">
-                                                <i class="ri-question-line"></i>
-                                            </a></span>
-                                        <input class="form-check form-switch" type="checkbox" name="marketplace" id="switch1" switch="success" <?php echo $Products_publish['marketplace'] ? 'checked' : ''; ?>>
-                                        <label class="form-label" for="switch1" data-on-label="Yes" data-off-label="No"></label>
-                                    </div>
-                                    <div class="me-md-3 d-flex align-items-center mb-2 mb-md-0">
-                                        <span class="me-2 fw-bold">On Website <a class="waves-effect" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Displayed on our official site for increased visibility.">
-                                                <i class="ri-question-line"></i>
-                                            </a></span>
-                                        <input class="form-check form-switch" type="checkbox" name="website" id="switch2" switch="success" <?php echo $Products_publish['website'] ? 'checked' : ''; ?>>
-                                        <label class="form-label" for="switch2" data-on-label="Yes" data-off-label="No"></label>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <span class="me-2 fw-bold">On Your Own Website <a class="waves-effect" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Promote your listing directly on your personal website.">
-                                                <i class="ri-question-line"></i>
-                                            </a></span>
-                                        <input class="form-check form-switch" type="checkbox" name="own_website" id="switch3" switch="success" <?php echo $Products_publish['own_website'] ? 'checked' : ''; ?>>
-                                        <label class="form-label" for="switch3" data-on-label="Yes" data-off-label="No"></label>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn rounded-0  btn-sm btn-primary">Update Publish</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <div class="mb-3 d-flex align-items-end">
-                        <a href="NewCar.php" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Update Product Info</a>
-                    </div>
-                </div>
-            </div>
-
             <div class="row">
                 <div class="col-lg-6 col-md-12">
                     <div class="card">
@@ -336,20 +289,15 @@ if (isset($_GET['id'])) {
                 </div>
 
             </div> <!-- end row -->
-
         </div> <!-- container-fluid -->
     </div>
-    <!-- End Page-content -->
 </div>
-<!-- end main content -->
-<!-- HTML and JavaScript for Cloudinary Gallery -->
 <script>
     function changeImage(imageSrc) {
         document.getElementById('mainImage').src = imageSrc;
         document.getElementById('mainImageLink').href = imageSrc;
     }
 </script>
-
 <?php
 include 'footer.php';
 ?>

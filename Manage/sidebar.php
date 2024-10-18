@@ -73,6 +73,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="DealerConnect" class="waves-effect">
+                            <i class="mdi mdi-handshake"></i> <!-- Dealer Connect Icon -->
+                            <span>Dealer Connect</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="AppearanceManagement" class="waves-effect">
                             <i class="mdi mdi-palette"></i> <!-- Appearance Icon -->
                             <span>Appearance</span>
@@ -106,6 +112,12 @@
                         <a href="ManageProductInventry" class="waves-effect">
                             <i class="mdi mdi-cog"></i>
                             <span>Product Inventry</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="DealerConnect" class="waves-effect">
+                            <i class="mdi mdi-handshake"></i> <!-- Dealer Connect Icon -->
+                            <span>Dealer Connect</span>
                         </a>
                     </li>
                 <?php elseif ($_SESSION['role'] === 'website_user'): ?>
