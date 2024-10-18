@@ -29,16 +29,16 @@ $result = $conn->query($sql);
                             <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr class="text-center text-uppercase">
-                                        <th>#</th>
-                                        <th>Company Name</th>
-                                        <th>Customer Name</th>
-                                        <th>Email</th>
-                                        <th>Mobile Number</th>
-                                        <th>Amount</th>
-                                        <th>Coupon</th>
-                                        <th> start date</th>
-                                        <th> end date</th>
-                                        <th>Subscription status</th>
+                                        <th class="text-center">#</th>
+                                        <th class="text-center">Company Name</th>
+                                        <th class="text-center">Customer Name</th>
+                                        <th class="text-center">Email</th>
+                                        <th class="text-center">Mobile Number</th>
+                                        <th class="text-center">Amount</th>
+                                        <th class="text-center">Coupon</th>
+                                        <th class="text-center"> start date</th>
+                                        <th class="text-center"> end date</th>
+                                        <th class="text-center">Subscription status</th>
 
                                     </tr>
                                 </thead>
@@ -48,30 +48,31 @@ $result = $conn->query($sql);
                                         $count = 1;
 
                                         while ($row = $result->fetch_assoc()) {
+                                            // Map for status classes
                                             $statusMap = [
-                                                'active' => 'success',
-                                                'inactive' => 'warning',
-                                                'canceled' => 'danger'
+                                                'active' => 'text-success',
+                                                'inactive' => 'text-warning',
+                                                'canceled' => 'text-danger'
                                             ];
 
-                                            $status = $statusMap[$row['status']] ?? 'default'; // Default class if status is unknown                                            
+                                            // Determine the status class, defaulting to 'default' if unknown
+                                            $color = $statusMap[$row['status']] ?? 'default';
 
                                             echo "<tr>";
                                             echo "<td>" . $count++ . "</td>";
-                                            echo "<td>" . $row['company_name'] . "</td>";
-                                            echo "<td>" . $row['first_name'] . " " . $row['last_name'] . "</td>";
-                                            echo "<td>" . $row['email'] . "</td>";
-                                            echo "<td>" . $row['mobile_number'] . "</td>";
-                                            echo "<td>" . $row['subscription_amount'] . "</td>";
-                                            echo "<td>" . ($row['coupon_name'] ? $row['coupon_name'] : 'NA') . "</td>";
-                                            echo "<td>" . date('d-m-Y A', strtotime($row['subscription_start'])) . "</td>";
-                                            echo "<td>" . date('d-m-Y A', strtotime($row['subscription_end'])) . "</td>";
-                                            echo "<td> <span class='badge p-1 fs-6 badge-soft-{$status}'>{$row['status']}</span>  </td>";
-
+                                            echo "<td>" . htmlspecialchars($row['company_name']) . "</td>";
+                                            echo "<td>" . htmlspecialchars($row['first_name'] . " " . $row['last_name']) . "</td>";
+                                            echo "<td>" . htmlspecialchars($row['email']) . "</td>";
+                                            echo "<td>" . htmlspecialchars($row['mobile_number']) . "</td>";
+                                            echo "<td>" . htmlspecialchars($row['subscription_amount']) . "</td>";
+                                            echo "<td>" . ($row['coupon_name'] ? htmlspecialchars($row['coupon_name']) : 'NA') . "</td>";
+                                            echo "<td>" . date('d M, Y h:i A', strtotime($row['subscription_start'])) . "</td>";
+                                            echo "<td>" . date('d M, Y h:i A', strtotime($row['subscription_end'])) . "</td>";
+                                            echo "<td><i class='mdi mdi-checkbox-blank-circle me-1 {$color}'></i> {$row['status']}</td>";
                                             echo "</tr>";
                                         }
                                     } else {
-                                        echo "<tr><td colspan='7'>No subscriptions found</td></tr>";
+                                        echo "<tr><td colspan='10'>No subscriptions found</td></tr>";
                                     }
                                     ?>
 

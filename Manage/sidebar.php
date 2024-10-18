@@ -36,12 +36,12 @@
                             <span>Coupons Management</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="AdvertisementManagement" class="waves-effect">
-                            <i class="mdi mdi-image-outline"></i> <!-- Advertisement Icon -->
+                            <i class="mdi mdi-image-outline"></i> 
                             <span>Advertisement</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="SubscriptionManagement" class="waves-effect">
                             <i class="mdi mdi-calendar-check-outline"></i> <!-- Subscriptions Icon -->
@@ -115,7 +115,6 @@
                             <span>Dealer Management</span>
                         </a>
                     </li>
-
                 <?php endif; ?>
             </ul>
         </div>
