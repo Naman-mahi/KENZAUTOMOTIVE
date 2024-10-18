@@ -3,7 +3,7 @@
 <?php
 session_start(); // Start the session
 if (!isset($_SESSION['user_id'])) {
-    header("Location: index.php");
+    header("Location: index");
     exit();
 }
 include 'includes/db.php';
@@ -219,7 +219,7 @@ include 'includes/db.php';
                                     text: 'Business details added successfully!',
                                     timer: 1500,
                                     onClose: () => {
-                                        window.location.href = 'index.php'; // Redirect after success
+                                        window.location.href = 'index'; // Redirect after success
                                     }
                                 });
                             } else {

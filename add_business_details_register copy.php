@@ -150,7 +150,7 @@ WHERE user_id = ?");
 
         // Send the email
         if (sendEmail($email, $subject, $body)) {
-            echo json_encode(['success' => true, 'message' => 'Update successful! An email has been sent to notify you.', 'redirect' => 'index.php']);
+            echo json_encode(['success' => true, 'message' => 'Update successful! An email has been sent to notify you.', 'redirect' => 'index']);
         } else {
             echo json_encode(['success' => false, 'message' => 'Failed to send notification email.']);
         }

@@ -17,6 +17,6 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Redirect to login or home page
-header("Location: ../index.php"); // Change to your desired redirect page
+header("Location: ../index"); // Change to your desired redirect page
 exit;
 ?>

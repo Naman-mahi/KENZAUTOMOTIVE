@@ -39,9 +39,9 @@ if (isset($_POST['login'])) {
 
                 // Redirect based on role
                 if ($role === 'dealer') {
-                    header('Location: ' . BASE_URL . 'dealer/dashboard.php');
+                    header('Location: ' . BASE_URL . 'dealer/dashboard');
                 } else {
-                    header('Location: ' . BASE_URL . 'index.php');
+                    header('Location: ' . BASE_URL . 'index');
                 }
                 exit();
             } else {
