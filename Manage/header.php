@@ -1,6 +1,3 @@
-
-
-
 <header id="page-topbar">
     <div class="navbar-header">
         <div class="d-flex">
@@ -41,8 +38,34 @@
                 </div>
             </div>
             <div class="dropdown d-none d-lg-inline-block ms-1">
-                <a class="btn rounded-0 fs-5" href="DealerConnect"> <i class="mdi mdi-handshake"></i> Dealer Connect</a>
-              
+                <a class="rounded-0 fs-6" href="DealerConnect"> <i class="mdi mdi-handshake"></i> Dealer Connect</a>
+
+                <button type="button" class="btn rounded-0 header-item noti-icon waves-effect" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+                    <i class="ri-wallet-3-line"></i>
+                </button>
+                <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false"
+                    tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasScrollingLabel"> My Wallet 
+
+                        <i class="ri-wallet-3-line"></i>
+
+                        </h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <p>Wallet Balance: ₹ 0</p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+
+                        <button type="button" class="btn btn-primary rounded-0">
+                            <i class="ri-add-line me-1"></i>Add Money
+                        </button>
+
+                    </div>
+                    </div>
+                </div>
                 <button type="button" class="btn rounded-0  header-item noti-icon waves-effect" data-toggle="fullscreen">
                     <i class="ri-fullscreen-line"></i>
                 </button>
@@ -74,5 +97,5 @@
             </div>
 
         </div>
-    </div>   
+    </div>
 </header>

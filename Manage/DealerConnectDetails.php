@@ -1,108 +1,78 @@
 <?php
 include 'head.php';
 
-
-if (isset($_GET['id'])) {
-    $product_id = intval($_GET['id']); // Sanitize input
-    // Query to fetch car details with dealer ID condition
-    $sql = "
-    SELECT *
-    FROM products
-    WHERE product_id = ?
-    ";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $product_id); // Bind both carid and dealerid
-    $stmt->execute();
-    $result = $stmt->get_result();
-    // Check if a car was found
-    if ($result->num_rows > 0) {
-        $Products = $result->fetch_assoc();
-        // Proceed with displaying car details...
-    } else {
-        // Car ID not found or dealer ID mismatch, redirect to MyCars.php using JavaScript
-        echo "<script>window.location.href = 'MyProducts.php';</script>";
-        exit;
-    }
-} else {
-    // No car ID or dealer ID provided, redirect to MyCars.php using JavaScript
+// Function to handle redirection
+function redirectToMyProducts() {
     echo "<script>window.location.href = 'MyProducts.php';</script>";
     exit;
 }
 
-// Check if 'id' is set in the URL
-if (isset($_GET['id'])) {
-    // Sanitize input
-    $product_id = intval($_GET['id']);
+// Function to handle redirection to DealerConnect
+function redirectToDealerConnect() {
+    echo "<script>window.location.href = 'DealerConnect.php';</script>";
+    exit;
+}
 
-    // Prepare SQL statement to fetch product images
-    $sql = "SELECT * FROM product_images WHERE product_id = ?";
-    $stmt = $conn->prepare($sql);
-
-    if ($stmt) {
-        // Bind parameters
-        $stmt->bind_param("i", $product_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            // Fetch the product images
-            $productImages = $result->fetch_all(MYSQLI_ASSOC); // Fetch all images for the product
-
-            // Prepend the image path to each image URL
-            foreach ($productImages as &$image) {
-                $image['image_url'] = 'uploads/products/' . htmlspecialchars($image['image_url']);
-            }
-            unset($image); // Break the reference with the last element
-        } else {
-            // No images found for the given product ID
-            redirectToMyProducts();
-        }
-
-
-        // Close the statement
-        $stmt->close();
-    } else {
-        // SQL preparation error, handle accordingly
-        echo "Error preparing statement: " . $conn->error;
-        exit;
-    }
-} else {
-    // No product ID provided, redirect to MyProducts.php
+if (!isset($_GET['id'])) {
     redirectToMyProducts();
 }
 
-// Function to handle redirection
-function redirectToMyProducts()
-{
-    echo "<script>window.location.href = 'MyProducts.php';</script>";
-    exit;
+$product_id = intval($_GET['id']); // Sanitize input
+
+// Fetch product details
+$sql = "SELECT * FROM products WHERE product_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $product_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows == 0) {
+    redirectToMyProducts();
 }
 
+$Products = $result->fetch_assoc();
+$dealer_id = $Products['dealer_id'];
 
-if (isset($_GET['id'])) {
-    $product_id = intval($_GET['id']); // Sanitize input
-    // Query to fetch car publish details
-    $sql = "SELECT * FROM product_publish WHERE product_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $product_id); // Bind carid
-    // Execute the query
-    $stmt->execute();
-    $result = $stmt->get_result();
-    // Check if a record was found
-    if ($result->num_rows > 0) {
-        $Products_publish = $result->fetch_assoc();
-        // Proceed with displaying the car publish details...
-        // Example: echo $car_publish['marketplace'];
-    } else {
-        // No record found for the given car_id, redirect to MyCars.php
-        echo "<script>window.location.href = 'MyProducts.php';</script>";
-        exit;
-    }
+// Fetch product images
+$sql = "SELECT * FROM product_images WHERE product_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $product_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$productImages = [];
+while ($row = $result->fetch_assoc()) {
+    $row['image_url'] = 'uploads/products/' . htmlspecialchars($row['image_url']);
+    $productImages[] = $row;
+}
+
+// Fetch product publish details
+$sql = "SELECT * FROM product_publish WHERE product_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $product_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    $Products_publish = $result->fetch_assoc();
 } else {
-    // No car ID provided, redirect to MyCars.php
-    echo "<script>window.location.href = 'MyProducts.php';</script>";
-    exit;
+    redirectToMyProducts();
 }
+
+// Fetch dealer information
+$sql = "SELECT * FROM dealers WHERE user_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $dealer_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    $dealerInfo = $result->fetch_assoc();
+} else {
+    redirectToDealerConnect();
+}
+
+$stmt->close();
 ?>
 <div class="main-content">
     <div class="page-content">
@@ -147,6 +117,55 @@ if (isset($_GET['id'])) {
                                                 <img src="<?php echo $image['image_url']; ?>" alt="Thumbnail <?php echo $index + 1; ?>" class="img-fluid" style="width: 100px; height: auto;">
                                             </button>
                                         <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body p-0 m-0">
+                            
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex  flex-wrap justify-content-center">
+                                        <h4 class="m-3">Dealer Information</h4>
+                                       
+                                    </div>
+                                    <div class="d-flex  flex-wrap justify-content-center">
+                                       <table class="table table-bordered">
+                                        <tr>
+                                            <th>Company Name</th>
+                                            <td><?php echo htmlspecialchars($dealerInfo['company_name']); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Contact Person</th>
+                                            <td><?php echo htmlspecialchars($dealerInfo['contact_person']); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Phone Number</th>
+                                            <td><?php echo htmlspecialchars($dealerInfo['phone_number']); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Email</th>
+                                            <td><?php echo htmlspecialchars($dealerInfo['email']); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Address</th>
+                                            <td>
+                                                <?php echo htmlspecialchars($dealerInfo['address_line1']); ?><br>
+                                                <?php echo htmlspecialchars($dealerInfo['address_line2']); ?><br>
+                                                <?php echo htmlspecialchars($dealerInfo['city']); ?>, 
+                                                <?php echo htmlspecialchars($dealerInfo['state']); ?> 
+                                                <?php echo htmlspecialchars($dealerInfo['postal_code']); ?><br>
+                                                <?php echo htmlspecialchars($dealerInfo['country']); ?>
+                                            </td>
+                                        </tr>
+                                       
+                                        
+                                       </table>
+                                       
                                     </div>
                                 </div>
                             </div>

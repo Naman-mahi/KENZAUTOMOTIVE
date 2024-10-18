@@ -32,7 +32,7 @@
                     </li>
                     <li>
                         <a href="BrandManagement" class="waves-effect">
-                            <i class="mdi mdi-tag-outline"></i> <!-- Category Management Icon -->
+                            <i class="mdi mdi-format-list-numbered"></i> <!-- Category Management Icon -->
                             <span>Brand Management</span>
                         </a>
                     </li>
@@ -85,7 +85,7 @@
                         </a>
                     </li>
                 <?php elseif ($_SESSION['role'] === 'dealer'): ?>
-                    
+
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="mdi mdi-plus-circle-outline"></i>
