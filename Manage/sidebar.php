@@ -31,6 +31,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="BrandManagement" class="waves-effect">
+                            <i class="mdi mdi-tag-outline"></i> <!-- Category Management Icon -->
+                            <span>Brand Management</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="CouponsManagement" class="waves-effect">
                             <i class="mdi mdi-ticket-percent-outline"></i> <!-- Coupons Management Icon -->
                             <span>Coupons Management</span>
