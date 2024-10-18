@@ -30,4 +30,3 @@ if (isset($data['coupon_name'], $data['coupon_code'], $data['discount_type'], $d
 }
 
 $conn->close();
-?>

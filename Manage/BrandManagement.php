@@ -2,12 +2,11 @@
 include 'head.php';
 include '../includes/db.php'; // Include your database connection file
 
-// Fetch brands from the database
+// Fetch brands and categories from the database
 $sqlBrands = "SELECT Brands.*, Categories.category_name FROM Brands 
               LEFT JOIN Categories ON Brands.category_id = Categories.category_id";
 $resultBrands = $conn->query($sqlBrands);
 
-// Fetch categories from the database for the dropdown
 $sqlCategories = "SELECT * FROM Categories";
 $resultCategories = $conn->query($sqlCategories);
 ?>
@@ -47,37 +46,37 @@ $resultCategories = $conn->query($sqlCategories);
                             <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="text-center">
                                     <tr>
-                                        <th class="text-center">#</th>
-                                        <th class="text-center">Brand Name</th>
-                                        <th class="text-center">Brand Logo</th>
-                                        <th class="text-center">Category</th>
-                                        <th class="text-center">Created Date</th>
-                                        <th class="text-center">Action</th>
+                                        <th>#</th>
+                                        <th>Brand Name</th>
+                                        <th>Brand Logo</th>
+                                        <th>Category</th>
+                                        <th>Created Date</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                    <?php
-                                    if ($resultBrands->num_rows > 0) {
-                                        $counter = 1;
-                                        while ($row = $resultBrands->fetch_assoc()) {
-                                            echo "<tr data-brand-id='{$row['brand_id']}' data-brand-name='{$row['brand_name']}' data-brand-logo='{$row['brand_logo']}' data-category-id='{$row['category_id']}' data-created-date='{$row['created_date']}'>";
-                                            echo "<td>{$counter}</td>";
-                                            echo "<td>{$row['brand_name']}</td>";
-                                            echo "<td><img src='uploads/BrandLogo/{$row['brand_logo']}' alt='{$row['brand_name']}' style='width:50px;'></td>";
-                                            echo "<td>{$row['category_name']}</td>";
-                                            echo "<td>" . date('d M, Y', strtotime($row['created_date'])) . "</td>";
-                                            echo "<td>
-                                                <button onclick='editBrand({$row['brand_id']}, this)' class='btn rounded-0 btn-warning btn-sm'>
-                                                    <i class='mdi mdi-pencil'></i> Edit
-                                                </button>
-                                            </td>";
-                                            echo "</tr>";
-                                            $counter++;
-                                        }
-                                    } else {
-                                        echo "<tr><td colspan='6'>No brands found</td></tr>";
-                                    }
-                                    ?>
+                                    <?php if ($resultBrands->num_rows > 0): ?>
+                                        <?php $counter = 1; ?>
+                                        <?php while ($row = $resultBrands->fetch_assoc()): ?>
+                                            <tr data-brand-id="<?= $row['brand_id'] ?>" data-brand-name="<?= $row['brand_name'] ?>" data-brand-logo="<?= $row['brand_logo'] ?>" data-category-id="<?= $row['category_id'] ?>" data-created-date="<?= $row['created_date'] ?>">
+                                                <td><?= $counter ?></td>
+                                                <td><?= $row['brand_name'] ?></td>
+                                                <td><img src='uploads/BrandLogo/<?= $row['brand_logo'] ?>' alt='<?= $row['brand_name'] ?>' style='width:50px;'></td>
+                                                <td><?= $row['category_name'] ?></td>
+                                                <td><?= date('d M, Y', strtotime($row['created_date'])) ?></td>
+                                                <td>
+                                                    <button onclick='editBrand(<?= $row['brand_id'] ?>, this)' class='btn rounded-0 btn-warning btn-sm'>
+                                                        <i class='mdi mdi-pencil'></i> Edit
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <?php $counter++; ?>
+                                        <?php endwhile; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td colspan='6'>No brands found</td>
+                                        </tr>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -96,14 +95,14 @@ $resultCategories = $conn->query($sqlCategories);
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="addBrandForm">
+                        <form id="addBrandForm" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="addBrandName">Brand Name</label>
                                 <input type="text" class="form-control" id="addBrandName" required>
                             </div>
                             <div class="form-group">
-                                <label for="addBrandLogo">Brand Logo URL</label>
-                                <input type="text" class="form-control" id="addBrandLogo" required>
+                                <label for="addBrandLogo">Brand Logo</label>
+                                <input type="file" class="form-control" id="addBrandLogo" required accept="image/*">
                             </div>
                             <div class="form-group">
                                 <label for="addCategoryId">Category</label>
@@ -113,10 +112,6 @@ $resultCategories = $conn->query($sqlCategories);
                                         <option value="<?= $category['category_id'] ?>"><?= $category['category_name'] ?></option>
                                     <?php endwhile; ?>
                                 </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="addCreatedDate">Created Date</label>
-                                <input type="date" class="form-control" id="addCreatedDate" required>
                             </div>
                         </form>
                     </div>
@@ -136,29 +131,26 @@ $resultCategories = $conn->query($sqlCategories);
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="editBrandForm">
+                        <form id="editBrandForm" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="editBrandName">Brand Name</label>
                                 <input type="text" class="form-control" id="editBrandName" required>
                             </div>
                             <div class="form-group">
-                                <label for="editBrandLogo">Brand Logo URL</label>
-                                <input type="text" class="form-control" id="editBrandLogo" required>
+                                <label for="editBrandLogo">Brand Logo</label>
+                                <input type="file" class="form-control" id="editBrandLogo" accept="image/*">
+                                <small class="form-text text-muted">Leave empty to keep the current logo.</small>
                             </div>
                             <div class="form-group">
                                 <label for="editCategoryId">Category</label>
                                 <select class="form-control" id="editCategoryId" required>
-                                    <?php 
+                                    <?php
                                     // Resetting the categories cursor to the beginning
-                                    $resultCategories->data_seek(0); 
+                                    $resultCategories->data_seek(0);
                                     while ($category = $resultCategories->fetch_assoc()): ?>
                                         <option value="<?= $category['category_id'] ?>"><?= $category['category_name'] ?></option>
                                     <?php endwhile; ?>
                                 </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="editCreatedDate">Created Date</label>
-                                <input type="date" class="form-control" id="editCreatedDate" required>
                             </div>
                         </form>
                     </div>
@@ -172,40 +164,28 @@ $resultCategories = $conn->query($sqlCategories);
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 // Open Add Brand Modal
-                const addBrandButton = document.querySelector('.btn-success');
-                addBrandButton.addEventListener('click', function() {
-                    document.getElementById('addBrandForm').reset(); // Reset the entire form
+                document.querySelector('.btn-success').addEventListener('click', function() {
+                    document.getElementById('addBrandForm').reset(); // Reset the form
                     $('#addBrandModal').modal('show');
                 });
 
                 // Submit Brand
                 document.getElementById('submitBrand').addEventListener('click', function() {
-                    const brandName = document.getElementById('addBrandName').value;
-                    const brandLogo = document.getElementById('addBrandLogo').value;
-                    const categoryId = document.getElementById('addCategoryId').value;
-                    const createdDate = document.getElementById('addCreatedDate').value;
+                    const formData = new FormData();
+                    formData.append('brand_name', document.getElementById('addBrandName').value);
+                    formData.append('brand_logo', document.getElementById('addBrandLogo').files[0]);
+                    formData.append('category_id', document.getElementById('addCategoryId').value);
 
                     Swal.fire({
                         title: 'Are you sure?',
-                        text: `You are about to add the brand: ${brandName}`,
+                        text: `You are about to add the brand: ${formData.get('brand_name')}`,
                         icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Yes, add it!'
                     }).then((result) => {
                         if (result.isConfirmed) {
                             fetch('add_brand.php', {
                                     method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                    },
-                                    body: JSON.stringify({
-                                        brand_name: brandName,
-                                        brand_logo: brandLogo,
-                                        category_id: categoryId,
-                                        created_date: createdDate
-                                    })
+                                    body: formData
                                 })
                                 .then(response => response.json())
                                 .then(data => {
@@ -217,8 +197,7 @@ $resultCategories = $conn->query($sqlCategories);
                                         Swal.fire('Error!', data.message || 'Something went wrong.', 'error');
                                     }
                                 })
-                                .catch(error => {
-                                    console.error('Error:', error);
+                                .catch(() => {
                                     Swal.fire('Error!', 'Failed to add brand. Please try again.', 'error');
                                 });
                         }
@@ -228,15 +207,11 @@ $resultCategories = $conn->query($sqlCategories);
 
             function editBrand(brand_id, button) {
                 const row = button.closest('tr');
-
-                // Set the brand_id in the modal's data attribute
                 const modal = document.getElementById('editBrandModal');
                 modal.dataset.brandId = brand_id; // Set the brand ID
 
                 // Populate the modal input fields with data from the row
                 document.getElementById('editBrandName').value = row.dataset.brandName;
-                document.getElementById('editBrandLogo').value = row.dataset.brandLogo;
-                document.getElementById('editCreatedDate').value = row.dataset.createdDate;
                 document.getElementById('editCategoryId').value = row.dataset.categoryId; // Set selected category
 
                 // Show the modal
@@ -244,46 +219,36 @@ $resultCategories = $conn->query($sqlCategories);
             }
 
             document.getElementById('updateBrand').addEventListener('click', function() {
+                const modal = document.getElementById('editBrandModal');
+                const brandId = modal.dataset.brandId;
                 const brandName = document.getElementById('editBrandName').value;
-                const brandLogo = document.getElementById('editBrandLogo').value;
                 const categoryId = document.getElementById('editCategoryId').value;
-                const createdDate = document.getElementById('editCreatedDate').value;
-                const brandId = document.getElementById('editBrandModal').dataset.brandId; // Ensure this is set correctly
+                const brandLogo = document.getElementById('editBrandLogo').files[0];
 
-                // Validate input fields
-                if (!brandId || !brandName || !brandLogo || !categoryId || !createdDate) {
-                    Swal.fire('Error!', 'Please fill in all fields.', 'error');
-                    return;
+                const formData = new FormData();
+                formData.append('brand_id', brandId);
+                formData.append('brand_name', brandName);
+                formData.append('category_id', categoryId);
+                if (brandLogo) {
+                    formData.append('brand_logo', brandLogo);
                 }
 
-                // Perform AJAX request to update brand
                 fetch('update_brand.php', {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            brand_id: brandId,
-                            brand_name: brandName,
-                            brand_logo: brandLogo,
-                            category_id: categoryId,
-                            created_date: createdDate
-                        })
+                        body: formData
                     })
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
                             $('#editBrandModal').modal('hide');
-                            Swal.fire('Updated!', 'The brand has been updated.', 'success')
-                                .then(() => {
-                                    location.reload();
-                                });
+                            Swal.fire('Updated!', 'The brand has been updated.', 'success').then(() => {
+                                location.reload();
+                            });
                         } else {
                             Swal.fire('Error!', data.message || 'Something went wrong.', 'error');
                         }
                     })
-                    .catch(error => {
-                        console.error('Error:', error);
+                    .catch(() => {
                         Swal.fire('Error!', 'Failed to update brand. Please try again.', 'error');
                     });
             });
