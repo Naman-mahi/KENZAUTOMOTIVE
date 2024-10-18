@@ -41,6 +41,8 @@
                 </div>
             </div>
             <div class="dropdown d-none d-lg-inline-block ms-1">
+                <a class="btn rounded-0 fs-5" href="DealerConnect"> <i class="mdi mdi-handshake"></i> Dealer Connect</a>
+              
                 <button type="button" class="btn rounded-0  header-item noti-icon waves-effect" data-toggle="fullscreen">
                     <i class="ri-fullscreen-line"></i>
                 </button>
