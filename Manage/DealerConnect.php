@@ -24,23 +24,21 @@ $result = $conn->query($sql);
             <!-- end page title -->
             <div class="row mb-4">
                 <div class="col-12">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products..." aria-label="Search for products" id="productSearch">
-                        <button class="btn btn-primary" type="button" id="searchButton">Search</button>
-                    </div>
+                    <input type="text" class="form-control" placeholder="Search for products..." aria-label="Search for products" id="productSearch">
                 </div>
             </div>
             <div class="row" id="productList">
                 <?php
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        echo '<div class="col-md-3 mb-4">';
+                        echo '<div class="col-md-3 mb-4 product-item">';
                         echo '<div class="card h-100 d-flex flex-column">';
                         echo '<div class="image-wrapper" style="height: 200px; overflow: hidden;">';
                         echo '<img src="uploads/ProductImages/' . $row['product_image'] . '" class="card-img-top h-100 w-100" alt="Product Image" style="object-fit: cover;">';
                         echo '</div>';
                         echo '<div class="card-body d-flex flex-column">';
-                        echo '<h5 class="card-title">' . $row['product_name'] . '</h5>';
+                        echo '<h5 class="card-title product-name">' . $row['product_name'] . '</h5>';
+                        echo '<h5 class="product-price text-muted">' . $row['price'] . '</h5>';
                         echo '<a href="DealerConnectDetails?id=' . $row['product_id'] . '" class="btn btn-primary mt-auto">View Details</a>';
                         echo '</div>';
                         echo '</div>';
@@ -56,6 +54,27 @@ $result = $conn->query($sql);
         </div> <!-- container-fluid -->
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('productSearch');
+        const productItems = document.querySelectorAll('.product-item');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+
+            productItems.forEach(item => {
+                const productName = item.querySelector('.product-name').textContent.toLowerCase();
+                if (productName.includes(searchTerm)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
 <?php
 include 'footer.php';
 ?>

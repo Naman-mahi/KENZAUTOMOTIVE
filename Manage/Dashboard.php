@@ -27,7 +27,7 @@ $result = $conn->query($sql);
             </div>
             <!-- end page title -->
 <?php
-var_dump($statistics);
+// var_dump($statistics);
 ?>
 
             <?php
