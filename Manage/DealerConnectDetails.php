@@ -42,7 +42,7 @@ $result = $stmt->get_result();
 
 $productImages = [];
 while ($row = $result->fetch_assoc()) {
-    $row['image_url'] = 'uploads/products/' . htmlspecialchars($row['image_url']);
+    $row['image_url'] = 'uploads/ProductImages/' . htmlspecialchars($row['image_url']);
     $productImages[] = $row;
 }
 
