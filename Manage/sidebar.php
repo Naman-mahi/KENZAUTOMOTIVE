@@ -5,135 +5,74 @@
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
-                <li>
-                    <a href="dashboard" class="waves-effect">
-                        <i class="mdi mdi-view-dashboard-outline"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <?php if ($_SESSION['role'] === 'admin'): ?>
-                    <li>
-                        <a href="CustomerManagement" class="waves-effect">
-                            <i class="mdi mdi-account-circle-outline"></i> <!-- User Management Icon -->
-                            <span>User Management</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="DealerManagement" class="waves-effect">
-                            <i class="mdi mdi-account-tie-outline"></i> <!-- Dealer Management Icon -->
-                            <span>Dealer Management</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="CategoryManagement" class="waves-effect">
-                            <i class="mdi mdi-tag-outline"></i> <!-- Category Management Icon -->
-                            <span>Category Management</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="BrandManagement" class="waves-effect">
-                            <i class="mdi mdi-format-list-numbered"></i> <!-- Category Management Icon -->
-                            <span>Brand Management</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="CouponsManagement" class="waves-effect">
-                            <i class="mdi mdi-ticket-percent-outline"></i> <!-- Coupons Management Icon -->
-                            <span>Coupons Management</span>
-                        </a>
-                    </li>
-                    <!-- <li>
-                        <a href="AdvertisementManagement" class="waves-effect">
-                            <i class="mdi mdi-image-outline"></i> 
-                            <span>Advertisement</span>
-                        </a>
-                    </li> -->
-                    <li>
-                        <a href="SubscriptionManagement" class="waves-effect">
-                            <i class="mdi mdi-calendar-check-outline"></i> <!-- Subscriptions Icon -->
-                            <span>Subscriptions</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="SalesAgentManagement" class="waves-effect">
-                            <i class="mdi mdi-account-star-outline"></i> <!-- Sales Agent Icon -->
-                            <span>Sales Agent</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="WebsiteUsersManagement" class="waves-effect">
-                            <i class="mdi mdi-web"></i> <!-- Website Users Icon -->
-                            <span>Website Users</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="ReferralManagement" class="waves-effect">
-                            <i class="mdi mdi-account-group"></i> <!-- Website Users Icon -->
-                            <span>Referral</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="DealerConnect" class="waves-effect">
-                            <i class="mdi mdi-handshake"></i> <!-- Dealer Connect Icon -->
-                            <span>Dealer Connect</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="AppearanceManagement" class="waves-effect">
-                            <i class="mdi mdi-palette"></i> <!-- Appearance Icon -->
-                            <span>Appearance</span>
-                        </a>
-                    </li>
-                <?php elseif ($_SESSION['role'] === 'dealer'): ?>
+                <?php
+                $menu_items = [
+                    'all' => [
+                        ['url' => 'dashboard', 'icon' => 'mdi mdi-view-dashboard-outline', 'label' => 'Dashboard']
+                    ],
+                    'admin' => [
+                        ['url' => 'CustomerManagement', 'icon' => 'mdi mdi-account-circle-outline', 'label' => 'User Management'],
+                        ['url' => 'DealerManagement', 'icon' => 'mdi mdi-account-tie-outline', 'label' => 'Dealer Management'],
+                        ['url' => 'CategoryManagement', 'icon' => 'mdi mdi-tag-outline', 'label' => 'Category Management'],
+                        ['url' => 'BrandManagement', 'icon' => 'mdi mdi-format-list-numbered', 'label' => 'Brand Management'],
+                        ['url' => 'CouponsManagement', 'icon' => 'mdi mdi-ticket-percent-outline', 'label' => 'Coupons Management'],
+                        ['url' => 'SubscriptionManagement', 'icon' => 'mdi mdi-calendar-check-outline', 'label' => 'Subscriptions'],
+                        ['url' => 'SalesAgentManagement', 'icon' => 'mdi mdi-account-star-outline', 'label' => 'Sales Agent'],
+                        ['url' => 'WebsiteUsersManagement', 'icon' => 'mdi mdi-web', 'label' => 'Website Users'],
+                        ['url' => 'ReferralManagement', 'icon' => 'mdi mdi-account-group', 'label' => 'Referral'],
+                        ['url' => 'AppearanceManagement', 'icon' => 'mdi mdi-palette', 'label' => 'Appearance']
+                    ],
+                    'dealer' => [
+                        ['url' => 'javascript: void(0);', 'icon' => 'mdi mdi-plus-circle-outline', 'label' => 'My Products', 'submenu' => [
+                            ['url' => 'MyProducts', 'label' => 'My Product'],
+                            ['url' => 'MySpareParts', 'label' => 'My Spare Parts']
+                        ]],
+                        ['url' => 'ManageInquiry', 'icon' => 'mdi mdi-comment-question-outline', 'label' => 'Inquiry'],
+                        ['url' => 'ManageOrders', 'icon' => 'mdi mdi-cart-outline', 'label' => 'My Orders'],
+                        ['url' => 'ManageProductInventry', 'icon' => 'mdi mdi-cog', 'label' => 'Product Inventry']
+                    ],
+                    'website_user' => [
+                        ['url' => 'OnboardDealer', 'icon' => 'mdi mdi-account-check-outline', 'label' => 'Onboard Dealer'],
+                        ['url' => 'DealerManagement', 'icon' => 'mdi mdi-cogs', 'label' => 'Dealer Management']
+                    ]
+                ];
 
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
-                            <i class="mdi mdi-plus-circle-outline"></i>
-                            <span>My Products</span>
+                $user_role = $_SESSION['role'];
+
+                foreach ($menu_items['all'] as $item) {
+                    echo "<li>
+                        <a href=\"{$item['url']}\" class=\"waves-effect\">
+                            <i class=\"{$item['icon']}\"></i>
+                            <span>{$item['label']}</span>
                         </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="MyProducts">My Product</a></li>
-                            <li><a href="MySpareParts">My Spare Parts</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="ManageInquiry" class="waves-effect">
-                            <i class="mdi mdi-comment-question-outline"></i>
-                            <span>Inquiry</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="ManageOrders" class="waves-effect">
-                            <i class="mdi mdi-cart-outline"></i>
-                            <span>My Orders</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="ManageProductInventry" class="waves-effect">
-                            <i class="mdi mdi-cog"></i>
-                            <span>Product Inventry</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="DealerConnect" class="waves-effect">
-                            <i class="mdi mdi-handshake"></i> <!-- Dealer Connect Icon -->
-                            <span>Dealer Connect</span>
-                        </a>
-                    </li>
-                <?php elseif ($_SESSION['role'] === 'website_user'): ?>
-                    <li>
-                        <a href="OnboardDealer" class="waves-effect">
-                            <i class="mdi mdi-account-check-outline"></i> <!-- Alternative Onboard Dealer Icon -->
-                            <span>Onboard Dealer</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="DealerManagement" class="waves-effect">
-                            <i class="mdi mdi-cogs"></i> <!-- Alternative Dealer Management Icon -->
-                            <span>Dealer Management</span>
-                        </a>
-                    </li>
-                <?php endif; ?>
+                    </li>";
+                }
+
+                if (isset($menu_items[$user_role])) {
+                    foreach ($menu_items[$user_role] as $item) {
+                        if (isset($item['submenu'])) {
+                            echo "<li>
+                                <a href=\"{$item['url']}\" class=\"has-arrow waves-effect\">
+                                    <i class=\"{$item['icon']}\"></i>
+                                    <span>{$item['label']}</span>
+                                </a>
+                                <ul class=\"sub-menu\" aria-expanded=\"false\">";
+                            foreach ($item['submenu'] as $subitem) {
+                                echo "<li><a href=\"{$subitem['url']}\">{$subitem['label']}</a></li>";
+                            }
+                            echo "</ul>
+                            </li>";
+                        } else {
+                            echo "<li>
+                                <a href=\"{$item['url']}\" class=\"waves-effect\">
+                                    <i class=\"{$item['icon']}\"></i>
+                                    <span>{$item['label']}</span>
+                                </a>
+                            </li>";
+                        }
+                    }
+                }
+                ?>
             </ul>
         </div>
         <!-- Sidebar -->

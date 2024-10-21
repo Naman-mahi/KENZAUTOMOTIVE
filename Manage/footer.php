@@ -40,6 +40,7 @@
         <script src="assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
         <script src="assets/libs/spectrum-colorpicker2/spectrum.min.js"></script>
         <script src="assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+        
 <!-- form wizard init -->
 <script src="assets/js/pages/form-wizard.init.js"></script>
 <script src="assets/js/pages/bootstrap-toasts.init.js"></script>

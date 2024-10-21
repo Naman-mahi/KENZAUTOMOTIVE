@@ -47,23 +47,43 @@
                 <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false"
                     tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasScrollingLabel"> My Wallet 
+                        <h5 class="offcanvas-title" id="offcanvasScrollingLabel"> My Wallet
 
-                        <i class="ri-wallet-3-line"></i>
+                            <i class="ri-wallet-3-line"></i>
 
                         </h5>
                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                             aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
-                        <p>Wallet Balance: ₹ 0</p>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <p class="fw-bold mb-4">Wallet Balance: ₹ 0</p>
+                        <form id="addMoneyForm">
+                            <div class="mb-4">
+                                <label class="form-label">Select Amount to Add</label>
+                                <br>
+                                <div class="d-grid gap-2 d-md-block" role="group" aria-label="Amount options">
+                                    <input type="radio" class="btn-check" name="amount" id="amount500" value="500" autocomplete="off">
+                                    <label class="btn btn-outline-primary rounded-0 mb-2" for="amount500">₹ 500</label>
 
-                        <button type="button" class="btn btn-primary rounded-0">
-                            <i class="ri-add-line me-1"></i>Add Money
-                        </button>
+                                    <input type="radio" class="btn-check" name="amount" id="amount1000" value="1000" autocomplete="off">
+                                    <label class="btn btn-outline-primary rounded-0 mb-2" for="amount1000">₹ 1000</label>
 
-                    </div>
+                                    <input type="radio" class="btn-check" name="amount" id="amount2000" value="2000" autocomplete="off">
+                                    <label class="btn btn-outline-primary rounded-0 mb-2" for="amount2000">₹ 2000</label>
+                                    <input type="radio" class="btn-check" name="amount" id="amount5000" value="5000" autocomplete="off">
+                                    <label class="btn btn-outline-primary rounded-0 mb-2" for="amount5000">₹ 5000</label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="customAmount" class="form-label">Or Enter Custom Amount</label>
+                                <input type="number" class="form-control" id="customAmount" name="customAmount" placeholder="Enter custom amount">
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary rounded-0">
+                                    <i class="ri-add-line me-1"></i>Add Money
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <button type="button" class="btn rounded-0  header-item noti-icon waves-effect" data-toggle="fullscreen">
@@ -89,6 +109,7 @@
                         <a class="dropdown-item" href="ProductManagement"><i class="ri-settings-2-line align-middle me-1"></i> Product Management</a> -->
                     <?php elseif ($_SESSION['role'] === 'dealer'): ?>
                         <a class="dropdown-item" href="MySubscription"><i class="ri-car-line align-middle me-1"></i> Subscription</a>
+                        <a class="dropdown-item" href="DealerConnect"><i class="mdi mdi-handshake me-1"></i> Dealer Connect</a>
                     <?php endif; ?>
 
                     <div class="dropdown-divider"></div>
