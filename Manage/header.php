@@ -5,10 +5,10 @@
             <div class="navbar-brand-box text-center">
                 <a href="Dashboard" class="logo logo-dark">
                     <span class="logo-sm">
-                        <div class="fs-5 fw-bold"> KENZ</div>
+                        <img src="assets/images/kenzwheels-small.jpg" alt="Kenz Wheels Logo" height="50" class="img-fluid">
                     </span>
                     <span class="logo-lg">
-                        <div class="fs-4 fw-bold"> KENZ WHEELS</div>
+                       <img src="assets/images/kenzwheels.jpg" alt="Kenz Wheels Logo" height="50" class="img-fluid">
                     </span>
                 </a>
             </div>
@@ -38,8 +38,8 @@
                 </div>
             </div>
             <div class="dropdown d-none d-lg-inline-block ms-1">
+            <?php if ($_SESSION['role'] === 'dealer'): ?>
                 <a class="rounded-0 fs-6" href="DealerConnect"> <i class="mdi mdi-handshake"></i> Dealer Connect</a>
-
                 <button type="button" class="btn rounded-0 header-item noti-icon waves-effect" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
                     <i class="ri-wallet-3-line"></i>
@@ -48,9 +48,9 @@
                     tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                     <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="offcanvasScrollingLabel"> My Wallet
-
+    
                             <i class="ri-wallet-3-line"></i>
-
+    
                         </h5>
                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                             aria-label="Close"></button>
@@ -64,10 +64,10 @@
                                 <div class="d-grid gap-2 d-md-block" role="group" aria-label="Amount options">
                                     <input type="radio" class="btn-check" name="amount" id="amount500" value="500" autocomplete="off">
                                     <label class="btn btn-outline-primary rounded-0 mb-2" for="amount500">₹ 500</label>
-
+    
                                     <input type="radio" class="btn-check" name="amount" id="amount1000" value="1000" autocomplete="off">
                                     <label class="btn btn-outline-primary rounded-0 mb-2" for="amount1000">₹ 1000</label>
-
+    
                                     <input type="radio" class="btn-check" name="amount" id="amount2000" value="2000" autocomplete="off">
                                     <label class="btn btn-outline-primary rounded-0 mb-2" for="amount2000">₹ 2000</label>
                                     <input type="radio" class="btn-check" name="amount" id="amount5000" value="5000" autocomplete="off">
@@ -86,6 +86,8 @@
                         </form>
                     </div>
                 </div>
+            <?php endif; ?>
+
                 <button type="button" class="btn rounded-0  header-item noti-icon waves-effect" data-toggle="fullscreen">
                     <i class="ri-fullscreen-line"></i>
                 </button>

@@ -20,10 +20,10 @@ if (!isset($_SESSION['role'])) {
 
 <head>
     <meta charset="utf-8" />
-    <title>Kenz Automotive</title>
+    <title>Kenz Wheels</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="assets/images/kenzwheels-small.jpg">
     <!-- DataTables -->
     <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />

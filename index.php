@@ -43,7 +43,8 @@ if (isset($_SESSION['role'])) {
                 <div class="col-xl-4 col-lg-6 col-md-8">
                     <div class="card">
                         <div class="card-body p-4">
-                            <p class="mb-5 text-center">Sign in to continue to Kenz Automotive.</p>
+                            <img src="Manage/assets/images/kenzwheels.jpg" alt="Kenz Wheels Logo" class="img-fluid mb-4">
+                            <p class="mb-3 text-center">Sign in to continue to Kenz Wheels.</p>
                             <form id="loginForm" class="form-horizontal">
                                 <div class="mb-4">
                                     <label class="form-label" for="email">Email</label>
