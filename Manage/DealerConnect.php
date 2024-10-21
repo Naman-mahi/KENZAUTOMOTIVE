@@ -34,7 +34,7 @@ $result = $conn->query($sql);
                         echo '<div class="col-md-3 mb-4 product-item">';
                         echo '<div class="card h-100 d-flex flex-column">';
                         echo '<div class="image-wrapper" style="height: 200px; overflow: hidden;">';
-                        echo '<img src="uploads/ProductImages/' . $row['product_image'] . '" class="card-img-top h-100 w-100" alt="Product Image" style="object-fit: cover;">';
+                        echo '<img src="uploads/ProductThumbnail/' . $row['product_image'] . '" class="card-img-top h-100 w-100" alt="Product Image" style="object-fit: cover;">';
                         echo '</div>';
                         echo '<div class="card-body d-flex flex-column">';
                         echo '<h5 class="card-title product-name">' . $row['product_name'] . '</h5>';

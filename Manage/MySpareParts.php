@@ -64,76 +64,71 @@ include 'head.php';
             <div class="row">
                 <div class="col-12">
                     <div class="card  bg-light">
-                        <div class="card-body">
+                    <div class="card-body">
 
-                            <div class="row">
-                                <?php
-                                $dealer_id = $_SESSION['user_id'];
-                                // Fetch product records from the database
-                                $sql = "
-                                SELECT p.*, pi.image_url
-                                FROM products p
-                                LEFT JOIN (
-                                    SELECT product_id, MIN(image_id) AS first_image_id
-                                    FROM product_images
-                                    GROUP BY product_id
-                                ) AS first_images ON p.product_id = first_images.product_id
-                                LEFT JOIN product_images pi ON first_images.first_image_id = pi.image_id
-                                WHERE p.dealer_id = ?
-                            ";
+<div class="row">
+    <?php
+    $dealer_id = $_SESSION['user_id'];
+    $product_category_id = 4;
+    // Fetch product records from the database
+    $sql = "
+    SELECT *
+    FROM products 
+    WHERE dealer_id = ? And category_id = ?
+";
 
-                                // Prepare and execute the statement
-                                $stmt = $conn->prepare($sql);
-                                $stmt->bind_param("i", $dealer_id); // Assuming dealer_id is an integer
-                                $stmt->execute();
-                                $result = $stmt->get_result();
+    // Prepare and execute the statement
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $dealer_id, $product_category_id); // Assuming dealer_id is an integer
+    $stmt->execute();
+    $result = $stmt->get_result();
 
 
-                                // Check if there are results
-                                if ($result->num_rows > 0) {
-                                    // Output data for each row
-                                    while ($row = $result->fetch_assoc()) {
-                                        // Extract data
-                                        $id = $row['product_id'];
-                                        $product_name = htmlspecialchars($row['product_name']);
-                                        $product_description = htmlspecialchars($row['product_description']);
-                                        $image = htmlspecialchars($row['image_url']);
-                                        $image_path = 'uploads/products/' . $image; // Updated path for products
+    // Check if there are results
+    if ($result->num_rows > 0) {
+        // Output data for each row
+        while ($row = $result->fetch_assoc()) {
+            // Extract data
+            $id = $row['product_id'];
+            $product_name = htmlspecialchars($row['product_name']);
+            $product_description = htmlspecialchars($row['product_description']);
+            $image = htmlspecialchars($row['product_image']);
+            $image_path = 'uploads/ProductThumbnail/' . $image; // Updated path for products
 
-                                        // Generate HTML for each product
-                                        echo '
-                                        <div class="col-md-6 mb-4 col-lg-4 col-xl-3">
-                                            <a href="ProductDetails.php?id=' . $id . '" class="card-link">
-                                                <div class="card card-car h-100"> <!-- Changed class name to card-product -->
-                                                    <div class="card-img-wrapper">
-                                                        <img class="card-img-top car img-fluid" src="' . $image_path . '" alt="' . $product_name . '">
-                                                        <div class="tooltip">View Product</div>
-                                                    </div>
-                                                    <div class="card-body d-flex flex-column">
-                                                        <h4 class="card-title">' . $product_name . '</h4>
-                                                        <p class="card-text flex-grow-1">' . $product_description . '</p>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>';
-                                    }
-                                } else {
-
-                                ?>
-                                    <div class="text-center py-5">
-
-                                        <h3 class="text-center">No Products found</h3>
-                                        <br>
-                                        <a href="AddProduct.php" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Add Product</a>
-                                    </div>
-                                <?php
-
-                                }
-                                $conn->close();
-                                ?>
-
-                            </div>
+            // Generate HTML for each product
+            echo '
+            <div class="col-md-6 mb-4 col-lg-4 col-xl-3">
+                <a href="ProductDetails.php?id=' . $id . '" class="card-link">
+                    <div class="card card-car h-100"> <!-- Changed class name to card-product -->
+                        <div class="card-img-wrapper">
+                            <img class="card-img-top car img-fluid" src="' . $image_path . '" alt="' . $product_name . '">
+                            <div class="tooltip">View Product</div>
                         </div>
+                        <div class="card-body d-flex flex-column">
+                            <h4 class="card-title">' . $product_name . '</h4>
+                            <p class="card-text flex-grow-1">' . $product_description . '</p>
+                        </div>
+                    </div>
+                </a>
+            </div>';
+        }
+    } else {
+
+    ?>
+        <div class="text-center py-5">
+
+            <h3 class="text-center">No Spare Parts found</h3>
+            <br>
+            <a href="AddProduct?category_id=4" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Add Spare Parts</a>
+        </div>
+    <?php
+
+    }
+    $conn->close();
+    ?>
+
+</div>
+</div>
                     </div>
                 </div> <!-- end col -->
             </div> <!-- end row -->

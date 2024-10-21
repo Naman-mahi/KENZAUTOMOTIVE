@@ -69,16 +69,17 @@ include 'head.php';
                             <div class="row">
                                 <?php
                                 $dealer_id = $_SESSION['user_id'];
+                                $product_category_id = 2;
                                 // Fetch product records from the database
                                 $sql = "
                                 SELECT *
                                 FROM products 
-                                WHERE dealer_id = ?
+                                WHERE dealer_id = ? And category_id = ?
                             ";
 
                                 // Prepare and execute the statement
                                 $stmt = $conn->prepare($sql);
-                                $stmt->bind_param("i", $dealer_id); // Assuming dealer_id is an integer
+                                $stmt->bind_param("ii", $dealer_id, $product_category_id); // Assuming dealer_id is an integer
                                 $stmt->execute();
                                 $result = $stmt->get_result();
 
@@ -118,7 +119,7 @@ include 'head.php';
 
                                         <h3 class="text-center">No Products found</h3>
                                         <br>
-                                        <a href="AddProduct.php" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Add Product</a>
+                                        <a href="AddProduct?category_id=2" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Add Product</a>
                                     </div>
                                 <?php
 
