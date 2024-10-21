@@ -25,7 +25,7 @@ if (isset($_SESSION['role'])) {
     <link href="Manage/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="Manage/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="Manage/assets/css/app.min.css" rel="stylesheet" type="text/css" />
-    <link href="Manage/assets/libs/sweetalert2/sweetalert2.min.css"rel="stylesheet" type="text/css" />
+    <link href="Manage/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
     <script src="Manage/assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
 
     <style>
@@ -72,13 +72,34 @@ if (isset($_SESSION['role'])) {
                         </div>
                     </div>
                     <div class="mt-5 text-center">
-                        <p class="text-dark-50">Don't have an account? <a href="DealerRegistration.php" class="fw-medium text-primary">Register</a></p>
+                        <p class="text-dark-50">
+                            Don’t have an account yet? <a href="DealerRegistration.php" class="fw-medium text-primary">Register now</a> to get started!
+                            Want to learn more? Check out our <a href="subscription.php" class="fw-medium text-primary">Pricing</a> options.
+                        </p>
+
                     </div>
+                </div>
+            </div>
+            
+        </div>
+       
+               
+            
+    </div>
+    <div class="fixed-bottom bg-light py-3">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> © Kenz Wheels.
+                </div>
+                <div class="col-sm-6 text-end">
+                    <a href="privacy" class="text-muted">Privacy Policy</a> | <a href="terms" class="text-muted">Terms of Service</a>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- JAVASCRIPT -->
     <script src="Manage/assets/libs/jquery/jquery.min.js"></script>
     <script src="Manage/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -132,6 +153,8 @@ if (isset($_SESSION['role'])) {
             });
         });
     </script>
+
+
 </body>
 
 </html>

@@ -30,7 +30,7 @@
                                 <p>We're sorry, but the page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
                                 <p>Try checking the URL for errors, or return to the homepage.</p>
                                 <div class="mt-4">
-                                    <a href="javascript:history.back()" class="btn text-info"><i class="fa fa-arrow-left"></i> Back to Previous Page</a>
+                                    <a href="javascript:history.back()" class="btn text-success"><i class="fa fa-arrow-left"></i> <u>Back to Previous Page</u></a>
                                 </div>
                             </div>
                         </div>
