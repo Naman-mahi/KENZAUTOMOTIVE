@@ -55,7 +55,7 @@ include 'head.php';
             <div class="row">
                 <div class="col-12">
                     <div class="mb-3 d-flex align-items-end">
-                        <a href="AddSpareParts.php" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Add Spare Parts</a>
+                        <a href="AddProduct?category_id=4" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Add Spare Parts</a>
                     </div>
                 </div>
             </div>

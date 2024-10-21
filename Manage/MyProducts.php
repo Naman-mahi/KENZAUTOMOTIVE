@@ -55,7 +55,7 @@ include 'head.php';
             <div class="row">
                 <div class="col-12">
                     <div class="mb-3 d-flex align-items-end">
-                        <a href="AddProduct.php" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Add Product</a>
+                        <a href="AddProduct?category_id=<?php echo $product_category_id; ?>" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Add Product</a>
                     </div>
                 </div>
             </div>
@@ -71,15 +71,9 @@ include 'head.php';
                                 $dealer_id = $_SESSION['user_id'];
                                 // Fetch product records from the database
                                 $sql = "
-                                SELECT p.*, pi.image_url
-                                FROM products p
-                                LEFT JOIN (
-                                    SELECT product_id, MIN(image_id) AS first_image_id
-                                    FROM product_images
-                                    GROUP BY product_id
-                                ) AS first_images ON p.product_id = first_images.product_id
-                                LEFT JOIN product_images pi ON first_images.first_image_id = pi.image_id
-                                WHERE p.dealer_id = ?
+                                SELECT *
+                                FROM products 
+                                WHERE dealer_id = ?
                             ";
 
                                 // Prepare and execute the statement
@@ -97,8 +91,8 @@ include 'head.php';
                                         $id = $row['product_id'];
                                         $product_name = htmlspecialchars($row['product_name']);
                                         $product_description = htmlspecialchars($row['product_description']);
-                                        $image = htmlspecialchars($row['image_url']);
-                                        $image_path = 'uploads/products/' . $image; // Updated path for products
+                                        $image = htmlspecialchars($row['product_image']);
+                                        $image_path = 'uploads/ProductThumbnail/' . $image; // Updated path for products
 
                                         // Generate HTML for each product
                                         echo '
