@@ -17,6 +17,7 @@ if (!isset($_SESSION['role'])) {
 
 // Continue with the rest of your page
 ?>
+
 <head>
     <meta charset="utf-8" />
     <title>Kenz Automotive</title>
@@ -48,22 +49,22 @@ if (!isset($_SESSION['role'])) {
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
     <link href="assets/css/style.css" id="app-style" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-    <?php 
-    
-$sql = "SELECT * FROM settings ORDER BY id DESC LIMIT 1"; // Fetch the latest settings
-$result = $conn->query($sql);
+    <?php
 
-$settings = null;
+    $sql = "SELECT * FROM settings ORDER BY id DESC LIMIT 1"; // Fetch the latest settings
+    $result = $conn->query($sql);
 
-if ($result && $result->num_rows > 0) {
-    $settings = $result->fetch_assoc();
-} else {
-    echo "No settings found.";
-} 
-// Define CSS variables based on settings
-echo "<style>
+    $settings = null;
+
+    if ($result && $result->num_rows > 0) {
+        $settings = $result->fetch_assoc();
+    } else {
+        echo "No settings found.";
+    }
+    // Define CSS variables based on settings
+    echo "<style>
     :root {
         --text-color: " . ($settings['text_color'] ?? '#000000') . ";
         --button-color: " . ($settings['button_color'] ?? '#007bff') . ";
@@ -77,7 +78,7 @@ echo "<style>
    
 </style>";
 
-    
+
     ?>
 </head>
 
@@ -88,7 +89,7 @@ echo "<style>
         include 'sidebar.php';
         ?>
         <?php
-            $product_category_id = null; // Initialize before use
+        $product_category_id = null; // Initialize before use
         if (isset($_SESSION['role']) && $_SESSION['role'] === 'dealer') {
             $userId = $_SESSION['user_id'];
             $sql = "SELECT product_category_id FROM dealers WHERE user_id = ?";

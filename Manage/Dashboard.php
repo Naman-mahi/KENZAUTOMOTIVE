@@ -26,9 +26,9 @@ $result = $conn->query($sql);
                 </div>
             </div>
             <!-- end page title -->
-<?php
-// var_dump($statistics);
-?>
+            <?php
+            // var_dump($statistics);
+            ?>
 
             <?php
             if ($_SESSION['role'] === 'admin') {
@@ -471,7 +471,7 @@ $result = $conn->query($sql);
                     </div>
                     <!-- end col -->
 
-                   
+
                     <div class="col-xl-3 col-sm-6">
                         <div class="card card-dashboard shadow-lg">
                             <div class="card-body">
@@ -484,7 +484,7 @@ $result = $conn->query($sql);
                                         </div>
                                     </div>
                                     <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Total Referral Rewards</p>  
+                                        <p class="mb-1">Total Referral Rewards</p>
                                         <h5 class="mb-3"><?php echo $statistics['total_referral_rewards']; ?></h5>
                                     </div>
                                 </div>
@@ -492,7 +492,7 @@ $result = $conn->query($sql);
                         </div>
                     </div>
                     <!-- end col -->
-                   
+
                 </div>
                 <!-- end row -->
 
