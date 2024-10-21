@@ -39,7 +39,7 @@
             </div>
             <div class="dropdown d-none d-lg-inline-block ms-1">
             <?php if ($_SESSION['role'] === 'dealer'): ?>
-                <a class="rounded-0 fs-6" href="DealerConnect"> <i class="mdi mdi-handshake"></i> Dealer Connect</a>
+                <!-- <a class="rounded-0 fs-6" href="DealerConnect"> <i class="mdi mdi-handshake"></i> Dealer Connect</a> -->
                 <button type="button" class="btn rounded-0 header-item noti-icon waves-effect" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
                     <i class="ri-wallet-3-line"></i>
@@ -55,8 +55,17 @@
                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                             aria-label="Close"></button>
                     </div>
+
+                <?php 
+                $sql = "SELECT * FROM wallets WHERE user_id = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("i", $_SESSION['user_id']);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $wallet = $result->fetch_assoc();
+                ?>
                     <div class="offcanvas-body">
-                        <p class="fw-bold mb-4">Wallet Balance: ₹ 0</p>
+                        <p class="fw-bold mb-4">Wallet Balance: ₹ <?php echo $wallet['balance']; ?></p>
                         <form id="addMoneyForm">
                             <div class="mb-4">
                                 <label class="form-label">Select Amount to Add</label>
@@ -111,7 +120,7 @@
                         <a class="dropdown-item" href="ProductManagement"><i class="ri-settings-2-line align-middle me-1"></i> Product Management</a> -->
                     <?php elseif ($_SESSION['role'] === 'dealer'): ?>
                         <a class="dropdown-item" href="MySubscription"><i class="ri-car-line align-middle me-1"></i> Subscription</a>
-                        <a class="dropdown-item" href="DealerConnect"><i class="mdi mdi-handshake me-1"></i> Dealer Connect</a>
+                        <!-- <a class="dropdown-item" href="DealerConnect"><i class="mdi mdi-handshake me-1"></i> Dealer Connect</a> -->
                     <?php endif; ?>
 
                     <div class="dropdown-divider"></div>
