@@ -92,13 +92,14 @@ include 'head.php';
                                         $id = $row['product_id'];
                                         $product_name = htmlspecialchars($row['product_name']);
                                         $product_description = htmlspecialchars($row['product_description']);
+                                        $product_category_id = htmlspecialchars($row['category_id']);
                                         $image = htmlspecialchars($row['product_image']);
                                         $image_path = 'uploads/ProductThumbnail/' . $image; // Updated path for products
 
                                         // Generate HTML for each product
                                         echo '
                                         <div class="col-md-6 mb-4 col-lg-4 col-xl-3">
-                                            <a href="ProductDetails.php?id=' . $id . '" class="card-link">
+                                            <a href="ProductDetails?id=' . $id . '&category_id=' . $product_category_id . '" class="card-link">
                                                 <div class="card card-car h-100"> <!-- Changed class name to card-product -->
                                                     <div class="card-img-wrapper">
                                                         <img class="card-img-top car img-fluid" src="' . $image_path . '" alt="' . $product_name . '">

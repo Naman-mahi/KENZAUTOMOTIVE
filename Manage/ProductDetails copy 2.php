@@ -56,7 +56,7 @@ if (isset($_GET['id'])) {
             unset($image); // Break the reference with the last element
         } else {
             // No images found for the given product ID
-            // redirectToMyProducts();
+            redirectToMyProducts();
         }
 
 
@@ -75,7 +75,7 @@ if (isset($_GET['id'])) {
 // Function to handle redirection
 function redirectToMyProducts()
 {
-    echo "<script>window.location.href = 'MyProducts';</script>";
+    echo "<script>window.location.href = 'MyProducts.php';</script>";
     exit;
 }
 
@@ -133,14 +133,14 @@ if (isset($_GET['id'])) {
                                 <input type="hidden" name="product_id" value="<?= $Products_publish['product_id'] ?>">
                                 <div class="d-flex flex-column flex-md-row align-items-center mb-3">
                                     <div class="me-md-3 d-flex align-items-center mb-2 mb-md-0">
-                                        <span class="me-2 fw-bold">On Dealer Connect <a class="waves-effect" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Visible to a wide audience including other dealers.">
+                                        <span class="me-2 fw-bold">On Marketplace <a class="waves-effect" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Visible to a wide audience including other dealers.">
                                                 <i class="ri-question-line"></i>
                                             </a></span>
                                         <input class="form-check form-switch" type="checkbox" name="marketplace" id="switch1" switch="success" <?php echo $Products_publish['marketplace'] ? 'checked' : ''; ?>>
                                         <label class="form-label" for="switch1" data-on-label="Yes" data-off-label="No"></label>
                                     </div>
                                     <div class="me-md-3 d-flex align-items-center mb-2 mb-md-0">
-                                        <span class="me-2 fw-bold">On Kenz Wheels <a class="waves-effect" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Displayed on our official site for increased visibility.">
+                                        <span class="me-2 fw-bold">On Website <a class="waves-effect" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Displayed on our official site for increased visibility.">
                                                 <i class="ri-question-line"></i>
                                             </a></span>
                                         <input class="form-check form-switch" type="checkbox" name="website" id="switch2" switch="success" <?php echo $Products_publish['website'] ? 'checked' : ''; ?>>

@@ -69,6 +69,13 @@ if ($stmt->execute()) {
         $stmt->execute();
     }
 
+    $stmt = $conn->prepare("INSERT INTO product_publish (product_id, marketplace, website, own_website, created_at, updated_at) VALUES (?, ?, ?, ?, NOW(), NOW())");
+    $marketplace = 0;
+    $website = 0;
+    $own_website = 0;
+    $stmt->bind_param("iiii", $product_id, $marketplace, $website, $own_website);
+    $stmt->execute();
+
     // Return a success response
     echo json_encode(['success' => true, 'message' => 'Product added successfully', 'product_id' => $product_id]);
 } else {
