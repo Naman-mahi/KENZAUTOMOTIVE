@@ -1,6 +1,29 @@
 <?php
 include 'head.php';
+
+
+$dealer_id = $_SESSION['user_id'];
+$product_category_id = 2;
+
+// Fetch product records from the database
+$sql = "
+    SELECT *
+    FROM products 
+    JOIN inventory ON products.product_id = inventory.product_id
+    WHERE dealer_id = ? 
+    ORDER BY inventory.last_updated DESC
+";
+$stmt = $conn->prepare($sql);
+
+if (!$stmt) {
+    die("Prepare failed: " . $conn->error);
+}
+
+$stmt->bind_param("i", $dealer_id); 
+$stmt->execute();
+$inventory = $stmt->get_result();
 ?>
+
 <div class="main-content">
     <div class="page-content">
         <div class="container-fluid">
@@ -36,70 +59,27 @@ include 'head.php';
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr data-id="1">
-                                            <td data-field="id" style="width: 80px">1</td>
-                                               <td data-field="name">Updated Product A</td>
-                                            <td data-field="quantity">24</td>
-                                            <td data-field="unit_price">$10.00</td>
-                                            <td>2024-09-24 10:30 AM</td>
-                                            <td style="width: 100px">
-                                                <a class="btn rounded-0  btn-outline-secondary btn-sm edit" title="Edit">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr data-id="2">
-                                            <td data-field="id">2</td>
-                                            <td data-field="name">Updated Product B</td>
-                                            <td data-field="quantity">22</td>
-                                            <td data-field="unit_price">$15.00</td>
-                                            <td>2024-09-24 11:00 AM</td>
-                                            <td>
-                                                <a class="btn rounded-0  btn-outline-secondary btn-sm edit" title="Edit">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr data-id="3">
-                                            <td data-field="id">3</td>
-                                            <td data-field="name">Updated Product C</td>
-                                            <td data-field="quantity">26</td>
-                                            <td data-field="unit_price">$20.00</td>
-                                            <td>2024-09-24 11:30 AM</td>
-                                            <td>
-                                                <a class="btn rounded-0  btn-outline-secondary btn-sm edit" title="Edit">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr data-id="4">
-                                            <td data-field="id">4</td>
-                                            <td data-field="name">Updated Product D</td>
-                                            <td data-field="quantity">32</td>
-                                            <td data-field="unit_price">$25.00</td>
-                                            <td>2024-09-24 12:00 PM</td>
-                                            <td>
-                                                <a class="btn rounded-0  btn-outline-secondary btn-sm edit" title="Edit">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr data-id="5">
-                                            <td data-field="id">5</td>
-                                            <td data-field="name">Updated Product E</td>
-                                            <td data-field="quantity">27</td>
-                                            <td data-field="unit_price">$30.00</td>
-                                            <td>2024-09-24 12:30 PM</td>
-                                            <td>
-                                                <a class="btn rounded-0  btn-outline-secondary btn-sm edit" title="Edit">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        <?php
+                                        while ($row = $inventory->fetch_assoc()) {
+                                        ?>
+                                            <tr data-id="<?php echo htmlspecialchars($row['product_id']); ?>">
+                                                <td data-field="id" style="width: 80px"><?php echo htmlspecialchars($row['product_id']); ?></td>
+                                                <td data-field="name"><?php echo htmlspecialchars($row['product_name']); ?></td>
+                                                <td data-field="quantity"><?php echo htmlspecialchars($row['quantity']); ?></td>
+                                                <td data-field="unit_price">₹ <?php echo number_format($row['price'], 2); ?></td>
+                                                <td><?php echo date('d-m-Y, H:i:A', strtotime($row['last_updated'])); ?></td>
+                                                <td>
+                                                    <a class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
                     </div>
                 </div> <!-- end col -->
