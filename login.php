@@ -44,6 +44,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['profile_pic'] = $user['profile_pic'];
             $_SESSION['role'] = $user['role'];
 
+            // Set a cookie to keep the user logged in for 30 days
+            $cookie_name = 'user_login';
+            $cookie_value = base64_encode(json_encode([
+                'user_id' => $user['user_id'],
+                'first_name' => $user['first_name'],
+                'last_name' => $user['last_name'],
+                'profile_pic' => $user['profile_pic'],
+                'role' => $user['role']
+            ]));
+            $cookie_expiry = time() + (30 * 24 * 60 * 60); // 30 days
+            setcookie($cookie_name, $cookie_value, $cookie_expiry, '/', '', true, true);
+
             // Success response
             echo json_encode([
                 'success' => true,
@@ -64,4 +76,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Close the statement and connection
     $stmt->close();
     $conn->close();
+} else {
+    // Check for existing login cookie
+    if (isset($_COOKIE['user_login'])) {
+        $cookie_data = json_decode(base64_decode($_COOKIE['user_login']), true);
+        if ($cookie_data) {
+            $_SESSION['user_id'] = $cookie_data['user_id'];
+            $_SESSION['first_name'] = $cookie_data['first_name'];
+            $_SESSION['last_name'] = $cookie_data['last_name'];
+            $_SESSION['profile_pic'] = $cookie_data['profile_pic'];
+            $_SESSION['role'] = $cookie_data['role'];
+
+            // Redirect based on role
+            $redirect = $_SESSION['role'] === 'admin' ? 'Manage/dashboard.php' : 
+                        ($_SESSION['role'] === 'website_user' ? 'Manage/dashboard.php' : 
+                        ($_SESSION['role'] === 'sales_agent' ? 'Manage/dashboard.php' : 
+                        ($_SESSION['role'] === 'dealer' ? 'Manage/dashboard.php' : 'mypage.php')));
+            
+            header("Location: $redirect");
+            exit;
+        }
+    }
 }

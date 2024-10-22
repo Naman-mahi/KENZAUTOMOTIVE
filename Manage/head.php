@@ -50,7 +50,11 @@ if (!isset($_SESSION['role'])) {
     <link href="assets/css/style.css" id="app-style" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
+<style>
+     .overflow-hidden {
+        overflow: hidden;
+    }
+</style>
     <?php
 
     $sql = "SELECT * FROM settings ORDER BY id DESC LIMIT 1"; // Fetch the latest settings

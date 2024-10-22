@@ -73,7 +73,7 @@ if (isset($_SESSION['role'])) {
             <?php
             // Define pricing plans in an array
             $plans = [
-                ['title' => 'Entry Level', 'yearlyPrice' => 1999, 'monthlyPrice' => 199, 'icon' => 'fa-cube', 'featuresIncludes' => ['Unlimited car listings', 'Add unlimited spare parts', 'View product viewer', 'Basic customer details'], 'featuresNotIncludes' => ['Customer location notifications', 'Inventory tracking', 'Inquiry management', 'Subdomain for website', 'Dealer connect']],
+                ['title' => 'Basic Plan', 'yearlyPrice' => 1999, 'monthlyPrice' => 199, 'icon' => 'fa-cube', 'featuresIncludes' => ['Unlimited car listings', 'Add unlimited spare parts', 'View product viewer', 'Basic customer details'], 'featuresNotIncludes' => ['Customer location notifications', 'Inventory tracking', 'Inquiry management', 'Subdomain for website', 'Dealer connect']],
                 ['title' => 'Growth Plan', 'yearlyPrice' => 2999, 'monthlyPrice' => 299, 'icon' => 'fa-cog', 'featuresIncludes' => ['Unlimited car listings', 'Add unlimited spare parts', 'View product viewer', 'Detailed customer details', 'Customer location notifications', 'Inventory tracking'], 'featuresNotIncludes' => ['Inquiry management', 'Subdomain for website', 'Dealer connect']],
                 ['title' => 'Ultimate Package', 'yearlyPrice' => 3999, 'monthlyPrice' => 399, 'icon' => 'fa-gem', 'featuresIncludes' => ['Unlimited car listings', 'Add unlimited spare parts', 'View product viewer', 'Detailed customer details', 'Customer location notifications', 'Inventory tracking', 'Inquiry management', 'Subdomain for website', 'Dealer connect'], 'featuresNotIncludes' => []],
             ];
@@ -91,7 +91,7 @@ if (isset($_SESSION['role'])) {
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <h5 class="font-size-16"><?php echo htmlspecialchars($plan['title']); ?></h5>
+                                    <h4 ><?php echo htmlspecialchars($plan['title']); ?></h4>
                                 </div>
                             </div>
                             <div class="py-4 border-bottom">
@@ -99,17 +99,16 @@ if (isset($_SESSION['role'])) {
                                     <sup><small>₹</small></sup><span class="price-amount"><?php echo htmlspecialchars($plan['yearlyPrice']); ?></span> / <span class="font-size-16">Year</span>
                                 </h4>
                                 <div class="mt-3">
-                                    <a href="#" class="btn btn-primary btn-sm waves-effect waves-light">Sign up Now</a>
+                                    <a href="#" class="btn badge-soft-success p-3 px-5  fs-5 rounded rounded-5 btn-lg waves-effect waves-light">Sign up Now</a>
                                 </div>
-                            </div>
-
+                            </div>  
                             <div class="plan-features mt-4">
                                 <h5 class="font-size-15 mb-3">Plan Features:</h5>
                                 <?php foreach ($plan['featuresIncludes'] as $feature): ?>
-                                    <p class="text-start"><i class="mdi mdi-checkbox-marked-circle-outline font-size-16 align-middle text-primary me-2"></i><?php echo htmlspecialchars($feature); ?></p>
+                                    <p><i class="mdi mdi-checkbox-marked-circle-outline font-size-16 align-middle text-primary me-2"></i><?php echo htmlspecialchars($feature); ?></p>
                                 <?php endforeach; ?>
                                 <?php foreach ($plan['featuresNotIncludes'] as $feature): ?>
-                                    <p class="text-start"><i class="mdi mdi-close-circle-outline font-size-16 align-middle text-danger me-2"></i><?php echo htmlspecialchars($feature); ?></p>
+                                    <p><i class="mdi mdi-close-circle-outline font-size-16 align-middle text-danger me-2"></i><?php echo htmlspecialchars($feature); ?></p>
                                 <?php endforeach; ?>
                             </div>
                         </div>

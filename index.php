@@ -54,19 +54,13 @@ if (isset($_SESSION['role'])) {
                                     <label class="form-label" for="userpassword">Password</label>
                                     <input type="password" class="form-control" id="userpassword" name="password" placeholder="Enter password" required>
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customControlInline">
-                                            <label class="form-check-label" for="customControlInline">Remember me</label>
-                                        </div>
-                                    </div>
+                                <div class="d-grid">
+                                    <button class="btn rounded-0  btn-primary waves-effect waves-light" type="submit">Log In</button>
+                                </div>
+                                <div class="row mt-3 d-flex justify-content-end">
                                     <div class="col-auto">
                                         <a href="PasswordRecover.php" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password?</a>
                                     </div>
-                                </div>
-                                <div class="d-grid">
-                                    <button class="btn rounded-0  btn-primary waves-effect waves-light" type="submit">Log In</button>
                                 </div>
                             </form>
                         </div>

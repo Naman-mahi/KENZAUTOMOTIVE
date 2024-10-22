@@ -8,6 +8,7 @@ $sql = "SELECT u.*, d.* FROM `users` u JOIN `dealers` d ON u.user_id = d.user_id
 $result = $conn->query($sql);
 
 ?>
+
 <div class="main-content">
     <div class="page-content">
         <div class="container-fluid">
@@ -26,6 +27,8 @@ $result = $conn->query($sql);
                 </div>
             </div>
             <!-- end page title -->
+
+
             <?php
             // var_dump($statistics);
             ?>
