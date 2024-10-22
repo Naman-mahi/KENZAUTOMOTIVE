@@ -19,7 +19,7 @@ if (!$stmt) {
     die("Prepare failed: " . $conn->error);
 }
 
-$stmt->bind_param("i", $dealer_id); 
+$stmt->bind_param("i", $dealer_id);
 $stmt->execute();
 $inventory = $stmt->get_result();
 ?>
@@ -47,40 +47,43 @@ $inventory = $stmt->get_result();
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-editable table-nowrap align-middle table-edits">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Product Name</th>
-                                            <th>Quantity</th>
-                                            <th>Unit Price</th>
-                                            <th>Last Updated</th>
-                                            <th>Edit</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        while ($row = $inventory->fetch_assoc()) {
-                                        ?>
-                                            <tr data-id="<?php echo htmlspecialchars($row['product_id']); ?>">
-                                                <td data-field="id" style="width: 80px"><?php echo htmlspecialchars($row['product_id']); ?></td>
-                                                <td data-field="name"><?php echo htmlspecialchars($row['product_name']); ?></td>
-                                                <td data-field="quantity"><?php echo htmlspecialchars($row['quantity']); ?></td>
-                                                <td data-field="unit_price">₹ <?php echo number_format($row['price'], 2); ?></td>
-                                                <td><?php echo date('d-m-Y, H:i:A', strtotime($row['last_updated'])); ?></td>
-                                                <td>
-                                                    <a class="btn btn-outline-secondary btn-sm edit" title="Edit">
-                                                        <i class="fas fa-pencil-alt"></i>
-                                                    </a>
-                                                </td>
+                                <?php if ($inventory->num_rows > 0): ?>
+                                    <table class="table table-editable table-nowrap align-middle table-edits">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Product Name</th>
+                                                <th>Quantity</th>
+                                                <th>Unit Price</th>
+                                                <th>Last Updated</th>
+                                                <th>Edit</th>
                                             </tr>
-                                        <?php
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <?php while ($row = $inventory->fetch_assoc()): ?>
+                                                <tr data-id="<?php echo htmlspecialchars($row['product_id']); ?>">
+                                                    <td data-field="id" style="width: 80px"><?php echo htmlspecialchars($row['product_id']); ?></td>
+                                                    <td data-field="name"><?php echo htmlspecialchars($row['product_name']); ?></td>
+                                                    <td data-field="quantity"><?php echo htmlspecialchars($row['quantity']); ?></td>
+                                                    <td data-field="unit_price">₹ <?php echo number_format($row['price'], 2); ?></td>
+                                                    <td><?php echo date('d-m-Y, H:i:A', strtotime($row['last_updated'])); ?></td>
+                                                    <td>
+                                                        <a class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                                                            <i class="fas fa-pencil-alt"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            <?php endwhile; ?>
+                                        </tbody>
+                                    </table>
+                                <?php else: ?>
+                                    <div class="alert alert-info text-center" role="alert">
+                                        <strong>No items in your inventory yet. Let’s get started by adding some products!</strong>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
+
                     </div>
                 </div> <!-- end col -->
             </div> <!-- end row -->

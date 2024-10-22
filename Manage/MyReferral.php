@@ -43,7 +43,7 @@ $referralLink = "https://kenzwheels.com/index.php?ref=" . $YourreferralCode;
                                 <input type="text" class="form-control" id="referralLink" value="<?php echo $referralLink; ?>" readonly>
                             </div>
                             
-                            <button type="button" class="btn btn-primary" onclick="copyReferralLink()">Copy Link</button>
+                            <button type="button" class="btn btn-outline-primary" onclick="copyReferralLink()"><i class="mdi mdi-content-copy me-1"></i> Copy Link</button>
                             <script>
                                 function copyReferralLink() {
                                     var copyText = document.getElementById("referralLink");
@@ -89,10 +89,35 @@ $referralLink = "https://kenzwheels.com/index.php?ref=" . $YourreferralCode;
                                     <?php endwhile; ?>
                                 <?php else: ?>
                                     <div class="col-12">
-                                        <div class="alert alert-info text-center" role="alert">
-                                            <strong>No referrals yet! Start referring friends to earn rewards.</strong>
+                                        <div class="card shadow-sm border-0 rounded-3">
+                                            <div class="card-body text-center py-5">
+                                                <i class="mdi mdi-account-group-outline text-primary" style="font-size: 4rem;"></i>
+                                                <h4 class="mt-4 mb-3">No Referrals Yet</h4>
+                                                <p class="text-muted mb-4">Start referring friends to earn exciting rewards!</p>
+                                                <div class="d-flex justify-content-center align-items-center mb-4">
+                                                    <span class="me-3">Your Referral Code:</span>
+                                                    <span class="badge bg-primary p-2 fs-6"><?php echo htmlspecialchars($YourreferralCode); ?></span>
+                                                </div>
+                                                <button class="btn btn-outline-primary" onclick="copyReferralCode()">
+                                                    <i class="mdi mdi-content-copy me-1"></i> Copy Code
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
+                                    <script>
+                                        function copyReferralCode() {
+                                            var code = '<?php echo htmlspecialchars($YourreferralCode); ?>';
+                                            navigator.clipboard.writeText(code).then(function() {
+                                                Swal.fire({
+                                                    icon: 'success',
+                                                    title: 'Referral Code Copied!',
+                                                    text: 'Your referral code has been copied to your clipboard.',
+                                                    timer: 2000,
+                                                    showConfirmButton: false
+                                                });
+                                            });
+                                        }
+                                    </script>
                                 <?php endif; ?>
                             </div>
                         </div>
