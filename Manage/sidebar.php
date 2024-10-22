@@ -20,7 +20,7 @@
                         // ['url' => 'AdvertisementManagement', 'icon' => 'mdi mdi-trackpad', 'label' => 'Advertisement'], 
                         ['url' => 'SalesAgentManagement', 'icon' => 'mdi mdi-account-star-outline', 'label' => 'Sales Agent'],
                         ['url' => 'WebsiteUsersManagement', 'icon' => 'mdi mdi-web', 'label' => 'Website Users'],
-                        ['url' => 'ReferralManagement', 'icon' => 'mdi mdi-account-group', 'label' => 'Referral'],
+                        ['url' => 'ReferralManagement', 'icon' => 'mdi mdi-account-group', 'label' => 'Referrals'],
                         ['url' => 'AppearanceManagement', 'icon' => 'mdi mdi-palette', 'label' => 'Appearance']
                     ],
                     'dealer' => [
