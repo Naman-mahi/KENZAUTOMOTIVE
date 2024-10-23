@@ -35,6 +35,7 @@
                         // ['url' => 'AdvertisementManagement', 'icon' => 'mdi mdi-trackpad', 'label' => 'Advertisement'], 
                         ['url' => 'ManageProductInventry', 'icon' => 'mdi mdi-cog', 'label' => 'Product Inventry'],
                         // ['url' => 'DealerConnect', 'icon' => 'mdi mdi-handshake', 'label' => 'Dealer Connect']
+                        ['url' => 'WebsiteSettings', 'icon' => 'mdi mdi-cog', 'label' => 'Website Settings'],
                     ],
                     'website_user' => [
                         ['url' => 'OnboardDealer', 'icon' => 'mdi mdi-account-check-outline', 'label' => 'Onboard Dealer'],

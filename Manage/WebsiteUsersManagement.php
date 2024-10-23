@@ -81,7 +81,7 @@ $result = $conn->query($sql);
                                                 </select>
                                             </td>
                                             <td>
-                                                <a href='EditSalesAgent.php?id={$row['user_id']}' class='btn btn-primary btn-sm'>Edit</a>
+                                                <a href='ViewUser?UserId={$row['user_id']}' class='btn btn-primary btn-sm'>View</a>
                                                 <button class='btn btn-danger btn-sm delete-agent' data-id='{$row['user_id']}'>Delete</button>
                                             </td>
                                         </tr>";
