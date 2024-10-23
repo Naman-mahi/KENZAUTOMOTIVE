@@ -23,7 +23,7 @@ if (!isset($_SESSION['role'])) {
     <title>Kenz Wheels</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/kenzwheels-small.jpg">
+    <link rel="shortcut icon" href="assets/images/favicon.png">
     <!-- DataTables -->
     <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
