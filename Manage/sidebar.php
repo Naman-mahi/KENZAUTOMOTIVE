@@ -23,7 +23,7 @@
                         ['url' => 'ReferralManagement', 'icon' => 'mdi mdi-account-group', 'label' => 'Referrals'],
                         ['url' => 'AppearanceManagement', 'icon' => 'mdi mdi-palette', 'label' => 'Appearance'],
                         // ['url' => 'DealerConnect', 'icon' => 'mdi mdi-handshake', 'label' => 'Dealer Connect'],
-                        ['url' => 'RolePermissionManagement', 'icon' => 'mdi mdi-account-key', 'label' => 'Role & Permission']
+                        ['url' => 'PermissionManagement', 'icon' => 'mdi mdi-account-key', 'label' => 'Permission']
                     ],
                     'dealer' => [
                         ['url' => 'javascript: void(0);', 'icon' => 'mdi mdi-plus-circle-outline', 'label' => 'My Products', 'submenu' => [
