@@ -26,7 +26,7 @@ session_start(); // Start the session
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="text-center mb-5">
-                    <img src="Manage/assets/images/kenzwheels.jpg" alt="Kenz Wheels Logo" height="80" class="img-fluid mb-4">
+                    <img src="Manage/assets/images/kenzwheels-light.png" alt="Kenz Wheels Logo" height="80" class="img-fluid mb-4">
                     <h2 class="mb-4">Terms of Service</h2>
                     <a href="index" class="btn btn-primary">Back to Home</a>
                 </div>

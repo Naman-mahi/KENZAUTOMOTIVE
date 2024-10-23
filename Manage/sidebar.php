@@ -13,6 +13,7 @@
                     'admin' => [
                         ['url' => 'CustomerManagement', 'icon' => 'mdi mdi-account-circle-outline', 'label' => 'User Management'],
                         ['url' => 'DealerManagement', 'icon' => 'mdi mdi-account-tie-outline', 'label' => 'Dealer Management'],
+                        ['url' => 'DealerOnbording', 'icon' => 'mdi mdi-account-check-outline', 'label' => 'Dealer Onboarding'],
                         ['url' => 'CategoryManagement', 'icon' => 'mdi mdi-tag-outline', 'label' => 'Category Management'],
                         ['url' => 'BrandManagement', 'icon' => 'mdi mdi-format-list-numbered', 'label' => 'Brand Management'],
                         ['url' => 'CouponsManagement', 'icon' => 'mdi mdi-ticket-percent-outline', 'label' => 'Coupons Management'],

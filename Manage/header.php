@@ -8,7 +8,7 @@
                         <img src="assets/images/kenzwheels-small.jpg" alt="Kenz Wheels Logo" height="50" class="img-fluid">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/kenzwheels.jpg" alt="Kenz Wheels Logo" height="50" class="img-fluid">
+                        <img src="assets/images/kenzwheels-light.png" alt="Kenz Wheels Logo" height="50" class="img-fluid">
                     </span>
                 </a>
             </div>

@@ -48,7 +48,7 @@ if (isset($_SESSION['role'])) {
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="text-center mb-5">
-                    <img src="Manage/assets/images/kenzwheels.jpg" alt="Kenz Wheels Logo" height="60" width="150" class="img-fluid mb-4">
+                    <img src="Manage/assets/images/kenzwheels-light.png" alt="Kenz Wheels Logo" height="60" width="150" class="img-fluid mb-4">
                     <h4 class="mb-4">Choose your Pricing Plan</h4>
                     <a href="index" class="btn btn-primary">Back to My Page</a>
                     <p class="text-muted">We offer three different pricing plans to suit your needs.</p>
