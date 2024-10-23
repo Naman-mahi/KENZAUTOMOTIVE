@@ -44,6 +44,7 @@ if (!isset($_SESSION['role'])) {
     <link href="assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <link href="assets/libs/spectrum-colorpicker2/spectrum.min.css" rel="stylesheet" type="text/css">
     <link href="assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
+    <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet">
     <!-- App Css-->
 
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
@@ -109,29 +110,4 @@ if (!isset($_SESSION['role'])) {
             }
             $stmt->close();
         }
-        ?>
-        <?php
-        $categoryId = $product_category_id; // Make sure you set this in the first script
-        // SQL to fetch existing specifications
-        $sql = "SELECT `pf_name`, `pf_id` FROM `product_attributes` WHERE `category_id` = ?";
-        $stmt = $conn->prepare($sql);
-        if (!$stmt) {
-            die("SQL prepare failed: " . htmlspecialchars($conn->error));
-        }
-        $stmt->bind_param("i", $categoryId); // "i" indicates the type is integer
-        $stmt->execute();
-        // Get the result
-        $result = $stmt->get_result();
-        // Initialize the specs array
-        $specs = [];
-        // Populate the specs array from the fetched results
-        while ($row = $result->fetch_assoc()) {
-            $specs[] = [
-                'label' => $row['pf_name'], // Using pf_name as label
-                'id' => $row['pf_id'], // Using pf_name as label
-                'name' => strtolower(str_replace(' ', '_', $row['pf_name'])) // Create a name from the label
-            ];
-        }
-        // Close the statement
-        $stmt->close();
         ?>

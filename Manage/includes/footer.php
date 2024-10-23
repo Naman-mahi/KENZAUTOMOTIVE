@@ -40,12 +40,12 @@
 <script src="assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 <script src="assets/libs/spectrum-colorpicker2/spectrum.min.js"></script>
 <script src="assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
-
 <!-- form wizard init -->
 <script src="assets/js/pages/form-wizard.init.js"></script>
 <script src="assets/js/pages/bootstrap-toasts.init.js"></script>
 <script src="assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
 <!-- Sweet alert init js-->
+<script src="assets/libs/dropzone/min/dropzone.min.js"></script>
 <script src="assets/js/pages/sweet-alerts.init.js"></script>
 <script src="assets/js/app.js"></script>
 </body>

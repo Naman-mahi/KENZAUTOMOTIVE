@@ -1,10 +1,10 @@
 <?php
 include 'includes/head.php';
 
-if (isset($_GET['id'])) {
+if (isset($_GET['id']) && isset($_GET['category_id'])) {
     $product_id = intval($_GET['id']); // Sanitize input
     $dealerid = $_SESSION['user_id']; // Sanitize dealer ID
-    $category_id = $product_category_id; // Sanitize dealer ID
+    $category_id = $_GET['category_id']; // Sanitize dealer ID
     // Query to fetch car details with dealer ID condition
     $sql = "
     SELECT *
@@ -43,21 +43,8 @@ if (isset($_GET['id'])) {
         // Bind parameters
         $stmt->bind_param("i", $product_id);
         $stmt->execute();
-        $result = $stmt->get_result();
+        $productImages = $stmt->get_result();
 
-        if ($result->num_rows > 0) {
-            // Fetch the product images
-            $productImages = $result->fetch_all(MYSQLI_ASSOC); // Fetch all images for the product
-
-            // Prepend the image path to each image URL
-            foreach ($productImages as &$image) {
-                $image['image_url'] = 'uploads/products/' . htmlspecialchars($image['image_url']);
-            }
-            unset($image); // Break the reference with the last element
-        } else {
-            // No images found for the given product ID
-            // redirectToMyProducts();
-        }
 
 
         // Close the statement
@@ -104,6 +91,9 @@ if (isset($_GET['id'])) {
     echo "<script>window.location.href = 'MyProducts.php';</script>";
     exit;
 }
+
+$product_id = $_GET['id'];
+$category_id = $_GET['category_id'];
 ?>
 <div class="main-content">
     <div class="page-content">
@@ -164,8 +154,8 @@ if (isset($_GET['id'])) {
             <div class="row">
                 <div class="col-12">
                     <div class="mb-3 d-flex align-items-end justify-content-end">
-                        <a href="ProductImages.php" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light me-2">Add & Update Product Images</a>
-                        <a href="ProductSpecifications.php" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light me-2">Add & Update Specifications</a>
+                        <a href="ProductImages?product_id=<?php echo $product_id; ?>" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light me-2">Add & Update Product Images</a>
+                        <a href="ProductSpecifications?product_id=<?php echo $product_id; ?>&category_id=<?php echo $category_id; ?>" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light me-2">Add & Update Specifications</a>
                         <a href="ProductInfo.php" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light">Update Product Info</a>
                     </div>
                 </div>
@@ -180,7 +170,7 @@ if (isset($_GET['id'])) {
                                 <div class="col-lg-12 col-md-12">
                                     <div class="card">
                                         <div class="card-body text-center">
-                                                <img id="mainImage" src="uploads/ProductThumbnail/<?php echo $Products['product_image']; ?>" alt="<?php echo htmlspecialchars($Products['product_name']); ?>" class="img-fluid main-image">
+                                            <img id="mainImage" src="uploads/ProductThumbnail/<?php echo $Products['product_image']; ?>" alt="<?php echo htmlspecialchars($Products['product_name']); ?>" class="img-fluid main-image">
                                         </div>
                                     </div>
                                 </div>
@@ -254,7 +244,7 @@ if (isset($_GET['id'])) {
                                             if (isset($_GET['id'])) {
                                                 // Sanitize input
                                                 $product_id = intval($_GET['id']);
-                                                $category_id = $product_category_id; // Ensure $product_category_id is defined
+                                                $category_id = $category_id; // Ensure $product_category_id is defined
 
                                                 // SQL statement to fetch attributes and custom attributes
                                                 $sql = "
@@ -315,7 +305,7 @@ if (isset($_GET['id'])) {
                                             ?>
                                         </tbody>
                                     </table>
-                                   
+
                                 </div>
 
                                 <div class="tab-pane" id="other-details" role="tabpanel">

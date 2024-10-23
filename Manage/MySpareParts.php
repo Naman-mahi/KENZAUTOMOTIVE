@@ -90,6 +90,7 @@ include 'includes/head.php';
         while ($row = $result->fetch_assoc()) {
             // Extract data
             $id = $row['product_id'];
+            $category_id = $row['category_id'];
             $product_name = htmlspecialchars($row['product_name']);
             $product_description = htmlspecialchars($row['product_description']);
             $image = htmlspecialchars($row['product_image']);
@@ -98,7 +99,7 @@ include 'includes/head.php';
             // Generate HTML for each product
             echo '
             <div class="col-md-6 mb-4 col-lg-4 col-xl-3">
-                <a href="ProductDetails.php?id=' . $id . '" class="card-link">
+                <a href="ProductDetails.php?id=' . $id . '&category_id=' . $category_id . '" class="card-link">
                     <div class="card card-car h-100"> <!-- Changed class name to card-product -->
                         <div class="card-img-wrapper">
                             <img class="card-img-top car img-fluid" src="' . $image_path . '" alt="' . $product_name . '">
