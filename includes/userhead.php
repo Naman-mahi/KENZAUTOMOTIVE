@@ -30,7 +30,6 @@ if (isset($_SESSION['role'])) {
     <link href="<?= BASE_URL ?>Manage/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="<?= BASE_URL ?>Manage/assets/css/app.min.css" rel="stylesheet" type="text/css" />
     <link href="<?= BASE_URL ?>manage/assets/libs/sweetalert2/sweetalert2.min.css"rel="stylesheet" type="text/css" />
-
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>assets/css/header.css" as="style" media="all">
 
 
