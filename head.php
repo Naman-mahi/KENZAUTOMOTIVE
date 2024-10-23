@@ -12,5 +12,6 @@ include('config.php');
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/styles.css"> <!-- Custom CSS -->
     <meta name="description" content="<?php echo isset($description) ? htmlspecialchars($description) : 'Default description'; ?>">
     <meta name="author" content="Your Name">
+    
 </head>
 <body>
