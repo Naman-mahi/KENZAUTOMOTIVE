@@ -1,0 +1,478 @@
+/*Start Container CSS for the banner */
+.banner-container {
+    height: 55vh;
+    background: var(--dynamic-gradient);
+    color: var(--white-surface);
+}
+
+.header-placeholder {
+    width: 100%;
+    /* Make sure the header takes the full width */
+}
+
+.bannertitle {
+    margin-top: 1rem;
+    /* Remove top margin */
+    font-size: 3.5rem;
+    font-weight: bolder;
+    /* Increase font size */
+    color: var(--white-surface) !important;
+}
+
+.banner-subheading {
+    font-size: 1.2rem;
+    /* Increase subheading size */
+    margin-top: 1rem;
+    /* Add some space above */
+    color: var(--white-surface);
+    /* Slightly lighter for contrast */
+}
+
+.advanced-filter-btn {
+    border: 2px solid var(--primary-color); /* Thicker border */
+    color: var(--primary-color); /* Text color */
+    padding: 5px 20px; /* Reduced padding */
+    font-size: 0.875rem; /* Smaller font size */
+    border-radius: 20px; /* Adjusted border radius */
+    transition: background-color 0.3s, color 0.3s; /* Transition effects */
+    background: transparent;
+}
+.advanced-filter-btn:hover{
+    background-color: var(--primary-color);
+    border-color: var(--white-surface);
+    color: var(--white-surface);
+}
+/*End Container CSS for the banner */
+
+/*Start CSS for the Caraousel */
+
+.carousel-wrap {
+    margin: 90px auto;
+    padding: 0 5%;
+    width: 80%;
+    position: relative;
+}
+
+/* Styling for the card */
+.card {
+    background-color: var(--white-surface);
+    border: 1px solid var(--lighter-contrast);
+    border-radius: 5px;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+/* .carousel-title {
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    color: var(--primary-color);
+    padding: 10px 20px;
+}
+
+.carousel-title i {
+    color: var(--primary-color);
+    margin-right: 10px;
+}
+
+.carousel-title:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+.carousel-title {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.363);
+} */
+
+
+.card-img-top {
+    max-width: 100%;
+    height: auto;
+}
+
+.card-price {
+    font-size: 16px;
+    color: #C74B18;
+
+}
+
+.card-reviews {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Carousel item styling */
+.owl-carousel .item {
+    position: relative;
+    /* z-index: 100; */
+    /* -webkit-backface-visibility: hidden; */
+}
+
+/* Owl Navigation */
+.btn-prev,
+.btn-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    color: #cdcbcd;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* z-index: 1000; */
+}
+
+.btn-prev {
+    left: 40px;
+}
+
+.btn-next {
+    right: 40px;
+}
+
+/* Hide buttons initially */
+.btn-prev.disabled,
+.btn-next.disabled {
+    display: none;
+}
+
+/* Hide buttons in mobile view */
+@media (max-width: 600px) {
+
+    .btn-prev,
+    .btn-next {
+        display: none;
+    }
+}
+
+.btn-prev:hover,
+.btn-next:hover {
+    color: #b73439;
+    /* Change icon color if needed */
+}
+
+
+/* Responsive adjustments for mobile screens */
+/* @media (max-width: 600px) { */
+
+/* .btn-prev,
+    .btn-next {
+        top: auto;
+        bottom: 10px; 
+        font-size: 25px;
+        padding: 8px;
+    }
+
+    .btn-prev {
+        left: 10px;
+    }
+
+    .btn-next {
+        right: 10px;
+    } */
+/* } */
+
+/*END CSS for the Caraousel */
+
+/* ..............................Services Section CSS Starts.......................... */
+
+section {
+    padding: 60px 0;
+    /* min-height: 100vh; */
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none;
+    outline: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.bg-gray {
+    background-color: var(--white-surface);
+}
+
+.site-heading h2 {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.site-heading h2 span {
+    color: var(--primary-color);
+}
+
+.site-heading h4 {
+    display: inline-block;
+    padding-bottom: 20px;
+    position: relative;
+    text-transform: capitalize;
+    z-index: 1;
+}
+
+.site-heading h4::before {
+    background: var(--primary-color) none repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    height: 2px;
+    left: 50%;
+    margin-left: -25px;
+    position: absolute;
+    width: 50px;
+}
+
+.site-heading {
+    margin-bottom: 60px;
+    overflow: hidden;
+    margin-top: -5px;
+}
+
+.carousel-shadow .owl-stage-outer {
+    margin: -15px -15px 0;
+    padding: 15px;
+}
+
+.we-offer-area .our-offer-carousel .owl-dots .owl-dot span {
+    background: var(--white-surface) none repeat scroll 0 0;
+    border: 2px solid;
+    height: 15px;
+    margin: 0 5px;
+    width: 15px;
+}
+
+.we-offer-area .our-offer-carousel .owl-dots .owl-dot.active span {
+    background: var(--primary-color) none repeat scroll 0 0;
+    border-color: var(--primary-color);
+}
+
+.we-offer-area .item {
+    background: var(--white-surface) none repeat scroll 0 0;
+    border-left: 2px solid var(--primary-color);
+    -moz-box-shadow: 0 0 10px #cccccc;
+    -webkit-box-shadow: 0 0 10px #cccccc;
+    -o-box-shadow: 0 0 10px #cccccc;
+    box-shadow: 0 0 10px #cccccc;
+    overflow: hidden;
+    padding: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.we-offer-area.text-center .item {
+    background: var(--white-surface) none repeat scroll 0 0;
+    border: medium none;
+    padding: 67px 40px 64px;
+}
+
+.we-offer-area.text-center .item i {
+    background: var(--primary-color) none repeat scroll 0 0;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    color: var(--white-surface);
+    font-size: 40px;
+    height: 80px;
+    line-height: 80px;
+    position: relative;
+    text-align: center;
+    width: 80px;
+    z-index: 1;
+    transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -ms-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+    margin-bottom: 25px;
+}
+
+.we-offer-area.text-center .item i::after {
+    border: 2px solid var(--primary-color);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    content: "";
+    height: 90px;
+    left: -5px;
+    position: absolute;
+    top: -5px;
+    width: 90px;
+    z-index: -1;
+    transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -ms-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+
+.we-offer-area.item-border-less .item {
+    border: medium none;
+}
+
+.we-offer-area .our-offer-items.less-carousel .equal-height {
+    margin-bottom: 30px;
+}
+
+.we-offer-area.item-border-less .item .number {
+    font-family: "Poppins", sans-serif;
+    font-size: 50px;
+    font-weight: 900;
+    opacity: 0.1;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+}
+
+.our-offer-carousel.center-active .owl-item:nth-child(2n) .item,
+.we-offer-area.center-active .single-item:nth-child(2n) .item {
+    background: var(--primary-color) none repeat scroll 0 0;
+}
+
+.our-offer-carousel.center-active .owl-item:nth-child(2n) .item i,
+.our-offer-carousel.center-active .owl-item:nth-child(2n) .item h4,
+.our-offer-carousel.center-active .owl-item:nth-child(2n) .item p,
+.we-offer-area.center-active .single-item:nth-child(2n) .item i,
+.we-offer-area.center-active .single-item:nth-child(2n) .item h4,
+.we-offer-area.center-active .single-item:nth-child(2n) .item p {
+    color: var(--white-surface);
+}
+
+.we-offer-area .item i {
+    color: var(--primary-color);
+    display: inline-block;
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.we-offer-area .item h4 {
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.we-offer-area .item p {
+    margin: 0;
+}
+
+.we-offer-area .item i,
+.we-offer-area .item h4,
+.we-offer-area .item p {
+    transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -ms-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+
+.we-offer-area .item::after {
+    background: var(--primary-color-transparent) none repeat scroll 0 0;
+    content: "";
+    height: 100%;
+    left: -100%;
+    position: absolute;
+    top: 0;
+    transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -ms-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+    width: 100%;
+    z-index: -1;
+}
+
+.we-offer-area .item:hover::after {
+    left: 0;
+}
+
+.we-offer-area .item:hover i,
+.we-offer-area .item:hover h4,
+.we-offer-area .item:hover p {
+    color: var(--white-surface) !important;
+}
+
+.we-offer-area.text-center .item:hover i::after {
+    border-color: var(--white-surface) !important;
+}
+
+.we-offer-area.text-center .item:hover i {
+    background-color: var(--white-surface) !important;
+    color: var(--primary-color) !important;
+}
+
+.we-offer-area.text-left .item i {
+    background: var(--primary-color) none repeat scroll 0 0;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    color: var(--white-surface);
+    display: inline-block;
+    font-size: 60px;
+    height: 100px;
+    line-height: 100px;
+    margin-bottom: 30px;
+    position: relative;
+    width: 100px;
+    z-index: 1;
+    text-align: center;
+}
+
+.we-offer-area.text-left .item i::after {
+    border: 2px solid var(--primary-color);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    content: "";
+    height: 120px;
+    left: -10px;
+    position: absolute;
+    top: -10px;
+    width: 120px;
+}
+
+/* .........................Services Section CSS Ends.......................... */
+
+
+ /* .............................Call to Action Section CSS Starts.....................  */
+ .button-action {
+    position: relative;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid var(--primary-color);
+    border-radius: 1000px;
+    padding: 10px 20px;
+    margin: 40px;
+    box-shadow: 0 2px 5px 0 rgba(255, 1, 1, 0.25);
+    transition: 0.5s all ease-in-out;
+    animation: pulse 2s infinite cubic-bezier(0.25, 0, 0, 1); /* Animation runs continuously */
+  }
+  
+  .button-action:hover {
+    cursor: pointer;
+    background: var(--primary-color);
+    color: #fff;
+    font-weight: bold;
+    animation-play-state: paused; /* Pauses animation on hover */
+    box-shadow: 0 0 0 0 rgba(255, 1, 1, 0); /* Removes box-shadow during hover */
+  }
+  
+  @keyframes pulse {
+    0% {
+       box-shadow: var(--light-shadow); /* Start with light shadow */
+    }
+    100% {
+      box-shadow: 0 0 0 18px rgba(255, 1, 1, 0); /* Expand shadow and fade out */
+    }
+  }
+  
+  
+   /* .............................Call to Action Section CSS Ends.....................  */
