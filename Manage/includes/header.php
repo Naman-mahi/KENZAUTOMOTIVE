@@ -124,7 +124,7 @@
                     <?php endif; ?>
 
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="logout"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                    <a class="dropdown-item text-danger" href="functions/logout"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
                 </div>
             </div>
 
