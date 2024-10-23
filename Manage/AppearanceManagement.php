@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 
 // Fetch settings from the database
 include '../includes/db.php'; // Make sure to include this again if you're not including it globally
@@ -264,5 +264,5 @@ if ($result && $result->num_rows > 0) {
 </div>
 <!-- end main content-->
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

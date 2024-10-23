@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 
 $sql = "SELECT * FROM products";
 $result = $conn->query($sql);
@@ -76,5 +76,5 @@ $result = $conn->query($sql);
 </script>
 
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

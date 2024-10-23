@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 
 // Fetch and sanitize the user ID from the URL
 $user_id = isset($_GET['UserId']) ? mysqli_real_escape_string($conn, $_GET['UserId']) : '';
@@ -115,5 +115,5 @@ LEFT JOIN
 </div>
 <!-- end main content-->
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

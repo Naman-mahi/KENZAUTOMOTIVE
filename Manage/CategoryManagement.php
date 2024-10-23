@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 include '../includes/db.php'; // Include your database connection file
 
 // Fetch categories from the database
@@ -244,5 +244,5 @@ $result = $conn->query($sql);
 </script>
 <!-- end main content-->
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

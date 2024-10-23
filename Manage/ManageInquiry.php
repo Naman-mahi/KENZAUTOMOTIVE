@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 
 // Fetch inquiries
 $sql = "SELECT pi.inquiry_id, u.first_name, u.last_name, u.email, u.mobile_number, pi.inquiry_date, pi.status, pi.notes 
@@ -83,5 +83,5 @@ $result = $conn->query($sql);
 </div>
 <!-- end main content-->
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

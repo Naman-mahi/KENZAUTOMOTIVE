@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 include '../includes/db.php'; // Ensure you include your database connection
 if (isset($_GET['id'])) {
     $carid = intval($_GET['id']); // Sanitize input
@@ -240,5 +240,5 @@ if (isset($_GET['id'])) {
 </div>
 <!-- end main content -->
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

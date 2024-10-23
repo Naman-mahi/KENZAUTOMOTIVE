@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 
 // Function to handle redirection
 function redirectToMyProducts() {
@@ -318,5 +318,5 @@ $stmt->close();
     }
 </script>
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

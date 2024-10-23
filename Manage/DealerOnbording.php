@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 
 // Fetch inquiries securely
 $sql = "SELECT u.*, d.* FROM `users` u JOIN `dealers` d ON u.user_id = d.user_id WHERE u.role = 'dealer' AND d.verification_status ='Pending'";
@@ -90,5 +90,5 @@ $DealerOnbording = $conn->query($sql);
 </div>
 <!-- end main content-->
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 
 
 $dealer_id = $_SESSION['user_id'];
@@ -93,5 +93,5 @@ $inventory = $stmt->get_result();
 </div>
 <!-- end main content-->
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

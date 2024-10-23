@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 // Fetch Referral from the database
 $sql = "SELECT 
     referral_rewards.*, 
@@ -82,5 +82,5 @@ $result = $conn->query($sql);
 </div>
 <!-- end main content-->
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

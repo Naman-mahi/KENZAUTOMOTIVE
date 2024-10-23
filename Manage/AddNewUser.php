@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 require_once '../includes/db.php'; // Ensure database connection is included
 // Fetch inquiries securely
 $sql = "SELECT * FROM `users` WHERE role = 'sales_agent'";
@@ -168,5 +168,5 @@ $result = $conn->query($sql);
     });
 </script>
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

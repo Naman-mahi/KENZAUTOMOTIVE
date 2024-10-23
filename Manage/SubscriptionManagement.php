@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 // Fetch subscriptions from the database
 $sql = "SELECT subscriptions.*, users.first_name, users.last_name, users.email, users.mobile_number, dealers.company_name, coupons.coupon_name FROM subscriptions JOIN users ON subscriptions.user_id = users.user_id LEFT JOIN coupons ON subscriptions.coupon_id = coupons.coupon_id left join dealers on users.user_id = dealers.user_id";
 $result = $conn->query($sql);
@@ -89,5 +89,5 @@ $result = $conn->query($sql);
 </div>
 <!-- end main content-->
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

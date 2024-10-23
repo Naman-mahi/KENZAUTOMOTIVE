@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 
 // Fetch inquiries securely
 $dealer_id = $_GET['dealerId'];
@@ -232,5 +232,5 @@ $result = $stmt->get_result();
     });
 </script>
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

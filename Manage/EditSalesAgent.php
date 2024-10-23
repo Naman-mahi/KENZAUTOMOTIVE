@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 require_once '../includes/db.php'; // Ensure database connection is included
 $id = $_GET['id'];
 // Fetch inquiries securely
@@ -103,5 +103,5 @@ $result = $conn->query($sql);
 </script>
 
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

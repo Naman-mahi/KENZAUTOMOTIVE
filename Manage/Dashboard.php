@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 require_once '../includes/db.php'; // Ensure database connection is included
 require_once 'functions/statistics.php'; // Ensure database connection is included
 ?>
@@ -536,5 +536,5 @@ require_once 'functions/statistics.php'; // Ensure database connection is includ
 </div>
 <!-- end main content-->
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

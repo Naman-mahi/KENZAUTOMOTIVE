@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 include '../includes/db.php'; // Include your database connection file
 
 // Fetch brands and categories from the database
@@ -254,6 +254,6 @@ $resultCategories = $conn->query($sqlCategories);
             });
         </script>
 
-        <?php include 'footer.php'; ?>
+        <?php include 'includes/footer.php'; ?>
     </div>
 </div>

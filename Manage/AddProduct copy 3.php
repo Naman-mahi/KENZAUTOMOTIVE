@@ -1,4 +1,4 @@
-     <?php include 'head.php'; ?>
+     <?php include 'includes/head.php'; ?>
      <style>
          .pager .finish {
              display: none;
@@ -223,4 +223,4 @@
          }
      </script>
 
-     <?php include 'footer.php'; ?>
+     <?php include 'includes/footer.php'; ?>

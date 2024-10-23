@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 include '../includes/db.php'; // Include your database connection file
 // Fetch coupons from the database
 $coupon_id = $_GET['coupon_id'];
@@ -89,5 +89,5 @@ $result = $stmt->get_result();
 </div>
 <!-- end main content -->
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

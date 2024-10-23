@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 ?>
 <div class="main-content">
     <div class="page-content">
@@ -138,5 +138,5 @@ include 'head.php';
 </div>
 <!-- end main content-->
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

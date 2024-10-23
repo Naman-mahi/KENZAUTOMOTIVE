@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 include '../includes/db.php'; // Include your database connection file
 
 // Fetch permissions from the database
@@ -222,6 +222,6 @@ $permissions = $conn->query($sqlPermissions);
             });
         </script>
 
-        <?php include 'footer.php'; ?>
+        <?php include 'includes/footer.php'; ?>
     </div>
 </div>

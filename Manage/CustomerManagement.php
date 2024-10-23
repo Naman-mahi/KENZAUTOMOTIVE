@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 
 // Fetch inquiries
 $sql = "SELECT * FROM `users` WHERE `role` = 'customer'";
@@ -77,5 +77,5 @@ $result = $conn->query($sql);
 </div>
 <!-- end main content-->
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

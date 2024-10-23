@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 // Fetch Referral from the database
 $sql = "SELECT referral_rewards.*, referradedUser.first_name AS Rfirstname, referradedUser.last_name AS Rlastname, referradedUser.email AS Remail, referrerUser.first_name AS referrerfirstname, referrerUser.last_name AS referrerlastname, referrerUser.email AS referreremail FROM referral_rewards JOIN users AS referrerUser ON referral_rewards.referrer_id = referrerUser.user_id JOIN users AS referradedUser ON referral_rewards.referred_id = referradedUser.user_id WHERE referral_rewards.referrer_id = " . $_SESSION['user_id'] . " ORDER BY referral_rewards.created_at DESC;";
 $result = $conn->query($sql);
@@ -130,5 +130,5 @@ $referralLink = "https://kenzwheels.com/index.php?ref=" . $YourreferralCode;
 </div>
 <!-- end main content -->
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

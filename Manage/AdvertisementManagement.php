@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 include '../includes/db.php'; // Include your database connection file
 
 // Fetch advertisements from the database
@@ -330,6 +330,6 @@ $result = $conn->query($sql);
         </script>
 
 
-        <?php include 'footer.php'; ?>
+        <?php include 'includes/footer.php'; ?>
     </div>
 </div>

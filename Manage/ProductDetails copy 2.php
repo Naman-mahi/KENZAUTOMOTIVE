@@ -1,5 +1,5 @@
 <?php
-include 'head.php';
+include 'includes/head.php';
 
 if (isset($_GET['id'])) {
     $product_id = intval($_GET['id']); // Sanitize input
@@ -351,5 +351,5 @@ if (isset($_GET['id'])) {
 </script>
 
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

@@ -1,4 +1,4 @@
-<?php include 'head.php'; ?>
+<?php include 'includes/head.php'; ?>
 <div class="main-content">
     <div class="page-content">
         <div class="container-fluid">
@@ -273,4 +273,4 @@
     });
 </script>
 
-<?php include 'footer.php'; ?>
+<?php include 'includes/footer.php'; ?>
