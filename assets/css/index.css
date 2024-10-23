@@ -29,19 +29,27 @@
 }
 
 .advanced-filter-btn {
-    border: 2px solid var(--white-surface); /* Thicker border */
-    color: var(--white-surface); /* Text color */
-    padding: 5px 20px; /* Reduced padding */
-    font-size: 0.875rem; /* Smaller font size */
-    border-radius: 20px; /* Adjusted border radius */
-    transition: background-color 0.3s, color 0.3s; /* Transition effects */
+    border: 2px solid var(--white-surface);
+    /* Thicker border */
+    color: var(--white-surface);
+    /* Text color */
+    padding: 5px 20px;
+    /* Reduced padding */
+    font-size: 0.875rem;
+    /* Smaller font size */
+    border-radius: 20px;
+    /* Adjusted border radius */
+    transition: background-color 0.3s, color 0.3s;
+    /* Transition effects */
     background: transparent;
 }
-.advanced-filter-btn:hover{
+
+.advanced-filter-btn:hover {
     background-color: var(--primary-color);
     border-color: var(--white-surface);
     color: var(--white-surface);
 }
+
 /*End Container CSS for the banner */
 
 /*Start CSS for the Caraousel */
@@ -54,57 +62,130 @@
 }
 
 /* Styling for the card */
-.card {
-    background-color: var(--white-surface);
-    border: 1px solid var(--lighter-contrast);
-    border-radius: 5px;
-    text-align: center;
-    padding: 15px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+/* Car Item Styles */
+.item .car-card {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.5s ease;
 }
-/* .carousel-title {
+
+.item .car-card:hover {
+    box-shadow: 0 0 45px rgba(0, 0, 0, 0.3);
+}
+
+/* Car Image Styles */
+.item .car-card .car-img {
     position: relative;
-    display: inline-block;
-    font-weight: bold;
-    color: var(--primary-color);
-    padding: 10px 20px;
+    overflow: hidden;
+    /* border-top-left-radius: 10px; */
+    /* border-top-right-radius: 10px; */
 }
 
-.carousel-title i {
-    color: var(--primary-color);
-    margin-right: 10px;
+.item .car-card .car-img img {
+    transition: transform 0.5s ease;
 }
 
-.carousel-title:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-.carousel-title {
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.363);
-} */
-
-
-.card-img-top {
-    max-width: 100%;
-    height: auto;
+.item .car-card:hover .car-img img {
+    transform: scale(1.2);
 }
 
-.card-price {
+/* Image Hover Overlay */
+.item .car-card .car-img::after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--primary-color-transparent);
+    transition: all 0.5s ease;
+    /* border-top-left-radius: 10px; */
+    /* border-top-right-radius: 10px; */
+}
+
+.item .car-card:hover .car-img::after {
+    width: 100%;
+    height: 100%;
+}
+
+/* Car Content Styles */
+.item .car-card .car-content {
+    position: relative;
+    padding: 18px;
+    /* min-height: 230px; */
+    background-color: #fff;
+    transition: all 0.5s ease;
+    z-index: 1;
+}
+
+.item .car-card .car-content::after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: var(--primary-color);
+    transition: all 0.5s ease;
+    /* border-bottom-left-radius: 10px; */
+    /* border-bottom-right-radius: 10px; */
+    z-index: 0;
+}
+
+.item .car-card:hover .car-content::after {
+    width: 100%;
+    height: 100%;
+}
+
+/* Car Content Inner */
+.item .car-card .car-content-inner {
+    position: relative;
+    z-index: 2;
+    transition: all 0.5s ease;
+}
+
+.item .car-card:hover .car-content-inner {
+    color: #fff;
+}
+
+/* Title, Price, and Reviews */
+.item .car-card .car-title {
     font-size: 16px;
-    color: #C74B18;
-
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--black-surface);
+    transition: color 0.5s ease;
 }
 
-.card-reviews {
+.item .car-card:hover .car-title {
+    color: var(--white-surface);
+}
+
+.item .car-card .car-price {
+    font-size: 16px;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    transition: color 0.5s ease;
+}
+
+.item .car-card:hover .car-price {
+    color: var(--white-surface);
+}
+
+.item .car-card:hover .car-reviews {
+    color: var(--white-surface);
+}
+
+.item .car-card .car-reviews {
     font-size: 14px;
     color: #555;
+
 }
 
-/* Carousel item styling */
-.owl-carousel .item {
-    position: relative;
-    /* z-index: 100; */
-    /* -webkit-backface-visibility: hidden; */
+.item .car-card .car-reviews .rating {
+    color: #ffcc00;
+    font-weight: bolder;
 }
 
 /* Owl Navigation */
@@ -438,9 +519,37 @@ ul {
 
 /* .........................Services Section CSS Ends.......................... */
 
+/* .............................Car Brand Section CSS Starts.....................  */
 
- /* .............................Call to Action Section CSS Starts.....................  */
- .button-action {
+.new-car-list .heading img {
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 50%;
+    padding: 5px;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.new-car-list .heading {
+    text-align: center;
+}
+
+.new-car-list .heading h3 {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.new-car-list img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+/* .............................Car Brand Section CSS Ends.....................  */
+
+/* .............................Call to Action Section CSS Starts.....................  */
+.button-action {
     position: relative;
     color: rgb(0, 0, 0);
     text-decoration: none;
@@ -453,26 +562,30 @@ ul {
     margin: 40px;
     box-shadow: 0 2px 5px 0 rgba(255, 1, 1, 0.25);
     transition: 0.5s all ease-in-out;
-    animation: pulse 2s infinite cubic-bezier(0.25, 0, 0, 1); /* Animation runs continuously */
-  }
-  
-  .button-action:hover {
+    animation: pulse 2s infinite cubic-bezier(0.25, 0, 0, 1);
+    /* Animation runs continuously */
+}
+
+.button-action:hover {
     cursor: pointer;
     background: var(--primary-color);
     color: #fff;
     font-weight: bold;
-    animation-play-state: paused; /* Pauses animation on hover */
-    box-shadow: 0 0 0 0 rgba(255, 1, 1, 0); /* Removes box-shadow during hover */
-  }
-  
-  @keyframes pulse {
+    animation-play-state: paused;
+    /* Pauses animation on hover */
+    box-shadow: 0 0 0 0 rgba(255, 1, 1, 0);
+    /* Removes box-shadow during hover */
+}
+
+@keyframes pulse {
     0% {
-       box-shadow: var(--light-shadow); /* Start with light shadow */
+        box-shadow: var(--light-shadow);
+        /* Start with light shadow */
     }
+
     100% {
-      box-shadow: 0 0 0 18px rgba(255, 1, 1, 0); /* Expand shadow and fade out */
+        box-shadow: 0 0 0 18px rgba(255, 1, 1, 0);
+        /* Expand shadow and fade out */
     }
-  }
-  
-  
-   /* .............................Call to Action Section CSS Ends.....................  */
+}
+/* .............................Call to Action Section CSS Ends.....................  */
