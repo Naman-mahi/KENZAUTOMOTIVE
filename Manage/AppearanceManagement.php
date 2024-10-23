@@ -231,7 +231,7 @@ if ($result && $result->num_rows > 0) {
 
                                 // Send AJAX request
                                 $.ajax({
-                                    url: 'save_colors.php',
+                                    url: 'functions/save_colors.php',
                                     type: 'POST',
                                     data: formData,
                                     success: function(response) {

@@ -1,5 +1,5 @@
 <?php
-include '../includes/db.php'; // Include your database connection
+include '../../includes/db.php'; // Include your database connection
 
 // save_colors.php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

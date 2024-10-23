@@ -71,9 +71,7 @@ $result = $conn->query($sql);
                                             echo "<td>" . date('d M, Y h:i A', strtotime($row['end_datetime'])) . "</td>";
                                             echo "<td><i class='mdi mdi-checkbox-blank-circle me-1 {$color}'></i> {$status}</td>";
                                             echo "<td>
-                                                <a href='ViewAdvertisement.php?id={$row['id']}' class='btn rounded-0 btn-info btn-sm'>
-                                                    <i class='mdi mdi-eye'></i> View
-                                                </a>
+                                                
                                                 <button onclick='editAdvertisement({$row['id']}, this)' class='btn rounded-0 btn-warning btn-sm'>
                                                     <i class='mdi mdi-pencil'></i> Edit
                                                 </button>
@@ -147,7 +145,7 @@ $result = $conn->query($sql);
                 // Fetch booked dates
                 async function fetchBookedDates() {
                     try {
-                        const response = await fetch('check_overlap.php', {
+                        const response = await fetch('functions/check_overlap.php', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -290,7 +288,7 @@ $result = $conn->query($sql);
                         }
 
                         // Perform AJAX request to update advertisement
-                        fetch('update_advertisement.php', {
+                        fetch('functions/update_advertisement.php', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',

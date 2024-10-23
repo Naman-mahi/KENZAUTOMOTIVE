@@ -1,5 +1,5 @@
 <?php
-include '../includes/db.php'; // Include your database connection file
+include '../../includes/db.php'; // Include your database connection file
 
 $data = json_decode(file_get_contents("php://input"), true);
 $start_date = $data['start_date'] ?? null; // Use null if not provided
