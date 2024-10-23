@@ -1,5 +1,5 @@
 <?php
-include '../includes/db.php'; // Ensure to include your database connection
+include '../../includes/db.php'; // Ensure to include your database connection
 
 if (isset($_GET['id'])) {
     $categoryId = intval($_GET['id']);

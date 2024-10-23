@@ -1,5 +1,5 @@
 <?php
-include '../includes/db.php'; // Ensure to include your database connection
+include '../../includes/db.php'; // Ensure to include your database connection
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['category_id'], $_POST['attribute_name'])) {
     $categoryId = intval($_POST['category_id']);

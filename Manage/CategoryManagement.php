@@ -23,7 +23,6 @@ $result = $conn->query($sql);
                     </div>
                 </div>
             </div>
-
             <!-- end page title -->
             <div class="row">
                 <div class="col-12">
@@ -119,7 +118,7 @@ $result = $conn->query($sql);
                     }).then((result) => {
                         if (result.isConfirmed) {
                             // Perform AJAX request to add the category
-                            fetch('add_category.php', {
+                            fetch('functions/add_category.php', {
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/json',
@@ -149,7 +148,7 @@ $result = $conn->query($sql);
             </script>
             <script>
                 function viewCategory(categoryId) {
-                    fetch(`get_category_details.php?id=${categoryId}`)
+                    fetch(`functions/get_category_details.php?id=${categoryId}`)
                         .then(response => {
                             if (!response.ok) {
                                 throw new Error('Network response was not ok');
@@ -201,7 +200,7 @@ $result = $conn->query($sql);
                         return;
                     }
 
-                    fetch('add_custom_attribute.php', {
+                    fetch('functions/add_custom_attribute.php', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -226,11 +225,6 @@ $result = $conn->query($sql);
                         .catch(error => console.error('Error adding custom attribute:', error));
                 }
             </script>
-
-
-
-
-
         </div> <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
