@@ -1,11 +1,11 @@
 <?php
-include '../includes/db.php'; // Include your database connection
+include '../../includes/db.php'; // Include your database connection
 
 // Start JSON output
 header('Content-Type: application/json');
 
 // Handle file upload
-$uploadDir = 'uploads/BrandLogo/';
+$uploadDir = '../uploads/BrandLogo/';
 $brandLogo = null;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

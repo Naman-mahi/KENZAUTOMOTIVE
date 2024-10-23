@@ -52,12 +52,12 @@ $result = $conn->query($sql);
                                             $formattedDateTime = $dateTime->format('d F, Y h:i A'); // Example: 24 May, 2024 10:20 PM
 
                                             echo "<tr>
-                    <td>{$counter}</td>
-                    <td>{$customer_name}</td>
-                    <td>{$row['email']}</td>
-                    <td>{$row['mobile_number']}</td>
-                    <td>{$formattedDateTime}</td>
-                </tr>";
+                                                <td>{$counter}</td>
+                                                <td>{$customer_name}</td>
+                                                <td>{$row['email']}</td>
+                                                <td>{$row['mobile_number']}</td>
+                                                <td>{$formattedDateTime}</td>
+                                            </tr>";
                                             $counter++;
                                         }
                                     } else {

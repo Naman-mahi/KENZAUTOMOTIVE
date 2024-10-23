@@ -1,8 +1,8 @@
 <?php
-include '../includes/db.php'; // Include your database connection file
+include '../../includes/db.php'; // Include your database connection file
 
 // Specify the directory for uploads
-$uploadDir = 'uploads/advertisements/';
+$uploadDir = '../uploads/advertisements/';
 $errors = [];
 
 // Check if the form was submitted

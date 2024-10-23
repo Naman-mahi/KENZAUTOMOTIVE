@@ -214,7 +214,7 @@ $result = $conn->query($sql);
                         confirmButtonText: 'Yes, add it!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            fetch('add_advertisement.php', {
+                            fetch('functions/add_advertisement.php', {
                                     method: 'POST',
                                     body: formData
                                 })

@@ -1,5 +1,5 @@
 <?php
-include '../includes/db.php'; // Ensure you include your database connection
+include '../../includes/db.php'; // Ensure you include your database connection
 
 // Start JSON output
 header('Content-Type: application/json');
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_FILES['brand_logo']) && $_FILES['brand_logo']['error'] == UPLOAD_ERR_OK) {
         $logoTmpName = $_FILES['brand_logo']['tmp_name'];
         $logoName = basename($_FILES['brand_logo']['name']);
-        $uploadDir = 'uploads/BrandLogo/';
+        $uploadDir = '../uploads/BrandLogo/';
         $fileName = uniqid() . '-' . $logoName;
         $logoPath = $uploadDir . $fileName; // Unique filename
 

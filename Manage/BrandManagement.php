@@ -183,7 +183,7 @@ $resultCategories = $conn->query($sqlCategories);
                         showCancelButton: true,
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            fetch('add_brand.php', {
+                            fetch('functions/add_brand.php', {
                                     method: 'POST',
                                     body: formData
                                 })
@@ -233,7 +233,7 @@ $resultCategories = $conn->query($sqlCategories);
                     formData.append('brand_logo', brandLogo);
                 }
 
-                fetch('update_brand.php', {
+                fetch('functions/update_brand.php', {
                         method: 'POST',
                         body: formData
                     })

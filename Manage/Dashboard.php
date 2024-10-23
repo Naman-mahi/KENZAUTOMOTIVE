@@ -1,7 +1,7 @@
 <?php
 include 'head.php';
 require_once '../includes/db.php'; // Ensure database connection is included
-require_once 'statistics.php'; // Ensure database connection is included
+require_once 'functions/statistics.php'; // Ensure database connection is included
 ?>
 
 <div class="main-content">
