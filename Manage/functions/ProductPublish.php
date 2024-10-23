@@ -1,5 +1,5 @@
 <?php
-include '../includes/db.php'; // Adjust to your database connection file
+include '../../includes/db.php'; // Adjust to your database connection file
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get and sanitize user input

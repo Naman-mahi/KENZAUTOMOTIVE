@@ -129,7 +129,7 @@ if (isset($_GET['id'])) {
                         <div class="card-body">
                             <h4 class="card-title">You Can Publish Your Product On:</h4>
                             <p>Choose where you'd like your product to be visible to potential buyers and other dealers:</p>
-                            <form method="POST" action="ProductPublish.php" class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                            <form method="POST" action="functions/ProductPublish.php" class="d-flex flex-column flex-md-row justify-content-between align-items-center">
                                 <input type="hidden" name="product_id" value="<?= $Products_publish['product_id'] ?>">
                                 <div class="d-flex flex-column flex-md-row align-items-center mb-3">
                                     <div class="me-md-3 d-flex align-items-center mb-2 mb-md-0">
@@ -163,8 +163,10 @@ if (isset($_GET['id'])) {
 
             <div class="row">
                 <div class="col-12">
-                    <div class="mb-3 d-flex align-items-end">
-                        <a href="NewCar.php" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Update Product Info</a>
+                    <div class="mb-3 d-flex align-items-end justify-content-end">
+                        <a href="ProductImages.php" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light me-2">Add & Update Product Images</a>
+                        <a href="ProductSpecifications.php" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light me-2">Add & Update Specifications</a>
+                        <a href="ProductInfo.php" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light">Update Product Info</a>
                     </div>
                 </div>
             </div>
@@ -178,9 +180,7 @@ if (isset($_GET['id'])) {
                                 <div class="col-lg-12 col-md-12">
                                     <div class="card">
                                         <div class="card-body text-center">
-                                            <a id="mainImageLink" href="<?php echo $productImages[0]['image_url']; ?>" data-fancybox="gallery" data-caption="<?php echo htmlspecialchars($Products['product_name']); ?>">
-                                                <img id="mainImage" src="<?php echo $productImages[0]['image_url']; ?>" alt="<?php echo htmlspecialchars($Products['product_name']); ?>" class="img-fluid main-image">
-                                            </a>
+                                                <img id="mainImage" src="uploads/ProductThumbnail/<?php echo $Products['product_image']; ?>" alt="<?php echo htmlspecialchars($Products['product_name']); ?>" class="img-fluid main-image">
                                         </div>
                                     </div>
                                 </div>
@@ -258,25 +258,25 @@ if (isset($_GET['id'])) {
 
                                                 // SQL statement to fetch attributes and custom attributes
                                                 $sql = "
-                                                SELECT 
-                                                    pa.pf_name AS label,
-                                                    COALESCE(pav.value, 'No Value') AS value
-                                                FROM 
-                                                    product_attributes pa
-                                                LEFT JOIN 
-                                                    product_attributes_value pav ON pa.pf_id = pav.attribute_id AND pav.product_id = ?
-                                                WHERE 
-                                                    pa.category_id = ?
+                                                SELECT  
+                                                        pa.pf_name AS label,
+                                                        COALESCE(pav.value, 'No Value') AS value
+                                                    FROM 
+                                                        product_attributes pa
+                                                    LEFT JOIN 
+                                                        product_attributes_value pav ON pa.pf_id = pav.attribute_id AND pav.product_id = ?
+                                                    WHERE 
+                                                        pa.category_id = ?  
 
-                                                UNION ALL
+                                                    UNION ALL
 
-                                                SELECT 
-                                                    pca.attribute_name AS label,
-                                                    COALESCE(pca.attribute_value, 'No Custom Value') AS value
-                                                FROM 
-                                                    product_custom_attributes pca
-                                                WHERE 
-                                                    pca.product_id = ?";
+                                                    SELECT 
+                                                        pca.attribute_name AS label,
+                                                        COALESCE(pca.attribute_value, 'No Custom Value') AS value
+                                                    FROM 
+                                                        product_custom_attributes pca
+                                                    WHERE 
+                                                        pca.product_id = ?";
 
                                                 $stmt = $conn->prepare($sql);
 
@@ -296,7 +296,10 @@ if (isset($_GET['id'])) {
                                                         }
                                                     } else {
                                                         // No attributes found for the given product ID
-                                                        echo '<tr><td colspan="2">No attributes found for this product.</td></tr>';
+                                                        echo '<tr><td colspan="2">';
+                                                        echo 'No attributes found for this product.';
+                                                        echo '<br><a href="add_specifications.php?id=' . htmlspecialchars($product_id) . '" class="btn btn-primary">Add Specifications</a>';
+                                                        echo '</td></tr>';
                                                     }
 
                                                     // Close the statement
@@ -306,15 +309,15 @@ if (isset($_GET['id'])) {
                                                     echo "<tr><td colspan='2'>Error preparing statement: " . htmlspecialchars($conn->error) . "</td></tr>";
                                                 }
                                             } else {
-                                                // No product ID provided, redirect to MyProducts.php
+                                                // No product ID provided
                                                 echo "<tr><td colspan='2'>No product ID provided.</td></tr>";
                                             }
                                             ?>
                                         </tbody>
                                     </table>
-
-
+                                   
                                 </div>
+
                                 <div class="tab-pane" id="other-details" role="tabpanel">
                                     <table class="table table-bordered">
                                         <tbody>
