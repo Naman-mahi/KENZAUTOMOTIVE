@@ -27,9 +27,9 @@ $result = $stmt->get_result();
                 </div>
             </div>
             <!-- End page title -->
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-12">
-                    <div class="page-title-box d-sm-flex align-items-center justify-content-end">
+                    <div class="d-sm-flex align-items-center justify-content-end">
                         <a href="CouponsManagement.php" class="btn btn-sm btn-dark">
                             <i class="mdi mdi-arrow-left"></i> Back
                         </a>

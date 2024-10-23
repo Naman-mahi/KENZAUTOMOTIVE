@@ -7,7 +7,7 @@ ini_set('display_errors', 1);
 ob_start();
 
 // Include your database connection
-include '../includes/db.php';
+include '../../includes/db.php';
 
 // Get the JSON input
 $data = json_decode(file_get_contents('php://input'), true);

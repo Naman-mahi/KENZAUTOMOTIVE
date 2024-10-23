@@ -69,7 +69,7 @@ $conn->close();
                                     <p class="text-muted"><?= htmlspecialchars($user['email']) ?></p>
                                     <p class="text-muted"><strong>Joined:</strong> <?= date("F j, Y", strtotime($user['created_at'])) ?></p>
                                     <div class="d-flex justify-content-start mt-3">
-                                        <a href="logout.php" class="btn rounded-0  text-danger me-2"><i class="mdi mdi-logout-variant"></i> Logout</a>
+                                        <a href="functions/logout.php" class="btn rounded-0  text-danger me-2"><i class="mdi mdi-logout-variant"></i> Logout</a>
                                         <a class="btn rounded-0  text-primary" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Change Password</a>
                                     </div>
                                 </div>

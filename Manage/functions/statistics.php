@@ -1,6 +1,15 @@
 <?php
 // Include necessary files and start session if not already started
-include '../../includes/db.php';
+if (!file_exists('../includes/db.php')) {
+    die("Error: Database connection file not found.");
+}
+require_once '../includes/db.php'; // Include your database connection
+
+// Check if the connection was successful
+if (!isset($conn) || $conn->connect_error) {
+    die("Error: Database connection file not found.");
+}
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }

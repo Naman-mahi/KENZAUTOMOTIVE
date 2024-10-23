@@ -235,7 +235,7 @@ $result = $conn->query($sql);
                         confirmButtonText: 'Yes, add it!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            fetch('add_coupon.php', {
+                            fetch('functions/add_coupon.php', {
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/json',
@@ -269,7 +269,7 @@ $result = $conn->query($sql);
             });
 
             function changeStatus(coupon_id) {
-                fetch('change_status.php', {
+                fetch('functions/change_status.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -339,7 +339,7 @@ $result = $conn->query($sql);
                 }
 
                 // Perform AJAX request to update coupon
-                fetch('update_coupon.php', {
+                fetch('functions/update_coupon.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
