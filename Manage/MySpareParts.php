@@ -64,40 +64,40 @@ include 'includes/head.php';
             <div class="row">
                 <div class="col-12">
                     <div class="card  bg-light">
-                    <div class="card-body">
+                        <div class="card-body">
 
-<div class="row">
-    <?php
-    $dealer_id = $_SESSION['user_id'];
-    $product_category_id = 4;
-    // Fetch product records from the database
-    $sql = "
+                            <div class="row">
+                                <?php
+                                $dealer_id = $_SESSION['user_id'];
+                                $product_category_id = 4;
+                                // Fetch product records from the database
+                                $sql = "
     SELECT *
     FROM products 
     WHERE dealer_id = ? And category_id = ?
 ";
 
-    // Prepare and execute the statement
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ii", $dealer_id, $product_category_id); // Assuming dealer_id is an integer
-    $stmt->execute();
-    $result = $stmt->get_result();
+                                // Prepare and execute the statement
+                                $stmt = $conn->prepare($sql);
+                                $stmt->bind_param("ii", $dealer_id, $product_category_id); // Assuming dealer_id is an integer
+                                $stmt->execute();
+                                $result = $stmt->get_result();
 
 
-    // Check if there are results
-    if ($result->num_rows > 0) {
-        // Output data for each row
-        while ($row = $result->fetch_assoc()) {
-            // Extract data
-            $id = $row['product_id'];
-            $category_id = $row['category_id'];
-            $product_name = htmlspecialchars($row['product_name']);
-            $product_description = htmlspecialchars($row['product_description']);
-            $image = htmlspecialchars($row['product_image']);
-            $image_path = 'uploads/ProductThumbnail/' . $image; // Updated path for products
+                                // Check if there are results
+                                if ($result->num_rows > 0) {
+                                    // Output data for each row
+                                    while ($row = $result->fetch_assoc()) {
+                                        // Extract data
+                                        $id = $row['product_id'];
+                                        $category_id = $row['category_id'];
+                                        $product_name = htmlspecialchars($row['product_name']);
+                                        $product_description = htmlspecialchars($row['product_description']);
+                                        $image = htmlspecialchars($row['product_image']);
+                                        $image_path = 'uploads/ProductThumbnail/' . $image; // Updated path for products
 
-            // Generate HTML for each product
-            echo '
+                                        // Generate HTML for each product
+                                        echo '
             <div class="col-md-6 mb-4 col-lg-4 col-xl-3">
                 <a href="ProductDetails.php?id=' . $id . '&category_id=' . $category_id . '" class="card-link">
                     <div class="card card-car h-100"> <!-- Changed class name to card-product -->
@@ -111,24 +111,24 @@ include 'includes/head.php';
                     </div>
                 </a>
             </div>';
-        }
-    } else {
+                                    }
+                                } else {
 
-    ?>
-        <div class="text-center py-5">
+                                ?>
+                                    <div class="text-center py-5">
 
-            <h3 class="text-center">No Spare Parts found</h3>
-            <br>
-            <a href="AddProduct?category_id=4" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Add Spare Parts</a>
-        </div>
-    <?php
+                                        <h3 class="text-center">No Spare Parts found</h3>
+                                        <br>
+                                        <a href="AddProduct?category_id=4" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Add Spare Parts</a>
+                                    </div>
+                                <?php
 
-    }
-    $conn->close();
-    ?>
+                                }
+                                $conn->close();
+                                ?>
 
-</div>
-</div>
+                            </div>
+                        </div>
                     </div>
                 </div> <!-- end col -->
             </div> <!-- end row -->
