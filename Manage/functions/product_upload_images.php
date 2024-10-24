@@ -8,45 +8,66 @@ if (!isset($_POST['product_id']) || !isset($_FILES['file'])) {
 }
 
 $product_id = intval($_POST['product_id']);
+if ($product_id <= 0) {
+    echo json_encode(['status' => 'error', 'message' => 'Invalid product ID.']);
+    exit;
+}
+
 $upload_dir = '../uploads/ProductImages/'; // Ensure this directory exists and is writable
 $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif'];
 $response = [];
 
-foreach ($_FILES['file']['name'] as $key => $name) {     
+// Ensure the upload directory exists
+if (!is_dir($upload_dir) || !is_writable($upload_dir)) {
+    echo json_encode(['status' => 'error', 'message' => 'Upload directory is not writable.']);
+    exit;
+}
+
+// Handle single file input as an array
+if (!is_array($_FILES['file']['name'])) {
+    $_FILES['file'] = [
+        'name' => [$_FILES['file']['name']],
+        'type' => [$_FILES['file']['type']],
+        'tmp_name' => [$_FILES['file']['tmp_name']],
+        'error' => [$_FILES['file']['error']],
+        'size' => [$_FILES['file']['size']]
+    ];
+}
+
+foreach ($_FILES['file']['name'] as $key => $name) {
     $file_tmp = $_FILES['file']['tmp_name'][$key];
     $file_error = $_FILES['file']['error'][$key];
-    
+
     // Check for upload errors
     if ($file_error !== UPLOAD_ERR_OK) {
-        echo json_encode(['status' => 'error', 'message' => 'Error uploading file.']);
+        $response[] = ['status' => 'error', 'message' => 'Error uploading file: ' . $file_error];
         continue;
     }
 
     // Validate the file type
     $file_ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
     if (!in_array($file_ext, $allowed_extensions)) {
-        echo json_encode(['status' => 'error', 'message' => 'Invalid file type: ' . htmlspecialchars($file_ext)]);
+        $response[] = ['status' => 'error', 'message' => 'Invalid file type: ' . htmlspecialchars($file_ext)];
         continue;
     }
 
     // Create a unique file name and move the uploaded file
     $file_name = uniqid('', true) . '.' . $file_ext;
-    $file_path = $upload_dir . $file_name;
 
-    if (move_uploaded_file($file_tmp, $file_path)) {
+    if (move_uploaded_file($file_tmp, $upload_dir . $file_name)) {
         // Save the file path in the database
-        $sql = "INSERT INTO product_images (product_id, image_path) VALUES (?, ?)";
+        $sql = "INSERT INTO product_images (product_id, image_url) VALUES (?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("is", $product_id, $file_path);
+        $stmt->bind_param("is", $product_id, $file_name);
 
         if ($stmt->execute()) {
-            $response[] = ['status' => 'success', 'file_name' => $file_name, 'file_path' => $file_path];
+            $response[] = ['status' => 'success', 'file_name' => $file_name, 'file_path' => $upload_dir . $file_name];
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Database error: ' . $stmt->error]);
+            $response[] = ['status' => 'error', 'message' => 'Database error: ' . $stmt->error];
         }
         $stmt->close();
     } else {
-        echo json_encode(['status' => 'error', 'message' => 'Failed to move uploaded file.']);
+        $response[] = ['status' => 'error', 'message' => 'Failed to move uploaded file.'];
     }
 }
 

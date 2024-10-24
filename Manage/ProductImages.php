@@ -69,8 +69,8 @@ $stmt->close();
                                     <div class="row">
                                         <?php foreach ($existing_images as $image): ?>
                                             <div class="col-md-3 mb-3">
-                                                <img src="<?php echo htmlspecialchars($image['image_path']); ?>" class="img-fluid" alt="Product Image">
-                                                <button class="btn btn-danger btn-sm mt-2 delete-image" data-image-id="<?php echo $image['id']; ?>">Delete</button>
+                                                <img src="uploads/ProductImages/<?php echo htmlspecialchars($image['image_url']); ?>" class="img-fluid" alt="Product Image">
+                                                <button class="btn btn-danger btn-sm mt-2 delete-image" data-image-id="<?php echo $image['image_id']; ?>">Delete</button>
                                             </div>
                                         <?php endforeach; ?>
                                     </div>
@@ -87,7 +87,6 @@ $stmt->close();
 <!-- end main content-->
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="assets/libs/dropzone/dropzone.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         if (typeof Dropzone !== 'undefined') {
@@ -95,8 +94,8 @@ $stmt->close();
 
             var myDropzone = new Dropzone("#productImageUpload", {
                 url: "functions/product_upload_images.php",
-                paramName: "file",
-                maxFilesize: 5, // MB
+                paramName: "file[]",
+                maxFilesize: 10, // MB
                 acceptedFiles: "image/*",
                 addRemoveLinks: true,
                 autoProcessQueue: false
@@ -115,8 +114,17 @@ $stmt->close();
             document.querySelectorAll('.delete-image').forEach(function(button) {
                 button.addEventListener('click', function() {
                     var imageId = this.getAttribute('data-image-id');
-                    if (confirm('Are you sure you want to delete this image?')) {
-                        fetch('delete_image.php', {
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            fetch('functions/delete_image.php', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -125,14 +133,32 @@ $stmt->close();
                             })
                             .then(response => response.json())
                             .then(data => {
-                                console.log(data);
-                                // Remove the image from the DOM
-                                this.closest('.col-md-3').remove();
+                                if (data.status === 'success') {
+                                    Swal.fire(
+                                        'Deleted!',
+                                        'Your image has been deleted.',
+                                        'success'
+                                    );
+                                    // Remove the image from the DOM
+                                    this.closest('.col-md-3').remove();
+                                } else {
+                                    Swal.fire(
+                                        'Error!',
+                                        'Failed to delete the image.',
+                                        'error'
+                                    );
+                                }
                             })
                             .catch((error) => {
                                 console.error('Error:', error);
+                                Swal.fire(
+                                    'Error!',
+                                    'An error occurred while deleting the image.',
+                                    'error'
+                                );
                             });
-                    }
+                        }
+                    });
                 });
             });
         } else {
