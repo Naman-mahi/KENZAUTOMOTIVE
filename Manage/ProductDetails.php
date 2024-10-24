@@ -156,7 +156,7 @@ $category_id = $_GET['category_id'];
                     <div class="mb-3 d-flex align-items-end justify-content-end">
                         <a href="ProductImages?product_id=<?php echo $product_id; ?>" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light me-2">Add & Update Product Images</a>
                         <a href="ProductSpecifications?product_id=<?php echo $product_id; ?>&category_id=<?php echo $category_id; ?>" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light me-2">Add & Update Specifications</a>
-                        <a href="ProductInfo.php" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light">Update Product Info</a>
+                        <a href="ProductInfo?product_id=<?php echo $product_id; ?>" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light">Update Product Info</a>
                     </div>
                 </div>
             </div>
