@@ -44,7 +44,9 @@ $stmt->close();
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Upload Product Images</h4>
-                            <p class="card-title-desc">Drag and drop images or click to upload.</p>
+                            <p class="card-title-desc">You can drag and drop images or click to upload them.</p>
+                            <p class="card-title-desc">Maximum file size: 10MB. You can upload up to two files at once.</p>
+
 
                             <form action="upload_images.php" class="dropzone" id="productImageUpload">
                                 <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
@@ -125,38 +127,38 @@ $stmt->close();
                     }).then((result) => {
                         if (result.isConfirmed) {
                             fetch('functions/delete_image.php', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/x-www-form-urlencoded',
-                                },
-                                body: 'image_id=' + imageId
-                            })
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.status === 'success') {
-                                    Swal.fire(
-                                        'Deleted!',
-                                        'Your image has been deleted.',
-                                        'success'
-                                    );
-                                    // Remove the image from the DOM
-                                    this.closest('.col-md-3').remove();
-                                } else {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded',
+                                    },
+                                    body: 'image_id=' + imageId
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.status === 'success') {
+                                        Swal.fire(
+                                            'Deleted!',
+                                            'Your image has been deleted.',
+                                            'success'
+                                        );
+                                        // Remove the image from the DOM
+                                        this.closest('.col-md-3').remove();
+                                    } else {
+                                        Swal.fire(
+                                            'Error!',
+                                            'Failed to delete the image.',
+                                            'error'
+                                        );
+                                    }
+                                })
+                                .catch((error) => {
+                                    console.error('Error:', error);
                                     Swal.fire(
                                         'Error!',
-                                        'Failed to delete the image.',
+                                        'An error occurred while deleting the image.',
                                         'error'
                                     );
-                                }
-                            })
-                            .catch((error) => {
-                                console.error('Error:', error);
-                                Swal.fire(
-                                    'Error!',
-                                    'An error occurred while deleting the image.',
-                                    'error'
-                                );
-                            });
+                                });
                         }
                     });
                 });
