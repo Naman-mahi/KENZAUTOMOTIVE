@@ -107,7 +107,6 @@ include 'includes/head.php';
                                                     </div>
                                                     <div class="card-body d-flex flex-column">
                                                         <h4 class="card-title">' . $product_name . '</h4>
-                                                        <p class="card-text flex-grow-1">' . $product_description . '</p>
                                                     </div>
                                                 </div>
                                             </a>
