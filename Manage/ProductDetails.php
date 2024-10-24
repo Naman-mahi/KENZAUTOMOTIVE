@@ -172,7 +172,7 @@ $category_id = $_GET['category_id'];
 
                                         <div class="card-body text-center">
                                             <h5>Product Thumbnail</h5>
-                                            <img id="mainImage" src="uploads/ProductThumbnail/<?php echo $Products['product_image']; ?>" alt="<?php echo htmlspecialchars($Products['product_name']); ?>" class="img-fluid main-image">
+                                            <img src="uploads/ProductThumbnail/<?php echo $Products['product_image']; ?>" alt="<?php echo htmlspecialchars($Products['product_name']); ?>" class="img-fluid main-image">
                                         </div>
                                     </div>
                                 </div>
