@@ -169,7 +169,9 @@ $category_id = $_GET['category_id'];
                             <div class="row">
                                 <div class="col-lg-12 col-md-12">
                                     <div class="card">
+                                        
                                         <div class="card-body text-center">
+                                            <h5>Product Thumbnail</h5>
                                             <img id="mainImage" src="uploads/ProductThumbnail/<?php echo $Products['product_image']; ?>" alt="<?php echo htmlspecialchars($Products['product_name']); ?>" class="img-fluid main-image">
                                         </div>
                                     </div>
@@ -178,12 +180,19 @@ $category_id = $_GET['category_id'];
 
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="d-flex flex-wrap justify-content-center">
-                                        <?php foreach ($productImages as $index => $image): ?>
-                                            <button class="thumbnail mb-2" data-index="<?php echo $index; ?>" onclick="changeImage('<?php echo $image['image_url']; ?>')">
-                                                <img src="<?php echo $image['image_url']; ?>" alt="Thumbnail <?php echo $index + 1; ?>" class="img-fluid" style="width: 100px; height: auto;">
-                                            </button>
-                                        <?php endforeach; ?>
+                                    <h5 class="p-2">Product Images</h5>
+                                    <div class="d-flex flex-wrap justify-content-center mb-3">
+                                        <?php if (!empty($productImages)): ?>
+                                            <?php foreach ($productImages as $index => $image): 
+                                                $imagePath = 'uploads/ProductImages/' . htmlspecialchars($image['image_url']);
+                                            ?>
+                                                <button class="thumbnail mb-2 me-2" data-index="<?php echo $index; ?>" onclick="changeImage('<?php echo $imagePath; ?>')">
+                                                    <img src="<?php echo $imagePath; ?>" alt="Product Image <?php echo $index + 1; ?>" class="img-fluid" style="width: 100px; height: 100px; object-fit: cover;">
+                                                </button>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <p class="text-muted">No additional product images available.</p>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -336,12 +345,7 @@ $category_id = $_GET['category_id'];
 </div>
 <!-- end main content -->
 <!-- HTML and JavaScript for Cloudinary Gallery -->
-<script>
-    function changeImage(imageSrc) {
-        document.getElementById('mainImage').src = imageSrc;
-        document.getElementById('mainImageLink').href = imageSrc;
-    }
-</script>
+
 
 <?php
 include 'includes/footer.php';
