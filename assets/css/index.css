@@ -64,7 +64,7 @@
 /* Styling for the card */
 /* Car Item Styles */
 .item .car-card {
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2); */
     border-radius: 10px;
     overflow: hidden;
     transition: all 0.5s ease;
@@ -84,6 +84,7 @@
 
 .item .car-card .car-img img {
     transition: transform 0.5s ease;
+    height: 14rem;
 }
 
 .item .car-card:hover .car-img img {
@@ -217,6 +218,11 @@
 .btn-next.disabled {
     display: none;
 }
+.disabled {
+    pointer-events: none !important;
+    opacity: 0.5 !important;
+}
+
 
 /* Hide buttons in mobile view */
 @media (max-width: 600px) {

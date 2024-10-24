@@ -3,21 +3,21 @@
 <link rel="stylesheet" href="../assets/lib/owl-carousel/css/owl.theme.green.css">
 <style>
 
+
 </style>
 
 <body>
     <div class="account-pages">
         <div class="container-fluid banner-container">
             <?php include_once('../includes/userheader.php'); ?>
-            <div class="row h-100 justify-content-center align-items-center">
-                <!-- Full height row to center content -->
-                <div class="col-12 text-center">
-                    <!-- Center text -->
+            <div class="row h-100 justify-content-center align-items-center"> <!-- Full height row to center content -->
+                <div class="col-12 text-center"> <!-- Center text -->
                     <h1 class="bannertitle">Discover Your Perfect Ride</h1> <!-- Large heading -->
                     <p class="lead">Thousands of quality used cars waiting for you!</p> <!-- Subheading -->
                     <button class="advanced-filter-btn mt-4">Explore Filters</button> <!-- Button -->
                 </div>
             </div>
+
         </div>
     </div>
     <div class="carousel-wrap">
@@ -26,13 +26,90 @@
                 <i class="mdi mdi-car"></i> Featured Used Cars for Sale
             </h1>
         </div>
-        <button class="btn-prev featured-prev"><i class="mdi mdi-arrow-left-drop-circle-outline"></i></button>
+        <!-- <button class="btn-prev"><i class="fa fa-caret-left"></i></button> -->
         <div class="owl-carousel featured-carousel">
-            <!-- Dynamic content will be injected here -->
+            <div class="item">
+                <div class="car-card bg-light rounded">
+                    <div class="car-img">
+                        <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="img-fluid w-100 rounded-top">
+                    </div>
+                    <div class="car-content text-center p-3">
+                        <div class="car-content-inner">
+                            <h5 class="car-title">Hyundai Elantra</h5>
+                            <p class="car-price">INR 18.5 - 28.0 lacs</p>
+                            <p class="car-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
+                            <!-- <a class="btn btn-light rounded-pill py-2 px-4" href="#">Learn More</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="card">
+                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Honda City</h5>
+                        <p class="card-price">INR 25.3 - 35.5 lacs</p>
+                        <p class="card-reviews"><span class="rating">★★★☆☆</span> 150 Reviews</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="card">
+                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Honda City</h5>
+                        <p class="card-price">INR 25.3 - 35.5 lacs</p>
+                        <p class="card-reviews"><span class="rating">★★★☆☆</span> 150 Reviews</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="card">
+                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Honda City</h5>
+                        <p class="card-price">INR 25.3 - 35.5 lacs</p>
+                        <p class="card-reviews"><span class="rating">★★★☆☆</span> 150 Reviews</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="card">
+                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Honda City</h5>
+                        <p class="card-price">INR 25.3 - 35.5 lacs</p>
+                        <p class="card-reviews"><span class="rating">★★★☆☆</span> 150 Reviews</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="card">
+                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Honda City</h5>
+                        <p class="card-price">INR 25.3 - 35.5 lacs</p>
+                        <p class="card-reviews"><span class="rating">★★★☆☆</span> 150 Reviews</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="card">
+                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Honda City</h5>
+                        <p class="card-price">INR 25.3 - 35.5 lacs</p>
+                        <p class="card-reviews"><span class="rating">★★★☆☆</span> 150 Reviews</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat more card items as needed -->
         </div>
+        <!-- <button class="btn-next"><i class="fa fa-caret-right"></i></button> -->
+        <button class="btn-prev featured-prev"><i class="mdi mdi-arrow-left-drop-circle-outline"></i></button>
         <button class="btn-next featured-next"><i class="mdi mdi-arrow-right-drop-circle-outline"></i></button>
     </div>
-
     <!-- New Carousel: Recommended Used Cars For You -->
     <div class="carousel-wrap">
         <div class="text-center mb-4">
@@ -249,8 +326,7 @@
                 <!-- Single Item -->
                 <div class="col-md-4 col-sm-6 equal-height">
                     <div class="item">
-                        <img class="rounded-circle" src="../assets/images/home/rent.gif" alt="" height="80px"
-                            width="80px">
+                        <img class="rounded-circle" src="../assets/images/home/rent.gif" alt="" height="80px" width="80px">
                         <h4>Rentals</h4>
                         <p>
                             Choose from a wide range of vehicles for short-term or long-term rentals.
@@ -262,8 +338,7 @@
                 <!-- Single Item -->
                 <div class="col-md-4 col-sm-6 equal-height">
                     <div class="item">
-                        <img class="rounded-circle" src="../assets/images/home/sale.gif" alt="" height="80px"
-                            width="80px">
+                        <img class="rounded-circle" src="../assets/images/home/sale.gif" alt="" height="80px" width="80px">
                         <!-- <i class="fas fa-car-side fa-3x"></i> -->
                         <h4>Sales</h4>
                         <p>
@@ -276,8 +351,7 @@
                 <!-- Single Item -->
                 <div class="col-md-4 col-sm-6 equal-height">
                     <div class="item">
-                        <img class="rounded-circle" src="../assets/images/home/buy.gif" alt="" height="80px"
-                            width="80px">
+                        <img class="rounded-circle" src="../assets/images/home/buy.gif" alt="" height="80px" width="80px">
                         <!-- <i class="fas fa-shopping-cart fa-3x"></i> -->
                         <h4>Buy</h4>
                         <p>
@@ -303,8 +377,7 @@
                 <!-- Single Item -->
                 <div class="col-md-4 col-sm-6 equal-height">
                     <div class="item">
-                        <img class="rounded-circle" src="../assets/images/home/maintenance.gif" alt="" height="80px"
-                            width="80px">
+                        <img class="rounded-circle" src="../assets/images/home/maintenance.gif" alt="" height="80px" width="80px">
                         <h4>Auto Spare Parts</h4>
                         <p>
                             Explore a wide range of auto spare parts available for direct purchase from Kenz Wheel.
@@ -600,60 +673,13 @@
 
     <?php require_once '../includes/userfooter.php' ?>
     <script>
-        const BASE_URL = 'http://192.168.1.4/MarketplaceAPI';
-        const ImageBASE_URL = 'http://192.168.1.4/Marketplace';
-        const imageUrl = `${ImageBASE_URL}/Manage/uploads/ProductThumbnail/`;
-        fetchProducts();
-
-        function fetchProducts() {
-            $.ajax({
-                url: `${BASE_URL}/products`,
-                type: 'GET',
-                success: function(data) {
-                    if (data && data.status === 200 && Array.isArray(data.data)) {
-                        displayProducts(data.data);
-                    } else {
-                        console.error('Invalid data format:', data);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error fetching products:', error);
-                }
-            });
-        }
-
-        function displayProducts(products) {
-            $('.featured-carousel').empty();
-            console.log(products);
-            products.forEach(product => {
-                const item = `
-         <div class="item">
-           <a href="viewproduct.php?product_id=${product.product_id}"
-               class="car-card bg-light rounded text-decoration-none">
-               <div class="car-img">
-                   <img src="${imageUrl}${product.product_image}" alt="${product.product_name}"
-                       class="img-fluid w-100 rounded-top">
-               </div>
-               <div class="car-content text-center p-3">
-                   <div class="car-content-inner">
-                       <h5 class="car-title">${product.product_name}</h5>
-                       <p class="car-price">INR ${product.price}</p>
-                       <p class="car-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                   </div>
-               </div>
-           </a>
-       </div>
-       `;
-                $('.featured-carousel').append(item);
-            });
-            // Initialize the Owl Carousel
-            const $featuredCarousel = $('.featured-carousel').owlCarousel({
-                loop: false, // Disable looping to manually control prev/next buttons
+        $(document).ready(function() {
+            // Initialize Owl Carousel
+            $('.owl-carousel').owlCarousel({
+                loop: false,
                 margin: 10,
                 autoplay: false,
                 autoplayHoverPause: true,
-                nav: false, // Disable default nav buttons
-                dots: false, // Disable default dots
                 responsive: {
                     0: {
                         items: 1
@@ -666,36 +692,52 @@
                     }
                 }
             });
-            // Update button visibility
-            function updateButtonVisibility(event) {
-                var carousel = event.relatedTarget;
-                // Disable previous button if on first item
-                if (carousel.current() === 0) {
-                    $('.featured-prev').addClass('disabled');
-                } else {
-                    $('.featured-prev').removeClass('disabled');
-                }
-                // Disable next button if on last item
-                if (carousel.current() + carousel.settings.items >= carousel.items().length) {
-                    $('.featured-next').addClass('disabled');
-                } else {
-                    $('.featured-next').removeClass('disabled');
-                }
-            }
-            // Initial check for button visibility
-            $featuredCarousel.on('initialized.owl.carousel', updateButtonVisibility);
-            // Update button visibility when carousel changes
-            $featuredCarousel.on('changed.owl.carousel', updateButtonVisibility);
-            // Custom navigation buttons
+
+            // Handle previous and next button clicks for Featured Carousel
             $('.featured-prev').click(function() {
-                $featuredCarousel.trigger('prev.owl.carousel');
+                $('.featured-carousel').trigger('prev.owl.carousel');
             });
             $('.featured-next').click(function() {
-                $featuredCarousel.trigger('next.owl.carousel');
+                $('.featured-carousel').trigger('next.owl.carousel');
             });
-        }
-    </script>
 
+            // Update button visibility based on carousel state
+            function updateButtonVisibility(event) {
+                if (!event || !event.relatedTarget) {
+                    console.error("Event or relatedTarget is undefined");
+                    return;
+                }
+
+                var carousel = event.relatedTarget;
+
+                if (carousel && carousel.settings && carousel.items) {
+                    // Hide 'prev' button if first item is active
+                    if (carousel.current() === 0) {
+                        $('.btn-prev').addClass('disabled');
+                    } else {
+                        $('.btn-prev').removeClass('disabled');
+                    }
+
+                    // Hide 'next' button if last item is active
+                    if (carousel.current() + carousel.settings.items >= carousel.items().length) {
+                        $('.btn-next').addClass('disabled');
+                    } else {
+                        $('.btn-next').removeClass('disabled');
+                    }
+                } else {
+                    console.error("Carousel or its properties are undefined");
+                }
+            }
+
+            // Handle carousel change event
+            $('.owl-carousel').on('changed.owl.carousel', updateButtonVisibility);
+
+            // Trigger initial check for prev/next buttons
+            // setTimeout(function() {
+            //     $('.owl-carousel').trigger('changed.owl.carousel');
+            // }, 100);
+        });
+    </script>
     <!-- Separate Script for Recommended Carousel -->
     <script>
         $(document).ready(function() {
@@ -717,6 +759,7 @@
                     }
                 }
             });
+
             // Handle previous and next button clicks for Recommended Carousel
             $('.recommended-prev').click(function() {
                 $('.recommended-carousel').trigger('prev.owl.carousel');
@@ -724,6 +767,7 @@
             $('.recommended-next').click(function() {
                 $('.recommended-carousel').trigger('next.owl.carousel');
             });
+
             // Update button visibility for Recommended Carousel
             function updateRecommendedButtonVisibility(event) {
                 var carousel = event.relatedTarget;
@@ -738,14 +782,58 @@
                     $('.recommended-next').removeClass('disabled');
                 }
             }
+
             // Handle carousel change event for Recommended Carousel
             $('.recommended-carousel').on('changed.owl.carousel', updateRecommendedButtonVisibility);
+
             // Trigger initial check for prev/next buttons
             // setTimeout(function() {
             //     $('.recommended-carousel').trigger('changed.owl.carousel');
             // }, 100);
         });
     </script>
-</body>
+ <script>
+    const BASE_URL = 'http://192.168.1.4/MarketplaceAPI';
+    const ImageBASE_URL = 'http://192.168.1.4/Marketplace';
+    const imageUrl = `${ImageBASE_URL}/Manage/uploads/ProductThumbnail/`; // Base URL for images
 
-</html>
+    $(document).ready(function() {
+        // Call the fetchProducts function when the document is ready
+        fetchProducts();
+    });
+
+    function fetchProducts() {
+        $.ajax({
+            url: `${BASE_URL}/products`, // Use the base URL here
+            type: 'GET',
+            success: function(data) {
+                console.log(data); // Log the entire response for inspection
+
+                // Check if data has a valid structure
+                if (data && data.status === 200 && Array.isArray(data.data)) {
+                    // Iterate over the products array
+                    data.data.forEach(product => {
+                        console.log(product); // Log the entire product object
+
+                        // Access product_image directly from the product object
+                        const productImage = product.product_image; // Accessing directly
+                        
+                        if (productImage) {
+                            const imageFullUrl = imageUrl + productImage; // Construct the full image URL
+                            console.log(imageFullUrl); // Display the full image URL
+                        } else {
+                            console.log('No valid image found for this product.');
+                        }
+                    });
+                } else {
+                    console.error('Invalid data format:', data);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching products:', error);
+            }
+        });
+    }
+</script>
+
+

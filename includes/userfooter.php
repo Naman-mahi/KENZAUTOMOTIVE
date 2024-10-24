@@ -66,6 +66,4 @@
    <script src="<?= BASE_URL ?>manage/assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
    <script src="<?= BASE_URL ?>assets/lib/owl-carousel/js/owl.carousel.min.js"></script>
 
-   </body>
-
-   </html>
+   
