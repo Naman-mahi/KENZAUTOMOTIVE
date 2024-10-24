@@ -13,7 +13,7 @@
 .bannertitle {
     margin-top: 1rem;
     /* Remove top margin */
-    font-size: 3rem;
+    font-size: 3em;
     font-weight: bolder;
     /* Increase font size */
     color: var(--white-surface) !important;
@@ -36,6 +36,7 @@
     padding: 5px 20px;
     /* Reduced padding */
     font-size: 0.875rem;
+    margin-bottom: 15px;
     /* Smaller font size */
     border-radius: 20px;
     /* Adjusted border radius */
@@ -49,6 +50,7 @@
     border-color: var(--white-surface);
     color: var(--white-surface);
 }
+
 
 /*End Container CSS for the banner */
 
@@ -154,7 +156,7 @@
 .item .car-card .car-title {
     font-size: 16px;
     font-weight: bold;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     color: var(--black-surface);
     transition: color 0.5s ease;
 }
@@ -166,7 +168,8 @@
 .item .car-card .car-price {
     font-size: 16px;
     color: var(--primary-color);
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
+    margin: 0%;
     transition: color 0.5s ease;
 }
 

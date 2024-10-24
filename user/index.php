@@ -9,13 +9,13 @@
     <div class="account-pages">
         <div class="container-fluid banner-container">
             <?php include_once('../includes/userheader.php'); ?>
-            <div class="row h-100 justify-content-center align-items-center">
+            <div class="row">
                 <!-- Full height row to center content -->
-                <div class="col-12 text-center">
+                <div class="col-12 text-center justify-content-center align-items-center">
                     <!-- Center text -->
-                    <h1 class="bannertitle">Discover Your Perfect Ride</h1> <!-- Large heading -->
+                    <h1 class="bannertitle mt-md-5 pt-md-5">Discover Your Perfect Ride</h1> <!-- Large heading -->
                     <p class="lead">Thousands of quality used cars waiting for you!</p> <!-- Subheading -->
-                    <button class="advanced-filter-btn mt-4">Explore Filters</button> <!-- Button -->
+                    <button class="advanced-filter-btn mt-md-4">Explore Filters</button> <!-- Button -->
                 </div>
             </div>
         </div>
@@ -603,6 +603,7 @@
         const BASE_URL = 'http://192.168.1.4/MarketplaceAPI';
         const ImageBASE_URL = 'http://192.168.1.4/Marketplace';
         const imageUrl = `${ImageBASE_URL}/Manage/uploads/ProductThumbnail/`;
+
         fetchProducts();
 
         function fetchProducts() {
@@ -622,38 +623,59 @@
             });
         }
 
-        function displayProducts(products) {
+        function fetchCity(dealerId) {
+            return $.ajax({
+                url: `${BASE_URL}/profile/${dealerId}`,
+                type: 'GET',
+            }).then(response => {
+                if (response && response.statuscode === 200 && response.user) {
+                    return response.user.city; // Access city from the user object
+                } else {
+                    console.error('Invalid city data format:', response);
+                    return '';
+                }
+            }).catch(error => {
+                console.error('Error fetching city:', error);
+                return '';
+            });
+        }
+
+        async function displayProducts(products) {
             $('.featured-carousel').empty();
             console.log(products);
-            products.forEach(product => {
+
+            for (const product of products) {
+                const city = await fetchCity(product.dealer_id); // Fetch city using dealer_id
                 const item = `
-         <div class="item">
-           <a href="viewproduct.php?product_id=${product.product_id}"
-               class="car-card bg-light rounded text-decoration-none">
-               <div class="car-img">
-                   <img src="${imageUrl}${product.product_image}" alt="${product.product_name}"
-                       class="img-fluid w-100 rounded-top">
-               </div>
-               <div class="car-content text-center p-3">
-                   <div class="car-content-inner">
-                       <h5 class="car-title">${product.product_name}</h5>
-                       <p class="car-price">INR ${product.price}</p>
-                       <p class="car-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                   </div>
-               </div>
-           </a>
-       </div>
-       `;
+                <div class="item">
+                    <a href="viewproduct.php?product_id=${product.product_id}"
+                       class="car-card bg-light rounded text-decoration-none">
+                        <div class="car-img">
+                            <img src="${imageUrl}${product.product_image}" alt="${product.product_name}"
+                                 class="img-fluid w-100 rounded-top">
+                        </div>
+                        <div class="car-content text-start">
+                            <div class="car-content-inner">
+                                <h5 class="car-title">${product.product_name}</h5>
+                                <p class="car-price pb-0">INR ${product.price}</p>
+                                <p class="car-city pb-0">${city}</p> <!-- Display city -->
+                                <p class="car-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `;
                 $('.featured-carousel').append(item);
-            });
+            }
+
             // Initialize the Owl Carousel
             const $featuredCarousel = $('.featured-carousel').owlCarousel({
-                loop: false, // Disable looping to manually control prev/next buttons
+                loop: false,
                 margin: 10,
                 autoplay: false,
                 autoplayHoverPause: true,
-                nav: false, // Disable default nav buttons
-                dots: false, // Disable default dots
+                nav: false,
+                dots: false,
                 responsive: {
                     0: {
                         items: 1
@@ -666,26 +688,26 @@
                     }
                 }
             });
+
             // Update button visibility
             function updateButtonVisibility(event) {
                 var carousel = event.relatedTarget;
-                // Disable previous button if on first item
                 if (carousel.current() === 0) {
                     $('.featured-prev').addClass('disabled');
                 } else {
                     $('.featured-prev').removeClass('disabled');
                 }
-                // Disable next button if on last item
                 if (carousel.current() + carousel.settings.items >= carousel.items().length) {
                     $('.featured-next').addClass('disabled');
                 } else {
                     $('.featured-next').removeClass('disabled');
                 }
             }
+
             // Initial check for button visibility
             $featuredCarousel.on('initialized.owl.carousel', updateButtonVisibility);
-            // Update button visibility when carousel changes
             $featuredCarousel.on('changed.owl.carousel', updateButtonVisibility);
+
             // Custom navigation buttons
             $('.featured-prev').click(function() {
                 $featuredCarousel.trigger('prev.owl.carousel');
@@ -695,6 +717,8 @@
             });
         }
     </script>
+
+
 
     <!-- Separate Script for Recommended Carousel -->
     <script>

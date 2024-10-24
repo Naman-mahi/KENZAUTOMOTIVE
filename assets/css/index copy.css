@@ -1,6 +1,6 @@
 /*Start Container CSS for the banner */
 .banner-container {
-    height: 55vh;
+    height: 70vh;
     background: var(--dynamic-gradient);
     color: var(--white-surface);
 }
