@@ -169,7 +169,7 @@ $category_id = $_GET['category_id'];
                             <div class="row">
                                 <div class="col-lg-12 col-md-12">
                                     <div class="card">
-                                        
+
                                         <div class="card-body text-center">
                                             <h5>Product Thumbnail</h5>
                                             <img id="mainImage" src="uploads/ProductThumbnail/<?php echo $Products['product_image']; ?>" alt="<?php echo htmlspecialchars($Products['product_name']); ?>" class="img-fluid main-image">
@@ -183,7 +183,7 @@ $category_id = $_GET['category_id'];
                                     <h5 class="p-2">Product Images</h5>
                                     <div class="d-flex flex-wrap justify-content-center mb-3">
                                         <?php if (!empty($productImages)): ?>
-                                            <?php foreach ($productImages as $index => $image): 
+                                            <?php foreach ($productImages as $index => $image):
                                                 $imagePath = 'uploads/ProductImages/' . htmlspecialchars($image['image_url']);
                                             ?>
                                                 <button class="thumbnail mb-2 me-2" data-index="<?php echo $index; ?>" onclick="changeImage('<?php echo $imagePath; ?>')">
