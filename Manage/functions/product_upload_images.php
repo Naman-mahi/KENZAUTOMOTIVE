@@ -14,7 +14,7 @@ if ($product_id <= 0) {
 }
 
 $upload_dir = '../uploads/ProductImages/'; // Ensure this directory exists and is writable
-$allowed_extensions = ['jpg', 'jpeg', 'png', 'gif'];
+$allowed_extensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'avif', 'heic', 'heif', 'tiff', 'bmp', 'ico', 'cur'];
 $response = [];
 
 // Ensure the upload directory exists

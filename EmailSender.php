@@ -12,26 +12,28 @@ function sendEmail($recipientEmail, $subject, $body) {
     try {
         // Server settings
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
+        $mail->Host = 'mail.kenzwheels.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'naman.intelcode@gmail.com'; // Your Gmail address
-        $mail->Password = 'peav zved njcd ropg'; // Your Gmail 
+        $mail->Username = 'mails@kenzwheels.com';
+        $mail->Password = 'Qyt7SCaCpVArH4hyGksJ';
+        $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
         // Recipients
-        $mail->setFrom('your_email@example.com', 'Your Name');
-        $mail->addAddress($recipientEmail); // Add a recipient
+        $mail->setFrom('mails@kenzwheels.com', 'Kenz Wheels');
+        $mail->addAddress($recipientEmail);
+        $mail->addReplyTo('no-reply@kenzwheels.com', 'No Reply');
 
         // Content
-        $mail->isHTML(true); // Set email format to HTML
+        $mail->isHTML(true);
         $mail->Subject = $subject;
-        $mail->Body    = $body;
-        $mail->AltBody = strip_tags($body); // Plain text version
+        $mail->Body = $body;
+        $mail->AltBody = strip_tags($body);
 
         $mail->send();
-        return true; // Email sent successfully
+        return true;
     } catch (Exception $e) {
-        return false; // Email could not be sent
+        return false;
     }
 }
 ?>

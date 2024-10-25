@@ -21,16 +21,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         // Server settings
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
+        $mail->Host = 'mail.kenzwheels.com'; // Updated SMTP server
         $mail->SMTPAuth = true;
-        $mail->Username = 'naman.intelcode@gmail.com'; // Your Gmail address
-        $mail->Password = 'peav zved njcd ropg'; // Your Gmail password or App Password
+        $mail->Username = 'mails@kenzwheels.com'; // Your email address
+        $mail->Password = 'Qyt7SCaCpVArH4hyGksJ'; // Your email password
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
         // Recipients
-        $mail->setFrom('naman.intelcode@gmail.com', 'Your Name');
+        $mail->setFrom('mails@kenzwheels.com', 'Kenz Wheels'); // Updated sender address
         $mail->addAddress($email);
+        $mail->addReplyTo('no-reply@kenzwheels.com', 'No Reply'); // Set reply-to address
 
         // Content
         $mail->isHTML(true);
