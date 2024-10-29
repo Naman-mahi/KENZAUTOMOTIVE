@@ -14,6 +14,8 @@
     --white-surface: #fff;
     --lighter-contrast: rgba(255, 255, 255, 0.8);
     --light-shadow: 0 0 0 0 rgba(255, 1, 1, 0.5);
+    --box-shadow-small: 0 3px 6px rgba(183, 52, 56, 0.6);
+    --box-shadow-large: 0 7px 12px rgba(183, 52, 57, 0.4);
     /* Light shadow */
     --heading-color-h1: #b73439;
     /* Example color for h1 */

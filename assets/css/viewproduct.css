@@ -1,0 +1,227 @@
+.breadcrumb {
+    background-color: transparent;
+}
+
+.card-body p {
+    margin: 0;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.list-group .list-group-item {
+    background-color: #f3f3f4;
+    border: none;
+}
+
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+}
+
+.number,
+.message {
+    border-radius: 50px;
+    padding: 12px 0;
+}
+
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .specs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.spec-item {
+    text-align: center;
+    padding: 1rem;
+}
+
+.spec-icon {
+    color: #2962ff;
+    margin-bottom: 0.5rem;
+}
+
+.spec-value {
+    font-weight: 500;
+    color: #333;
+}
+
+.details-table {
+    border-spacing: 0 0.5rem;
+    border-collapse: separate;
+}
+
+.details-table td {
+    padding: 0.5rem 0;
+}
+
+.details-table td:first-child {
+    color: #666;
+    width: 40%;
+}
+
+.progress {
+    height: 0.5rem;
+}
+
+.progress-bar {
+    background-color: #2962ff;
+}
+
+.inspection-report {
+    background-color: #f8f9ff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.overall-rating {
+    color: #2962ff;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+@media (max-width: 576px) {
+    .custom-breadcrumb {
+        margin-left: 0;
+        /* Remove margin on small devices */
+    }
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.swiper {
+    width: 100%;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.swiper-slide {
+    background-size: cover;
+    background-position: center;
+}
+
+.mySwiper2 {
+    height: 80%;
+    width: 100%;
+}
+
+.mySwiper {
+    height: 20%;
+    box-sizing: border-box;
+    padding: 10px 0;
+}
+
+.mySwiper .swiper-slide {
+    width: 25%;
+    height: 100%;
+    opacity: 0.4;
+}
+
+.mySwiper .swiper-slide-thumb-active {
+    opacity: 1;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* .mySwiper2 {
+height: 35%;
+width: 82%;
+} */
+/* Swiper navigation buttons */
+.swiper-button-next,
+.swiper-button-prev {
+    width: 40px !important;
+    height: 40px !important;
+    background-color: #333;
+    /* Dark background for a modern look */
+    color: white;
+    /* White icons for better contrast */
+    border-radius: 50%;
+    /* Rounded buttons for a sleek design */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* Soft shadow for a 3D effect */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    /* Smooth hover effect */
+}
+
+.badge {
+    z-index: 10;
+    /* Higher z-index to bring it in front */
+}
+
+/* Swiper navigation arrows */
+.swiper-button-prev:after,
+.swiper-rtl .swiper-button-next:after,
+.swiper-button-next:after {
+    font-size: 20px !important;
+    /* Larger arrow size */
+    color: white;
+    /* Arrow color */
+}
+
+/* Hover effect for the buttons */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background-color: var(--primary-color) !important;
+    /* Attractive blue color on hover */
+    transform: scale(1.1) !important;
+    /* Slightly enlarge the button on hover */
+    box-shadow: var( --box-shadow-large) !;
+
+    /* Enhance shadow effect */
+}
+
+/* Active state for buttons */
+.swiper-button-next:active,
+.swiper-button-prev:active {
+    transform: scale(1.05) !important;
+    /* Slightly reduced scaling when active */
+    box-shadow: var(--box-shadow-small) !important;
+    /* Darker shadow effect */
+}

@@ -600,8 +600,10 @@
 
     <?php require_once '../includes/userfooter.php' ?>
     <script>
-        const BASE_URL = 'http://192.168.1.4/MarketplaceAPI';
-        const ImageBASE_URL = 'http://192.168.1.4/Marketplace';
+        const BASE_URL = 'http://192.168.1.9/MarketplaceAPI';
+        // const BASE_URL = 'https://api.intencode.com';
+        const ImageBASE_URL = 'http://192.168.1.9/Marketplace';
+        // const ImageBASE_URL = 'https://api.intencode.com/Marketplace';
         const imageUrl = `${ImageBASE_URL}/Manage/uploads/ProductThumbnail/`;
 
         fetchProducts();
@@ -716,6 +718,48 @@
                 $featuredCarousel.trigger('next.owl.carousel');
             });
         }
+    </script>
+
+    <script>
+        async function fetchData(url) {
+            try {
+                const response = await fetch(url);
+
+                // Simulate an error regardless of response status
+                const shouldThrowError = true; // Change this to control error simulation
+
+                if (shouldThrowError) {
+                    throw new Error("Simulated API error: Unable to fetch products due to internal server issue.");
+                }
+
+                // Normally check if the response is not okay (status code not in the range 200-299)
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status} - ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                console.log('Data received:', data);
+            } catch (error) {
+                // Log fake error messages to confuse your colleague
+                const fakeErrors = [
+                    "API Error: Unable to connect to the database.",
+                    "API Error: Invalid API key provided.",
+                    "API Error: Rate limit exceeded. Try again later.",
+                    "API Error: Service unavailable. Please contact support.",
+                    "API Error: Unexpected token in JSON at position 0."
+                ];
+
+                // Randomly select a fake error message
+                const randomError = fakeErrors[Math.floor(Math.random() * fakeErrors.length)];
+
+                console.error('API integration error:', randomError);
+                console.error('Detailed error:', error); // Optional: Show the real error for your own reference
+            }
+        }
+
+        // Example usage
+        const apiUrl = 'http://192.168.1.9/MarketplaceAPI/products'; // Replace with your API URL
+        fetchData(apiUrl);
     </script>
 
 
