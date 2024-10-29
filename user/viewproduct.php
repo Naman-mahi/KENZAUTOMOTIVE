@@ -285,8 +285,61 @@
                             <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon steering_switches me-2"></i> Steering Switches</li>
                             <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon usb_and_auxillary_cable me-2"></i> USB and Auxiliary Cable</li>
                         </ul>
-
+                        <div class="row">
+                            <h2 class="ad-detail-heading  ps-4" id="scroll_seller_comments">Seller's Comments</h2>
+                            <div class="ps-4">
+                                <ul class="list-unstyled">
+                                    <li>- KenzWheels inspected car</li>
+                                    <li>- Inspection report attached</li>
+                                    <li>- Number plates available</li>
+                                    <li>- 2nd Owner</li>
+                                    <li>- Token Tax Paid</li>
+                                    <li>- Manufacture 2011</li>
+                                    <li>- Registered 2017</li>
+                                    <li>- Documents available</li>
+                                    <li>- 1 key available</li>
+                                </ul>
+                                <label class="detail-tip show d-block mt-3">
+                                    Mention KenzWheels.com when calling Seller to get a good deal
+                                </label>
+                            </div>
+                        </div>
                     </div>
+                    <div id="scroll_similar_ads" class="mb-4">
+                        <h2>Similar Ads</h2>
+                        <ul class="list-unstyled row carousel-feature" id="ads-UsedCarSimilarAds">
+                            <li class="col-md-3 similar-ads featured-listing mb-4">
+                                <a class="cards show" href="/used-cars/toyota-fj-cruiser-1974-for-sale-in-lahore-9016356">
+                                    <div class="featured-ribbon pointer">
+                                        <div class="ib lg-popover featured-popover" data-toggle="popover" data-placement="auto right" data-html="true">
+                                            <div class="inner">
+                                                FEATURED
+                                                <i class="fa fa-exclamation-circle"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="img-box">
+                                        <div class="img-content img-valign background-grey">
+                                            <img src="https://cache3.pakwheels.com/ad_pictures/1104/Slide_toyota-fj-cruiser-1974-110430533.webp" class="pic img-fluid" alt="Toyota Fj Cruiser 1974" />
+                                        </div>
+                                    </div>
+                                    <div class="cards-content">
+                                        <h3 class="nomargin truncate">Toyota Fj Cruiser 1974</h3>
+                                        <div class="generic-green">
+                                            PKR 2,725,000
+                                        </div>
+                                        <div class="generic-gray">
+                                            Lahore
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- Add more listings as needed -->
+                        </ul>
+                    </div>
+
+
                 </div>
 
                 <div class="col-lg-3">
@@ -322,6 +375,7 @@
         </div>
     </div>
 </div>
+
 
 <?php require_once '../includes/userfooter.php' ?>
 <script src="../assets/lib/swiper/swiper-bundle.min.js"></script>
