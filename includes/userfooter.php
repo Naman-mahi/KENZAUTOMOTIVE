@@ -7,7 +7,7 @@
             <h5 class="footer-brand">KenzWheels</h5>
             <p class="footer-description">At KenzWheels, we offer exceptional car services tailored to meet your every need. Explore a wide range of cars and services with us today.</p>
             <!-- <p>&copy; 2024 KenzWheels. All rights reserved.</p> -->
-            <img src="../assets/images/logo/logo.png" alt="KenzWheels Logo" style="height: 45px;">
+            <img src="../assets/images/logo/logowhite.png" alt="KenzWheels Logo" style="height: 45px;">
 
          </div>
 
@@ -66,4 +66,4 @@
    <script src="<?= BASE_URL ?>manage/assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
    <script src="<?= BASE_URL ?>assets/lib/owl-carousel/js/owl.carousel.min.js"></script>
 
-   
+</footer>
