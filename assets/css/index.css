@@ -63,10 +63,14 @@
     position: relative;
 }
 
+.carousel-wrap a {
+    color: var(--primary-color) !important;
+}
+
 /* Styling for the card */
 /* Car Item Styles */
 .item .car-card {
-    box-shadow:  10px 10px 2px 1px rgba(0, 0, 0, 0.493);
+    box-shadow: 10px 10px 2px 1px rgba(0, 0, 0, 0.493);
     border-radius: 10px;
     overflow: hidden;
     transition: all 0.5s ease;
@@ -221,6 +225,7 @@
 .btn-next.disabled {
     display: none;
 }
+
 .disabled {
     pointer-events: none !important;
     opacity: 0.5 !important;
@@ -597,4 +602,5 @@ ul {
         /* Expand shadow and fade out */
     }
 }
+
 /* .............................Call to Action Section CSS Ends.....................  */

@@ -600,11 +600,11 @@
 
     <?php require_once '../includes/userfooter.php' ?>
     <script>
-        const BASE_URL = 'http://192.168.1.9/MarketplaceAPI';
-        // const BASE_URL = 'https://api.intencode.com';
-        const ImageBASE_URL = 'http://192.168.1.9/Marketplace';
-        // const ImageBASE_URL = 'https://api.intencode.com/Marketplace';
-        const imageUrl = `${ImageBASE_URL}/Manage/uploads/ProductThumbnail/`;
+        // const BASE_URL = 'http://192.168.1.9/MarketplaceAPI';
+        const BASE_URL = 'https://api.intencode.com';
+        // const ImageBASE_URL = 'http://192.168.1.9/Marketplace';
+        const ImageBASE_URL = 'https://api.intencode.com';
+        const imageUrl = `${ImageBASE_URL}/uploads/ProductThumbnail/`;
 
         fetchProducts();
 
@@ -614,6 +614,7 @@
                 type: 'GET',
                 success: function(data) {
                     if (data && data.status === 200 && Array.isArray(data.data)) {
+                        console.log(data);
                         displayProducts(data.data);
                     } else {
                         console.error('Invalid data format:', data);
@@ -626,10 +627,12 @@
         }
 
         function fetchCity(dealerId) {
+            console.log(`${BASE_URL}/profile/${dealerId}`);
             return $.ajax({
                 url: `${BASE_URL}/profile/${dealerId}`,
                 type: 'GET',
             }).then(response => {
+                console.log(response)
                 if (response && response.statuscode === 200 && response.user) {
                     return response.user.city; // Access city from the user object
                 } else {
@@ -647,6 +650,7 @@
             console.log(products);
 
             for (const product of products) {
+                console.log(product)
                 const city = await fetchCity(product.dealer_id); // Fetch city using dealer_id
                 const item = `
                 <div class="item">
@@ -718,48 +722,6 @@
                 $featuredCarousel.trigger('next.owl.carousel');
             });
         }
-    </script>
-
-    <script>
-        async function fetchData(url) {
-            try {
-                const response = await fetch(url);
-
-                // Simulate an error regardless of response status
-                const shouldThrowError = true; // Change this to control error simulation
-
-                if (shouldThrowError) {
-                    throw new Error("Simulated API error: Unable to fetch products due to internal server issue.");
-                }
-
-                // Normally check if the response is not okay (status code not in the range 200-299)
-                if (!response.ok) {
-                    throw new Error(`API Error: ${response.status} - ${response.statusText}`);
-                }
-
-                const data = await response.json();
-                console.log('Data received:', data);
-            } catch (error) {
-                // Log fake error messages to confuse your colleague
-                const fakeErrors = [
-                    "API Error: Unable to connect to the database.",
-                    "API Error: Invalid API key provided.",
-                    "API Error: Rate limit exceeded. Try again later.",
-                    "API Error: Service unavailable. Please contact support.",
-                    "API Error: Unexpected token in JSON at position 0."
-                ];
-
-                // Randomly select a fake error message
-                const randomError = fakeErrors[Math.floor(Math.random() * fakeErrors.length)];
-
-                console.error('API integration error:', randomError);
-                console.error('Detailed error:', error); // Optional: Show the real error for your own reference
-            }
-        }
-
-        // Example usage
-        const apiUrl = 'http://192.168.1.9/MarketplaceAPI/products'; // Replace with your API URL
-        fetchData(apiUrl);
     </script>
 
 

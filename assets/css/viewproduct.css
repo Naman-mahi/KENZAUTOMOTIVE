@@ -1,3 +1,4 @@
+
 .breadcrumb {
     background-color: transparent;
 }
@@ -19,6 +20,93 @@
 .card-img-top {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+}
+
+
+.scroll-nav {
+    position: absolute;
+    z-index: 10;
+    margin-top: 40px;
+    left: 50%;
+    margin-left: -40px;
+    line-height: 34px;
+    width: 150px;
+    font-size: 14px
+}
+@media (max-width: 991.98px) {
+    .scroll-nav {
+        margin-left: -90px; /* Adjust margin-left for smaller screens */
+    }
+}
+.scroll-nav a {
+    color: #7b8397;
+    padding-top: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 15px !important;
+    display: block
+}
+
+.scroll-nav a i {
+    margin-top: 9px;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: -15px;
+    float: left
+}
+
+.scroll-nav a:hover {
+    font-weight: 600;
+    color: #b73439
+}
+
+.scroll-nav li.active a {
+    font-weight: 700;
+    color: #b73439;
+    font-size: 16px
+}
+
+.scroll-nav li.active a i {
+    margin-top: 8px
+}
+
+.scroll-nav.affix {
+    position: fixed;
+    margin-top: 10px;
+    margin-left: -600px;
+}
+.affix,
+.affix-top {
+    position: absolute;
+    top: 20px;
+
+}
+.featured-ribbon {
+    position: absolute;
+    z-index: 6;
+    background-color: #b73439;
+    color: #fff;
+    line-height: 18px;
+    font-size: 12px;
+    padding: 4px;
+    font-weight: 400;
+    left: 0;
+    top: 0
+}
+featured-ribbon .inner {
+    padding: 4px 5px
+}
+
+.featured-ribbon:hover {
+    z-index: 9999999
+}
+
+.featured-ribbon .fa {
+    display: inline-block;
+    cursor: pointer
+}
+a {
+    color: var(--primary-color);
 }
 
 .table th,
@@ -212,7 +300,7 @@ width: 82%;
     /* Attractive blue color on hover */
     transform: scale(1.1) !important;
     /* Slightly enlarge the button on hover */
-    box-shadow: var( --box-shadow-large) !;
+    box-shadow: var(--box-shadow-large) !;
 
     /* Enhance shadow effect */
 }
@@ -225,3 +313,184 @@ width: 82%;
     box-shadow: var(--box-shadow-small) !important;
     /* Darker shadow effect */
 }
+
+
+
+.table-engine-detail {
+    margin-top: -10px;
+    margin-right: 0;
+    margin-bottom: 30px;
+    margin-left: -30px;
+    /* width: 661px; */
+    table-layout: fixed
+}
+
+.table-engine-detail p {
+    margin: 5px 0 0
+}
+
+/* Start of CSS table-engine-detail */
+.engine-icon {
+    background: url("../images/productimg/iconsimg.png") no-repeat;
+    display: inline-block;
+    width: 30px;
+    height: 30px
+}
+
+.engine-icon.year {
+    background-position: 0 0
+}
+
+.engine-icon.type {
+    background-position: 0 -30px
+}
+
+.engine-icon.millage {
+    background-position: -30px 0
+}
+
+.engine-icon.transmission {
+    background-position: -30px -30px
+}
+
+/* End of CSS table-engine-detail */
+.table-engine-detail {
+    font-size: 1rem;
+    /* Adjusts font size */
+}
+
+.table-engine-detail p {
+    margin: 0;
+    /* Removes default paragraph margin */
+}
+
+
+.ul-featured {
+    color: #464e60;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    /* Not necessary with Bootstrap grid */
+    padding-left: 15px;
+    /* Removes default padding */
+}
+
+.ul-featured li {
+    padding: 12px 10px;
+    border-color: #eaedef;
+    border-bottom: 1px solid #eaedef;
+}
+
+.ul-featured li:nth-of-type(-n+4) {
+    border-top: 1px solid #eaedef;
+}
+
+.ul-featured .ad-data {
+    text-align: left;
+    /* Adjusted to left for consistency */
+}
+
+
+.carsure-detail {
+    border: 1px solid #e6e6e6;
+    background: #fff;
+}
+
+.carsure-detail.inspection-summary-widget {
+    background: #F5F9FF;
+    color: #434343;
+    padding: 20px 25px;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+.carsure-detail-header {
+    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 5px;
+}
+
+.carsure-bar-outer {
+    background: transparent;
+    padding: 0;
+}
+
+.carsure-bar-outer li {
+    padding: 9px;
+}
+
+.carsure-bar-outer li .bar {
+    background-color: #dbdee3;
+    /* Background of the entire bar */
+    height: 6px;
+    border-radius: 3px;
+    position: relative;
+    /* To position the .bar-top */
+    width: 100%;
+    /* Ensure full width */
+}
+
+.carsure-bar-outer li .bar-top {
+    background-color: #1877F2;
+    /* Filled color */
+    height: 100%;
+    /* Fill the height of the parent bar */
+    border-radius: 3px;
+    /* Same rounded corners */
+    position: absolute;
+    /* Position it absolutely within the .bar */
+    top: 0;
+    /* Align to top */
+    left: 0;
+    /* Align to left */
+}
+
+.carsure-bar-outer li .bar-count {
+    color: #565656;
+    font-size: 14px;
+    text-align: right;
+}
+
+.carsure-detail-footer {
+    padding-top: 10px;
+    color: #b7b7b7;
+}
+
+.carsure-detail-footer a {
+    margin: 0 15px;
+    font-size: 14px;
+    /* padding: 10px 12px; */
+    display: inline-block;
+    font-weight: 700;
+}
+
+
+.car-feature-list {
+    margin-bottom: 25px;
+}
+
+.car-feature-list .icon {
+    background: url("https://wsa4.pakwheels.com/assets/pw-features-icons-mobile-55cc113be28b19b6f9b43d435f8e169b.png") no-repeat;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.car-feature-list .icon.abs { background-position: -20px -60px; }
+.car-feature-list .icon.am_fm_radio { background-position: -60px 0px; }
+.car-feature-list .icon.air_bags { background-position: 0px 0px; }
+.car-feature-list .icon.air_conditioning { background-position: -40px 0px; }
+.car-feature-list .icon.alloy_rims { background-position: -20px -40px; }
+.car-feature-list .icon.cd_player { background-position: -40px -20px; }
+.car-feature-list .icon.cruise_control { background-position: -80px -40px; }
+.car-feature-list .icon.dvd_player { background-position: 0px -60px; }
+.car-feature-list .icon.front_speakers { background-position: -60px -100px; }
+.car-feature-list .icon.immobilizer_key { background-position: -60px -40px; }
+.car-feature-list .icon.keyless_entry { background-position: 0px -40px; }
+.car-feature-list .icon.power_locks { background-position: -60px -20px; }
+.car-feature-list .icon.power_mirrors { background-position: -40px -40px; }
+.car-feature-list .icon.power_steering { background-position: -20px -20px; }
+.car-feature-list .icon.power_windows { background-position: -80px 0px; }
+.car-feature-list .icon.rear_speakers { background-position: -80px -100px; }
+.car-feature-list .icon.steering_switches { background-position: 0px -120px; }
+.car-feature-list .icon.usb_and_auxillary_cable { background-position: -40px -80px; }

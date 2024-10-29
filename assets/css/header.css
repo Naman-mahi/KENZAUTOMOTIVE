@@ -30,6 +30,9 @@
     --heading-color-h6: #999999;
     /* Light gray for h6 */
 }
+html {
+    scroll-behavior: smooth;
+}
 
 .heading-h1 {
     color: var(--heading-color-h1);

@@ -1,28 +1,48 @@
 <?php include_once('../includes/userheader.php'); ?>
 <link rel="stylesheet" href="../assets/css/viewproduct.css">
 <link rel="stylesheet" href="../assets/lib/swiper/swiper-bundle.min.css">
+<style>
+    .feature-popover-points {
+        border-top: 1px solid #e6e6e6;
+        padding: 12px 0
+    }
 
+    .feature-popover-points li {
+        color: #6e727b;
+        padding: 4px 0
+    }
+
+    .feature-popover-points .fa-tick {
+        color: #3eb549;
+        margin-right: 8px
+    }
+
+    .hide {
+        display: none !important
+    }
+</style>
+<div class="hide" id="featured-tooltip-content">
+    <a href='/products/feature_your_ad' onclick='event.stopPropagation()' class='pull-right fs12 mt15'>Learn
+        More</a>
+    <h4>Why Feature your Ad?</h4>
+    <ul class='feature-popover-points'>
+        <li><i class='fa fa-tick'></i>Ad appears at the top</li>
+        <li><i class='fa fa-tick'></i>Ad standouts with the Featured tag</li>
+        <li><i class='fa fa-tick'></i>Get more calls &amp; Sell up to 10x faster</li>
+    </ul>
+</div>
 <div class="container my-5">
     <div class="row">
         <!-- Left Side Navigation (col-2) -->
         <div class="col-2 d-none d-md-block">
-            <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action border-0">
-                    <i class="fas fa-caret-right"></i> Car Info
-                </a>
-                <a href="#" class="list-group-item list-group-item-action border-0">
-                    <i class="fas fa-caret-right"></i> Car Details
-                </a>
-                <a href="#" class="list-group-item list-group-item-action border-0">
-                    <i class="fas fa-caret-right"></i> Inspection Report
-                </a>
-                <a href="#" class="list-group-item list-group-item-action border-0">
-                    <i class="fas fa-caret-right"></i> Seller's Comments
-                </a>
-                <a href="#" class="list-group-item list-group-item-action border-0">
-                    <i class="fas fa-caret-right"></i> Similar Ads
-                </a>
-            </div>
+            <ul id="scroll-sidebar" class="nav scroll-nav affix-top">
+                <li><a href="#scroll_car_info"><i class="fa fa-caret-right"></i>Car Info</a></li>
+                <li><a href="#scroll_car_detail"><i class="fa fa-caret-right"></i>Car Details</a></li>
+                <li><a href="#scroll_carsure_report"><i class="fa fa-caret-right"></i>Inspection Report</a></li>
+                <li><a href="#scroll_seller_comments"><i class="fa fa-caret-right"></i>Seller&#39;s Comments</a></li>
+                <li><a href="#scroll_similar_ads"><i class="fa fa-caret-right"></i>Similar Ads</a></li>
+            </ul>
+
         </div>
 
         <div class="col-md-10">
@@ -39,14 +59,24 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-7">
-                    <div class="card mb-3">
+                <div class="col-lg-7">
+                    <div id="scroll_car_info" class="card mb-3">
                         <div class="title p-3">
                             <h3>Changan Alsvin 1.5L DCT Lumiere 2022</h3>
                             <p><i class="fas fa-map-marker-alt"></i> Sukh Chayn Gardens, Hyderabad, Punjab</p>
                         </div>
                         <div class="position-relative">
-                            <span class="badge bg-danger position-absolute top-0 start-0 p-2 ms-2">Featured</span>
+                            <!-- <span class="badge bg-danger position-absolute top-0 start-0 p-2 ms-2">Featured</span> -->
+                            <div class="featured-ribbon pointer">
+                                <div class="ib lg-popover featured-popover" data-toggle="popover"
+                                    data-placement="auto right" data-html="true">
+                                    <div class="inner">
+                                        FEATURED
+                                        <i class="fa fa-exclamation-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- <span class="position-absolute top-0 end-0 p-2" style="z-index: 10;">
                                 <i class="far fa-bookmark" title="Save Bookmark" style="color: red; font-size: larger;"></i>
                                 <i class="far fa-heart ms-2" title="Add to Wishlist" style="color: red; font-size: larger;"></i>
@@ -100,158 +130,166 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <!-- engine details start -->
+                        <div id="ul-featured" class="row table-engine-detail my-3">
+                            <div class="col-6 col-md-3 text-center border-3">
+                                <span class="engine-icon year"></span>
+                                <p>
+                                    <a title="Year 2011 Cars for sale in Pakistan" href="/used-cars/2011/266226">2011</a>
+                                </p>
+                            </div>
+                            <div class="col-6 col-md-3 text-center">
+                                <span class="engine-icon millage"></span>
+                                <p>167,590 km</p>
+                            </div>
+                            <div class="col-6 col-md-3 text-center">
+                                <span class="engine-icon type"></span>
+                                <p>
+                                    <a title="Petrol Cars for Sale in Pakistan" href="/used-cars/petrol/57338">Petrol</a>
+                                </p>
+                            </div>
+                            <div class="col-6 col-md-3 text-center">
+                                <span class="engine-icon transmission"></span>
+                                <p>
+                                    <a title="Automatic Cars for Sale in Pakistan" href="/used-cars/automatic/57336">Automatic</a>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- engine details End -->
+                        <ul class="list-unstyled ul-featured row" id="scroll_car_detail">
+                            <li class="col-6 col-md-3 ad-data">Registered In</li>
+                            <li class="col-6 col-md-3">Hyderabad</li>
 
-                    <div class="container py-4">
-                        <!-- Key Specifications -->
-                        <div class="specs-grid">
-                            <div class="spec-item">
-                                <div class="spec-icon">
-                                    <i class="fas fa-calendar"></i>
+                            <li class="col-6 col-md-3 ad-data">Color</li>
+                            <li class="col-6 col-md-3">Green</li>
+
+                            <li class="col-6 col-md-3 ad-data">Assembly</li>
+                            <li class="col-6 col-md-3">Imported</li>
+
+                            <li class="col-6 col-md-3 ad-data">Engine Capacity</li>
+                            <li class="col-6 col-md-3">4000 cc</li>
+
+                            <li class="col-6 col-md-3 ad-data">Body Type</li>
+                            <li class="col-6 col-md-3">
+                                <a title="Off-Road Vehicles for sale in Pakistan" href="/used-cars/off-road-vehicles/115010">Off-Road Vehicles</a>
+                            </li>
+
+                            <li class="col-6 col-md-3 ad-data">Last Updated:</li>
+                            <li class="col-6 col-md-3">Oct 28, 2024</li>
+
+                            <li class="col-6 col-md-3 ad-data">Ad Ref #</li>
+                            <li class="col-6 col-md-3">9251457</li>
+                        </ul>
+
+
+                        <div id="scroll_carsure_report" class="carsure-detail mt-3 inspection-summary-widget">
+                            <div class="carsure-detail-header d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">
+                                <h4 class="generic-gray mt-0 fw-bold mb-1">KenzWheels Inspection Report</h4>
+                                <div class="generic-gray mb-2 mb-md-0">
+                                    <span class="me-2 fw-bold">Inspected Date:</span> 09/27/24
                                 </div>
-                                <div class="spec-label">Year</div>
-                                <div class="spec-value">2022</div>
+                                <div class="fs-16 fwm text-info fw-bold">Overall Rating: 7.8/10</div>
                             </div>
-                            <div class="spec-item">
-                                <div class="spec-icon">
-                                    <i class="fas fa-road"></i>
-                                </div>
-                                <div class="spec-label">Mileage</div>
-                                <div class="spec-value">127,811 km</div>
-                            </div>
-                            <div class="spec-item">
-                                <div class="spec-icon">
-                                    <i class="fas fa-gas-pump"></i>
-                                </div>
-                                <div class="spec-label">Fuel</div>
-                                <div class="spec-value text-primary">Petrol</div>
-                            </div>
-                            <div class="spec-item">
-                                <div class="spec-icon">
-                                    <i class="fas fa-cog"></i>
-                                </div>
-                                <div class="spec-label">Transmission</div>
-                                <div class="spec-value text-primary">Automatic</div>
+
+                            <ul class="carsure-bar-outer carsure-bar-show list-unstyled">
+                                <li class="row">
+                                    <div class="col-8">
+                                        <p>Exterior &amp; Body</p>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <div class="bar-count">38%</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="bar">
+                                            <div class="bar-top" style='width:38%; background-color:#1877F2'></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="row">
+                                    <div class="col-8">
+                                        <p>Engine/Transmission/Clutch</p>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <div class="bar-count">100%</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="bar">
+                                            <div class="bar-top" style='width:100%; background-color:#1877F2'></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="row">
+                                    <div class="col-8">
+                                        <p>Suspension/Steering</p>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <div class="bar-count">62%</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="bar">
+                                            <div class="bar-top" style='width:62%; background-color:#1877F2'></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="row">
+                                    <div class="col-8">
+                                        <p>Interior</p>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <div class="bar-count">98%</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="bar">
+                                            <div class="bar-top" style='width:98%; background-color:#1877F2'></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="row">
+                                    <div class="col-8">
+                                        <p>AC/Heater</p>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <div class="bar-count">100%</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="bar">
+                                            <div class="bar-top" style='width:100%; background-color:#1877F2'></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="carsure-detail-footer d-flex justify-content-between mt-3">
+                                <a class="btn btn-outline-primary" href="/products/KenzWheels-inspection/" target="_blank">Learn More</a>
+                                <a rel="nofollow" target="_blank" class="btn btn-primary fs-16" href="">View Full Inspection Report</a>
                             </div>
                         </div>
 
-                        <!-- Vehicle Details -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <table class="details-table w-100">
-                                    <tr>
-                                        <td>Registered In</td>
-                                        <td>Hyderabad</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Assembly</td>
-                                        <td>Local</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Body Type</td>
-                                        <td class="text-primary">Sedan</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ad Ref #</td>
-                                        <td>9345084</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="col-md-6">
-                                <table class="details-table w-100">
-                                    <tr>
-                                        <td>Color</td>
-                                        <td>Space Gray</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Engine Capacity</td>
-                                        <td>1500 cc</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Last Updated</td>
-                                        <td>Oct 24, 2024</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
+                        <h2 class="ad-detail-heading mt-4 ps-3">Car Features</h2>
+                        <ul class="car-feature-list row list-unstyled ps-3">
+                            <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon abs me-2"></i> ABS</li>
+                            <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon am_fm_radio me-2"></i> AM/FM Radio</li>
+                            <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon air_bags me-2"></i> Air Bags</li>
+                            <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon air_conditioning me-2"></i> Air Conditioning</li>
+                            <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon alloy_rims me-2"></i> Alloy Rims</li>
+                            <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon cd_player me-2"></i> CD Player</li>
+                            <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon cruise_control me-2"></i> Cruise Control</li>
+                            <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon dvd_player me-2"></i> DVD Player</li>
+                            <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon front_speakers me-2"></i> Front Speakers</li>
+                            <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon immobilizer_key me-2"></i> Immobilizer Key</li>
+                            <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon keyless_entry me-2"></i> Keyless Entry</li>
+                            <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon power_locks me-2"></i> Power Locks</li>
+                            <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon power_mirrors me-2"></i> Power Mirrors</li>
+                            <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon power_steering me-2"></i> Power Steering</li>
+                            <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon power_windows me-2"></i> Power Windows</li>
+                            <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon rear_speakers me-2"></i> Rear Speakers</li>
+                            <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon steering_switches me-2"></i> Steering Switches</li>
+                            <li class="col-12 col-sm-6 col-md-4 d-flex align-items-center mb-3"><i class="icon usb_and_auxillary_cable me-2"></i> USB and Auxiliary Cable</li>
+                        </ul>
 
-                        <!-- Inspection Report -->
-                        <div class="inspection-report">
-                            <h4>KenzWheels Inspection Report</h4>
-                            <div class="text-muted mb-3">
-                                Inspected Date: 10/22/24
-                            </div>
-
-                            <div class="d-flex justify-content-between align-items-center mb-4">
-                                <div>Overall Rating</div>
-                                <div class="overall-rating">7.8/10</div>
-                            </div>
-
-                            <!-- Progress Bars -->
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span>Exterior & Body</span>
-                                    <span>62%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 62%"></div>
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span>Engine/Transmission/Clutch</span>
-                                    <span>91%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 91%"></div>
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span>Suspension/Steering</span>
-                                    <span>95%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 95%"></div>
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span>Interior</span>
-                                    <span>95%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 95%"></div>
-                                </div>
-                            </div>
-
-                            <div class="mb-4">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span>AC/Heater</span>
-                                    <span>100%</span>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 100%"></div>
-                                </div>
-                            </div>
-
-                            <!-- Action Buttons -->
-                            <div class="row g-2">
-                                <div class="col-6">
-                                    <button class="btn btn-outline-primary w-100">Learn More</button>
-                                </div>
-                                <div class="col-6">
-                                    <button class="btn btn-primary w-100">View Full Inspection Report</button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-lg-3">
                     <div class="card mb-3">
                         <div class="card-body text-center">
                             <h4 class="text-success">INR 37.5 lacs</h4>
@@ -287,6 +325,9 @@
 
 <?php require_once '../includes/userfooter.php' ?>
 <script src="../assets/lib/swiper/swiper-bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 <!-- Initialize Swiper -->
 <script>
@@ -305,5 +346,58 @@
         thumbs: {
             swiper: swiper,
         },
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('body').attr('data-spy', 'scroll');
+        $("#scroll-sidebar").affix({
+            offset: {
+                top: '270',
+                bottom: '690'
+                // top: $(".header").outerHeight(true)
+            }
+        });
+    });
+    $("#scroll-sidebar a").on('click', function(event) {
+
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+
+            // Prevent default anchor click behavior
+            event.preventDefault();
+
+            // Store hash
+            var hash = this.hash;
+
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 800, function() {
+
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                window.location.hash = hash;
+            });
+
+        } // End if
+
+    });
+</script>
+<script>
+    $('.nav-dropdown-menu').on('mouseover', function() {
+        $(this).parent().addClass('open');
+    });
+    $('.nav-dropdown-menu').on('mouseout', function() {
+        $(this).parent().removeClass('open');
+    });
+    $(document).ready(function() {
+        $('#navbar_static_top').attr('data-offset-top', $('.advertisement').innerHeight() + $('.header').innerHeight());
+
+        $("#user-menu,#lang-menu").click(function(e) {
+            $(this).toggleClass("open");
+            e.stopPropagation();
+        });
+
     });
 </script>
