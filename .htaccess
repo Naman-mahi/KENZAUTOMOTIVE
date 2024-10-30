@@ -2,7 +2,7 @@
 RewriteEngine On
 
 # Set the base URL (if necessary)
-RewriteBase /marketplace/
+RewriteBase /kenzautomotive/
 
 # Handle login
 RewriteRule ^login/?$ login.php [L]
@@ -16,9 +16,9 @@ RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php [L]
 
 # Handle 404 errors
-ErrorDocument 404 /marketplace/404.php
+ErrorDocument 404 /kenzautomotive/404.php
 
 # Redirect all non-existent files or directories to 404.php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /marketplace/404.php [L,QSA]
+RewriteRule ^(.*)$ /kenzautomotive/404.php [L,QSA]
