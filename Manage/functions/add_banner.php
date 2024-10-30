@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (empty($errors)) {
             // Generate a unique image name with date and time
             $dateTime = date('Ymd_His'); // Format: YYYYMMDD_HHMMSS
-            $imageName = $dateTime . '-' . uniqid() . '-' . basename($imageName);
+            $imageName = $dateTime . '-' . uniqid() . '.' . pathinfo($imageName, PATHINFO_EXTENSION);
             $imagePath = $uploadDir . $imageName;
 
             // Move uploaded file
