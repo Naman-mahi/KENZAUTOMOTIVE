@@ -34,6 +34,7 @@
                         ]],
                         ['url' => 'ManageInquiry', 'icon' => 'mdi mdi-comment-question-outline', 'label' => 'Inquiry'],
                         ['url' => 'ManageOrders', 'icon' => 'mdi mdi-cart-outline', 'label' => 'My Orders'],
+                        ['url' => 'ManageFeatureProduct', 'icon' => 'mdi mdi-cart-outline', 'label' => 'Feature Product'],
                         ['url' => 'AdvertisementManagement', 'icon' => 'mdi mdi-trackpad', 'label' => 'Advertisement'], 
                         ['url' => 'ManageProductInventry', 'icon' => 'mdi mdi-cog', 'label' => 'Product Inventry'],
                         ['url' => 'DealerConnect', 'icon' => 'mdi mdi-handshake', 'label' => 'Dealer Connect'],

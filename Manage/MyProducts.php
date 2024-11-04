@@ -95,18 +95,23 @@ include 'includes/head.php';
                                         $product_category_id = htmlspecialchars($row['category_id']);
                                         $image = htmlspecialchars($row['product_image']);
                                         $image_path = 'uploads/ProductThumbnail/' . $image; // Updated path for products
+                                        $featured = $row['is_featured'] === 1 ? true : false;
 
                                         // Generate HTML for each product
                                         echo '
                                         <div class="col-md-6 mb-4 col-lg-4 col-xl-3">
                                             <a href="ProductDetails?id=' . $id . '&category_id=' . $product_category_id . '" class="card-link">
-                                                <div class="card card-car h-100"> <!-- Changed class name to card-product -->
+                                                <div class="card card-car h-100">
                                                     <div class="card-img-wrapper">
                                                         <img class="card-img-top car img-fluid" src="' . $image_path . '" alt="' . $product_name . '">
                                                         <div class="tooltip">View Product</div>
                                                     </div>
                                                     <div class="card-body d-flex flex-column">
-                                                        <h4 class="card-title">' . $product_name . '</h4>
+                                                        <h4 class="card-title">' . $product_name . '</h4>';
+                                        if ($featured) {
+                                            echo '<span class="text-success text-end">Featured</span>';
+                                        }
+                                        echo '
                                                     </div>
                                                 </div>
                                             </a>

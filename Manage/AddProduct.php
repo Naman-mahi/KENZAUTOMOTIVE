@@ -76,6 +76,7 @@
                                             <textarea class="form-control" id="product_description" name="product_description" rows="4" required></textarea>
                                         </div>
                                     </div>
+
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="imagesthumbnail">Product Images</label>
@@ -100,6 +101,45 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row mb-4">
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Car Features</label>
+                                            <div class="row">
+                                                <?php
+                                                $features = [
+                                                    'ABS',
+                                                    'AM/FM Radio',
+                                                    'Air Bags',
+                                                    'Air Conditioning',
+                                                    'Alloy Rims',
+                                                    'CD Player',
+                                                    'Cruise Control',
+                                                    'DVD Player',
+                                                    'Immobilizer Key',
+                                                    'Keyless Entry',
+                                                    'Navigation System',
+                                                    'Power Locks',
+                                                    'Power Mirrors',
+                                                    'Power Steering',
+                                                    'Power Windows'
+                                                ];
+                                                foreach ($features as $feature): ?>
+                                                    <div class="col-md-4"> <!-- Change the column width as needed -->
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="product_features[]" value="<?php echo $feature; ?>" id="<?php echo strtolower(str_replace(' ', '_', $feature)); ?>">
+                                                            <label class="form-check-label" for="<?php echo strtolower(str_replace(' ', '_', $feature)); ?>">
+                                                                <?php echo $feature; ?>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            </div>
+                                            <small class="text-muted">Select all applicable features for this vehicle</small>
+                                        </div>
+                                    </div>
+                                </div>
+
 
                                 <div class="text-end">
                                     <button type="submit" class="btn btn-primary">Submit Product</button>

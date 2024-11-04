@@ -22,20 +22,21 @@ $product_condition = $_POST['new_or_old'];
 $product_description = trim($_POST['product_description']);
 $top_features = trim($_POST['top_features']);
 $stand_out_features = trim($_POST['stand_out_features']);
+$product_features = json_encode($_POST['product_features']); // Convert array to JSON string
 $dealer_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : die(json_encode(['success' => false, 'message' => 'User not logged in.']));
 
 // Log for debugging
-error_log("dealer_id: $dealer_id, category_id: $category_id, product_name: $product_name, product_description: $product_description, price: $price, color: $color, product_condition: $product_condition, top_features: $top_features, stand_out_features: $stand_out_features");
+error_log("dealer_id: $dealer_id, category_id: $category_id, product_name: $product_name, product_description: $product_description, price: $price, color: $color, product_condition: $product_condition, top_features: $top_features, stand_out_features: $stand_out_features, product_features: $product_features");
 
 // Prepare SQL to insert product data
-$stmt = $conn->prepare("INSERT INTO products (dealer_id, category_id, product_name, product_description, price, color, product_condition, top_features, stand_out_features, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
+$stmt = $conn->prepare("INSERT INTO products (dealer_id, category_id, product_name, product_description, price, color, product_condition, top_features, stand_out_features, product_features, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
 
 if ($stmt === false) {
     die(json_encode(['success' => false, 'message' => 'Failed to prepare SQL statement.']));
 }
 
-// Bind parameters
-$stmt->bind_param("iissdssss", $dealer_id, $category_id, $product_name, $product_description, $price, $color, $product_condition, $top_features, $stand_out_features);
+// Bind parameters - make sure the number of parameters matches the placeholders
+$stmt->bind_param("iissdsssss", $dealer_id, $category_id, $product_name, $product_description, $price, $color, $product_condition, $top_features, $stand_out_features, $product_features);
 
 // Execute the statement
 if ($stmt->execute()) {
@@ -63,9 +64,9 @@ if ($stmt->execute()) {
 
     // Update the product with the first image as the main image
     if (!empty($uploaded_file_names)) {
-        $main_image = $uploaded_file_names[0];
         $stmt = $conn->prepare("UPDATE products SET product_image = ? WHERE product_id = ?");
         $stmt->bind_param("si", $main_image, $product_id);
+        $main_image = $uploaded_file_names[0];
         $stmt->execute();
     }
 
