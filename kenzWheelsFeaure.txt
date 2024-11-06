@@ -1,0 +1,52 @@
+Key Features:
+
+1. User Management
+- Multi-role system (Admin, Dealer, Website User)
+- User authentication & authorization 
+- Profile management
+- Role-based permissions
+
+2. Product Management 
+- Product listings & details
+- Category & specification management
+- Featured products functionality
+- Product image management
+- Inventory tracking
+
+3. Dealer Features
+- Dealer onboarding & registration
+- Product management tools
+- Order processing
+- Inventory control
+- Dealer networking
+
+4. Admin Controls
+- User & dealer management
+- Category & brand control
+- Coupon administration
+- Subscription oversight
+- Advertisement management
+- Sales agent coordination
+- Permission settings
+
+5. Wallet System
+- Balance management
+- Transaction history
+- Add funds functionality
+- Payment processing
+
+6. Product Features
+- Product inspection requests
+- Featured product listings
+- Image galleries
+- Specification management
+- Product information updates
+
+7. Interface
+- Responsive dashboard
+- Navigation menu
+- Profile management
+- Notification system
+- Search functionality
+
+The system provides comprehensive management tools for products, users and transactions, with role-based access control and integrated wallet functionality. Built using PHP backend with JavaScript for interactive features.

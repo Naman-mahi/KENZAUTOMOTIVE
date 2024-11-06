@@ -101,44 +101,48 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row mb-4">
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">Car Features</label>
-                                            <div class="row">
-                                                <?php
-                                                $features = [
-                                                    'ABS',
-                                                    'AM/FM Radio',
-                                                    'Air Bags',
-                                                    'Air Conditioning',
-                                                    'Alloy Rims',
-                                                    'CD Player',
-                                                    'Cruise Control',
-                                                    'DVD Player',
-                                                    'Immobilizer Key',
-                                                    'Keyless Entry',
-                                                    'Navigation System',
-                                                    'Power Locks',
-                                                    'Power Mirrors',
-                                                    'Power Steering',
-                                                    'Power Windows'
-                                                ];
-                                                foreach ($features as $feature): ?>
-                                                    <div class="col-md-4"> <!-- Change the column width as needed -->
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" name="product_features[]" value="<?php echo $feature; ?>" id="<?php echo strtolower(str_replace(' ', '_', $feature)); ?>">
-                                                            <label class="form-check-label" for="<?php echo strtolower(str_replace(' ', '_', $feature)); ?>">
-                                                                <?php echo $feature; ?>
-                                                            </label>
+                                <?php $category_id = $_GET['category_id'];
+                                if ($category_id == 2) { ?>
+                                    <div class="row mb-4">
+                                        <div class="col-lg-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Car Features</label>
+                                                <div class="row">
+                                                    <?php
+                                                    $features = [
+                                                        'ABS',
+                                                        'AM/FM Radio',
+                                                        'Air Bags',
+                                                        'Air Conditioning',
+                                                        'Alloy Rims',
+                                                        'CD Player',
+                                                        'Cruise Control',
+                                                        'DVD Player',
+                                                        'Immobilizer Key',
+                                                        'Keyless Entry',
+                                                        'Navigation System',
+                                                        'Power Locks',
+                                                        'Power Mirrors',
+                                                        'Power Steering',
+                                                        'Power Windows'
+                                                    ];
+                                                    foreach ($features as $feature): ?>
+                                                        <div class="col-md-4"> <!-- Change the column width as needed -->
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" name="product_features[]" value="<?php echo $feature; ?>" id="<?php echo strtolower(str_replace(' ', '_', $feature)); ?>">
+                                                                <label class="form-check-label" for="<?php echo strtolower(str_replace(' ', '_', $feature)); ?>">
+                                                                    <?php echo $feature; ?>
+                                                                </label>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                <?php endforeach; ?>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                                <small class="text-muted">Select all applicable features for this vehicle</small>
                                             </div>
-                                            <small class="text-muted">Select all applicable features for this vehicle</small>
                                         </div>
                                     </div>
-                                </div>
+
+                                <?php } ?>
 
 
                                 <div class="text-end">

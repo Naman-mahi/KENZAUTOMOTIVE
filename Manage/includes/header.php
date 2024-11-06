@@ -93,6 +93,24 @@
                                     </button>
                                 </div>
                             </form>
+
+                            <h5 class="fw-bold mt-4">Wallet Transactions</h5>
+                            <?php
+                            $sql = "SELECT * FROM wallet_transactions WHERE wallet_id = ? ORDER BY created_at DESC";
+                            $stmt = $conn->prepare($sql);
+                            $stmt->bind_param("i", $wallet['wallet_id']);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                            ?>
+                            <div id="transactionAlerts">
+                                <?php while ($row = $result->fetch_assoc()): ?>
+                                    <div class="alert alert-info border-0 bg-light mb-2">
+                                        <strong><?php echo htmlspecialchars($row['transaction_type']); ?></strong><br>
+                                        Amount: <span style="color: <?php echo ($row['amount'] < 0) ? 'red' : 'green'; ?>">₹<?php echo htmlspecialchars($row['amount']); ?></span><br>
+                                        Date: <?php echo htmlspecialchars($row['created_at']); ?>
+                                    </div>
+                                <?php endwhile; ?>
+                            </div>
                         </div>
                     </div>
                 <?php endif; ?>

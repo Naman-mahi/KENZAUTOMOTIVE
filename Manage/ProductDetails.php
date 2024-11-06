@@ -153,10 +153,115 @@ $category_id = $_GET['category_id'];
 
             <div class="row">
                 <div class="col-12">
-                    <div class="mb-3 d-flex align-items-end justify-content-end">
-                        <a href="ProductImages?product_id=<?php echo $product_id; ?>" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light me-2">Add & Update Product Images</a>
-                        <a href="ProductSpecifications?product_id=<?php echo $product_id; ?>&category_id=<?php echo $category_id; ?>" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light me-2">Add & Update Specifications</a>
-                        <a href="ProductInfo?product_id=<?php echo $product_id; ?>" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light">Update Product Info</a>
+                    <div class="mb-3 d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <span class="me-2 fw-bold">Is featured product <a class="waves-effect" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Highlight this product as a featured listing">
+                                    <i class="ri-question-line"></i>
+                                </a></span>
+                            <input class="form-check form-switch" type="checkbox" name="is_featured" id="featureSwitch" switch="success" <?php echo $Products['is_featured'] == 1 ? 'checked' : ''; ?> data-id="<?php echo $product_id; ?>">
+                            <label class="form-label" for="featureSwitch" data-on-label="Yes" data-off-label="No"></label><br>
+                        </div>
+                        <script>
+                            document.getElementById('featureSwitch').addEventListener('change', function() {
+                                const productId = this.getAttribute('data-id');
+                                const isChecked = this.checked ? 1 : 0;
+
+                                // Show confirmation dialog before making the change
+                                Swal.fire({
+                                    title: 'Are you sure?',
+                                    text: isChecked ? 'Do you want to add this product to featured products? It will deduct your wallet balance 20 points.' : 'Do you want to remove this product from featured products? It will not add your wallet points.',
+                                    icon: 'question',
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Yes',
+                                    cancelButtonText: 'No'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        fetch('functions/' + (isChecked ? 'add_feature_product.php' : 'remove_feature_product.php'), {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/x-www-form-urlencoded',
+                                                },
+                                                body: 'product_id=' + encodeURIComponent(productId) + '&is_featured=' + isChecked
+                                            })
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                if (data.success) {
+                                                    Swal.fire({
+                                                        icon: 'success',
+                                                        title: isChecked ? 'Added to featured products!' : 'Removed from featured products!',
+                                                        showConfirmButton: false,
+                                                        timer: 1500
+                                                    });
+                                                } else {
+                                                    this.checked = !isChecked;
+                                                    Swal.fire('Error!', data.message || 'Something went wrong.', 'error');
+                                                }
+                                            })
+                                            .catch(error => {
+                                                console.error('Error:', error);
+                                                this.checked = !isChecked;
+                                                Swal.fire('Error!', 'Failed to update. Please try again.', 'error');
+                                            });
+                                    } else {
+                                        // If user cancels, revert the switch
+                                        this.checked = !isChecked;
+                                    }
+                                });
+                            });
+                        </script>
+                        <div>
+                            <?php if ($Products['inspection_request'] == 0): ?>
+                            <a type="button" id="inspectionButton" data-id="<?php echo $product_id; ?>" class="btn rounded-0 m-2 btn-dark btn-sm waves-effect waves-light me-2">Request Product Inspection</a>
+                            <?php else: ?>
+                            <a type="button" id="inspectionButton" class="btn rounded-0 m-2 btn-dark btn-sm waves-effect waves-light me-2" disabled>Inspection Requested</a>
+                            <?php endif; ?>
+                            <script>
+                                document.getElementById('inspectionButton').addEventListener('click', function() {
+                                    const productId = this.getAttribute('data-id');
+                                    // Show confirmation dialog before making the change
+                                    Swal.fire({
+                                        title: 'Are you sure?',
+                                        text: 'Do you want to request product inspection? It will deduct your wallet balance 200 points.',
+                                        icon: 'question',
+                                        showCancelButton: true,
+                                        confirmButtonText: 'Yes',
+                                        cancelButtonText: 'No'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            fetch('functions/add_inspection_request.php', {
+                                                    method: 'POST',
+                                                    headers: {
+                                                        'Content-Type': 'application/x-www-form-urlencoded',
+                                                    },
+                                                    body: 'product_id=' + encodeURIComponent(productId)
+                                                })
+                                                .then(response => response.json())
+                                                .then(data => {
+                                                    if (data.success) {
+                                                        Swal.fire({
+                                                            icon: 'success',
+                                                            title: 'Inspection request sent!',
+                                                            showConfirmButton: false,
+                                                            timer: 1500
+                                                        });
+                                                    } else {
+                                                        Swal.fire('Error!', data.message || 'Something went wrong.', 'error');
+                                                    }
+                                                })
+                                                .catch(error => {
+                                                    console.error('Error:', error);
+                                                    Swal.fire('Error!', 'Failed to update. Please try again.', 'error');
+                                                });
+                                        } else {
+                                            // If user cancels, revert the switch
+                                        }
+                                    });
+                                });
+                            </script>
+                            <a href="ProductImages?product_id=<?php echo $product_id; ?>" type="button" class="btn rounded-0 m-2     btn-dark btn-sm waves-effect waves-light me-2">Add & Update Product Images</a>
+                            <a href="ProductSpecifications?product_id=<?php echo $product_id; ?>&category_id=<?php echo $category_id; ?>" type="button" class="btn rounded-0 m-2 btn-dark btn-sm waves-effect waves-light me-2">Add & Update Specifications</a>
+                            <a href="ProductInfo?product_id=<?php echo $product_id; ?>" type="button" class="btn rounded-0 m-2 btn-dark btn-sm waves-effect waves-light">Update Product Info</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -236,7 +341,7 @@ $category_id = $_GET['category_id'];
                                             </tr>
                                             <tr>
                                                 <th>Price:</th>
-                                                <td>$<?php echo number_format($Products['price'], 2); ?></td>
+                                                <td>₹ <?php echo number_format($Products['price'], 2); ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Color:</th>

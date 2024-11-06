@@ -18,14 +18,15 @@
                         ['url' => 'BrandManagement', 'icon' => 'mdi mdi-format-list-numbered', 'label' => 'Brand Management'],
                         ['url' => 'CouponsManagement', 'icon' => 'mdi mdi-ticket-percent-outline', 'label' => 'Coupons Management'],
                         ['url' => 'SubscriptionManagement', 'icon' => 'mdi mdi-calendar-check-outline', 'label' => 'Subscriptions'],
-                        ['url' => 'AdvertisementManagement', 'icon' => 'mdi mdi-trackpad', 'label' => 'Advertisement'], 
+                        ['url' => 'AdvertisementManagement', 'icon' => 'mdi mdi-trackpad', 'label' => 'Advertisement'],
                         ['url' => 'SalesAgentManagement', 'icon' => 'mdi mdi-account-star-outline', 'label' => 'Sales Agent'],
                         ['url' => 'WebsiteUsersManagement', 'icon' => 'mdi mdi-web', 'label' => 'Website Users'],
                         ['url' => 'ReferralManagement', 'icon' => 'mdi mdi-account-group', 'label' => 'Referrals'],
                         ['url' => 'AppearanceManagement', 'icon' => 'mdi mdi-palette', 'label' => 'Appearance'],
                         ['url' => 'BannerManagement', 'icon' => 'mdi mdi-image', 'label' => 'Banner'],
                         ['url' => 'DealerConnect', 'icon' => 'mdi mdi-handshake', 'label' => 'Dealer Connect'],
-                        ['url' => 'PermissionManagement', 'icon' => 'mdi mdi-account-key', 'label' => 'Permission']
+                        ['url' => 'PermissionManagement', 'icon' => 'mdi mdi-account-key', 'label' => 'Permission'],
+                        ['url' => 'InspectionManagements', 'icon' => 'mdi mdi-clipboard-outline', 'label' => 'Inspection Managements']
                     ],
                     'dealer' => [
                         ['url' => 'javascript: void(0);', 'icon' => 'mdi mdi-plus-circle-outline', 'label' => 'My Products', 'submenu' => [
@@ -34,8 +35,7 @@
                         ]],
                         ['url' => 'ManageInquiry', 'icon' => 'mdi mdi-comment-question-outline', 'label' => 'Inquiry'],
                         ['url' => 'ManageOrders', 'icon' => 'mdi mdi-cart-outline', 'label' => 'My Orders'],
-                        ['url' => 'ManageFeatureProduct', 'icon' => 'mdi mdi-cart-outline', 'label' => 'Feature Product'],
-                        ['url' => 'AdvertisementManagement', 'icon' => 'mdi mdi-trackpad', 'label' => 'Advertisement'], 
+                        ['url' => 'AdvertisementManagement', 'icon' => 'mdi mdi-trackpad', 'label' => 'Advertisement'],
                         ['url' => 'ManageProductInventry', 'icon' => 'mdi mdi-cog', 'label' => 'Product Inventry'],
                         ['url' => 'DealerConnect', 'icon' => 'mdi mdi-handshake', 'label' => 'Dealer Connect'],
                         ['url' => 'WebsiteSettings', 'icon' => 'mdi mdi-cog', 'label' => 'Website Settings'],
