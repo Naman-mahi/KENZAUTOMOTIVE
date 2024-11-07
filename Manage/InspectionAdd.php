@@ -343,7 +343,7 @@ $inspection_data = mysqli_fetch_assoc($result);
                                                         <td><label for="seatBelts">Seat Belts</label></td>
                                                         <td><select class="form-control" id="seatBelts" name="seat_belts_condition">
                                                                 <option value="Working (Front & Rear)" <?php echo isset($inspection_data['seat_belts_condition']) && $inspection_data['seat_belts_condition'] == 'Working (Front & Rear)' ? 'selected' : ''; ?>>Working (Front & Rear)</option>
-                                                                <option value="Not Working" <?php echo isset($inspection_data['seat_belts_condition']) && $inspection_data['seat_belts_condition'] == 'Not Working' ? 'selected' : ''; ?>   >Not Working</option>
+                                                                <option value="Not Working" <?php echo isset($inspection_data['seat_belts_condition']) && $inspection_data['seat_belts_condition'] == 'Not Working' ? 'selected' : ''; ?>>Not Working</option>
                                                             </select></td>
                                                     </tr>
                                                     <tr>
@@ -364,7 +364,7 @@ $inspection_data = mysqli_fetch_assoc($result);
                                                         <td><label for="audioVideo">Audio/Video</label></td>
                                                         <td><select class="form-control" id="audioVideo" name="audio_video_condition">
                                                                 <option value="Working" <?php echo isset($inspection_data['audio_video_condition']) && $inspection_data['audio_video_condition'] == 'Working' ? 'selected' : ''; ?>>Working</option>
-                                                                <option value="Not Working" <?php echo isset($inspection_data['audio_video_condition']) && $inspection_data['audio_video_condition'] == 'Not Working' ? 'selected' : ''; ?>>Not Working</option>    
+                                                                <option value="Not Working" <?php echo isset($inspection_data['audio_video_condition']) && $inspection_data['audio_video_condition'] == 'Not Working' ? 'selected' : ''; ?>>Not Working</option>
                                                             </select></td>
                                                     </tr>
                                                     <tr>
@@ -466,7 +466,7 @@ $inspection_data = mysqli_fetch_assoc($result);
                                                         <td><label for="warningLights">Warning Lights</label></td>
                                                         <td><select class="form-control" id="warningLights" name="warning_lights_condition">
                                                                 <option value="ABS Warning Light Present" <?php echo isset($inspection_data['warning_lights_condition']) && $inspection_data['warning_lights_condition'] == 'ABS Warning Light Present' ? 'selected' : ''; ?>>ABS Warning Light Present</option>
-                                                                <option value="No Warning Light" <?php echo isset($inspection_data['warning_lights_condition']) && $inspection_data['warning_lights_condition'] == 'No Warning Light' ? 'selected' : ''; ?>>No Warning Light</option>   
+                                                                <option value="No Warning Light" <?php echo isset($inspection_data['warning_lights_condition']) && $inspection_data['warning_lights_condition'] == 'No Warning Light' ? 'selected' : ''; ?>>No Warning Light</option>
                                                                 <option value="Other" <?php echo isset($inspection_data['warning_lights_condition']) && $inspection_data['warning_lights_condition'] == 'Other' ? 'selected' : ''; ?>>Other</option>
                                                             </select></td>
                                                     </tr>
@@ -713,11 +713,14 @@ $inspection_data = mysqli_fetch_assoc($result);
 
             // Extract car_id from URL parameters
             const urlParams = new URLSearchParams(window.location.search);
-            const car_id = urlParams.get('product_id');  // Assuming the car_id is passed as 'product_id'
+            const car_id = urlParams.get('product_id'); // Assuming the car_id is passed as 'product_id'
 
             // Append car_id to form data
             if (car_id) {
-                formData.push({ name: 'car_id', value: car_id });
+                formData.push({
+                    name: 'car_id',
+                    value: car_id
+                });
             }
 
             // Debugging: Log the form data to check it's correct

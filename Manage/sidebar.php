@@ -26,7 +26,8 @@
                         ['url' => 'BannerManagement', 'icon' => 'mdi mdi-image', 'label' => 'Banner'],
                         ['url' => 'DealerConnect', 'icon' => 'mdi mdi-handshake', 'label' => 'Dealer Connect'],
                         ['url' => 'PermissionManagement', 'icon' => 'mdi mdi-account-key', 'label' => 'Permission'],
-                        ['url' => 'InspectionManagements', 'icon' => 'mdi mdi-clipboard-outline', 'label' => 'Inspection Managements']
+                        ['url' => 'InspectionManagements', 'icon' => 'mdi mdi-clipboard-outline', 'label' => 'Inspection Managements'],
+                        ['url' => 'RoleManagement', 'icon' => 'mdi mdi-account-key', 'label' => 'Role Management']
                     ],
                     'dealer' => [
                         ['url' => 'javascript: void(0);', 'icon' => 'mdi mdi-plus-circle-outline', 'label' => 'My Products', 'submenu' => [

@@ -29,7 +29,7 @@ require_once 'functions/statistics.php'; // Ensure database connection is includ
             ?>
 
             <?php
-            if ($_SESSION['role'] === 'admin') {
+            if ($_SESSION['role'] === '1') {
             ?>
                 <div class="row">
                     <div class="col-xl-3 col-sm-6">
@@ -301,7 +301,7 @@ require_once 'functions/statistics.php'; // Ensure database connection is includ
             
 
             <?php
-            } elseif ($_SESSION['role'] === 'dealer') {
+            } elseif ($_SESSION['role'] === '2') {
             ?>
                 <div class="row">
                     <div class="col-xl-3 col-sm-6">
@@ -433,7 +433,7 @@ require_once 'functions/statistics.php'; // Ensure database connection is includ
                 <!-- end row -->
 
             <?php
-            } elseif ($_SESSION['role'] === 'website_user') {
+            } elseif ($_SESSION['role'] === '5') {
             ?>
                 <div class="row">
                     <div class="col-xl-3 col-sm-6">
@@ -525,7 +525,7 @@ require_once 'functions/statistics.php'; // Ensure database connection is includ
             <?php
             } else {
                 // Redirect to login page if user is not admin or dealer
-                header("Location: login.php");
+                echo '<script>window.location.href = "http://localhost/marketplace/";</script>';
                 exit(); // Ensure no further code is executed
             }
             ?>

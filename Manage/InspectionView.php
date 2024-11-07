@@ -1,13 +1,31 @@
 <?php
 include 'includes/head.php';
-$car_id = $_GET['car_id'];
-$sql = "SELECT * FROM vehicle_inspection JOIN products ON vehicle_inspection.car_id = products.product_id JOIN users ON products.dealer_id = users.user_id WHERE vehicle_inspection.car_id = {$car_id}";
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
+
+// Check if inspection_id is set in URL parameters
+if (!isset($_GET['inspection_id'])) {
+    echo "<script>window.location.href='InspectionManagements';</script>";
+    exit;
+}
+
+$inspection_id = intval($_GET['inspection_id']); // Sanitize input
+
+// Prepare and execute query using prepared statement
+$sql = "SELECT * FROM vehicle_inspection 
+        JOIN products ON vehicle_inspection.car_id = products.product_id 
+        JOIN users ON products.dealer_id = users.user_id 
+        WHERE vehicle_inspection.inspection_id = ?";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $inspection_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
 if ($result->num_rows == 0) {
     echo "<script>window.location.href='InspectionManagements';</script>";
     exit;
 }
+
+$row = $result->fetch_assoc();
 ?>
 <div class="main-content">
     <div class="page-content">

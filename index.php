@@ -6,16 +6,16 @@ session_start(); // Start the session
 // Check if the user is already logged in
 if (isset($_SESSION['role'])) {
     // Redirect based on user role
-    if ($_SESSION['role'] === 'admin') {
-        header("Location: Manage/Dashboard.php"); // Redirect to admin Dashboard
-    } elseif ($_SESSION['role'] === 'dealer') {
-        header("Location: Manage/Dashboard.php"); // Redirect to dealer Dashboard
+    if ($_SESSION['role'] === '4') {
+        header("Location: mypage.php"); // Redirect to customer user page
     } else {
-        header("Location: mypage.php"); // Redirect to mypage for unrecognized roles
+        header("Location: Manage/Dashboard.php"); // Redirect to Manage Dashboard for all other roles
     }
     exit(); // Stop script execution
 }
 ?>
+
+
 
 <head>
     <meta charset="utf-8" />

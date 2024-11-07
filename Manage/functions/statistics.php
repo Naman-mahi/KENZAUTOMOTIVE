@@ -14,26 +14,26 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-$userRole = $_SESSION['user_role'] ?? 'customer'; // Use null coalescing operator
+$userRole = $_SESSION['role'] ?? '4'; // Use null coalescing operator
 
 // Start building the query
-$whereClause = ($userRole === 'admin') ? '' : 'WHERE role = ?';
+$whereClause = ($userRole === '1') ? '' : 'WHERE role_id = ?';
 
 // User statistics query
 $sql = "
     SELECT 
         COUNT(*) as total_users,
-        SUM(role = 'dealer') as total_dealers,
-        SUM(role = 'admin') as total_admins,
-        SUM(role = 'customer') as total_customers,
-        SUM(role = 'sales_agent') as total_sales_agents,
-        SUM(role = 'website_user') as total_website_users 
+        SUM(role_id = '2') as total_dealers,
+        SUM(role_id = '1') as total_admins,
+        SUM(role_id = '4') as total_customers,
+        SUM(role_id = '3') as total_sales_agents,
+        SUM(role_id = '5') as total_website_users 
     FROM users 
     $whereClause
 ";
 
 $stmt = $conn->prepare($sql);
-if ($userRole !== 'admin') {
+if ($userRole !== '1') {
     $stmt->bind_param("s", $userRole);
 }
 
@@ -63,7 +63,7 @@ function executeQuery($conn, $query, $params = null) {
 $dealerId = null;
 
 // Check if the session role is 'dealer' and set the dealer ID
-if (isset($_SESSION['role']) && $_SESSION['role'] === 'dealer') {
+if (isset($_SESSION['role']) && $_SESSION['role'] === '2') {
     // Assuming user_id is a safe value in the session
     $dealerId = $_SESSION['user_id'] ?? null; // Get dealer_id from session
 }

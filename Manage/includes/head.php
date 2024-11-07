@@ -1,21 +1,18 @@
 <!doctype html>
 <html lang="en">
 <?php
-session_start(); // Start the session
-include '../includes/db.php'; // Include your database connection file
+session_start();
+include '../includes/db.php';
 
-// Check if the session variable 'role' is set
 if (!isset($_SESSION['role'])) {
-    // If the user is not logged in, redirect to index page
     header("Location: ../index.php");
-    exit();
-} elseif ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'dealer' && $_SESSION['role'] !== 'website_user' && $_SESSION['role'] !== 'sales_agent') {
-    // If the role is not recognized, redirect to mypage
-    header("Location: mypage.php");
     exit();
 }
 
-// Continue with the rest of your page
+if ($_SESSION['role'] === '4') {
+    header("Location: ../mypage123");
+    exit();
+}
 ?>
 
 <head>
@@ -93,21 +90,4 @@ if (!isset($_SESSION['role'])) {
         include 'header.php';
         include 'sidebar.php';
         ?>
-        <?php
-        $product_category_id = null; // Initialize before use
-        if (isset($_SESSION['role']) && $_SESSION['role'] === 'dealer') {
-            $userId = $_SESSION['user_id'];
-            $sql = "SELECT product_category_id FROM dealers WHERE user_id = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("i", $userId);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            if ($row = $result->fetch_assoc()) {
-                $product_category_id = $row['product_category_id'];
-                // echo "Category ID: " . htmlspecialchars($product_category_id);
-            } else {
-                echo "No dealer found for this user ID.";
-            }
-            $stmt->close();
-        }
-        ?>
+       

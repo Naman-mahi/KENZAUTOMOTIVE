@@ -16,8 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     // Prepare SQL statement
-    $sql = "SELECT user_id, first_name, last_name, profile_pic, password_hash, role FROM users WHERE email = ?";
-   
+    $sql = "SELECT user_id, first_name, last_name, profile_pic, password_hash, role_id FROM users WHERE email = ?";
+
     $stmt = $conn->prepare($sql);
     if (!$stmt) {
         echo json_encode(['success' => false, 'message' => 'SQL statement preparation failed: ' . $conn->error]);
@@ -25,12 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $stmt->bind_param("s", $email);
-    
+
     if (!$stmt->execute()) {
         echo json_encode(['success' => false, 'message' => 'Database query failed: ' . $stmt->error]);
         exit;
     }
-    
+
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['first_name'] = $user['first_name'];
             $_SESSION['last_name'] = $user['last_name'];
             $_SESSION['profile_pic'] = $user['profile_pic'];
-            $_SESSION['role'] = $user['role'];
+            $_SESSION['role'] = $user['role_id'];
 
             // Set a cookie to keep the user logged in for 30 days
             $cookie_name = 'user_login';
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'first_name' => $user['first_name'],
                 'last_name' => $user['last_name'],
                 'profile_pic' => $user['profile_pic'],
-                'role' => $user['role']
+                'role' => $user['role_id']
             ]));
             $cookie_expiry = time() + (30 * 24 * 60 * 60); // 30 days
             setcookie($cookie_name, $cookie_value, $cookie_expiry, '/', '', true, true);
@@ -59,10 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Success response
             echo json_encode([
                 'success' => true,
-                'redirect' => $_SESSION['role'] === 'admin' ? 'Manage/dashboard' : 
-                              ($_SESSION['role'] === 'website_user' ? 'Manage/dashboard' : 
-                              ($_SESSION['role'] === 'sales_agent' ? 'Manage/dashboard' : 
-                              ($_SESSION['role'] === 'dealer' ? 'Manage/dashboard' : 'mypage')))
+                'redirect' => $_SESSION['role'] === '4' ? '../mypage' : 'Manage/dashboard'
             ]);
         } else {
             // Invalid password
@@ -88,11 +85,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['role'] = $cookie_data['role'];
 
             // Redirect based on role
-            $redirect = $_SESSION['role'] === 'admin' ? 'Manage/dashboard.php' : 
-                        ($_SESSION['role'] === 'website_user' ? 'Manage/dashboard.php' : 
-                        ($_SESSION['role'] === 'sales_agent' ? 'Manage/dashboard.php' : 
-                        ($_SESSION['role'] === 'dealer' ? 'Manage/dashboard.php' : 'mypage.php')));
-            
+            $redirect = $_SESSION['role'] === 'admin' ? 'Manage/dashboard.php' : ($_SESSION['role'] === 'website_user' ? 'Manage/dashboard.php' : ($_SESSION['role'] === 'sales_agent' ? 'Manage/dashboard.php' : ($_SESSION['role'] === 'dealer' ? 'Manage/dashboard.php' : 'mypage.php')));
+
             header("Location: $redirect");
             exit;
         }
