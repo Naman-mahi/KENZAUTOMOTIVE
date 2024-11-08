@@ -3,7 +3,7 @@ include 'includes/head.php';
 require_once '../includes/db.php'; // Ensure database connection is included
 $id = $_GET['id'];
 // Fetch inquiries securely
-$sql = "SELECT * FROM `users` WHERE role = 'sales_agent' AND user_id = '$id'";
+$sql = "SELECT * FROM `users` WHERE role_id = 3 AND user_id = '$id'";
 $result = $conn->query($sql);
 
 ?>
@@ -54,7 +54,9 @@ $result = $conn->query($sql);
                                echo "<label for='password'>Password</label>";
                                echo "<input type='password' class='form-control' id='password' name='password' required>";
                                echo "</div>";
-                               echo "<button type='submit' class='btn btn-primary'>Update</button>";
+                               echo "<div class='text-end'>";
+                               echo "<button type='submit' class='btn btn-primary btn-sm mt-3'>Update</button>";
+                               echo "</div>";
                                echo "</form>";
                            } else {
                                echo "<p>No sales agent found with the specified ID.</p>";

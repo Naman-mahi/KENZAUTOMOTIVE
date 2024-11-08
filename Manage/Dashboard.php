@@ -1,7 +1,135 @@
 <?php
 include 'includes/head.php';
 require_once '../includes/db.php'; // Ensure database connection is included
-require_once 'functions/statistics.php'; // Ensure database connection is included
+require_once 'functions/statistics.php'; // Include statistics functions
+
+// Get statistics data
+$statistics = getStatistics(); // Function from statistics.php that returns array of stats
+
+// Define card configurations for each role
+$roleCards = [
+    '1' => [ // Admin
+        [
+            'title' => 'Total Users',
+            'icon' => 'mdi-account-multiple',
+            'key' => 'total_users'
+        ],
+        [
+            'title' => 'Total Dealers',
+            'icon' => 'mdi-account-tie',
+            'key' => 'total_dealers'
+        ],
+        [
+            'title' => 'Total Admins',
+            'icon' => 'mdi-shield-account',
+            'key' => 'total_admins'
+        ],
+        [
+            'title' => 'Total Customers',
+            'icon' => 'mdi-account',
+            'key' => 'total_customers'
+        ],
+        [
+            'title' => 'Total Sales Agents',
+            'icon' => 'mdi-account-tie-voice',
+            'key' => 'total_sales_agents'
+        ],
+        [
+            'title' => 'Total Website Users',
+            'icon' => 'mdi-account-circle',
+            'key' => 'total_website_users'
+        ],
+        [
+            'title' => 'Total Products',
+            'icon' => 'mdi-package-variant-closed',
+            'key' => 'total_products'
+        ],
+        [
+            'title' => 'Total Published Website',
+            'icon' => 'mdi-publish',
+            'key' => 'total_published_website'
+        ],
+        [
+            'title' => 'Total Published Marketplace',
+            'icon' => 'mdi-publish',
+            'key' => 'total_published_marketplace'
+        ],
+        [
+            'title' => 'Total Published Own Website',
+            'icon' => 'mdi-publish',
+            'key' => 'total_published_own_website'
+        ],
+        [
+            'title' => 'Total Referral Rewards',
+            'icon' => 'mdi-gift',
+            'key' => 'total_referral_rewards'
+        ],
+        [
+            'title' => 'Total Active Subscriptions',
+            'icon' => 'mdi-credit-card-check',
+            'key' => 'total_active_subscriptions'
+        ],
+        [
+            'title' => 'Total Inquiries',
+            'icon' => 'mdi-comment-question-outline',
+            'key' => 'total_inquiries'
+        ]
+    ],
+    '2' => [ // Dealer
+        [
+            'title' => 'My Products',
+            'icon' => 'mdi-package-variant-closed',
+            'key' => 'total_products'
+        ],
+        [
+            'title' => 'Total Inquiries',
+            'icon' => 'mdi-comment-question-outline',
+            'key' => 'total_inquiries'
+        ],
+        [
+            'title' => 'Published Products',
+            'icon' => 'mdi-eye',
+            'key' => 'total_published_website'
+        ],
+        [
+            'title' => 'Published Own Website',
+            'icon' => 'mdi-eye',
+            'key' => 'total_published_own_website'
+        ],
+        [
+            'title' => 'Published Marketplace',
+            'icon' => 'mdi-eye',
+            'key' => 'total_published_marketplace'
+        ],
+        [
+            'title' => 'Total Referral Rewards',
+            'icon' => 'mdi-cash',
+            'key' => 'total_referral_rewards'
+        ]
+    ],
+    '5' => [ // Sales Agent
+        [
+            'title' => 'My Products',
+            'icon' => 'mdi-package-variant-closed',
+            'key' => 'total_products'
+        ],
+        [
+            'title' => 'Total Inquiries',
+            'icon' => 'mdi-comment-question-outline',
+            'key' => 'total_inquiries'
+        ],
+        [
+            'title' => 'Total Product Views',
+            'icon' => 'mdi-eye',
+            'key' => 'total_views'
+        ],
+        [
+            'title' => 'Total Sales',
+            'icon' => 'mdi-cash',
+            'key' => 'total_sales'
+        ]
+    ]
+];
 ?>
 
 <div class="main-content">
@@ -23,518 +151,57 @@ require_once 'functions/statistics.php'; // Ensure database connection is includ
             </div>
             <!-- end page title -->
 
-
             <?php
-            // var_dump($statistics);
-            ?>
+            // Check if statistics were retrieved successfully
+            if (!$statistics) {
+                echo '<div class="alert alert-danger">Error retrieving statistics data</div>';
+            }
 
-            <?php
-            if ($_SESSION['role'] === '1') {
-            ?>
-                <div class="row">
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-account-multiple fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Total Users</p>
-                                        <h5 class="mb-3"><?php echo $statistics['total_users']; ?></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
+            // Get the current user's role
+            $userRole = $_SESSION['role'];
 
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-account-tie fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Total Dealers</p>
-                                        <h5 class="mb-3"><?php echo $statistics['total_dealers']; ?></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-shield-account fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Total Admins</p>
-                                        <h5 class="mb-3"><?php echo $statistics['total_admins']; ?></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-account fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Total Customers</p>
-                                        <h5 class="mb-3"><?php echo $statistics['total_customers']; ?></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-account-tie-voice fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Total Sales Agents</p>
-                                        <h5 class="mb-3"><?php echo $statistics['total_sales_agents']; ?></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-account-circle fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Total Website Users</p>
-                                        <h5 class="mb-3"><?php echo $statistics['total_website_users']; ?></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-package-variant-closed fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Total Products</p>
-                                        <h5 class="mb-3"><?php echo $statistics['total_products']; ?></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-publish fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Total Published Website</p>
-                                        <h5 class="mb-3"><?php echo $statistics['total_published_website']; ?></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-publish fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Total Published Marketplace</p>
-                                        <h5 class="mb-3"><?php echo $statistics['total_published_marketplace']; ?></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-publish fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Total Published Own Website</p>
-                                        <h5 class="mb-3"><?php echo $statistics['total_published_own_website']; ?></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-gift fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Total Referral Rewards</p>
-                                        <h5 class="mb-3"><?php echo $statistics['total_referral_rewards']; ?></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-credit-card-check fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Total Active Subscriptions</p>
-                                        <h5 class="mb-3"><?php echo $statistics['total_active_subscriptions']; ?></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-comment-question-outline fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Total Inquiries</p>
-                                        <h5 class="mb-3"><?php echo $statistics['total_inquiries']; ?></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-                </div>
-                <!-- end row -->
-
-            
-
-            <?php
-            } elseif ($_SESSION['role'] === '2') {
+            // Check if role exists in configuration
+            if (isset($roleCards[$userRole])) {
+                // Get stats data based on role
+                $statsData = ($userRole == '5') ? getAgentStatistics($_SESSION['user_id']) : $statistics;
             ?>
                 <div class="row">
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-package-variant-closed fs-2"></i>
+                    <?php foreach ($roleCards[$userRole] as $card) { ?>
+                        <div class="col-xl-3 col-sm-6">
+                            <div class="card card-dashboard shadow-lg">
+                                <div class="card-body">
+                                    <div class="d-flex text-muted">
+                                        <div class="flex-shrink-0 me-3 align-self-center">
+                                            <div class="avatar-sm">
+                                                <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
+                                                    <i class="mdi <?php echo $card['icon']; ?> fs-2"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">My Products</p>
-                                        <h5 class="mb-3"><?php echo $statistics['total_products']; ?></h5>
+                                        <div class="flex-grow-1 overflow-hidden">
+                                            <p class="mb-1"><?php echo $card['title']; ?></p>
+                                            <h5 class="mb-3"><?php echo isset($statsData[$card['key']]) ? $statsData[$card['key']] : 0; ?></h5>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- end col -->
-
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-comment-question-outline fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Total Inquiries</p>
-                                        <h5 class="mb-3"><?php echo $statistics['total_inquiries']; ?></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-eye fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Published Products</p>
-                                        <h5 class="mb-3"><?php echo $statistics['total_published_website']; ?></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-eye fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Published Own Website</p>
-                                        <h5 class="mb-3"><?php echo $statistics['total_published_own_website']; ?></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-eye fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Published Marketplace</p>
-                                        <h5 class="mb-3"><?php echo $statistics['total_published_marketplace']; ?></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-
-
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-cash fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Total Referral Rewards</p>
-                                        <h5 class="mb-3"><?php echo $statistics['total_referral_rewards']; ?></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-
+                    <?php } ?>
                 </div>
-                <!-- end row -->
-
-            <?php
-            } elseif ($_SESSION['role'] === '5') {
-            ?>
-                <div class="row">
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-package-variant-closed fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">My Products</p>
-                                        <h5 class="mb-3">120</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-comment-question-outline fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Total Inquiries</p>
-                                        <h5 class="mb-3">25</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-eye fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Total Product Views</p>
-                                        <h5 class="mb-3">40</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="card card-dashboard shadow-lg">
-                            <div class="card-body">
-                                <div class="d-flex text-muted">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                                                <i class="mdi mdi-cash fs-2"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Total Sales</p>
-                                        <h5 class="mb-3">200</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col -->
-                </div>
-                <!-- end row -->
-
             <?php
             } else {
-                // Redirect to login page if user is not admin or dealer
-                echo '<script>window.location.href = "http://localhost/marketplace/";</script>';
-                exit(); // Ensure no further code is executed
+                // Redirect to homepage if role is not valid
+                header('Location: /');
+                exit();
             }
             ?>
-        </div> <!-- container-fluid -->
 
+        </div> <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
 </div>
 <!-- end main content-->
+
 <?php
 include 'includes/footer.php';
 ?>

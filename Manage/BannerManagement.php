@@ -176,10 +176,7 @@ $result = $conn->query($sql);
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 // Initialize DataTable
-                $('#datatable').DataTable({
-                    responsive: true,
-                    order: [[5, 'desc']] // Sort by Created At column by default
-                });
+               
 
                 // Open Add Banner Modal
                 const addBannerButton = document.querySelector('.btn-success');

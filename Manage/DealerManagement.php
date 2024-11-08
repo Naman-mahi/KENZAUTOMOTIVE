@@ -3,7 +3,7 @@ include 'includes/head.php';
 require_once '../includes/db.php'; // Ensure database connection is included
 
 // Fetch inquiries securely
-$sql = "SELECT u.*, d.* FROM `users` u JOIN `dealers` d ON u.user_id = d.user_id WHERE u.role = 'dealer'";
+$sql = "SELECT u.*, d.* FROM `users` u JOIN `dealers` d ON u.user_id = d.user_id WHERE u.role_id = 2";
 $result = $conn->query($sql);
 
 ?>

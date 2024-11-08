@@ -67,11 +67,11 @@ $result = $conn->query($sql);
                                                 <td class='text-center'><span class='{$badge}'>{$row['inspection_status']}</span></td>
                                                 <td>";
                                             if ($row['inspection_id'] == 'Null') {
-                                                echo "<a href='InspectionView.php?inspection_id={$row['inspection_id']}' class='btn btn-sm btn-info me-2'>View</a>";
+                                                echo "<a href='InspectionView?inspection_id={$row['inspection_id']}' class='btn btn-sm btn-info me-2'>View</a>";
                                             } else {
-                                                echo "<a href='InspectionView.php?inspection_id={$row['inspection_id']}' class='btn btn-sm btn-info me-2' disabled>View</a>";
+                                                echo "<a href='InspectionView?inspection_id={$row['inspection_id']}' class='btn btn-sm btn-info me-2' disabled>View</a>";
                                             }
-                                            echo "<a href='InspectionAdd.php?car_id={$row['product_id']}' class='btn btn-sm btn-success'>Add</a>
+                                            echo "<a href='InspectionAdd?inspection_id={$row['inspection_id']}' class='btn btn-sm btn-success'>Add</a>
                                                 </td>
                                             </tr>";
                                             $counter++;

@@ -1,7 +1,7 @@
 <!-- ========== Left Sidebar Start ========== -->
 <div class="vertical-menu shadow-lg">
     <div data-simplebar class="h-100">
-        <!--- Sidemenu -->
+        <!-- Sidemenu -->
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
@@ -10,26 +10,45 @@
                     'all' => [
                         ['url' => 'dashboard', 'icon' => 'mdi mdi-view-dashboard-outline', 'label' => 'Dashboard']
                     ],
-                    'admin' => [
-                        ['url' => 'CustomerManagement', 'icon' => 'mdi mdi-account-circle-outline', 'label' => 'User Management'],
-                        ['url' => 'DealerManagement', 'icon' => 'mdi mdi-account-tie-outline', 'label' => 'Dealer Management'],
-                        ['url' => 'DealerOnbording', 'icon' => 'mdi mdi-account-check-outline', 'label' => 'Dealer Onboarding'],
-                        ['url' => 'CategoryManagement', 'icon' => 'mdi mdi-tag-outline', 'label' => 'Category Management'],
-                        ['url' => 'BrandManagement', 'icon' => 'mdi mdi-format-list-numbered', 'label' => 'Brand Management'],
-                        ['url' => 'CouponsManagement', 'icon' => 'mdi mdi-ticket-percent-outline', 'label' => 'Coupons Management'],
-                        ['url' => 'SubscriptionManagement', 'icon' => 'mdi mdi-calendar-check-outline', 'label' => 'Subscriptions'],
-                        ['url' => 'AdvertisementManagement', 'icon' => 'mdi mdi-trackpad', 'label' => 'Advertisement'],
-                        ['url' => 'SalesAgentManagement', 'icon' => 'mdi mdi-account-star-outline', 'label' => 'Sales Agent'],
-                        ['url' => 'WebsiteUsersManagement', 'icon' => 'mdi mdi-web', 'label' => 'Website Users'],
-                        ['url' => 'ReferralManagement', 'icon' => 'mdi mdi-account-group', 'label' => 'Referrals'],
-                        ['url' => 'AppearanceManagement', 'icon' => 'mdi mdi-palette', 'label' => 'Appearance'],
-                        ['url' => 'BannerManagement', 'icon' => 'mdi mdi-image', 'label' => 'Banner'],
-                        ['url' => 'DealerConnect', 'icon' => 'mdi mdi-handshake', 'label' => 'Dealer Connect'],
-                        ['url' => 'PermissionManagement', 'icon' => 'mdi mdi-account-key', 'label' => 'Permission'],
-                        ['url' => 'InspectionManagements', 'icon' => 'mdi mdi-clipboard-outline', 'label' => 'Inspection Managements'],
-                        ['url' => 'RoleManagement', 'icon' => 'mdi mdi-account-key', 'label' => 'Role Management']
+                    '1' => [
+                        // User Management Group
+                        ['url' => 'javascript: void(0);', 'icon' => 'mdi mdi-account-multiple', 'label' => 'User Management', 'submenu' => [
+                            ['url' => 'CustomerManagement', 'label' => 'Customer Management'],
+                            ['url' => 'DealerManagement', 'label' => 'Dealer Management'],
+                            ['url' => 'DealerOnbording', 'label' => 'Dealer Onboarding'],
+                            ['url' => 'SalesAgentManagement', 'label' => 'Sales Agent'],
+                            ['url' => 'WebsiteUsersManagement', 'label' => 'Website Users'],
+                            ['url' => 'ReferralManagement', 'label' => 'Referrals']
+                        ]],
+
+                        // Product Management Group
+                        ['url' => 'javascript: void(0);', 'icon' => 'mdi mdi-package-variant', 'label' => 'Product Management', 'submenu' => [
+                            ['url' => 'CategoryManagement', 'label' => 'Category Management'],
+                            ['url' => 'BrandManagement', 'label' => 'Brand Management'],
+                            ['url' => 'InspectionManagements', 'label' => 'Inspection Managements']
+                        ]],
+
+                        // Marketing Group
+                        ['url' => 'javascript: void(0);', 'icon' => 'mdi mdi-bullhorn', 'label' => 'Marketing', 'submenu' => [
+                            ['url' => 'CouponsManagement', 'label' => 'Coupons Management'],
+                            ['url' => 'SubscriptionManagement', 'label' => 'Subscriptions'],
+                            ['url' => 'AdvertisementManagement', 'label' => 'Advertisement'],
+                            ['url' => 'DealerConnect', 'label' => 'Dealer Connect']
+                        ]],
+
+                        // Website Management Group
+                        ['url' => 'javascript: void(0);', 'icon' => 'mdi mdi-web', 'label' => 'Website Management', 'submenu' => [
+                            ['url' => 'AppearanceManagement', 'label' => 'Appearance'],
+                            ['url' => 'BannerManagement', 'label' => 'Banner']
+                        ]],
+
+                        // Access Control Group
+                        ['url' => 'javascript: void(0);', 'icon' => 'mdi mdi-shield-account', 'label' => 'Access Control', 'submenu' => [
+                            ['url' => 'PermissionManagement', 'label' => 'Permission'],
+                            ['url' => 'RoleManagement', 'label' => 'Role Management']
+                        ]]
                     ],
-                    'dealer' => [
+                    '2' => [
                         ['url' => 'javascript: void(0);', 'icon' => 'mdi mdi-plus-circle-outline', 'label' => 'My Products', 'submenu' => [
                             ['url' => 'MyProducts', 'label' => 'My Product'],
                             ['url' => 'MySpareParts', 'label' => 'My Spare Parts']
@@ -41,44 +60,49 @@
                         ['url' => 'DealerConnect', 'icon' => 'mdi mdi-handshake', 'label' => 'Dealer Connect'],
                         ['url' => 'WebsiteSettings', 'icon' => 'mdi mdi-cog', 'label' => 'Website Settings'],
                     ],
-                    'website_user' => [
+                    '4' => [
                         ['url' => 'OnboardDealer', 'icon' => 'mdi mdi-account-check-outline', 'label' => 'Onboard Dealer'],
                         ['url' => 'DealerManagement', 'icon' => 'mdi mdi-cogs', 'label' => 'Dealer Management']
                     ]
                 ];
 
-                $user_role = $_SESSION['role'];
+                // Retrieve user role from session
+                $user_role = isset($_SESSION['role']) ? $_SESSION['role'] : 'guest'; // Fallback for undefined roles
 
+                // Output menu items for all users (common items)
                 foreach ($menu_items['all'] as $item) {
                     echo "<li>
-                        <a href=\"{$item['url']}\" class=\"waves-effect\">
-                            <i class=\"{$item['icon']}\"></i>
-                            <span>{$item['label']}</span>
-                        </a>
-                    </li>";
+                            <a href=\"{$item['url']}\" class=\"waves-effect\">
+                                <i class=\"{$item['icon']}\"></i>
+                                <span>{$item['label']}</span>
+                            </a>
+                        </li>";
                 }
 
+                // Output role-based menu items
                 if (isset($menu_items[$user_role])) {
                     foreach ($menu_items[$user_role] as $item) {
                         if (isset($item['submenu'])) {
+                            // Handle submenu
                             echo "<li>
-                                <a href=\"{$item['url']}\" class=\"has-arrow waves-effect\">
-                                    <i class=\"{$item['icon']}\"></i>
-                                    <span>{$item['label']}</span>
-                                </a>
-                                <ul class=\"sub-menu\" aria-expanded=\"false\">";
+                                    <a href=\"{$item['url']}\" class=\"has-arrow waves-effect\">
+                                        <i class=\"{$item['icon']}\"></i>
+                                        <span>{$item['label']}</span>
+                                    </a>
+                                    <ul class=\"sub-menu\" aria-expanded=\"false\">";
                             foreach ($item['submenu'] as $subitem) {
-                                echo "<li><a href=\"{$subitem['url']}\">{$subitem['label']}</a></li>";
+                                echo "<li><a href=\"{$subitem['url']}\" aria-label=\"{$subitem['label']}\">{$subitem['label']}</a></li>";
                             }
                             echo "</ul>
-                            </li>";
+                                </li>";
                         } else {
+                            // Simple menu item
                             echo "<li>
-                                <a href=\"{$item['url']}\" class=\"waves-effect\">
-                                    <i class=\"{$item['icon']}\"></i>
-                                    <span>{$item['label']}</span>
-                                </a>
-                            </li>";
+                                    <a href=\"{$item['url']}\" class=\"waves-effect\">
+                                        <i class=\"{$item['icon']}\"></i>
+                                        <span>{$item['label']}</span>
+                                    </a>
+                                </li>";
                         }
                     }
                 }

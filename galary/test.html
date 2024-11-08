@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SK Gallery</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://naman-mahi.github.io/CodeShareHub/bd14b0bdaa-own.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lightgallery.min.css">
+    <!-- Custom Font -->
+    <style>
+        /* Define the custom font using @font-face */
+        @font-face {
+            font-family: 'font-demi' !important;
+            font-weight: normal !important;
+            src: url('font/4b745acbc8b3e709d200.ttf') format('truetype'),
+                url('font/4b938b55a55ab003b98c.woff') format('woff'),
+                url('font/41f4bf14a354d97445b6.woff') format('woff'),
+                url('font/67ea346f900cce30c2df.ttf') format('truetype'),
+                url('font/131afdec9721c8c97e6d.ttf') format('truetype'),
+                url('font/cbee13f3663340d97296.woff') format('woff'),
+                url('font/d71b806acbc4ae9106f6.ttf') format('truetype'),
+                url('font/f37aa84afb71d87ca542.woff') format('woff'),
+                url('font/f37419bb33139a60702b.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Force the custom font to be applied across the site */
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        button,
+        .navbar,
+        .card,
+        .modal-content {
+            font-family: 'font-demi' !important;
+            font-weight: normal !important;
+        }
+
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #f0f0f0;
+            --accent-color: #4a90e2;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+        }
+
+        body {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            font-family: 'font-demi', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            margin: 0 1.5rem;
+        }
+
+        nav a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 1.5rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav li {
+                margin: 0.5rem 0;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* width */
+        ::-webkit-scrollbar {
+            width: 1px;
+        }
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+    <style>
+        /* Additional CSS for hover zoom effect and transitions */
+        .hover-zoom {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-zoom:hover {
+            transform: scale(1.05);
+            /* Slight zoom on hover */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            /* Add subtle shadow for depth */
+        }
+
+        .transition-effect {
+            transition: all 0.3s ease;
+            /* Smooth transition for image effects */
+        }
+
+        #animated-thumbnails-gallery {
+            columns: 300px;
+        }
+        #animated-thumbnails-gallery a {
+            display: inline-block;
+            margin: 0 10px 10px 0;
+            border-radius: 10px;
+            columns: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>SK Gallery</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container py-5">
+        <section id="home" class="row mb-5">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="display-4 mb-4 fw-bold">Welcome to SK Gallery</h2>
+                <p class="lead mb-4">Discover our meticulously curated collection of stunning photographs and masterful
+                    artworks from renowned artists worldwide.</p>
+                <div class="mt-4 d-flex justify-content-center gap-3">
+                    <button class="btn btn-lg btn-dark border-1 border-light px-4 rounded-pill">
+                        <i class="fas fa-images me-2"></i>Browse Gallery
+                    </button>
+                    <button class="btn btn-lg btn-outline-dark border-1 text-light px-4 rounded-pill">
+                        <i class="fas fa-info-circle me-2"></i>Learn More
+                    </button>
+                </div>
+                <div class="mt-5">
+                    <div class="row g-4 justify-content-center">
+                        <div class="col-md-4">
+                            <div class="feature-card bg-transparent p-4 rounded-3">
+                                <i class="fas fa-star fa-2x mb-3 text-warning"></i>
+                                <h5>Featured Artists</h5>
+                                <p class="small text-muted">Showcasing exceptional talent</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-card bg-transparent p-4 rounded-3">
+                                <i class="fas fa-calendar-alt fa-2x mb-3 text-primary"></i>
+                                <h5>Weekly Updates</h5>
+                                <p class="small text-muted">Fresh content every week</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="mb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 col-md-12 mx-auto">
+                        <div class="card bg-transparent shadow-none border-0">
+                            <div class="card-body p-5">
+                                <h2 class="text-center mb-4">About Our Gallery</h2>
+                                <p class="lead text-center">SK Gallery is dedicated to showcasing exceptional visual art from
+                                    talented photographers and artists around the world.</p>
+                                <div id="animated-thumbnails-gallery">
+                                    <!-- Gallery items will be inserted here by JavaScript -->
+                                </div>
+                                <div class="text-center mt-5">
+                                    <a href="#gallery" class="btn btn-dark btn-lg px-4 rounded-pill">
+                                        <i class="fas fa-images me-2"></i>View Full Gallery
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
+        <section id="contact" class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card bg-transparent border-0 backdrop-blur">
+                    <div class="card-body p-5">
+                        <h2 class="text-center mb-4 display-4 fw-bold">Get in Touch</h2>
+                        <p class="text-center mb-5 lead text-muted">We'd love to hear from you. Let's create something
+                            amazing together.</p>
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <form class="needs-validation" novalidate>
+                                    <div class="form-floating mb-4">
+                                        <input type="text" class="form-control border-0 border-bottom rounded-0"
+                                            id="name" placeholder="Your Name" required>
+                                        <label for="name">Your Name</label>
+                                    </div>
+                                    <div class="form-floating mb-4">
+                                        <input type="email" class="form-control border-0 border-bottom rounded-0"
+                                            id="email" placeholder="Your Email" required>
+                                        <label for="email">Your Email</label>
+                                    </div>
+                                    <div class="form-floating mb-4">
+                                        <textarea class="form-control border-0 border-bottom rounded-0" id="message"
+                                            style="height: 120px" placeholder="Your Message" required></textarea>
+                                        <label for="message">Your Message</label>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit"
+                                            class="btn btn-dark btn-lg px-5 py-3 rounded-pill shadow-sm hover-lift">
+                                            <i class="fas fa-paper-plane me-2"></i>Send Message
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer mt-5 py-4">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="mb-3">
+                        <i class="fa-duotone fa-solid fa-aperture"></i>
+                        About Us
+                    </h5>
+                    <p class="mb-1 ms-4">&copy; 2024 SK Gallery. All rights reserved.</p>
+                    <p class="mb-1 ms-4">Designed & Powered by SK Gallery</p>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="mb-3">
+                        <i class="fa-duotone fa-solid fa-envelope"></i>
+                        Contact
+                    </h5>
+                    <p class="mb-1 ms-4">
+                        <i class="fa-duotone fa-solid fa-at"></i>
+                        <a href="mailto:skgallery@gmail.com" class="text-decoration-none">skgallery@gmail.com</a>
+                    </p>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="mb-3">
+                        <i class="fa-duotone fa-solid fa-link"></i>
+                        Follow Us
+                    </h5>
+                    <div class="d-flex gap-4 ms-4">
+                        <a href="https://www.instagram.com/sk_gallery_/" class="text-decoration-none" title="Instagram">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3955/3955024.png" alt="Instagram"
+                                width="24" height="24">
+                        </a>
+                        <a href="https://www.tiktok.com/@sk_gallery_" class="text-decoration-none" title="TikTok">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok" width="24"
+                                height="24">
+                        </a>
+                        <a href="https://www.youtube.com/@sk_gallery_" class="text-decoration-none" title="YouTube">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3670/3670147.png" alt="YouTube" width="24"
+                                height="24">
+                        </a>
+                        <a href="https://www.facebook.com/skgallery" class="text-decoration-none" title="Facebook">
+                            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="Facebook" width="24"
+                                height="24">
+                        </a>
+                        <a href="https://www.linkedin.com/company/sk-gallery/" class="text-decoration-none"
+                            title="LinkedIn">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3536/3536505.png" alt="LinkedIn" width="24"
+                                height="24">
+                        </a>
+                        <a href="https://www.x.com/sk_gallery_" class="text-decoration-none" title="X">
+                            <img src="https://cdn-icons-png.flaticon.com/512/5969/5969020.png" alt="X" width="24"
+                                height="24">
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/lightgallery.min.js"></script>
+    <script>
+        // List of images
+        const images = [
+            'https://fastly.picsum.photos/id/26/4209/2769.jpg?hmac=vcInmowFvPCyKGtV7Vfh7zWcA_Z0kStrPDW3ppP0iGI',
+            'https://fastly.picsum.photos/id/27/3264/1836.jpg?hmac=p3BVIgKKQpHhfGRRCbsi2MCAzw8mWBCayBsKxxtWO8g',
+            'https://fastly.picsum.photos/id/7/4728/3168.jpg?hmac=c5B5tfYFM9blHHMhuu4UKmhnbZoJqrzNOP9xjkV4w3o',
+            'https://fastly.picsum.photos/id/49/1280/792.jpg?hmac=NnUJy0O9-pXHLmY2loqVs2pJmgw9xzuixgYOk4ALCXU',
+            'https://fastly.picsum.photos/id/54/3264/2176.jpg?hmac=blh020fMeJ5Ru0p-fmXUaOAeYnxpOPHnhJojpzPLN3g',
+            'https://fastly.picsum.photos/id/59/2464/1632.jpg?hmac=uTfe6jCzLvCzANvJgtpo-a0fKhO8BvjpwLNYX3lqx_Q',
+            'https://fastly.picsum.photos/id/76/4912/3264.jpg?hmac=VkFcSa2Rbv0R0ndYnz_FAmw02ON1pPVjuF_iVKbiiV8',
+            'https://fastly.picsum.photos/id/82/1500/997.jpg?hmac=VcdCqu9YiLpbCtr8YowUCSUD3-245TGekiXmtiMXotw',
+            'https://fastly.picsum.photos/id/88/1280/1707.jpg?hmac=NnkwPVDBTVxHkc4rALB_fyu-OHY2usdm7iRk5El7JC4',
+            'https://fastly.picsum.photos/id/69/4912/3264.jpg?hmac=Q08LW3SoOxPfaE-y8-braexxvm5PESXMCdEDqFbEhQ8',
+            'https://fastly.picsum.photos/id/71/5000/3333.jpg?hmac=wBjyqoAke0uv6bTtbbIby9s-VTQ52gIkI-QVXWS3W0I',
+
+        ];
+
+        // Function to create a gallery item
+        function createGalleryItem(imageUrl, index) {
+            const categories = ['Photography', 'Fine Art', 'Digital Art'];
+            const category = categories[index % categories.length];
+
+            return `
+                <a href="${imageUrl}">
+                    <img src="${imageUrl}" alt="${category} Sample" class="img-fluid rounded shadow-sm hover-zoom transition-effect" >
+                </a>
+            `;
+        }
+
+        // Insert gallery items dynamically
+        const galleryContainer = document.getElementById('animated-thumbnails-gallery');
+        let galleryHTML = ''; // Accumulate HTML in a string for efficiency
+        images.forEach((imageUrl, index) => {
+            galleryHTML += createGalleryItem(imageUrl, index);
+        });
+        galleryContainer.innerHTML = galleryHTML; // Inject HTML all at once
+
+        // Initialize lightGallery for lightbox functionality
+        lightGallery(document.getElementById('animated-thumbnails-gallery'), {
+            thumbnail: true,  // Enable thumbnails for the lightbox
+            selector: 'a',    // Selector for gallery items
+            download: false,  // Disable download button (optional)
+            mode: 'lg-fade',  // Animation mode when opening the lightbox
+            speed: 500,       // Set the transition speed between images
+        });
+    </script>
+</body>
+
+</html>

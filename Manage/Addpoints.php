@@ -59,8 +59,16 @@
                     </div>
                 </div>
             </div>
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="d-sm-flex align-items-center justify-content-end">
+                        <button type="button" onclick="window.history.back();" class="btn btn-sm btn-dark me-2">Back</button>
+                        <button type="button" onclick="window.location.href='InspectionAdd?product_id=<?php echo $product_id; ?>'" class="btn btn-sm btn-primary">Add Inspection</button>
+                    </div>
+                </div>
+            </div>
 
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
@@ -83,23 +91,32 @@
                                     <div id="addPointForm" style="display: none;">
                                         <h3>Add New Inspection Point</h3>
                                         <form id="inspectionPointForm" enctype="multipart/form-data">
-                                            <div class="form-group mb-3">
-                                                <label for="title">Title</label>
-                                                <input type="text" class="form-control" id="title" name="title" required>
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label for="description">Description</label>
-                                                <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
-                                            </div>
-                                            <input type="hidden" id="inspection_id" name="inspection_id" value="<?= $_GET['inspection_id'] ?? '' ?>">
-                                            <input type="hidden" name="position_x" id="position_x">
-                                            <input type="hidden" name="position_y" id="position_y">
-                                            <input type="file" name="image_url" id="image_url" accept="image/*">
-                                            <small class="text-muted">This image will help to identify the inspection point. and this image is optional.</small>
-                                            <div class="text-end mt-3">
-                                                <button type="submit" class="btn btn-primary btn-sm">Add Point</button>
-                                            </div>
-                                        </form>
+    <div class="form-group mb-3">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" name="title" required>
+    </div>
+    <div class="form-group mb-3">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+    </div>
+    <input type="hidden" id="inspection_id" name="inspection_id" value="<?= $_GET['inspection_id'] ?? '' ?>">
+    <input type="hidden" name="position_x" id="position_x">
+    <input type="hidden" name="position_y" id="position_y">
+    
+    <!-- File upload or take picture option -->
+    <div class="form-group mb-3">
+        <label for="image_url">Take a Picture or Upload an Image</label>
+        <input type="file" name="image_url" id="image_url" accept="image/*;capture=camera">
+        <small class="text-muted">This image will help identify the inspection point. This image is optional.</small>
+    </div>
+    
+    <input type="hidden" name="product_id" id="product_id" value="<?= $_GET['product_id'] ?? '' ?>">
+    
+    <div class="text-end mt-3">
+        <button type="submit" class="btn btn-primary btn-sm">Add Point</button>
+    </div>
+</form>
+
                                     </div>
                                 </div>
                             </div>

@@ -1,7 +1,7 @@
 <?php
 include 'includes/head.php';
-$product_id = $_GET['product_id'];
-$sql = "SELECT * FROM vehicle_inspection WHERE car_id = '$product_id'";
+$inspection_id = $_GET['inspection_id'];
+$sql = "SELECT * FROM vehicle_inspection WHERE inspection_id = '$inspection_id'";
 $result = mysqli_query($conn, $sql);
 $inspection_data = mysqli_fetch_assoc($result);
 ?>
@@ -25,7 +25,8 @@ $inspection_data = mysqli_fetch_assoc($result);
             <div class="row mb-3">
                 <div class="col-12">
                     <div class="d-sm-flex align-items-center justify-content-end">
-                        <button type="button" onclick="window.history.back();" class="btn btn-sm btn-dark">Back</button>
+                        <button type="button" onclick="window.history.back();" class="btn btn-sm btn-dark me-2">Back</button>
+                        <button type="button" onclick="window.location.href='Addpoints?inspection_id=<?php echo $inspection_id; ?>'" class="btn btn-sm btn-primary">Add Inspection Points</button>
                     </div>
                 </div>
             </div>

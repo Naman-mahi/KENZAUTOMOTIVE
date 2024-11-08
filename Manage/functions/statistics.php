@@ -14,37 +14,6 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-$userRole = $_SESSION['role'] ?? '4'; // Use null coalescing operator
-
-// Start building the query
-$whereClause = ($userRole === '1') ? '' : 'WHERE role_id = ?';
-
-// User statistics query
-$sql = "
-    SELECT 
-        COUNT(*) as total_users,
-        SUM(role_id = '2') as total_dealers,
-        SUM(role_id = '1') as total_admins,
-        SUM(role_id = '4') as total_customers,
-        SUM(role_id = '3') as total_sales_agents,
-        SUM(role_id = '5') as total_website_users 
-    FROM users 
-    $whereClause
-";
-
-$stmt = $conn->prepare($sql);
-if ($userRole !== '1') {
-    $stmt->bind_param("s", $userRole);
-}
-
-if (!$stmt->execute()) {
-    error_log("Execution failed: " . $stmt->error);
-    $userStats = ['error' => 'Database error.'];
-} else {
-    $userStats = $stmt->get_result()->fetch_assoc();
-}
-$stmt->close();
-
 // Function to execute queries
 function executeQuery($conn, $query, $params = null) {
     $stmt = $conn->prepare($query);
@@ -60,64 +29,118 @@ function executeQuery($conn, $query, $params = null) {
     return $result;
 }
 
-$dealerId = null;
+// Function to get statistics based on user role
+function getStatistics() {
+    global $conn;
+    
+    // Check user role
+    $userRole = $_SESSION['role'] ?? '4'; // Default to '4' if role not set in session
+    
+    // If role is '4' (customer), redirect to 'mypage'
+    if ($userRole === '4') {
+        header("Location: mypage.php");
+        exit();
+    }
 
-// Check if the session role is 'dealer' and set the dealer ID
-if (isset($_SESSION['role']) && $_SESSION['role'] === '2') {
-    // Assuming user_id is a safe value in the session
-    $dealerId = $_SESSION['user_id'] ?? null; // Get dealer_id from session
+    $dealerId = null;
+    if ($userRole === '2') {
+        $dealerId = $_SESSION['user_id'] ?? null;
+    }
+
+    // Get user statistics
+    $whereClause = ($userRole === '1') ? '' : 'WHERE role_id = ?';
+    $userStatsQuery = "
+        SELECT 
+            COUNT(*) as total_users,
+            SUM(role_id = '2') as total_dealers,
+            SUM(role_id = '1') as total_admins,
+            SUM(role_id = '4') as total_customers,
+            SUM(role_id = '3') as total_sales_agents,
+            SUM(role_id = '5') as total_website_users 
+        FROM users 
+        $whereClause
+    ";
+    $userStatsParams = ($userRole !== '1') ? [$userRole] : null;
+    $userStats = executeQuery($conn, $userStatsQuery, $userStatsParams);
+
+    // Get product statistics
+    $productStatsQuery = "SELECT COUNT(*) as total_products FROM products";
+    $productStatsParams = [];
+    if ($dealerId) {
+        $productStatsQuery .= " WHERE dealer_id = ?";
+        $productStatsParams[] = $dealerId;
+    }
+    $productStats = executeQuery($conn, $productStatsQuery, $productStatsParams);
+
+    // Get publication statistics
+    $publishStatsQuery = "SELECT 
+        COUNT(*) as total_published_website,
+        SUM(CASE WHEN marketplace = 1 THEN 1 ELSE 0 END) as total_published_marketplace,
+        SUM(CASE WHEN own_website = 1 THEN 1 ELSE 0 END) as total_published_own_website 
+    FROM product_publish 
+    JOIN products ON product_publish.product_id = products.product_id";
+    if ($dealerId) {
+        $publishStatsQuery .= " WHERE products.dealer_id = ?";
+    }
+    $publishStatsParams = $dealerId ? [$dealerId] : [];
+    $publishStats = executeQuery($conn, $publishStatsQuery, $publishStatsParams);
+
+    // Get referral statistics
+    $referralStatsQuery = "SELECT COUNT(*) as total_referral_rewards FROM referral_rewards";
+    $referralStatsParams = [];
+    if ($dealerId) {
+        $referralStatsQuery .= " WHERE referrer_id = ?";
+        $referralStatsParams[] = $dealerId;
+    }
+    $referralStats = executeQuery($conn, $referralStatsQuery, $referralStatsParams);
+
+    // Get subscription and inquiry statistics
+    $subscriptionStats = executeQuery($conn, "SELECT COUNT(*) as total_active_subscriptions FROM subscriptions WHERE status = 'active'");
+    $inquiryStats = executeQuery($conn, "SELECT COUNT(*) as total_inquiries FROM product_inquiries");
+
+    // Combine all statistics
+    return array_merge(
+        $userStats, 
+        $productStats, 
+        $publishStats, 
+        $referralStats, 
+        $subscriptionStats, 
+        $inquiryStats
+    );
 }
 
-// Query to get total products
-$productStatsQuery = "SELECT COUNT(*) as total_products FROM products";
-$productStatsParams = [];
-
-// If dealerId is set, modify the query to filter by dealer_id
-if ($dealerId) {
-    $productStatsQuery .= " WHERE dealer_id = ?";
-    $productStatsParams[] = $dealerId; // Add dealerId to parameters
+// Function to get sales agent statistics
+function getAgentStatistics($agentId) {
+    global $conn;
+    
+    $agentStats = [];
+    
+    // Get total products for agent
+    $productQuery = "SELECT COUNT(*) as total_products FROM products WHERE agent_id = ?";
+    $productStats = executeQuery($conn, $productQuery, [$agentId]);
+    $agentStats['total_products'] = $productStats['total_products'] ?? 0;
+    
+    // Get total inquiries for agent's products
+    $inquiryQuery = "SELECT COUNT(*) as total_inquiries FROM product_inquiries pi 
+                     JOIN products p ON pi.product_id = p.product_id 
+                     WHERE p.agent_id = ?";
+    $inquiryStats = executeQuery($conn, $inquiryQuery, [$agentId]);
+    $agentStats['total_inquiries'] = $inquiryStats['total_inquiries'] ?? 0;
+    
+    // Get total views for agent's products
+    $viewsQuery = "SELECT COUNT(*) as total_views FROM product_views pv
+                   JOIN products p ON pv.product_id = p.product_id 
+                   WHERE p.agent_id = ?";
+    $viewStats = executeQuery($conn, $viewsQuery, [$agentId]);
+    $agentStats['total_views'] = $viewStats['total_views'] ?? 0;
+    
+    // Get total sales for agent
+    $salesQuery = "SELECT COUNT(*) as total_sales FROM sales 
+                   JOIN products p ON sales.product_id = p.product_id
+                   WHERE p.agent_id = ?";
+    $salesStats = executeQuery($conn, $salesQuery, [$agentId]);
+    $agentStats['total_sales'] = $salesStats['total_sales'] ?? 0;
+    
+    return $agentStats;
 }
-
-// Execute the product stats query
-$productStats = executeQuery($conn, $productStatsQuery, $productStatsParams);
-
-// Prepare and execute publication statistics query
-$publishStatsQuery = "SELECT 
-    COUNT(*) as total_published_website,
-    SUM(CASE WHEN marketplace = 1 THEN 1 ELSE 0 END) as total_published_marketplace,
-    SUM(CASE WHEN own_website = 1 THEN 1 ELSE 0 END) as total_published_own_website 
-FROM product_publish 
-JOIN products ON product_publish.product_id = products.product_id";
-
-// If dealerId is set, add a condition to the publication stats query
-if ($dealerId) {
-    $publishStatsQuery .= " WHERE products.dealer_id = ?";
-}
-
-// Prepare parameters for publication stats
-$publishStatsParams = $dealerId ? [$dealerId] : [];
-$publishStats = executeQuery($conn, $publishStatsQuery, $publishStatsParams);
-
-// Get total referral rewards
-$referralStatsQuery = "SELECT COUNT(*) as total_referral_rewards FROM referral_rewards";
-$referralStatsParams = [];
-
-// If dealerId is set, add a condition for the referrer_id
-if ($dealerId) {
-    $referralStatsQuery .= " WHERE referrer_id = ?";
-    $referralStatsParams[] = $dealerId; // Add dealerId to parameters
-}
-
-$referralStats = executeQuery($conn, $referralStatsQuery, $referralStatsParams);
-
-
-
-$subscriptionStats = executeQuery($conn, "SELECT COUNT(*) as total_active_subscriptions FROM subscriptions WHERE status = 'active'");
-$inquiryStats = executeQuery($conn, "SELECT COUNT(*) as total_inquiries FROM product_inquiries");
-
-// Combine all statistics into a single array
-$statistics = array_merge($userStats, $productStats, $publishStats, $referralStats, $subscriptionStats, $inquiryStats);
-
-// Output the statistics as JSON
- json_encode($statistics);
 ?>

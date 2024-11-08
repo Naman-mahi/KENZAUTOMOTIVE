@@ -2,7 +2,7 @@
 include 'includes/head.php';
 require_once '../includes/db.php'; // Ensure database connection is included
 // Fetch inquiries securely
-$sql = "SELECT * FROM `users` WHERE role = 'sales_agent'";
+$sql = "SELECT * FROM `users` WHERE role_id = 3";
 $result = $conn->query($sql);
 ?>
 <div class="main-content">

@@ -3,9 +3,9 @@ include 'includes/head.php';
 
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
-    if ($_SESSION['role'] == 'admin') {
+    if ($_SESSION['role'] == '1') {
         $sql = "SELECT * FROM users WHERE user_id = ?";
-    } elseif ($_SESSION['role'] == 'dealer') {
+    } elseif ($_SESSION['role'] == '2') {
         $sql = "SELECT users.*, dealers.* 
                 FROM users 
                 LEFT JOIN dealers ON users.user_id = dealers.user_id 
@@ -75,7 +75,7 @@ $conn->close();
                                 </div>
                             </div>
                         </div>
-                        <?php if ($_SESSION['role'] == 'dealer') { ?>
+                        <?php if ($_SESSION['role'] == '2') { ?>
                             <div class="col-md-9">
                                 <!-- Personal Information Form -->
                                 <form action="update_personal.php" method="POST">

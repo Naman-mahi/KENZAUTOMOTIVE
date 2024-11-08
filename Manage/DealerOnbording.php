@@ -2,7 +2,7 @@
 include 'includes/head.php';
 
 // Fetch inquiries securely
-$sql = "SELECT u.*, d.* FROM `users` u JOIN `dealers` d ON u.user_id = d.user_id WHERE u.role = 'dealer' AND d.verification_status ='Pending'";
+$sql = "SELECT u.*, d.* FROM `users` u JOIN `dealers` d ON u.user_id = d.user_id WHERE u.role_id = 2 AND d.verification_status ='Pending'";
 $DealerOnbording = $conn->query($sql);
 
 ?>

@@ -2,7 +2,7 @@
 include 'includes/head.php';
 
 // Fetch inquiries
-$sql = "SELECT * FROM `users` WHERE `role` = 'customer'";
+$sql = "SELECT * FROM `users` WHERE `role_id` = 4";
 
 $result = $conn->query($sql);
 

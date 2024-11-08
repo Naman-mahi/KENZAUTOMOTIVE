@@ -3,7 +3,7 @@ include 'includes/head.php';
 
 // Fetch inquiries securely
 $dealer_id = $_GET['dealerId'];
-$sql = "SELECT u.*, d.* FROM `users` u JOIN `dealers` d ON u.user_id = d.user_id WHERE u.role = 'dealer' AND d.verification_status ='Pending' AND d.user_id = ?";
+$sql = "SELECT u.*, d.* FROM `users` u JOIN `dealers` d ON u.user_id = d.user_id WHERE u.role_id = 2 AND d.verification_status ='Pending' AND d.user_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $dealer_id); // Assuming dealer_id is an integer
 $stmt->execute();
@@ -29,7 +29,7 @@ $result = $stmt->get_result();
             </div>
             <!-- end page title -->
             <?php
-            if ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'website_user') {
+            if ($_SESSION['role'] === 1 || $_SESSION['role'] === 7) {
                 // Check if any results were returned
                 if ($row = $result->fetch_assoc()) {
             ?>

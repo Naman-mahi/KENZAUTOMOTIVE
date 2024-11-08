@@ -1,9 +1,7 @@
 <?php
 include 'includes/head.php';
 require_once '../includes/db.php'; // Ensure database connection is included
-// Fetch inquiries securely
-$sql = "SELECT * FROM `users` WHERE role = 'sales_agent'";
-$result = $conn->query($sql);
+
 ?>
 <div class="main-content">
     <div class="page-content">
@@ -75,8 +73,17 @@ $result = $conn->query($sql);
                                         <label class="form-label" for="role">Role</label>
                                         <select class="form-select" id="role" name="role" required>
                                             <option value="" disabled selected>Select</option>
-                                            <option value="sales_agent">Sales Agent</option>
-                                            <option value="website_user">Website User</option>
+                                            <?php
+                                            // Query to get roles from database
+                                            $sql = "SELECT role_id, role_name FROM roles WHERE role_id != 1 AND role_id != 2"; // Exclude admin and Dealer roles
+                                            $roleResult = $conn->query($sql);
+                                            if ($roleResult && $roleResult->num_rows > 0) {
+                                                while ($row = $roleResult->fetch_assoc()) {
+                                                    echo "<option value='" . htmlspecialchars($row['role_id']) . "'>" .
+                                                        htmlspecialchars($row['role_name']) . "</option>";
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                         <div class="invalid-feedback">
                                             Please select a role.
@@ -86,7 +93,7 @@ $result = $conn->query($sql);
                                         <label class="form-label" for="referral_code">Referral Code</label>
                                         <input type="text" class="form-control" id="referral_code" name="referral_code" placeholder="Referral Code">
                                     </div>
-                                    
+
 
                                 </div>
                                 <div class="row">
@@ -130,36 +137,36 @@ $result = $conn->query($sql);
                 const formData = $(this).serialize(); // Serialize form data
                 console.log(formData);
                 $.ajax({
-    type: 'POST',
-    url: 'registerUser.php',
-    data: formData,
-    success: function(response) {
-        console.log(response); // Log the raw response for debugging
-        const result = JSON.parse(response);
-        if (result.success) {
-            Swal.fire({
-                title: 'Success!',
-                text: 'User registered successfully.',
-                icon: 'success',
-            }).then(() => {
-                window.location.href = 'WebsiteUsersManagement.php';
-            });
-        } else {
-            Swal.fire({
-                title: 'Error!',
-                text: result.message,
-                icon: 'error',
-            });
-        }
-    },
-    error: function() {
-        Swal.fire({
-            title: 'Error!',
-            text: 'An error occurred. Please try again later.',
-            icon: 'error',
-        });
-    }
-});
+                    type: 'POST',
+                    url: 'registerUser.php',
+                    data: formData,
+                    success: function(response) {
+                        console.log(response); // Log the raw response for debugging
+                        const result = JSON.parse(response);
+                        if (result.success) {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'User registered successfully.',
+                                icon: 'success',
+                            }).then(() => {
+                                window.location.href = 'WebsiteUsersManagement.php';
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: result.message,
+                                icon: 'error',
+                            });
+                        }
+                    },
+                    error: function() {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'An error occurred. Please try again later.',
+                            icon: 'error',
+                        });
+                    }
+                });
 
             } else {
                 this.classList.add('was-validated'); // Add validation class
