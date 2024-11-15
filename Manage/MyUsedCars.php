@@ -1,5 +1,7 @@
 <?php
 include 'includes/head.php';
+$product_category_id = 19;
+
 ?>
 <div class="main-content">
     <div class="page-content">
@@ -69,13 +71,11 @@ include 'includes/head.php';
                             <div class="row">
                                 <?php
                                 $dealer_id = $_SESSION['user_id'];
-                                $product_category_id = 2;
                                 // Fetch product records from the database
                                 $sql = "
                                 SELECT *
                                 FROM products 
-                                WHERE dealer_id = ? And category_id = ?
-                            ";
+                                WHERE dealer_id = ? And category_id = ?";
 
                                 // Prepare and execute the statement
                                 $stmt = $conn->prepare($sql);
@@ -124,7 +124,7 @@ include 'includes/head.php';
 
                                         <h3 class="text-center">No Products found</h3>
                                         <br>
-                                        <a href="AddProduct?category_id=2" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Add Product</a>
+                                        <a href="AddProduct?category_id=<?php echo $product_category_id; ?>" type="button" class="btn rounded-0  btn-dark btn-sm waves-effect waves-light ms-auto">Add Product</a>
                                     </div>
                                 <?php
 

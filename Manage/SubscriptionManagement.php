@@ -1,7 +1,26 @@
 <?php
 include 'includes/head.php';
 // Fetch subscriptions from the database
-$sql = "SELECT subscriptions.*, users.first_name, users.last_name, users.email, users.mobile_number, dealers.company_name, coupons.coupon_name FROM subscriptions JOIN users ON subscriptions.user_id = users.user_id LEFT JOIN coupons ON subscriptions.coupon_id = coupons.coupon_id left join dealers on users.user_id = dealers.user_id";
+$sql = "SELECT 
+    id,
+    user_id,
+    plan_id,
+    start_date,
+    end_date,
+    status,
+    billing_cycle,
+    price,
+    discount_amount,
+    donation_amount,
+    next_billing_date,
+    trial_end_date,
+    cancellation_date,
+    auto_renew,
+    created_at,
+    updated_at
+FROM subscriptions 
+WHERE 1";
+
 $result = $conn->query($sql);
 ?>
 <div class="main-content">

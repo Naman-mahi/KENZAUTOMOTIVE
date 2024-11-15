@@ -26,6 +26,7 @@ if (isset($_SESSION['role'])) {
     <link href="Manage/assets/css/app.min.css" rel="stylesheet" type="text/css" />
     <link href="Manage/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
     <script src="Manage/assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
+    <link href="Manage/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body data-sidebar="light">
@@ -48,10 +49,124 @@ if (isset($_SESSION['role'])) {
                                     <div class="invalid-feedback">Please enter your last name.</div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="mobile-number">Mobile Number</label>
-                                    <input type="tel" class="form-control" id="mobile-number" name="mobile_number" placeholder="Enter Mobile Number" required pattern="[0-9]{10}">
-                                    <div class="invalid-feedback">Please enter a valid mobile number (10 digits).</div>
+                                    <label class="form-label" for="mobile-number">Country Code</label>
+                                    <div class="input-group">
+                                        <select class="form-select select2 form-control" id="country-code" name="country_code" style="
+                                                    display: block;
+                                                    width: 100%;
+                                                    padding: 0.47rem 0.75rem;
+                                                    font-size: 0.875rem;
+                                                    font-weight: 400;
+                                                    line-height: 1.5;
+                                                    color: var(--bs-body-color);
+                                                    -webkit-appearance: none;
+                                                    -moz-appearance: none;
+                                                    appearance: none;
+                                                    background-color: var(--bs-secondary-bg);
+                                                    background-clip: padding-box;
+                                                    border: var(--bs-border-width) solid var(--bs-border-color);
+                                                    border-radius: var(--bs-border-radius);
+                                                    -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+                                                    transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+                                                    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                                                    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+                                                ">
+                                            <option value="">Select country</option>
+                                            <!-- Will be populated via API -->
+                                        </select>
+
+                                    </div>
+                                    <div class="invalid-feedback">Please enter a valid mobile number with country code.</div>
                                 </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="mobile-number">Mobile Number</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="mobile-number" name="mobile_number" placeholder="Enter Mobile Number" required>
+                                        <input type="hidden" id="full-mobile-number" name="full_mobile_number">
+                                    </div>
+                                    <div class="invalid-feedback">Please enter a valid mobile number with country code.</div>
+                                </div>
+                                <script>
+                                    // Combine country code and mobile number before form submission
+                                    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+                                        const countryCode = document.getElementById('country-code').value;
+                                        const mobileNumber = document.getElementById('mobile-number').value;
+                                        document.getElementById('full-mobile-number').value = countryCode + mobileNumber;
+                                    });
+                                </script>
+                                <script>
+                                    // Wait for document ready and jQuery to be available
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                        // Initialize select2 with search functionality after jQuery is loaded
+                                        setTimeout(function() {
+                                            $('#country-code').select2({
+                                                placeholder: 'Select country',
+                                                allowClear: true,
+                                            });
+                                        }, 100);
+
+                                        // Get user's location and fetch country codes
+                                        fetch('https://ipapi.co/json/')
+                                            .then(response => response.json())
+                                            .then(locationData => {
+                                                // Store user's country code
+                                                const userCountry = locationData.country_name;
+
+                                                // Fetch country codes
+                                                return fetch('https://restcountries.com/v3.1/all')
+                                                    .then(response => response.json())
+                                                    .then(data => {
+                                                        const countrySelect = document.getElementById('country-code');
+                                                        let countries = data.filter(country => country.idd.root)
+                                                            .sort((a, b) => {
+                                                                return a.name.common.localeCompare(b.name.common);
+                                                            });
+
+                                                        // Populate options
+                                                        countries.forEach(country => {
+                                                            const code = country.idd.root + (country.idd.suffixes ? country.idd.suffixes[0] : "");
+                                                            const option = document.createElement('option');
+                                                            option.value = code;
+                                                            option.text = `${country.name.common} (${code})`;
+                                                            if (country.name.common === userCountry) {
+                                                                option.selected = true;
+                                                            }
+                                                            countrySelect.appendChild(option);
+                                                        });
+
+                                                        // Trigger select2 to update with selected value
+                                                        setTimeout(function() {
+                                                            $('#country-code').trigger('change');
+                                                        }, 100);
+                                                    });
+                                            })
+                                            .catch(error => {
+                                                console.error('Error:', error);
+                                                // Fallback to populating the dropdown without preselection
+                                                fetch('https://restcountries.com/v3.1/all')
+                                                    .then(response => response.json())
+                                                    .then(data => {
+                                                        const countrySelect = document.getElementById('country-code');
+                                                        let countries = data.filter(country => country.idd.root)
+                                                            .sort((a, b) => {
+                                                                return a.name.common.localeCompare(b.name.common);
+                                                            });
+
+                                                        countries.forEach(country => {
+                                                            const code = country.idd.root + (country.idd.suffixes ? country.idd.suffixes[0] : "");
+                                                            const option = document.createElement('option');
+                                                            option.value = code;
+                                                            option.text = `${country.name.common} (${code})`;
+                                                            countrySelect.appendChild(option);
+                                                        });
+
+                                                        setTimeout(function() {
+                                                            $('#country-code').trigger('change');
+                                                        }, 100);
+                                                    });
+                                            });
+                                    });
+                                </script>
                                 <div class="mb-3">
                                     <label class="form-label" for="email">Email</label>
                                     <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
@@ -59,8 +174,13 @@ if (isset($_SESSION['role'])) {
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required minlength="6">
-                                    <div class="invalid-feedback">Please enter a password (at least 6 characters).</div>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required minlength="8" maxlength="16" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$">
+                                    <div class="invalid-feedback">Password must be 8-16 characters and include letters, numbers and special characters.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="referral_code">Referral Code (Optional)</label>
+                                    <input type="text" class="form-control" id="referral_code" name="referral_code" placeholder="Enter Referral Code (Optional)">
+                                    <div class="invalid-feedback">Please enter a valid referral code.</div>
                                 </div>
                                 <div class="mb-3">
                                     <button class="btn rounded-0 btn-primary waves-effect waves-light" type="submit">Register</button>
@@ -76,12 +196,15 @@ if (isset($_SESSION['role'])) {
         </div>
     </div>
     <!-- JAVASCRIPT -->
-    <script src="Manage/assets/libs/jquery/jquery.min.js"></script>
+    <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="Manage/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="Manage/assets/libs/metismenu/metisMenu.min.js"></script>
     <script src="Manage/assets/libs/simplebar/simplebar.min.js"></script>
     <script src="Manage/assets/libs/node-waves/waves.min.js"></script>
     <script src="Manage/assets/js/app.js"></script>
+    <script src="Manage/assets/libs/select2/js/select2.min.js"></script>
+
     <script>
         $(document).ready(function() {
             // Form validation

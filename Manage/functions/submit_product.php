@@ -18,25 +18,25 @@ if (isset($_POST['category_id'])) {
 $product_name = trim($_POST['product_name']);
 $price = floatval($_POST['price']);
 $color = trim($_POST['color']);
-$product_condition = $_POST['new_or_old'];
 $product_description = trim($_POST['product_description']);
-$top_features = trim($_POST['top_features']);
-$stand_out_features = trim($_POST['stand_out_features']);
-$product_features = json_encode($_POST['product_features']); // Convert array to JSON string
+$top_features = isset($_POST['top_features']) ? trim($_POST['top_features']) : '';
+$stand_out_features = isset($_POST['stand_out_features']) ? trim($_POST['stand_out_features']) : '';
+$product_features = isset($_POST['product_features']) ? json_encode($_POST['product_features']) : '[]'; // Convert array to JSON string if exists, empty array if not
 $dealer_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : die(json_encode(['success' => false, 'message' => 'User not logged in.']));
+$brand = isset($_POST['brand']) ? $_POST['brand'] : '';
 
 // Log for debugging
-error_log("dealer_id: $dealer_id, category_id: $category_id, product_name: $product_name, product_description: $product_description, price: $price, color: $color, product_condition: $product_condition, top_features: $top_features, stand_out_features: $stand_out_features, product_features: $product_features");
+error_log("dealer_id: $dealer_id, category_id: $category_id, product_name: $product_name, product_description: $product_description, price: $price, color: $color, top_features: $top_features, stand_out_features: $stand_out_features, product_features: $product_features, brand: $brand");
 
 // Prepare SQL to insert product data
-$stmt = $conn->prepare("INSERT INTO products (dealer_id, category_id, product_name, product_description, price, color, product_condition, top_features, stand_out_features, product_features, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
+$stmt = $conn->prepare("INSERT INTO products (dealer_id, category_id, product_name, product_description, price, color, top_features, stand_out_features, product_features, brand_id, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
 
 if ($stmt === false) {
     die(json_encode(['success' => false, 'message' => 'Failed to prepare SQL statement.']));
 }
 
-// Bind parameters - make sure the number of parameters matches the placeholders
-$stmt->bind_param("iissdsssss", $dealer_id, $category_id, $product_name, $product_description, $price, $color, $product_condition, $top_features, $stand_out_features, $product_features);
+// Bind parameters
+$stmt->bind_param("iissdssssi", $dealer_id, $category_id, $product_name, $product_description, $price, $color, $top_features, $stand_out_features, $product_features, $brand);
 
 // Execute the statement
 if ($stmt->execute()) {
@@ -53,12 +53,9 @@ if ($stmt->execute()) {
         $file_name = 'product_' . $date_time . '_' . uniqid() . '.' . $file_extension;
         $file_path = $upload_dir . $file_name;
 
-        // Check for valid image types and size limits
-        $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
-        if (in_array($uploaded_images['type'][$key], $allowed_types) && $uploaded_images['size'][$key] <= 2000000) { // Limit size to 2MB
-            if (move_uploaded_file($tmp_name, $file_path)) {
-                $uploaded_file_names[] = $file_name;
-            }
+        // Check for valid and size limits
+        if (move_uploaded_file($tmp_name, $file_path)) {
+            $uploaded_file_names[] = $file_name;
         }
     }
 
@@ -78,7 +75,7 @@ if ($stmt->execute()) {
     $stmt->execute();
 
     // Return a success response
-    echo json_encode(['success' => true, 'message' => 'Product added successfully', 'product_id' => $product_id]);
+    echo json_encode(['success' => true, 'message' => 'Product added successfully', 'product_id' => $product_id, 'category_id' => $category_id]);
 } else {
     // Return an error response
     echo json_encode(['success' => false, 'message' => 'Failed to add product: ' . $stmt->error]);
@@ -86,4 +83,3 @@ if ($stmt->execute()) {
 
 $stmt->close();
 $conn->close();
-?>

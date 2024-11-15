@@ -4,21 +4,38 @@ include '../includes/db.php'; // Include your database connection
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve product details
-    $productName = $_POST['product_name'];
-    $price = $_POST['price'];
-    $description = $_POST['product_description'];
-    $topFeatures = $_POST['top_features'];
-    $standOutFeatures = $_POST['stand_out_features'];
-    $specificationLabels = $_POST['id'];
-    $specificationValues = $_POST['specification_values'];
+    $productName = $_POST['product_name'] ?? '';
+    $price = $_POST['price'] ?? 0;
+    $description = $_POST['product_description'] ?? '';
+    $topFeatures = $_POST['top_features'] ?? '';
+    $standOutFeatures = $_POST['stand_out_features'] ?? '';
+    $specificationLabels = $_POST['id'] ?? [];
+    $specificationValues = $_POST['specification_values'] ?? [];
+    $brand = $_POST['brand'] ?? ''; 
+    $userId = $_SESSION['user_id'] ?? 0;
+    $categoryId = $_POST['category_id'] ?? 1;
 
-    // Assuming you have a dealers table with user_id
-    $userId = $_SESSION['user_id'];
-    $categoryId = 1; // Replace with actual category ID if available
+    // Validate required fields
+    if (empty($productName) || empty($price) || empty($description)) {
+        echo json_encode([
+            'success' => false,
+            'message' => 'Please fill in all required fields'
+        ]);
+        exit;
+    }
+
+    // Validate price is numeric and positive
+    if (!is_numeric($price) || $price <= 0) {
+        echo json_encode([
+            'success' => false, 
+            'message' => 'Please enter a valid price'
+        ]);
+        exit;
+    }
 
     // Insert product details into the products table
-    $stmt = $conn->prepare("INSERT INTO products (product_name, price, product_description, top_features, stand_out_features, category_id, dealer_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sdssssi", $productName, $price, $description, $topFeatures, $standOutFeatures, $categoryId, $userId);
+    $stmt = $conn->prepare("INSERT INTO products (product_name, price, product_description, top_features, stand_out_features, category_id, dealer_id, brand_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sdssssii", $productName, $price, $description, $topFeatures, $standOutFeatures, $categoryId, $userId, $brand);
 
     if ($stmt->execute()) {
         $productId = $stmt->insert_id; // Get the last inserted product ID

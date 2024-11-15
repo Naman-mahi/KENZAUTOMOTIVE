@@ -48,11 +48,11 @@ if ($_SESSION['role'] === '4') {
     <link href="assets/css/style.css" id="app-style" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<style>
-     .overflow-hidden {
-        overflow: hidden;
-    }
-</style>
+    <style>
+        .overflow-hidden {
+            overflow: hidden;
+        }
+    </style>
     <?php
 
     $sql = "SELECT * FROM settings ORDER BY id DESC LIMIT 1"; // Fetch the latest settings
@@ -84,10 +84,60 @@ if ($_SESSION['role'] === '4') {
     ?>
 </head>
 
+
 <body data-sidebar="light">
     <div id="layout-wrapper">
         <?php
         include 'header.php';
         include 'sidebar.php';
         ?>
-       
+        <?php
+        $role = $_SESSION['role'];
+        $user_id = $_SESSION['user_id'];
+        if ($role == '2') {
+            // Check if user has an active subscription
+            $sql = "SELECT s.*, sp.title as plan_name 
+                FROM subscriptions s
+                JOIN subscription_plans sp ON s.plan_id = sp.id
+                WHERE s.user_id = ? 
+                AND s.status = 'active'
+                AND s.end_date > NOW()
+                LIMIT 1";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            $subscriptionURL = "http://localhost/marketplace/Manage/subscription"; // Subscription page URL
+            $currentURL = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; // Get current full URL
+
+            if ($result->num_rows == 0) {
+                // No active subscription found
+                if ($currentURL !== $subscriptionURL) {
+                    // Show modal if the user is not already on the subscription page
+                    echo "<script>
+                        $(document).ready(function() {
+                            $('#subscriptionModal').modal('show');
+                        });
+                    </script>";
+                }
+            }
+            $subscription = $result->fetch_assoc();
+        }
+        ?>
+        <!-- Modal for expired subscription -->
+        <div class="modal fade" id="subscriptionModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="subscriptionModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="subscriptionModalLabel">Subscription Required</h5>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p>Your plan has expired. Please subscribe to continue using our services.</p>
+                        <button type="button" class="btn btn-primary mt-3 bg-kenz" onclick="window.location.href='subscription'">View Subscription Plans</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 

@@ -80,14 +80,45 @@ $result = $stmt->get_result();
                                                 foreach ($documents as $document) {
                                                     $document = trim($document); // Trim any whitespace
                                                     if (!empty($document)) { // Check if the document is not empty
-                                                        $imageHTML[] = '<img src="../uploads/' . htmlspecialchars($document) . '" alt="Business Documents" class="img-fluid" style="max-width: 150px; margin: 5px;">';
+                                                        $safeDocument = htmlspecialchars($document); // Sanitize the document name
+                                                        $imageHTML[] = '
+                <img src="../uploads/' . $safeDocument . '" 
+                     alt="Business Documents" 
+                     class="img-fluid document-image" 
+                     style="max-width: 150px; margin: 5px; cursor: pointer;"
+                     data-bs-toggle="modal"
+                     data-bs-target="#imageModal"
+                     onclick="showImage(\'' . $safeDocument . '\')">'; // Sanitize document in the onclick handler
                                                     }
                                                 }
 
-                                                // Join the images with a comma and display them
-                                                echo implode(', ', $imageHTML);
+                                                // Join the images and display them
+                                                echo implode('', $imageHTML);
                                                 ?>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="imageModalLabel">Document Image</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body text-center">
+                                                                <img id="modalImage" src="" alt="Full size document" class="img-fluid">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <script>
+                                                    function showImage(documentName) {
+                                                        // Update the src of the modal image to display the clicked image
+                                                        document.getElementById('modalImage').src = '../uploads/' + documentName;
+                                                    }
+                                                </script>
                                             </div>
+
                                         </div>
                                         <div class="col-md-6">
                                             <h4>Dealer Business Information</h4>

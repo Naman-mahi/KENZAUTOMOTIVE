@@ -32,6 +32,7 @@
                         ['url' => 'javascript: void(0);', 'icon' => 'mdi mdi-bullhorn', 'label' => 'Marketing', 'submenu' => [
                             ['url' => 'CouponsManagement', 'label' => 'Coupons Management'],
                             ['url' => 'SubscriptionManagement', 'label' => 'Subscriptions'],
+                            ['url' => 'SubscriptionPlanManagement', 'label' => 'Subscription Plan'],
                             ['url' => 'AdvertisementManagement', 'label' => 'Advertisement'],
                             ['url' => 'DealerConnect', 'label' => 'Dealer Connect']
                         ]],
@@ -50,14 +51,19 @@
                     ],
                     '2' => [
                         ['url' => 'javascript: void(0);', 'icon' => 'mdi mdi-plus-circle-outline', 'label' => 'My Products', 'submenu' => [
-                            ['url' => 'MyProducts', 'label' => 'My Product'],
-                            ['url' => 'MySpareParts', 'label' => 'My Spare Parts']
+                            ['url' => 'MyNewCars', 'label' => ' New Cars'],
+                            ['url' => 'MyUsedCars', 'label' => ' Used Cars'],
+                            ['url' => 'MySpareParts', 'label' => ' Spare Parts']
                         ]],
                         ['url' => 'ManageInquiry', 'icon' => 'mdi mdi-comment-question-outline', 'label' => 'Inquiry'],
                         ['url' => 'ManageOrders', 'icon' => 'mdi mdi-cart-outline', 'label' => 'My Orders'],
                         ['url' => 'AdvertisementManagement', 'icon' => 'mdi mdi-trackpad', 'label' => 'Advertisement'],
                         ['url' => 'ManageProductInventry', 'icon' => 'mdi mdi-cog', 'label' => 'Product Inventry'],
+<<<<<<< HEAD
                         ['url' => 'DealerConnect', 'icon' => 'mdi mdi-handshake', 'label' => 'Dealer Connect'],
+=======
+                        // ['url' => 'DealerConnect', 'icon' => 'mdi mdi-handshake', 'label' => 'Dealer Connect']
+>>>>>>> 147f762 (updated code)
                         ['url' => 'WebsiteSettings', 'icon' => 'mdi mdi-cog', 'label' => 'Website Settings'],
                     ],
                     '4' => [

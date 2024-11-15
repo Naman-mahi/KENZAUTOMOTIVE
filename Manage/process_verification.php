@@ -38,7 +38,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Error updating record: " . htmlspecialchars($stmt->error);
     }
 
+
+    if ($action === 'approve') {
+        // Add 7 day trial subscription
+        $trial_start = date('Y-m-d H:i:s');
+        $trial_end = date('Y-m-d H:i:s', strtotime('+7 days'));
+
+        $sql = "INSERT INTO subscriptions (
+            user_id, 
+            plan_id,
+            start_date,
+            end_date,
+            status,
+            billing_cycle,
+            trial_end_date,
+            auto_renew,
+            created_at,
+            updated_at
+        ) VALUES (?, 1, ?, ?, 'trial', 'yearly', ?, 1, NOW(), NOW())";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('isss', $user_id, $trial_start, $trial_end, $trial_end);
+
+        if (!$stmt->execute()) {
+            echo "Error creating trial subscription: " . htmlspecialchars($stmt->error);
+        } else {
+            echo "7 day trial subscription activated";
+        }
+        $stmt->close();
+
+        // Update user table
+        $sql = "UPDATE users SET 
+                `subscription_id` = ?,
+                `user_status` = 'active',
+                `updated_at` = NOW() 
+            WHERE `user_id` = ?";
+    }
     // Close the statement
     $stmt->close();
 }
-?>

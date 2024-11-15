@@ -6,11 +6,7 @@ if (isset($_GET['id']) && isset($_GET['category_id'])) {
     $dealerid = $_SESSION['user_id']; // Sanitize dealer ID
     $category_id = $_GET['category_id']; // Sanitize dealer ID
     // Query to fetch car details with dealer ID condition
-    $sql = "
-    SELECT *
-    FROM products
-    WHERE product_id = ? AND dealer_id = ?
-    ";
+    $sql = "SELECT * FROM products LEFT JOIN brands ON products.brand_id = brands.brand_id WHERE product_id = ? AND dealer_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ii", $product_id, $dealerid); // Bind both carid and dealerid
     $stmt->execute();
@@ -21,12 +17,12 @@ if (isset($_GET['id']) && isset($_GET['category_id'])) {
         // Proceed with displaying car details...
     } else {
         // Car ID not found or dealer ID mismatch, redirect to MyCars.php using JavaScript
-        echo "<script>window.location.href = 'MyProducts.php';</script>";
+        redirectToMyProducts();
         exit;
     }
 } else {
     // No car ID or dealer ID provided, redirect to MyCars.php using JavaScript
-    echo "<script>window.location.href = 'MyProducts.php';</script>";
+    redirectToMyProducts();
     exit;
 }
 
@@ -59,12 +55,7 @@ if (isset($_GET['id'])) {
     redirectToMyProducts();
 }
 
-// Function to handle redirection
-function redirectToMyProducts()
-{
-    echo "<script>window.location.href = 'MyProducts';</script>";
-    exit;
-}
+
 
 
 if (isset($_GET['id'])) {
@@ -83,17 +74,24 @@ if (isset($_GET['id'])) {
         // Example: echo $car_publish['marketplace'];
     } else {
         // No record found for the given car_id, redirect to MyCars.php
-        echo "<script>window.location.href = 'MyProducts.php';</script>";
+        redirectToMyProducts();
         exit;
     }
 } else {
     // No car ID provided, redirect to MyCars.php
-    echo "<script>window.location.href = 'MyProducts.php';</script>";
+    redirectToMyProducts();
     exit;
 }
 
 $product_id = $_GET['id'];
 $category_id = $_GET['category_id'];
+
+// Function to handle redirection
+function redirectToMyProducts()
+{
+    echo "<script>history.back();</script>";
+    exit;
+}
 ?>
 <div class="main-content">
     <div class="page-content">
@@ -148,6 +146,43 @@ $category_id = $_GET['category_id'];
                             </form>
                         </div>
                     </div>
+                    <?php
+                    // Check if the product is published on the website
+                    if ($Products_publish['website'] == 1) {
+                        // Product URL for sharing
+                        $product_url = "https://kenzwheels.com/product/" . $Products['product_id'];
+
+                        // Encode product details for sharing (name and description)
+                        $product_name = htmlspecialchars($Products['product_name'], ENT_QUOTES, 'UTF-8');
+                        $product_description = htmlspecialchars($Products['product_description'], ENT_QUOTES, 'UTF-8');
+                        $encoded_product_name = urlencode($product_name);
+                        $encoded_product_description = urlencode($product_description);
+
+                        // Generate social media share URLs
+                        $fb_share_url = "https://www.facebook.com/sharer/sharer.php?u=" . urlencode($product_url) . "&quote=" . $encoded_product_name . "\n" . $encoded_product_description;
+                        $twitter_share_url = "https://twitter.com/intent/tweet?url=" . urlencode($product_url) . "&text=" . $encoded_product_name . "\n" . $encoded_product_description;
+                        $whatsapp_share_url = "https://api.whatsapp.com/send?text=" . urlencode($product_name . "\n" . $product_description . "\n" . $product_url);
+                        $linkedin_share_url = "https://www.linkedin.com/sharing/share-offsite/?url=" . urlencode($product_url);
+
+                        // Output share buttons with custom styles
+                        echo '<div class="d-flex gap-3 justify-content-start mt-4">';
+                        // Facebook Share Button
+                        echo '<a href="' . $fb_share_url . '" target="_blank" class="btn btn-primary btn-sm rounded-3" style="background-color: #4267B2;" aria-label="Share on Facebook">';
+                        echo '<i class="fab fa-facebook me-2"></i><strong>Share on Facebook</strong> 📘</a>';
+
+                        // Twitter Share Button
+                        echo '<a href="' . $twitter_share_url . '" target="_blank" class="btn btn-info btn-sm rounded-3" style="background-color: #1DA1F2;" aria-label="Share on Twitter">';
+                        echo '<i class="fab fa-twitter me-2"></i><strong>Share on Twitter</strong> 🐦</a>';
+
+                        // WhatsApp Share Button
+                        echo '<a href="' . $whatsapp_share_url . '" target="_blank" class="btn btn-success btn-sm rounded-3" style="background-color: #25D366;" aria-label="Share on WhatsApp">';
+                        echo '<i class="fab fa-whatsapp me-2"></i><strong>Share on WhatsApp</strong> 💬</a>';
+                        echo '</div>';
+                        echo '<br>';
+                    }
+                    ?>
+
+
                 </div>
             </div>
 
@@ -211,9 +246,9 @@ $category_id = $_GET['category_id'];
                         </script>
                         <div>
                             <?php if ($Products['inspection_request'] == 0): ?>
-                            <a type="button" id="inspectionButton" data-id="<?php echo $product_id; ?>" class="btn rounded-0 m-2 btn-dark btn-sm waves-effect waves-light me-2">Request Product Inspection</a>
+                                <a type="button" id="inspectionButton" data-id="<?php echo $product_id; ?>" class="btn rounded-0 m-2 btn-dark btn-sm waves-effect waves-light me-2">Request Product Inspection</a>
                             <?php else: ?>
-                            <a type="button" id="inspectionButton" class="btn rounded-0 m-2 btn-dark btn-sm waves-effect waves-light me-2" disabled>Inspection Requested</a>
+                                <a type="button" id="inspectionButton" class="btn rounded-0 m-2 btn-dark btn-sm waves-effect waves-light me-2" disabled>Inspection Requested</a>
                             <?php endif; ?>
                             <script>
                                 document.getElementById('inspectionButton').addEventListener('click', function() {
@@ -323,11 +358,13 @@ $category_id = $_GET['category_id'];
                                         <i class=" ri-clipboard-fill align-middle"></i> <span class="d-none d-md-inline-block fw-bold text-warning">Specifications</span>
                                     </a>
                                 </li>
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#other-details" role="tab" aria-selected="false" tabindex="-1">
-                                        <i class="ri-settings-line align-middle"></i> <span class="d-none d-md-inline-block fw-bold text-warning">Other Details</span>
-                                    </a>
-                                </li>
+                                <?php if ($category_id == 2 || $category_id == 19) { ?>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" data-bs-toggle="tab" href="#other-details" role="tab" aria-selected="false" tabindex="-1">
+                                            <i class="ri-settings-line align-middle"></i> <span class="d-none d-md-inline-block fw-bold text-warning">Other Details</span>
+                                        </a>
+                                    </li>
+                                <?php } ?>
                             </ul>
 
                             <!-- Tab panes -->
@@ -346,6 +383,10 @@ $category_id = $_GET['category_id'];
                                             <tr>
                                                 <th>Color:</th>
                                                 <td><?php echo htmlspecialchars($Products['color']); ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Brand:</th>
+                                                <td><?php echo htmlspecialchars($Products['brand_name']); ?></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -421,21 +462,22 @@ $category_id = $_GET['category_id'];
                                     </table>
 
                                 </div>
-
-                                <div class="tab-pane" id="other-details" role="tabpanel">
-                                    <table class="table table-bordered">
-                                        <tbody>
-                                            <tr>
-                                                <th>Top Features:</th>
-                                                <td><?php echo htmlspecialchars($Products['top_features']); ?></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Stand Out Features:</th>
-                                                <td><?php echo htmlspecialchars($Products['stand_out_features']); ?></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <?php if ($category_id == 2 || $category_id == 19) { ?>
+                                    <div class="tab-pane" id="other-details" role="tabpanel">
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Top Features:</th>
+                                                    <td><?php echo htmlspecialchars($Products['top_features']); ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Stand Out Features:</th>
+                                                    <td><?php echo htmlspecialchars($Products['stand_out_features']); ?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </div>
 

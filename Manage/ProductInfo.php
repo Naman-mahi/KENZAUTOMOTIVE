@@ -49,15 +49,27 @@ $categoryId = $product['category_id'];
                                                 <input type="text" class="form-control" id="product_name" name="product_name" value="<?php echo htmlspecialchars($product['product_name']); ?>" required>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 col-md-12">
-                                            <div class="mb-3">
-                                                <label for="product_condition" class="form-label">Condition</label>
-                                                <select class="form-select" id="product_condition" name="product_condition" required>
-                                                    <option value="New" <?php echo ($product['product_condition'] == 'New') ? 'selected' : ''; ?>>New</option>
-                                                    <option value="Used" <?php echo ($product['product_condition'] == 'Used') ? 'selected' : ''; ?>>Used</option>
+                                        <?php
+                                        if ($categoryId == 2 || $categoryId == 19) {
+                                        ?>
+                                            <div class="col-lg-6 col-md-12">
+                                                <div class="mb-3">
+                                                <label for="brand" class="form-label">Brand</label>
+                                                <select class="form-select" id="brand" name="brand" required>
+                                                    <?php
+                                                    $sql = "SELECT * FROM brands ORDER BY brand_name";
+                                                    $result = $conn->query($sql);
+                                                    while ($row = $result->fetch_assoc()) {
+                                                        $selected = ($product['brand_id'] == $row['brand_id']) ? 'selected' : '';
+                                                        echo "<option value='" . $row['brand_id'] . "' " . $selected . ">" . htmlspecialchars($row['brand_name']) . "</option>";
+                                                    }
+                                                    ?>
                                                 </select>
+                                                </div>
                                             </div>
-                                        </div>
+                                        <?php
+                                        }
+                                        ?>
                                     </div>
 
                                     <div class="row">

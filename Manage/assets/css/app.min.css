@@ -1055,8 +1055,8 @@ body[data-layout="horizontal"][data-layout-size="boxed"] .navbar-header {
   --bs-sidebar-menu-item-color: #74788d;
   --bs-sidebar-menu-sub-item-color: #7c8a96;
   --bs-sidebar-menu-item-icon-color: #505d69;
-  --bs-sidebar-menu-item-hover-color: #bd0586;
-  --bs-sidebar-menu-item-active-color: #b10b58;
+  --bs-sidebar-menu-item-hover-color: #b10b0b;
+  --bs-sidebar-menu-item-active-color: #b10b0b;
   --bs-topbar-search-border: #eff0f2;
   --bs-topbar-search-bg: #f1f5f7;
   --bs-topnav-bg: #fff;
@@ -1156,6 +1156,14 @@ body[data-layout="horizontal"][data-layout-size="boxed"] .navbar-header {
  * Copyright 2014-2018 Alfiana E. Sibuea and other contributors 
  * Released under the MIT license 
  * https://github.com/fians/Waves/blob/master/LICENSE */
+
+ .bg-kenz {
+    background-color: #b10b0b !important;
+    color: #fff !important;
+ }
+ .text-kenz {
+    color: #b10b0b !important;
+ }
 .waves-effect {
   position: relative;
   cursor: pointer;

@@ -45,30 +45,37 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row mb-4">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="color">Color</label>
-                                            <input type="text" class="form-control" id="color" name="color">
-                                            <small class="text-muted">Enter multiple colors separated by commas</small>
+                                <?php $category_id = $_GET['category_id'];
+                                if ($category_id == 2 || $category_id == 19) { ?>
+                                    <div class="row mb-4">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="color">Color</label>
+                                                <input type="text" class="form-control" id="color" name="color">
+                                                <small class="text-muted">Enter multiple colors separated by commas</small>
+                                            </div>
                                         </div>
-                                    </div>
+                                    
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Product Condition</label>
-                                            <div class="d-flex">
-                                                <div class="form-check me-3">
-                                                    <input class="form-check-input" type="radio" name="new_or_old" id="new" value="new" required>
-                                                    <label class="form-check-label" for="new">New</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="new_or_old" id="old" value="old" required>
-                                                    <label class="form-check-label" for="old">Used</label>
-                                                </div>
+                                            <label class="form-label" for="brand">Brand Name</label>
+                                            <select class="form-control" id="brand" name="brand" required>
+                                                <option value="">Select Brand</option>
+                                                <?php
+                                                $sql = "SELECT brand_id, brand_name FROM brands";
+                                                $result = $conn->query($sql);
+                                                if ($result->num_rows > 0) {
+                                                    while($row = $result->fetch_assoc()) {
+                                                        echo '<option value="'.$row['brand_id'].'">'.$row['brand_name'].'</option>';
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                            <small class="text-muted">Select brand from the list</small>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                <?php } ?>
                                 <div class="row mb-4">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
@@ -84,25 +91,26 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Features -->
-                                <div class="row mb-4">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="top-features">Top Features</label>
-                                            <textarea class="form-control" id="top-features" name="top_features" rows="4" required></textarea>
-                                            <small class="text-muted">Enter each feature on a new line</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="stand-out-features">Stand Out Features</label>
-                                            <textarea class="form-control" id="stand-out-features" name="stand_out_features" rows="4" required></textarea>
-                                            <small class="text-muted">Enter each feature on a new line</small>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <?php $category_id = $_GET['category_id'];
-                                if ($category_id == 2) { ?>
+                                if ($category_id == 2 || $category_id == 19) { ?>
+                                    <!-- Features -->
+                                    <div class="row mb-4">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="top-features">Top Features</label>
+                                                <textarea class="form-control" id="top-features" name="top_features" rows="4" required></textarea>
+                                                <small class="text-muted">Enter each feature on a new line</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="stand-out-features">Stand Out Features</label>
+                                                <textarea class="form-control" id="stand-out-features" name="stand_out_features" rows="4" required></textarea>
+                                                <small class="text-muted">Enter each feature on a new line</small>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row mb-4">
                                         <div class="col-lg-12">
                                             <div class="mb-3">
@@ -184,7 +192,7 @@
                             text: 'Product added successfully!',
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = 'ProductDetails?product_id=' + response.product_id;
+                                window.location.href = 'ProductDetails?id=' + response.product_id + '&category_id=' + response.category_id;
                             }
                         });
                     } else {

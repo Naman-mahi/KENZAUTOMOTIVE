@@ -2,17 +2,17 @@
 <html lang="en">
 <?php
 session_start(); // Start the session
-
+include_once 'includes/db.php';
 // Check if the user is already logged in
 if (isset($_SESSION['role'])) {
     // Redirect based on user role
     switch ($_SESSION['role']) {
-        case 'admin':
-        case 'dealer':
-            header("Location: Manage/Dashboard.php"); // Redirect to Dashboard
+        case '1':
+        case '2':
+            header("Location: Manage/Dashboard"); // Redirect to Dashboard
             exit();
         default:
-            header("Location: mypage.php"); // Redirect to mypage for unrecognized roles
+            header("Location: mypage"); // Redirect to mypage for unrecognized roles
             exit();
     }
 }
@@ -55,7 +55,6 @@ if (isset($_SESSION['role'])) {
                     <p class="text-muted">All plans are subject to GST @ 18%</p>
                 </div>
             </div>
-            
         </div>
 
         <div class="row justify-content-center align-items-center" style="min-height: 100px;">
@@ -71,15 +70,30 @@ if (isset($_SESSION['role'])) {
 
         <div class="row mb-5">
             <?php
-            // Define pricing plans in an array
-            $plans = [
-                ['title' => 'Basic Plan', 'yearlyPrice' => 1999, 'monthlyPrice' => 199, 'icon' => 'fa-cube', 'featuresIncludes' => ['Unlimited car listings', 'Add unlimited spare parts', 'View product viewer', 'Basic customer details'], 'featuresNotIncludes' => ['Customer location notifications', 'Inventory tracking', 'Inquiry management', 'Subdomain for website', 'Dealer connect']],
-                ['title' => 'Growth Plan', 'yearlyPrice' => 2999, 'monthlyPrice' => 299, 'icon' => 'fa-cog', 'featuresIncludes' => ['Unlimited car listings', 'Add unlimited spare parts', 'View product viewer', 'Detailed customer details', 'Customer location notifications', 'Inventory tracking'], 'featuresNotIncludes' => ['Inquiry management', 'Subdomain for website', 'Dealer connect']],
-                ['title' => 'Ultimate Package', 'yearlyPrice' => 3999, 'monthlyPrice' => 399, 'icon' => 'fa-gem', 'featuresIncludes' => ['Unlimited car listings', 'Add unlimited spare parts', 'View product viewer', 'Detailed customer details', 'Customer location notifications', 'Inventory tracking', 'Inquiry management', 'Subdomain for website', 'Dealer connect'], 'featuresNotIncludes' => []],
-            ];
+            // Fetch subscription plans from the database
+            $sql = "SELECT * FROM subscription_plans ORDER BY yearly_price ASC";
+            $result = $conn->query($sql);
+
+            $plans = [];
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $plans[] = [
+                        'title' => $row['title'],
+                        'yearlyPrice' => $row['yearly_price'],
+                        'monthlyPrice' => $row['monthly_price'],
+                        'icon' => $row['icon'],
+                        'featuresIncludes' => $row['features_includes'],
+                        'featuresNotIncludes' => $row['features_not_includes']
+                    ];
+                }
+            } else {
+                echo '<div class="col-12 text-center">';
+                echo '<p class="text-muted">Currently no subscription plans are available.</p>';
+                echo '</div>';
+            }
 
             foreach ($plans as $plan): ?>
-                <div class="col-xl-4 col-md-6 mb-4">
+                <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-0 shadow-lg plan-card">
                         <div class="card-body p-4 text-center">
                             <div class="d-flex mb-2 justify-content-center">
@@ -91,7 +105,7 @@ if (isset($_SESSION['role'])) {
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <h4 ><?php echo htmlspecialchars($plan['title']); ?></h4>
+                                    <h4><?php echo htmlspecialchars($plan['title']); ?></h4>
                                 </div>
                             </div>
                             <div class="py-4 border-bottom">
@@ -101,14 +115,23 @@ if (isset($_SESSION['role'])) {
                                 <div class="mt-3">
                                     <a href="#" class="btn badge-soft-success p-3 px-5  fs-5 rounded rounded-5 btn-lg waves-effect waves-light">Sign up Now</a>
                                 </div>
-                            </div>  
-                            <div class="plan-features mt-4">
+                            </div>
+                            <div class="plan-features mt-4 text-start">
                                 <h5 class="font-size-15 mb-3">Plan Features:</h5>
-                                <?php foreach ($plan['featuresIncludes'] as $feature): ?>
-                                    <p><i class="mdi mdi-checkbox-marked-circle-outline font-size-16 align-middle text-primary me-2"></i><?php echo htmlspecialchars($feature); ?></p>
-                                <?php endforeach; ?>
-                                <?php foreach ($plan['featuresNotIncludes'] as $feature): ?>
-                                    <p><i class="mdi mdi-close-circle-outline font-size-16 align-middle text-danger me-2"></i><?php echo htmlspecialchars($feature); ?></p>
+
+                                <?php
+                                // Convert comma-separated strings to arrays
+                                $featuresIncludes = !empty($plan['featuresIncludes']) ? explode(',', $plan['featuresIncludes']) : [];
+                                $featuresNotIncludes = !empty($plan['featuresNotIncludes']) ? explode(',', $plan['featuresNotIncludes']) : [];
+
+                                // Display included features
+                                foreach ($featuresIncludes as $feature): ?>
+                                    <p><i class="mdi mdi-checkbox-marked-circle-outline font-size-16 align-middle text-primary me-2"></i><?php echo htmlspecialchars(trim($feature)); ?></p>
+                                <?php endforeach;
+
+                                // Display not included features  
+                                foreach ($featuresNotIncludes as $feature): ?>
+                                    <p><i class="mdi mdi-close-circle-outline font-size-16 align-middle text-danger me-2"></i><?php echo htmlspecialchars(trim($feature)); ?></p>
                                 <?php endforeach; ?>
                             </div>
                         </div>
@@ -146,7 +169,6 @@ if (isset($_SESSION['role'])) {
                     $(this).find('.price-amount').text(isYearly ? yearlyPrice : monthlyPrice);
                     $(this).find('span').last().text(isYearly ? 'Year' : 'Month');
                 });
-                $(this).next().text(isYearly ? 'Yearly Plan' : 'Monthly Plan');
             });
         });
     </script>

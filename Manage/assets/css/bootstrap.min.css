@@ -36,7 +36,7 @@
   --bs-danger: #ff3d60;
   --bs-light: #f8f9fa;
   --bs-dark: #1d222e;
-  --bs-primary-rgb: 11, 177, 151;
+  --bs-primary-rgb: #ff3d60;
   --bs-secondary-rgb: 116, 120, 141;
   --bs-success-rgb: 10, 192, 116;
   --bs-info-rgb: 74, 163, 255;
@@ -9095,7 +9095,7 @@ fieldset:disabled .btn {
 }
 .text-primary {
   --bs-text-opacity: 1;
-  color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
+  color: #bf2e48 !important;
 }
 .text-secondary {
   --bs-text-opacity: 1;
