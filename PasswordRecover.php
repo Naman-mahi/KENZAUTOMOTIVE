@@ -66,7 +66,7 @@ if (isset($_SESSION['role'])) {
             // Form validation
             $('#registrationForm').on('submit', function(e) {
                 e.preventDefault(); // Prevent default form submission
-                // Check if the form is valid
+                // Check if the form is valid 
                 if (this.checkValidity()) {
                     $.ajax({
                         url: 'PasswordRecover.php', // Your PHP script to handle registration

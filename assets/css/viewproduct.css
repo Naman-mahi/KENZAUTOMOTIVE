@@ -1,9 +1,8 @@
-
 .breadcrumb {
     background-color: transparent;
 }
 
-.card-body p {
+.card-body p { 
     margin: 0;
 }
 
@@ -26,18 +25,21 @@
 .scroll-nav {
     position: absolute;
     z-index: 10;
-    margin-top: 40px;
+    /* margin-top: 40px; */
     left: 50%;
-    margin-left: -40px;
+    margin-left: -80px;
     line-height: 34px;
-    width: 150px;
-    font-size: 14px
+    width: 180px;
+    font-size: 1rem;
 }
+
 @media (max-width: 991.98px) {
     .scroll-nav {
-        margin-left: -90px; /* Adjust margin-left for smaller screens */
+        margin-left: -90px;
+        /* Adjust margin-left for smaller screens */
     }
 }
+
 .scroll-nav a {
     color: #7b8397;
     padding-top: 0 !important;
@@ -72,15 +74,17 @@
 
 .scroll-nav.affix {
     position: fixed;
-    margin-top: 10px;
-    margin-left: -600px;
+    margin-top: 10%;
+    margin-left: -660px;
 }
+
 .affix,
 .affix-top {
     position: absolute;
     top: 20px;
 
 }
+
 .featured-ribbon {
     position: absolute;
     z-index: 6;
@@ -93,6 +97,7 @@
     left: 0;
     top: 0
 }
+
 featured-ribbon .inner {
     padding: 4px 5px
 }
@@ -105,6 +110,7 @@ featured-ribbon .inner {
     display: inline-block;
     cursor: pointer
 }
+
 a {
     color: var(--primary-color);
 }
@@ -242,7 +248,7 @@ a {
 
 .mySwiper .swiper-slide {
     width: 25%;
-    height: 100%;
+    height: auto;
     opacity: 0.4;
 }
 
@@ -476,21 +482,363 @@ width: 82%;
     vertical-align: middle;
 }
 
-.car-feature-list .icon.abs { background-position: -20px -60px; }
-.car-feature-list .icon.am_fm_radio { background-position: -60px 0px; }
-.car-feature-list .icon.air_bags { background-position: 0px 0px; }
-.car-feature-list .icon.air_conditioning { background-position: -40px 0px; }
-.car-feature-list .icon.alloy_rims { background-position: -20px -40px; }
-.car-feature-list .icon.cd_player { background-position: -40px -20px; }
-.car-feature-list .icon.cruise_control { background-position: -80px -40px; }
-.car-feature-list .icon.dvd_player { background-position: 0px -60px; }
-.car-feature-list .icon.front_speakers { background-position: -60px -100px; }
-.car-feature-list .icon.immobilizer_key { background-position: -60px -40px; }
-.car-feature-list .icon.keyless_entry { background-position: 0px -40px; }
-.car-feature-list .icon.power_locks { background-position: -60px -20px; }
-.car-feature-list .icon.power_mirrors { background-position: -40px -40px; }
-.car-feature-list .icon.power_steering { background-position: -20px -20px; }
-.car-feature-list .icon.power_windows { background-position: -80px 0px; }
-.car-feature-list .icon.rear_speakers { background-position: -80px -100px; }
-.car-feature-list .icon.steering_switches { background-position: 0px -120px; }
-.car-feature-list .icon.usb_and_auxillary_cable { background-position: -40px -80px; }
+.car-feature-list .icon.abs {
+    background-position: -20px -60px;
+}
+
+.car-feature-list .icon.am_fm_radio {
+    background-position: -60px 0px;
+}
+
+.car-feature-list .icon.air_bags {
+    background-position: 0px 0px;
+}
+
+.car-feature-list .icon.air_conditioning {
+    background-position: -40px 0px;
+}
+
+.car-feature-list .icon.alloy_rims {
+    background-position: -20px -40px;
+}
+
+.car-feature-list .icon.cd_player {
+    background-position: -40px -20px;
+}
+
+.car-feature-list .icon.cruise_control {
+    background-position: -80px -40px;
+}
+
+.car-feature-list .icon.dvd_player {
+    background-position: 0px -60px;
+}
+
+.car-feature-list .icon.front_speakers {
+    background-position: -60px -100px;
+}
+
+.car-feature-list .icon.immobilizer_key {
+    background-position: -60px -40px;
+}
+
+.car-feature-list .icon.keyless_entry {
+    background-position: 0px -40px;
+}
+
+.car-feature-list .icon.power_locks {
+    background-position: -60px -20px;
+}
+
+.car-feature-list .icon.power_mirrors {
+    background-position: -40px -40px;
+}
+
+.car-feature-list .icon.power_steering {
+    background-position: -20px -20px;
+}
+
+.car-feature-list .icon.power_windows {
+    background-position: -80px 0px;
+}
+
+.car-feature-list .icon.rear_speakers {
+    background-position: -80px -100px;
+}
+
+.car-feature-list .icon.steering_switches {
+    background-position: 0px -120px;
+}
+
+.car-feature-list .icon.usb_and_auxillary_cable {
+    background-position: -40px -80px;
+}
+
+
+
+/* Styling for the card */
+/* Car Item Styles */
+.item .car-card {
+    box-shadow: 10px 10px 2px 1px rgba(0, 0, 0, 0.493);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.item .car-card:hover {
+    box-shadow: 0 0 45px rgba(0, 0, 0, 0.3);
+}
+
+.owl-carousel .item {
+    width: 180px;
+}
+
+@media (max-width: 768px) { /* Adjust the max-width value as needed */
+    .owl-carousel .item {
+        width: auto; /* Set width to auto on mobile */
+    }
+}
+/* Car Image Styles */
+.item .car-card .car-img {
+    position: relative;
+    overflow: hidden;
+    /* border-top-left-radius: 10px; */
+    /* border-top-right-radius: 10px; */
+}
+
+.item .car-card .car-img img {
+    transition: transform 0.5s ease;
+    height: 14rem;
+}
+
+.item .car-card:hover .car-img img {
+    transform: scale(1.2);
+}
+
+/* Image Hover Overlay */
+.item .car-card .car-img::after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--primary-color-transparent);
+    transition: all 0.5s ease;
+    /* border-top-left-radius: 10px; */
+    /* border-top-right-radius: 10px; */
+}
+
+.item .car-card:hover .car-img::after {
+    width: 100%;
+    height: 100%;
+}
+
+/* Car Content Styles */
+.item .car-card .car-content {
+    position: relative;
+    padding: 18px;
+    /* min-height: 230px; */
+    background-color: #fff;
+    transition: all 0.5s ease;
+    z-index: 1;
+}
+
+.item .car-card .car-content::after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: var(--primary-color);
+    transition: all 0.5s ease;
+    /* border-bottom-left-radius: 10px; */
+    /* border-bottom-right-radius: 10px; */
+    z-index: 0;
+}
+
+.item .car-card:hover .car-content::after {
+    width: 100%;
+    height: 100%;
+}
+
+/* Car Content Inner */
+.item .car-card .car-content-inner {
+    position: relative;
+    z-index: 2;
+    transition: all 0.5s ease;
+}
+
+.item .car-card:hover .car-content-inner {
+    color: #fff;
+}
+
+/* Title, Price, and Reviews */
+.item .car-card .car-title {
+    font-size: 16px;
+    font-weight: bold;
+    /* margin-bottom: 10px; */
+    color: var(--black-surface);
+    transition: color 0.5s ease;
+}
+
+.item .car-card:hover .car-title {
+    color: var(--white-surface);
+}
+
+.item .car-card .car-price {
+    font-size: 16px;
+    color: var(--primary-color);
+    /* margin-bottom: 15px; */
+    margin: 0%;
+    transition: color 0.5s ease;
+}
+
+.item .car-card:hover .car-price {
+    color: var(--white-surface);
+}
+
+.item .car-card:hover .car-reviews {
+    color: var(--white-surface);
+}
+
+.item .car-card .car-reviews {
+    font-size: 14px;
+    color: #555;
+
+}
+
+.item .car-card .car-reviews .rating {
+    color: #ffcc00;
+    font-weight: bolder;
+}
+
+/* Owl Navigation */
+.btn-prev,
+.btn-next {
+    position: absolute;
+    top: 93%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    color: #cdcbcd;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* z-index: 1000; */
+}
+
+.btn-prev {
+    left: -40px;
+}
+
+.btn-next {
+    right: -20px;
+}
+
+/* Hide buttons initially */
+.btn-prev.disabled,
+.btn-next.disabled {
+    display: none;
+}
+
+.disabled {
+    pointer-events: none !important;
+    opacity: 0.5 !important;
+}
+
+
+/* Hide buttons in mobile view */
+@media (max-width: 600px) {
+
+    .btn-prev,
+    .btn-next {
+        display: none;
+    }
+}
+
+.btn-prev:hover,
+.btn-next:hover {
+    color: #b73439;
+    /* Change icon color if needed */
+}
+
+
+/* Responsive adjustments for mobile screens */
+/* @media (max-width: 600px) { */
+
+/* .btn-prev,
+    .btn-next {
+        top: auto;
+        bottom: 10px; 
+        font-size: 25px;
+        padding: 8px;
+    }
+
+    .btn-prev {
+        left: 10px;
+    }
+
+    .btn-next {
+        right: 10px;
+    } */
+/* } */
+
+/*END CSS for the Caraousel */
+
+.side-bar {
+    min-width: 320px;
+}
+
+.text-theme {
+    color: var(--primary-color);
+}
+
+.bg-theme {
+    background-color: var(--primary-color);
+}
+
+.price-well {
+    background-color: #fff;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.sifm-widget-ab {
+    background-color: #eaf0ff;
+}
+
+.price-box {
+    font-size: 1.5rem;
+}
+
+
+.phone_number_btn {
+    width: 100%;
+    /* Make the button occupy full width */
+    display: flex;
+    /* Use flexbox for alignment */
+    justify-content: center;
+    /* Center content horizontally */
+    align-items: center;
+    /* Center content vertically */
+    transition: background-color 0.8s;
+    /* Transition for background color */
+}
+
+.rotate-icon {
+    transition: transform 0.3s;
+    transform: rotate(90deg);
+    /* Smooth transition for rotation */
+}
+
+.phone_number_btn:hover .rotate-icon {
+    transform: rotate(360deg);
+    /* Rotate icon on button hover */
+}
+
+.well .btn {
+    background-color: var(--primary-color);
+    color: var(--white-surface);
+    display: block;
+    /* Ensure it is a block element for full width */
+}
+
+.well .btn:hover {
+    background-color: var(--white-surface);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+.user-verification li {
+    font-size: 1.5rem; /* Adjust icon size */
+}
+
+.user-verification a {
+    color: var(--primary-color); /* Icon color */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+.user-verification a:hover {
+    color: var(--black-surface); /* Darker shade on hover */
+}

@@ -1,0 +1,146 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    color: var(--primary-color);
+}
+/* Card styles */
+.item .car-card {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.300);
+    border-radius: 10px;
+    /* overflow: hidden; */
+    transition: all 0.5s ease;
+}
+
+.item .car-card:hover {
+    box-shadow: 0 0 45px rgba(0, 0, 0, 0.3);
+}
+
+/* Image hover overlay */
+.item .car-card .car-img {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white-surface);
+
+}
+
+.item .car-card .car-img img {
+    transition: transform 0.5s ease;
+    height: 12.5rem;
+}
+
+.item .car-card:hover .car-img img {
+    transform: scale(1.2);
+}
+
+.item .car-card .car-img::after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--primary-color-transparent);
+    transition: all 0.5s ease;
+    border-radius: 10px;
+
+}
+
+.item .car-card:hover .car-img::after {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+
+}
+
+/* Content overlay */
+.item .car-card .car-content {
+    position: relative;
+    padding-right: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 18px;
+    background-color: #fff;
+    transition: all 0.5s ease;
+    z-index: 1;
+    border-radius: 10px;
+}
+
+.item .car-card .car-content::after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: var(--primary-color);
+    transition: all 0.5s ease;
+    z-index: 0;
+    border-radius: 10px;
+
+
+}
+
+.item .car-card:hover .car-content::after {
+    width: 100%;
+    height: 100%;
+}
+
+/* Content inner and text */
+.item .car-card .car-content-inner {
+    position: relative;
+    z-index: 2;
+    transition: all 0.5s ease;
+}
+
+.item .car-card:hover .car-content-inner {
+    color: #fff;
+}
+
+.item a{
+    color: var(--black-surface);
+}
+/* Title, Price, and Reviews */
+.item .car-card .car-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--black-surface);
+    transition: color 0.5s ease;
+}
+
+.item .car-card:hover .car-title,
+.item .car-card:hover .car-price,
+.item .car-card:hover .car-reviews,
+.item .car-card:hover .small,
+.item .car-card:hover .fa-heart {
+    color: var(--white-surface);
+}
+
+.item .car-card .car-price {
+    font-size: 16px;
+    color: var(--primary-color);
+    margin: 0;
+    transition: color 0.5s ease;
+}
+
+.item .car-card .car-reviews {
+    font-size: 14px;
+    color: #555;
+}
+
+.item .car-card .car-reviews .rating {
+    color: #ffcc00;
+    font-weight: bolder;
+}

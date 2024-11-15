@@ -1,47 +1,35 @@
-/*Start Container CSS for the banner */
+/* Start Container CSS for the banner */
 .banner-container {
-    height: 55vh;
+    min-height: 60vh;
+    /* Make sure banner takes at least 60% of the viewport height */
     background: var(--dynamic-gradient);
     color: var(--white-surface);
-}
-
-.header-placeholder {
-    width: 100%;
-    /* Make sure the header takes the full width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* Center text */
 }
 
 .bannertitle {
-    margin-top: 1rem;
-    /* Remove top margin */
-    font-size: 3em;
+    font-size: 2.5rem;
     font-weight: bolder;
-    /* Increase font size */
     color: var(--white-surface) !important;
 }
 
 .banner-subheading {
     font-size: 1.2rem;
-    /* Increase subheading size */
-    margin-top: 1rem;
-    /* Add some space above */
     color: var(--white-surface);
-    /* Slightly lighter for contrast */
 }
 
 .advanced-filter-btn {
     border: 2px solid var(--white-surface);
-    /* Thicker border */
     color: var(--white-surface);
-    /* Text color */
     padding: 5px 20px;
-    /* Reduced padding */
     font-size: 0.875rem;
-    margin-bottom: 15px;
-    /* Smaller font size */
+    margin-top: 1rem;
     border-radius: 20px;
-    /* Adjusted border radius */
     transition: background-color 0.3s, color 0.3s;
-    /* Transition effects */
     background: transparent;
 }
 
@@ -51,8 +39,73 @@
     color: var(--white-surface);
 }
 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .bannertitle {
+        font-size: 2rem;
+    }
 
-/*End Container CSS for the banner */
+    .banner-subheading {
+        font-size: 1rem;
+    }
+
+    .advanced-filter-btn {
+        font-size: 0.8rem;
+        padding: 4px 16px;
+    }
+}
+
+
+/* Ensure the carousel and images are responsive */
+.carousel.banner-carousel {
+    height: 70vh; /* Default height for large screens */
+}
+
+.carousel-item img {
+    object-fit: cover; /* Ensures the image covers the entire carousel area */
+    height: 100%; /* Ensure the image fills the carousel's height */
+    width: 100%; /* Ensure the image fills the carousel's width */
+}
+
+/* Style for carousel indicators */
+.carousel-indicators li {
+    background-color: #fff; /* Change the indicator color to white for better visibility */
+    border-radius: 50%; /* Make indicators round */
+    width: 12px; /* Indicator size */
+    height: 12px; /* Indicator size */
+}
+
+.carousel-indicators li.active {
+    background-color: #f39c12; /* Active indicator color */
+}
+
+.carousel-indicators {
+    bottom: 20px; /* Adjust position of indicators */
+}
+
+/* Remove numbers below indicators */
+.carousel-indicators li {
+    font-size: 0 !important; /* Remove any text/number under the indicator */
+}
+@media (max-width: 1024px) {
+.carousel.banner-carousel {
+    height: 35vh; /* Adjust height for tablets */
+}
+}
+/* Media Queries for Smaller Devices */
+@media (max-width: 768px) {
+    .carousel.banner-carousel {
+        height: 25vh; /* Adjust height for smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel.banner-carousel {
+        height: 20vh; /* Adjust height for extra small screens */
+    }
+}
+/* End Container CSS for the banner */
+
 
 /*Start CSS for the Caraousel */
 

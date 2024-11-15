@@ -1,25 +1,40 @@
 <link rel="stylesheet" href="../assets/css/index.css">
 <link rel="stylesheet" href="../assets/lib/owl-carousel/css/owl.carousel.css">
 <link rel="stylesheet" href="../assets/lib/owl-carousel/css/owl.theme.green.css">
+
 <style>
+
 
 </style>
 
 <body>
-    <div class="account-pages">
-        <div class="container-fluid banner-container">
-            <?php include_once('../includes/userheader.php'); ?>
-            <div class="row">
-                <!-- Full height row to center content -->
-                <div class="col-12 text-center justify-content-center align-items-center">
-                    <!-- Center text -->
-                    <h1 class="bannertitle mt-md-5 pt-md-5">Discover Your Perfect Ride</h1> <!-- Large heading -->
-                    <p class="lead">Thousands of quality used cars waiting for you!</p> <!-- Subheading -->
-                    <button class="advanced-filter-btn mt-md-4">Explore Filters</button> <!-- Button -->
-                </div>
-            </div>
+
+    <?php include_once('../includes/userheader.php'); ?>
+
+    <div class="container-fluid" style="padding: 0px !important;">
+        <!-- Carousel 1 -->
+        <div id="carouselExampleIndicators1" class="carousel slide banner-carousel" data-bs-ride="carousel">
+            <!-- Numeric indicators (now just dots without numbers) -->
+            <ol class="carousel-indicators" id="carouselIndicators"></ol>
+
+            <div class="carousel-inner" id="carouselItems"></div>
+
+            <!-- Left and Right Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </div>
+
+
+
+
+
     <div class="carousel-wrap">
         <div class="text-center mb-4">
             <h1 class="carousel-title fw-bold heading-h1">
@@ -36,204 +51,41 @@
     <!-- New Carousel: Recommended Used Cars For You -->
     <div class="carousel-wrap">
         <div class="text-center mb-4">
-            <h1 class="carousel-title heading-h1"><i class="mdi mdi-car"></i> Recommended Used Cars For You</h1>
+            <h1 class="carousel-title heading-h1"><i class="mdi mdi-car"></i> Used Cars For You</h1>
         </div>
         <div class="owl-carousel recommended-carousel">
-            <div class="item">
-                <div class="card">
-                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Hyundai Elantra</h5>
-                        <p class="card-price">INR 18.5 - 28.0 lacs</p>
-                        <p class="card-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card">
-                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Hyundai Elantra</h5>
-                        <p class="card-price">INR 18.5 - 28.0 lacs</p>
-                        <p class="card-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card">
-                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Hyundai Elantra</h5>
-                        <p class="card-price">INR 18.5 - 28.0 lacs</p>
-                        <p class="card-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card">
-                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Hyundai Elantra</h5>
-                        <p class="card-price">INR 18.5 - 28.0 lacs</p>
-                        <p class="card-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card">
-                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Hyundai Elantra</h5>
-                        <p class="card-price">INR 18.5 - 28.0 lacs</p>
-                        <p class="card-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card">
-                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Hyundai Elantra</h5>
-                        <p class="card-price">INR 18.5 - 28.0 lacs</p>
-                        <p class="card-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card">
-                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Hyundai Elantra</h5>
-                        <p class="card-price">INR 18.5 - 28.0 lacs</p>
-                        <p class="card-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card">
-                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Hyundai Elantra</h5>
-                        <p class="card-price">INR 18.5 - 28.0 lacs</p>
-                        <p class="card-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card">
-                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Hyundai Elantra</h5>
-                        <p class="card-price">INR 18.5 - 28.0 lacs</p>
-                        <p class="card-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Repeat more card items as needed -->
+
+            <!-- Dynamic content will be injected here -->
+
         </div>
         <button class="btn-prev recommended-prev"><i class="mdi mdi-arrow-left-drop-circle-outline"></i></button>
         <button class="btn-next recommended-next"><i class="mdi mdi-arrow-right-drop-circle-outline"></i></button>
     </div>
+
+    <div class="carousel-wrap">
+        <div class="text-center mb-4">
+            <h1 class="carousel-title heading-h1"><i class="mdi mdi-car"></i> New Cars For You</h1>
+        </div>
+        <div class="owl-carousel recommendednew-carousel">
+            <!-- Change the class name here -->
+            <!-- Dynamic items will be inserted here by JavaScript -->
+        </div>
+        <button class="btn-prev recommended-prev"><i class="mdi mdi-arrow-left-drop-circle-outline"></i></button>
+        <button class="btn-next recommended-next"><i class="mdi mdi-arrow-right-drop-circle-outline"></i></button>
+    </div>
+
     <div class="carousel-wrap">
         <div class="text-center mb-4">
             <h1 class="carousel-title heading-h1"><i class="mdi mdi-car"></i> Auto Store Car Parts & Accessories</h1>
         </div>
-        <div class="owl-carousel recommended-carousel">
-            <div class="item">
-                <div class="card">
-                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Hyundai Elantra</h5>
-                        <p class="card-price">INR 18.5 - 28.0 lacs</p>
-                        <p class="card-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card">
-                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Hyundai Elantra</h5>
-                        <p class="card-price">INR 18.5 - 28.0 lacs</p>
-                        <p class="card-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card">
-                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Hyundai Elantra</h5>
-                        <p class="card-price">INR 18.5 - 28.0 lacs</p>
-                        <p class="card-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card">
-                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Hyundai Elantra</h5>
-                        <p class="card-price">INR 18.5 - 28.0 lacs</p>
-                        <p class="card-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card">
-                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Hyundai Elantra</h5>
-                        <p class="card-price">INR 18.5 - 28.0 lacs</p>
-                        <p class="card-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card">
-                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Hyundai Elantra</h5>
-                        <p class="card-price">INR 18.5 - 28.0 lacs</p>
-                        <p class="card-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card">
-                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Hyundai Elantra</h5>
-                        <p class="card-price">INR 18.5 - 28.0 lacs</p>
-                        <p class="card-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card">
-                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Hyundai Elantra</h5>
-                        <p class="card-price">INR 18.5 - 28.0 lacs</p>
-                        <p class="card-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card">
-                    <img src="../assets/images/logo/Hyundai.jpg" alt="Car Image" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Hyundai Elantra</h5>
-                        <p class="card-price">INR 18.5 - 28.0 lacs</p>
-                        <p class="card-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Repeat more card items as needed -->
+        <div class="owl-carousel spareparts-carousel">
+            <!-- Change the class name here to spareparts-carousel -->
+            <!-- Dynamic items will be inserted here by JavaScript -->
         </div>
-        <button class="btn-prev recommended-prev"><i class="mdi mdi-arrow-left-drop-circle-outline"></i></button>
-        <button class="btn-next recommended-next"><i class="mdi mdi-arrow-right-drop-circle-outline"></i></button>
+        <button class="btn-prev spareparts-prev"><i class="mdi mdi-arrow-left-drop-circle-outline"></i></button>
+        <button class="btn-next spareparts-next"><i class="mdi mdi-arrow-right-drop-circle-outline"></i></button>
     </div>
+
     <!-- Services Section  Started-->
     <section id="services" class="we-offer-area text-center bg-gray">
         <div class="container">
@@ -330,260 +182,10 @@
         </div>
     </section>
     <!-- Services Section  Started-->
-
     <div class="container my-5">
         <h1 class="text-center fw-bold mb-4">New Cars by Make</h1>
-        <div class="row row-cols-2 row-cols-sm-4 row-cols-md-6 g-3">
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/suzuki/" title="Suzuki Cars">
-                        <img alt="Suzuki" loading="lazy" src="../assets/images/home/Suzuki.png">
-                        <h3 class="nomargin">Suzuki</h3>
-                    </a>
-                </li>
-            </ul>
-
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/toyota/" title="Toyota Cars">
-                        <img alt="Toyota" loading="lazy" src="../assets/images/home/Tyota.png">
-                        <h3 class="nomargin">Toyota</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/honda/" title="Honda Cars">
-                        <img alt="Honda" loading="lazy" src="../assets/images/home/Honda.png">
-                        <h3 class="nomargin">Honda</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/kia/" title="KIA Cars">
-                        <img alt="Kia" loading="lazy" src="../assets/images/home/kia.png">
-                        <h3 class="nomargin">KIA</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/Hyundai/" title="Hyundai Cars">
-                        <img alt="Hyundai" loading="lazy" src="../assets/images/home/hyundai.png">
-                        <h3 class="nomargin">Hyundai</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/MG/" title="MG Cars">
-                        <img alt="MG" loading="lazy" src="../assets/images/home/MG.png">
-                        <h3 class="nomargin">MG</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/Changan/" title="Changan Cars">
-                        <img alt="Changan" loading="lazy" src="../assets/images/home/Changan.jpg">
-                        <h3 class="nomargin">Changan</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/BMW/" title="BMW Cars">
-                        <img alt="BMW" loading="lazy" src="../assets/images/home/BMW.png">
-                        <h3 class="nomargin">BMW</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/Audi/" title="Audi Cars">
-                        <img alt="Audi" loading="lazy" src="../assets/images/home/Audi.png">
-                        <h3 class="nomargin">Audi</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/Proton/" title="Proton Cars">
-                        <img alt="Proton" loading="lazy" src="../assets/images/home/proton.png">
-                        <h3 class="nomargin">Proton</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/United/" title="United Cars">
-                        <img alt="United" loading="lazy" src="../assets/images/home/United.png">
-                        <h3 class="nomargin">United</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/Porche/" title="Porche Cars">
-                        <img alt="Porche" loading="lazy" src="../assets/images/home/porche.png">
-                        <h3 class="nomargin">Porche</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/Porche/" title="Mercedes Benz Cars">
-                        <img alt="Mercedes Benz" loading="lazy" src="../assets/images/home/mercedes.png">
-                        <h3 class="nomargin">Mercedes Benz</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/Prince/" title="Prince Cars">
-                        <img alt="Prince" loading="lazy" src="../assets/images/home/prince.png">
-                        <h3 class="nomargin">Prince</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/DFSK/" title="DFSK Cars">
-                        <img alt="DFSK" loading="lazy" src="../assets/images/home/DFSK.png">
-                        <h3 class="nomargin">DFSK</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/Isuzu/" title="Isuzu Cars">
-                        <img alt="Isuzu" loading="lazy" src="../assets/images/home/Isuzu.png">
-                        <h3 class="nomargin">Isuzu</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/FAW/" title="FAW Cars">
-                        <img alt="FAW" loading="lazy" src="../assets/images/home/FAW.png">
-                        <h3 class="nomargin">FAW</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/Haval/" title="Haval Cars">
-                        <img alt="Haval" loading="lazy" src="../assets/images/home/haval-logo-for-website.png">
-                        <h3 class="nomargin">Haval</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/BAIC/" title="BAIC Cars">
-                        <img alt="BAIC" loading="lazy" src="../assets/images/home/baic.png">
-                        <h3 class="nomargin">BAIC</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/ORA/" title="ORA Cars">
-                        <img alt="ORA" loading="lazy" src="../assets/images/home/ORA.jpg">
-                        <h3 class="nomargin">ORA</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/Peugeot/" title="Peugeot Cars">
-                        <img alt="Peugeot" loading="lazy" src="../assets/images/home/peugeot.png">
-                        <h3 class="nomargin">Peugeot</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/JW Forland/" title="JW Forland Cars">
-                        <img alt="JW Forland" loading="lazy" src="../assets/images/home/JW-Forland.png">
-                        <h3 class="nomargin">JW Forland</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/Tank/" title="Tank Cars">
-                        <img alt="Tank" loading="lazy" src="../assets/images/home/Tank.jpeg">
-                        <h3 class="nomargin">Tank</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/Chery/" title="Chery Cars">
-                        <img alt="Chery" loading="lazy" src="../assets/images/home/car-logos_chery.png">
-                        <h3 class="nomargin">Chery</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/JMC/" title="JMC Cars">
-                        <img alt="JMC" loading="lazy" src="../assets/images/home/JMC.png">
-                        <h3 class="nomargin">JMC</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/Daehan/" title="Daehan Cars">
-                        <img alt="Daehan" loading="lazy" src="../assets/images/home/Daehan.png">
-                        <h3 class="nomargin">Daehan</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/Tesla/" title="Tesla Cars">
-                        <img alt="Tesla" loading="lazy" src="../assets/images/home/Tesla.png">
-                        <h3 class="nomargin">Tesla</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/Deepal/" title="Deepal Cars">
-                        <img alt="Deepal" loading="lazy" src="../assets/images/home/Deepal_new.png">
-                        <h3 class="nomargin">Deepal</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/Honri/" title="Honri Cars">
-                        <img alt="Honri" loading="lazy" src="../assets/images/home/honri.png">
-                        <h3 class="nomargin">Honri</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/GUGO/" title="GUGO Cars">
-                        <img alt="GUGO" loading="lazy" src="../assets/images/home/GUGO.jpg">
-                        <h3 class="nomargin">GUGO</h3>
-                    </a>
-                </li>
-            </ul>
-            <ul class="make-list col-sm-2 list-unstyled new-car-list">
-                <li class="heading">
-                    <a href="/new-cars/Seres/" title="Seres Cars">
-                        <img alt="Seres" loading="lazy" src="../assets/images/home/seres.png">
-                        <h3 class="nomargin">Seres</h3>
-                    </a>
-                </li>
-            </ul>
-
+        <div class="row row-cols-2 row-cols-sm-4 row-cols-md-6 g-3 Brand" id="brand-list">
+            <!-- The dynamic list of brands will be inserted here -->
         </div>
     </div>
 
@@ -592,7 +194,7 @@
         <div class="container text-center">
             <h2>Explore Our Selection of Used Cars and Spare Parts!</h2>
             <p>Discover unbeatable deals and find exactly what you need. Start your journey with us today!</p>
-            <a href="#explore" class="button-action button-pulse">Explore More</a>
+            <a href="usedcars" class="button-action button-pulse">Explore More</a>
         </div>
     </section>
 
@@ -600,21 +202,26 @@
 
     <?php require_once '../includes/userfooter.php' ?>
     <script>
-        // const BASE_URL = 'http://192.168.1.9/MarketplaceAPI';
-        const BASE_URL = 'https://api.intencode.com';
-        // const ImageBASE_URL = 'http://192.168.1.9/Marketplace';
-        const ImageBASE_URL = 'https://api.intencode.com';
-        const imageUrl = `${ImageBASE_URL}/uploads/ProductThumbnail/`;
+        // Pass the PHP constants into JavaScript
+        const API_BASE_URL = '<?php echo API_BASE_URL; ?>';
+        const ProductThumbnail = '<?php echo ProductThumbnail; ?>';
+        const ProductImages = '<?php echo ProductImages; ?>';
+        const BrandLogo = '<?php echo BrandLogo; ?>';
+        const BannerImageUrl = '<?php echo BannerImageUrl; ?>';
 
+        // console.log(API_BASE_URL); // Should log: https://api.intencode.com
+        // console.log(ProductThumbnail); // Should log: https://kenzwheels.com/marketplace/Manage/uploads/ProductThumbnail/
+        // console.log(ProductImages); // Should log: https://kenzwheels.com/marketplace/Manage/uploads/ProductImages
+        // console.log(BrandLogo); // Should log: https://kenzwheels.com/marketplace/Manage/uploads/BrandLogo
         fetchProducts();
 
         function fetchProducts() {
             $.ajax({
-                url: `${BASE_URL}/products`,
+                url: `${API_BASE_URL}/featured-products`, // Use API_BASE_URL
                 type: 'GET',
                 success: function(data) {
                     if (data && data.status === 200 && Array.isArray(data.data)) {
-                        console.log(data);
+                        // console.log(data);
                         displayProducts(data.data);
                     } else {
                         console.error('Invalid data format:', data);
@@ -627,12 +234,12 @@
         }
 
         function fetchCity(dealerId) {
-            console.log(`${BASE_URL}/profile/${dealerId}`);
+            // console.log(`${API_BASE_URL}/profile/${dealerId}`);
             return $.ajax({
-                url: `${BASE_URL}/profile/${dealerId}`,
+                url: `${API_BASE_URL}/profile/${dealerId}`,
                 type: 'GET',
             }).then(response => {
-                console.log(response)
+                // console.log(response)
                 if (response && response.statuscode === 200 && response.user) {
                     return response.user.city; // Access city from the user object
                 } else {
@@ -644,26 +251,27 @@
                 return '';
             });
         }
-
         async function displayProducts(products) {
             $('.featured-carousel').empty();
-            console.log(products);
-
+            // console.log(products);
             for (const product of products) {
-                console.log(product)
+                // console.log(product)
                 const city = await fetchCity(product.dealer_id); // Fetch city using dealer_id
                 const item = `
                 <div class="item">
                     <a href="viewproduct.php?product_id=${product.product_id}"
                        class="car-card bg-light rounded text-decoration-none">
                         <div class="car-img">
-                            <img src="${imageUrl}${product.product_image}" alt="${product.product_name}"
+                            <img src="${ProductThumbnail}${product.product_image}" alt="${product.product_name}"
                                  class="img-fluid w-100 rounded-top">
                         </div>
                         <div class="car-content text-start">
                             <div class="car-content-inner">
                                 <h5 class="car-title">${product.product_name}</h5>
-                                <p class="car-price pb-0">INR ${product.price}</p>
+                                <p class="car-price pb-0">
+    INR ${new Intl.NumberFormat('en-IN').format(product.price)}
+</p>
+
                                 <p class="car-city pb-0">${city}</p> <!-- Display city -->
                                 <p class="car-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
                             </div>
@@ -673,7 +281,6 @@
             `;
                 $('.featured-carousel').append(item);
             }
-
             // Initialize the Owl Carousel
             const $featuredCarousel = $('.featured-carousel').owlCarousel({
                 loop: false,
@@ -694,7 +301,6 @@
                     }
                 }
             });
-
             // Update button visibility
             function updateButtonVisibility(event) {
                 var carousel = event.relatedTarget;
@@ -709,11 +315,9 @@
                     $('.featured-next').removeClass('disabled');
                 }
             }
-
             // Initial check for button visibility
             $featuredCarousel.on('initialized.owl.carousel', updateButtonVisibility);
             $featuredCarousel.on('changed.owl.carousel', updateButtonVisibility);
-
             // Custom navigation buttons
             $('.featured-prev').click(function() {
                 $featuredCarousel.trigger('prev.owl.carousel');
@@ -723,57 +327,485 @@
             });
         }
     </script>
-
-
-
     <!-- Separate Script for Recommended Carousel -->
+
     <script>
         $(document).ready(function() {
-            // Initialize Owl Carousel for Recommended Used Cars
-            $('.recommended-carousel').owlCarousel({
-                loop: false,
-                margin: 10,
-                autoplay: true,
-                autoplayHoverPause: true,
-                responsive: {
-                    0: {
-                        items: 1
+            // Fetch recommended used cars from the /oldcars endpoint
+            fetchRecommendedCars(); // Call to fetch data and display it
+
+            function fetchRecommendedCars() {
+                $.ajax({
+                    url: `${API_BASE_URL}/oldcars`, // Use the provided API_BASE_URL for the endpoint
+                    type: 'GET',
+                    success: function(data) {
+                        if (data && data.status === 200 && Array.isArray(data.data)) {
+                            // Pass the fetched data to displayRecommendedCars function
+                            displayRecommendedCars(data.data);
+                        } else {
+                            console.error('Invalid data format for recommended cars:', data);
+                        }
                     },
-                    600: {
-                        items: 2
-                    },
-                    1000: {
-                        items: 4
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching recommended cars:', error);
+                    }
+                });
+            }
+
+            // Function to fetch the city using the dealer's ID
+            function fetchCity(dealerId) {
+                return $.ajax({
+                    url: `${API_BASE_URL}/profile/${dealerId}`, // Fetch profile data using dealer_id
+                    type: 'GET',
+                }).then(response => {
+                    if (response && response.statuscode === 200 && response.user) {
+                        return response.user.city; // Return the city from the user profile
+                    } else {
+                        console.error('Invalid city data format:', response);
+                        return ''; // Return an empty string if city is not available
+                    }
+                }).catch(error => {
+                    console.error('Error fetching city:', error);
+                    return ''; // Return an empty string in case of error
+                });
+            }
+
+            // Function to display the recommended cars with city and other details
+            async function displayRecommendedCars(cars) {
+                $('.recommended-carousel').empty(); // Clear the existing carousel items
+
+                // Iterate over the cars and append the items dynamically
+                for (const car of cars) {
+                    const city = await fetchCity(car.dealer_id); // Fetch city using dealer_id
+
+                    // Check if the product_image is available, otherwise use a placeholder image
+                    const imageUrl = car.product_image ? `${ProductThumbnail}${car.product_image}` : 'https://placehold.co/600x400?text=KenzWheels'; // Placeholder image if product_image is missing
+
+                    const item = `
+                <div class="item">
+                    <a href="viewproduct.php?product_id=${car.product_id}"
+                       class="car-card bg-light rounded text-decoration-none">
+                        <div class="car-img">
+                            <img src="${imageUrl}" alt="${car.product_name}"
+                                 class="img-fluid w-100 rounded-top">
+                        </div>
+                        <div class="car-content text-start">
+                            <div class="car-content-inner">
+                                <h5 class="car-title">${car.product_name}</h5>
+                                <p class="car-price pb-0">
+                                    INR ${new Intl.NumberFormat('en-IN').format(car.price)}
+                                </p>
+
+                                <p class="car-city pb-0">${city}</p> <!-- Display city -->
+                                <p class="car-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                `;
+                    $('.recommended-carousel').append(item); // Add each car item to the carousel
+                }
+
+                // Initialize the Owl Carousel for recommended cars
+                const $recommendedCarousel = $('.recommended-carousel').owlCarousel({
+                    loop: false,
+                    margin: 10,
+                    autoplay: true,
+                    autoplayHoverPause: true,
+                    nav: false,
+                    dots: false,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        600: {
+                            items: 2
+                        },
+                        1000: {
+                            items: 4
+                        }
+                    }
+                });
+
+                // Update button visibility for the recommended carousel
+                function updateRecommendedButtonVisibility(event) {
+                    var carousel = event.relatedTarget;
+                    if (carousel.current() === 0) {
+                        $('.recommended-prev').addClass('disabled');
+                    } else {
+                        $('.recommended-prev').removeClass('disabled');
+                    }
+                    if (carousel.current() + carousel.settings.items >= carousel.items().length) {
+                        $('.recommended-next').addClass('disabled');
+                    } else {
+                        $('.recommended-next').removeClass('disabled');
                     }
                 }
-            });
-            // Handle previous and next button clicks for Recommended Carousel
-            $('.recommended-prev').click(function() {
-                $('.recommended-carousel').trigger('prev.owl.carousel');
-            });
-            $('.recommended-next').click(function() {
-                $('.recommended-carousel').trigger('next.owl.carousel');
-            });
-            // Update button visibility for Recommended Carousel
-            function updateRecommendedButtonVisibility(event) {
-                var carousel = event.relatedTarget;
-                if (carousel.current() === 0) {
-                    $('.recommended-prev').addClass('disabled');
-                } else {
-                    $('.recommended-prev').removeClass('disabled');
-                }
-                if (carousel.current() + carousel.settings.items >= carousel.items().length) {
-                    $('.recommended-next').addClass('disabled');
-                } else {
-                    $('.recommended-next').removeClass('disabled');
-                }
+
+                // Bind visibility update to carousel change
+                $recommendedCarousel.on('initialized.owl.carousel', updateRecommendedButtonVisibility);
+                $recommendedCarousel.on('changed.owl.carousel', updateRecommendedButtonVisibility);
+
+                // Custom navigation buttons for recommended carousel
+                $('.recommended-prev').click(function() {
+                    $recommendedCarousel.trigger('prev.owl.carousel');
+                });
+                $('.recommended-next').click(function() {
+                    $recommendedCarousel.trigger('next.owl.carousel');
+                });
             }
-            // Handle carousel change event for Recommended Carousel
-            $('.recommended-carousel').on('changed.owl.carousel', updateRecommendedButtonVisibility);
-            // Trigger initial check for prev/next buttons
-            // setTimeout(function() {
-            //     $('.recommended-carousel').trigger('changed.owl.carousel');
-            // }, 100);
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            // Fetch new cars from the /newcars endpoint
+            fetchNewCars(); // Call to fetch data and display it
+            function fetchNewCars() {
+                $.ajax({
+                    url: `${API_BASE_URL}/newcars`, // Use the provided API_BASE_URL for the new cars endpoint
+                    type: 'GET',
+                    success: function(data) {
+                        if (data && data.status === 200 && Array.isArray(data.data)) {
+                            // Pass the fetched data to displayNewCars function
+                            displayNewCars(data.data);
+                        } else {
+                            console.error('Invalid data format for new cars:', data);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching new cars:', error);
+                    }
+                });
+            }
+            // Function to fetch the city using the dealer's ID (same as in fetchNewCars)
+            function fetchCity(dealerId) {
+                return $.ajax({
+                    url: `${API_BASE_URL}/profile/${dealerId}`, // Fetch profile data using dealer_id
+                    type: 'GET',
+                }).then(response => {
+                    if (response && response.statuscode === 200 && response.user) {
+                        return response.user.city; // Return the city from the user profile
+                    } else {
+                        console.error('Invalid city data format:', response);
+                        return ''; // Return an empty string if city is not available
+                    }
+                }).catch(error => {
+                    console.error('Error fetching city:', error);
+                    return ''; // Return an empty string in case of error
+                });
+            }
+            // Function to display the new cars with city and other details
+            async function displayNewCars(cars) {
+                $('.recommendednew-carousel').empty(); // Clear the existing carousel items
+                // Iterate over the cars and append the items dynamically
+                for (const car of cars) {
+                    const city = await fetchCity(car.dealer_id); // Fetch city using dealer_id
+                    // Check if the product image is available, otherwise use a placeholder
+                    const imageUrl = car.product_image && car.product_image.trim() !== '' ?
+                        `${ProductThumbnail}${car.product_image}` :
+                        'https://placehold.co/600x400?text=KenzWheels';
+                    const item = `
+  <div class="item">
+      <a href="viewproduct.php?product_id=${car.product_id}" class="car-card bg-light rounded text-decoration-none">
+          <div class="car-img">
+              <img src="${imageUrl}" alt="${car.product_name}" class="img-fluid w-100 rounded-top">
+          </div>
+          <div class="car-content text-start">
+              <div class="car-content-inner">
+                  <h5 class="car-title">${car.product_name}</h5>
+                  <p class="car-price pb-0">
+    INR ${new Intl.NumberFormat('en-IN').format(car.price)}
+</p>
+                  <p class="car-city pb-0">${city || 'City Not Available'}</p> <!-- Display city -->
+                  <p class="car-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
+              </div>
+          </div>
+      </a>
+  </div>
+  `;
+                    // Add the item to the carousel
+                    $('.recommendednew-carousel').append(item);
+                }
+                // Initialize the Owl Carousel for new cars
+                const $newCarsCarousel = $('.recommendednew-carousel').owlCarousel({
+                    loop: false,
+                    margin: 10,
+                    autoplay: true,
+                    autoplayHoverPause: true,
+                    nav: false,
+                    dots: false,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        600: {
+                            items: 2
+                        },
+                        1000: {
+                            items: 4
+                        }
+                    }
+                });
+                // Update button visibility for the new cars carousel
+                function updateNewCarsButtonVisibility(event) {
+                    var carousel = event.relatedTarget;
+                    if (carousel.current() === 0) {
+                        $('.recommended-prev').addClass('disabled');
+                    } else {
+                        $('.recommended-prev').removeClass('disabled');
+                    }
+                    if (carousel.current() + carousel.settings.items >= carousel.items().length) {
+                        $('.recommended-next').addClass('disabled');
+                    } else {
+                        $('.recommended-next').removeClass('disabled');
+                    }
+                }
+                // Bind visibility update to carousel change
+                $newCarsCarousel.on('initialized.owl.carousel', updateNewCarsButtonVisibility);
+                $newCarsCarousel.on('changed.owl.carousel', updateNewCarsButtonVisibility);
+                // Custom navigation buttons for new cars carousel
+                $('.recommended-prev').click(function() {
+                    $newCarsCarousel.trigger('prev.owl.carousel');
+                });
+                $('.recommended-next').click(function() {
+                    $newCarsCarousel.trigger('next.owl.carousel');
+                });
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            // Fetch spare parts from the /spareparts endpoint
+            fetchSpareParts(); // Call to fetch data and display it
+            function fetchSpareParts() {
+                $.ajax({
+                    url: `${API_BASE_URL}/spareparts`, // Use the provided API_BASE_URL for the endpoint
+                    type: 'GET',
+                    success: function(data) {
+                        if (data && data.status === 200 && Array.isArray(data.data)) {
+                            // Pass the fetched data to displaySpareParts function
+                            displaySpareParts(data.data);
+                        } else {
+                            console.error('Invalid data format for spare parts:', data);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching spare parts:', error);
+                    }
+                });
+            }
+            // Function to fetch the city using the dealer's ID (same as in fetchNewCars)
+            function fetchCity(dealerId) {
+                return $.ajax({
+                    url: `${API_BASE_URL}/profile/${dealerId}`, // Fetch profile data using dealer_id
+                    type: 'GET',
+                }).then(response => {
+                    if (response && response.statuscode === 200 && response.user) {
+                        return response.user.city; // Return the city from the user profile
+                    } else {
+                        console.error('Invalid city data format:', response);
+                        return ''; // Return an empty string if city is not available
+                    }
+                }).catch(error => {
+                    console.error('Error fetching city:', error);
+                    return ''; // Return an empty string in case of error
+                });
+            }
+            // Function to display the spare parts with city and other details
+            async function displaySpareParts(parts) {
+                $('.spareparts-carousel').empty(); // Clear the existing carousel items
+                // Iterate over the parts and append the items dynamically
+                for (const part of parts) {
+                    const city = await fetchCity(part.dealer_id); // Fetch city using dealer_id
+                    // const imageUrl = part.product_image ? `${ProductThumbnail}${part.product_image}` : ''; // Use PHP constant for image URL
+                    const imageUrl = part.product_image ? `${ProductThumbnail}${part.product_image}` :
+                        'https://placehold.co/600x400?text=KenzWheels';
+                    const item = `
+                <div class="item">
+                    <a href="viewproduct.php?product_id=${part.product_id}" class="car-card bg-light rounded text-decoration-none">
+                        <div class="car-img">
+                            <img src="${imageUrl}" alt="${part.product_name}" class="img-fluid w-100 rounded-top">
+                        </div>
+                        <div class="car-content text-start">
+                            <div class="car-content-inner">
+                                <h5 class="car-title">${part.product_name}</h5>
+                                <p class="car-price pb-0">
+           INR ${new Intl.NumberFormat('en-IN').format(part.price)}
+       </p>
+                                <p class="car-city pb-0">${city || 'City Not Available'}</p> <!-- Display city -->
+                                <p class="car-reviews"><span class="rating">★★★★☆</span> 120 Reviews</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `;
+                    $('.spareparts-carousel').append(item); // Add each spare part item to the carousel
+                }
+                // Initialize the Owl Carousel for spare parts
+                const $sparePartsCarousel = $('.spareparts-carousel').owlCarousel({
+                    loop: false,
+                    margin: 10,
+                    autoplay: true,
+                    autoplayHoverPause: true,
+                    nav: false,
+                    dots: false,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        600: {
+                            items: 2
+                        },
+                        1000: {
+                            items: 4
+                        }
+                    }
+                });
+                // Update button visibility for the spare parts carousel
+                function updateSparePartsButtonVisibility(event) {
+                    var carousel = event.relatedTarget;
+                    if (carousel.current() === 0) {
+                        $('.spareparts-prev').addClass('disabled');
+                    } else {
+                        $('.spareparts-prev').removeClass('disabled');
+                    }
+                    if (carousel.current() + carousel.settings.items >= carousel.items().length) {
+                        $('.spareparts-next').addClass('disabled');
+                    } else {
+                        $('.spareparts-next').removeClass('disabled');
+                    }
+                }
+                // Bind visibility update to carousel change
+                $sparePartsCarousel.on('initialized.owl.carousel', updateSparePartsButtonVisibility);
+                $sparePartsCarousel.on('changed.owl.carousel', updateSparePartsButtonVisibility);
+                // Custom navigation buttons for spare parts carousel
+                $('.spareparts-prev').click(function() {
+                    $sparePartsCarousel.trigger('prev.owl.carousel');
+                });
+                $('.spareparts-next').click(function() {
+                    $sparePartsCarousel.trigger('next.owl.carousel');
+                });
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            // Fetch the brand data from the API
+            fetchBrands(); // Function to fetch and display brands
+            function fetchBrands() {
+                $.ajax({
+                    url: `${API_BASE_URL}/brands`, // Fetch brands from API
+                    type: 'GET',
+                    success: function(response) {
+                        if (response && response.status === 200 && Array.isArray(response.data)) {
+                            // Call the function to display brands
+                            displayBrands(response.data);
+                        } else {
+                            console.error('No brands data found or invalid response:', response);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching brands:', error);
+                    }
+                });
+            }
+            // Function to display the fetched brands dynamically
+            function displayBrands(brands) {
+                const brandListContainer = $('#brand-list'); // The container where brands will be displayed
+                brandListContainer.empty(); // Clear any existing content
+                // Loop through the brand data and create the HTML
+                brands.forEach(brand => {
+                    const brandItem = `
+                    <ul class="make-list col-sm-2 list-unstyled new-car-list">
+                        <li class="heading">
+                            <a href="cars-by-make?id=${brand.brand_id}&name=${brand.brand_name}" title="${brand.brand_name} Cars">
+                                <img alt="${brand.brand_name}" loading="lazy" src="${BrandLogo}${brand.brand_logo}">
+                                <h3 class="nomargin">${brand.brand_name}</h3>
+                            </a>
+                        </li>
+                    </ul>
+                `;
+                    brandListContainer.append(brandItem); // Add the brand item to the container
+                });
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            // Function to fetch banners from API
+            fetchBanners(); // Call to fetch data and display banners
+
+            function fetchBanners() {
+                $.ajax({
+                    url: `${API_BASE_URL}/banners`, // Fetch banner data from the API
+                    type: 'GET',
+                    success: function(data) {
+                        if (data && data.statuscode === 200 && Array.isArray(data.banners)) {
+                            // Pass the fetched banner data to displayBanners function
+                            displayBanners(data.banners);
+                        } else {
+                            console.error('Invalid banner data format:', data);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching banners:', error);
+                    }
+                });
+            }
+
+            // Function to display banners dynamically
+            function displayBanners(banners) {
+                $('#carouselIndicators').empty(); // Clear existing indicators
+                $('#carouselItems').empty(); // Clear existing carousel items
+
+                banners.forEach((banner, index) => {
+                    const {
+                        id,
+                        title,
+                        image,
+                        link
+                    } = banner;
+                    const imageUrl = `${BannerImageUrl}${image}`; // Construct the image URL
+
+                    // Create carousel item for each banner
+                    const carouselItem = `
+                    <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                        <div class="carousel-image-wrapper">
+                            <a href="${link}">
+                                <img class="d-block w-100" src="${imageUrl}" alt="${title}">
+                            </a>
+                        </div>
+                    </div>
+                `;
+                    $('#carouselItems').append(carouselItem); // Add the item to carousel-inner
+
+                    // Create indicator for each banner
+                    const indicatorItem = `
+                    <li data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="${index}" class="${index === 0 ? 'active' : ''}"></li>
+                `;
+                    $('#carouselIndicators').append(indicatorItem); // Add the indicator
+                });
+
+                // Initialize the carousel after adding items
+                new bootstrap.Carousel('#carouselExampleIndicators1', {
+                    interval: 3000, // Auto slide interval
+                    ride: 'carousel' // Enable auto sliding
+                });
+            }
+
+            // Update the indicators active class on slide change
+            $('#carouselExampleIndicators1').on('slide.bs.carousel', function(event) {
+                var index = $(event.relatedTarget).index(); // Get the index of the next slide
+                var indicators = $(this).find('.carousel-indicators li');
+
+                // Reset all indicators
+                indicators.removeClass('active');
+                $(indicators[index]).addClass('active'); // Add active class to the current indicator
+            });
         });
     </script>
 </body>
