@@ -1,15 +1,59 @@
+<?php include_once('../includes/userheader.php'); ?>
+<?php
+// session_start();
+
+// Check if role_id is provided
+if (isset($_POST['role_id'])) {
+    // Store role_id in session
+    $_SESSION['role_id'] = $_POST['role_id'];
+
+    echo json_encode(['status' => 'success']);
+} else {
+    echo json_encode(['status' => 'error', 'message' => 'Role ID not provided']);
+}
+
+// Check if session is started and the session data is being set
+if (isset($_SESSION['user_id'])) {
+    echo "</br>";
+
+    echo "User ID is stored in session: " . $_SESSION['user_id'];
+    echo "</br>";
+    echo "User email is stored in session: " . $_SESSION['email'];
+    echo "</br>";
+
+    echo "User fname is stored in session: " . $_SESSION['first_name'];
+    echo "</br>";
+
+    echo "User lname is stored in session: " . $_SESSION['last_name'];
+    echo "</br>";
+
+    echo "User profile picture is stored in session: " . $_SESSION['profile_pic'];
+    echo "</br>";
+    echo "User status is stored in session: " . $_SESSION['user_status'];
+    echo "</br>";
+    echo "User otp is stored in session: " . $_SESSION['otp'];
+    echo "</br>";
+    echo "User created_at is stored in session: " . $_SESSION['created_at'];
+    echo "</br>";
+    echo "User refferal code is stored in session: " . $_SESSION['referral_code'];
+    echo "</br>";
+    echo "User referred by is stored in session: " . $_SESSION['referred_by'];
+    echo "</br>";
+    echo "User role_id is stored in session: " . $_SESSION['role_id'];
+    echo "</br>";
+} else {
+    echo "Session not set properly.";
+}
+
+?>
+
+
 <link rel="stylesheet" href="../assets/css/index.css">
 <link rel="stylesheet" href="../assets/lib/owl-carousel/css/owl.carousel.css">
 <link rel="stylesheet" href="../assets/lib/owl-carousel/css/owl.theme.green.css">
 
-<style>
-
-
-</style>
-
 <body>
 
-    <?php include_once('../includes/userheader.php'); ?>
 
     <div class="container-fluid" style="padding: 0px !important;">
         <!-- Carousel 1 -->
@@ -30,10 +74,6 @@
             </button>
         </div>
     </div>
-
-
-
-
 
     <div class="carousel-wrap">
         <div class="text-center mb-4">

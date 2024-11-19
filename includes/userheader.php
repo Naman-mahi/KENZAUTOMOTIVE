@@ -1,16 +1,15 @@
 <?php require_once 'userhead.php' ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<?php
-session_start(); // Start the session
+<?php // Start the session
 // Check if the user is already logged in
 if (isset($_SESSION['role'])) {
 
-      // Get the current role
-      $currentRole = $_SESSION['role'];
+    // Get the current role
+    $currentRole = $_SESSION['role'];
 
-      // Output the current role
-      echo "Current user role: " . $currentRole;
-  
+    // Output the current role
+    echo "Current user role: " . $currentRole;
+
     // Redirect based on user role
     if ($_SESSION['role'] === 'admin') {
         header("Location: ../Manage/Dashboard.php"); // Redirect to admin Dashboard
@@ -29,7 +28,7 @@ if (isset($_SESSION['role'])) {
 <!-- Responsive navbar -->
 <nav class="navbar navbar-expand-lg py-3 navbar-light bg-white px-3 sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="<?= BASE_URL ?>user/index.php">
+        <a class="navbar-brand" href="<?= BASE_URL ?>user/index">
             <img src="../assets/images/logo/logo.png" alt="KenzWheels Logo" style="height: 45px; width: 150px;">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -62,23 +61,23 @@ if (isset($_SESSION['role'])) {
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="<?= BASE_URL ?>Manage/dashboard">
                                 <i class="fas fa-car-side pe-2"></i> Sell Your Car
                                 <small class="dropdown-item-text">Post Ad and Sell Your Cars Quickly</small>
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="<?= BASE_URL ?>Manage/dashboard">
                                 <i class="fas fa-users pe-2"></i> Used Car Dealers
                                 <small class="dropdown-item-text">Find Used Car Dealers Near You</small>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a class="dropdown-item" href="#">
                                 <i class="fas fa-calculator pe-2"></i> Price Calculator
                                 <small class="dropdown-item-text">Calculate The Market Price of Cars</small>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -96,29 +95,32 @@ if (isset($_SESSION['role'])) {
                         <li>
                             <a class="dropdown-item" href="#">
                                 <i class="fas fa-exchange-alt pe-2"></i> Car Comparisons
+                                <span class="badge bg-warning text-dark ms-2">Coming Soon</span>
                                 <small class="dropdown-item-text">Compare Cars and Find their Differences</small>
                             </a>
                         </li>
+
                         <li>
                             <a class="dropdown-item" href="#">
-                                <i class="fas fa-star pe-2"></i> Reviews
-                                <small class="dropdown-item-text">Read Reviews Of All Cars</small>
+                                <i class="fas fa-car pe-2"></i> Cars by Make
+                                <small class="dropdown-item-text">Browse cars sorted by make</small>
                             </a>
                         </li>
+
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="<?= BASE_URL ?>user/newcars">
                                 <i class="fas fa-tag pe-2"></i> Prices
                                 <small class="dropdown-item-text">See Prices Of New Cars</small>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a class="dropdown-item" href="#">
                                 <i class="fas fa-road pe-2"></i> On Road Price
                                 <small class="dropdown-item-text">Calculate The Total Cost of New Cars</small>
                             </a>
-                        </li>
+                        </li> -->
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="<?= BASE_URL ?>Manage/dashboard">
                                 <i class="fas fa-users pe-2"></i> New Car Dealers
                                 <small class="dropdown-item-text">Find New Car Dealers</small>
                             </a>
@@ -137,29 +139,42 @@ if (isset($_SESSION['role'])) {
                                 <small class="dropdown-item-text">Buy Auto Parts & Accessories directly</small>
                             </a>
                         </li>
-                        <li>
-                            <a class="dropdown-item" href="#">
+                        <!-- <li>
+                            <a class="dropdown-item" href="<?= BASE_URL ?>user/autostore">
                                 <i class="fas fa-search pe-2"></i> Find Auto Parts
                                 <small class="dropdown-item-text">Find Auto Parts For Your Car</small>
                             </a>
-                        </li>
+                        </li> -->
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="<?= BASE_URL ?>Manage/dashboard">
                                 <i class="fas fa-shopping-cart pe-2"></i> Sell Car Parts
                                 <small class="dropdown-item-text">Post Ad and Sell Your Car Parts Quickly</small>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="#">Videos</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">More</a></li>
+                <!-- <li class="nav-item"><a class="nav-link" href="#">Videos</a></li> -->
+                <li class="nav-item"><a class="nav-link" href="#">Cars By Make</a></li>
             </ul>
-            <div class="d-flex gap-2">
+            <div class="d-flex gap-2" id="authButtons">
                 <!-- Sign In Button -->
-                <a class="btn btn-outline-primary ms-3" href="#" data-bs-toggle="modal"
-                    data-bs-target="#loginModal">Sign In</a>
+                <a class="btn btn-outline-primary ms-3" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Sign In</a>
                 <a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#userRegistrationModal">Sign Up</a>
             </div>
+
+            <!-- Profile Dropdown (hidden initially) -->
+            <div class="d-flex gap-2" id="profileDropdown" style="display: none;">
+                <div class="dropdown">
+                    <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="default-profile.jpg" id="profilePic" alt="Profile" class="rounded-circle" style="width: 30px; height: 30px;">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                        <li><a class="dropdown-item" href="#" id="logoutButton">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </div>
 </nav>

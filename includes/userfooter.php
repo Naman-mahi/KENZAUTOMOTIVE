@@ -55,13 +55,13 @@
       </div>
    </div>
    <div class="container-fluid p-0 m-0" style="padding: 0 !important; margin: 0 !important;">
-    <!-- Wave SVG -->
-    <div class="footer-wave m-0 p-0" style="margin: 0 !important; padding: 0 !important;">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="w-100" style="display: block; margin: 0; padding: 0;">
+      <!-- Wave SVG -->
+      <div class="footer-wave m-0 p-0" style="margin: 0 !important; padding: 0 !important;">
+         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="w-100" style="display: block; margin: 0; padding: 0;">
             <path fill="#b73439" fill-opacity="1" d="M0,96L48,101.3C96,107,192,117,288,117.3C384,117,480,107,576,101.3C672,96,768,96,864,101.3C960,107,1056,117,1152,149.3C1248,181,1344,235,1392,261.3L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-        </svg>
-    </div>
-</div>
+         </svg>
+      </div>
+   </div>
 
 
 
@@ -77,40 +77,99 @@
    <script src="<?= BASE_URL ?>assets/lib/owl-carousel/js/owl.carousel.min.js"></script>
 
 </footer>
-
 <script>
    $(document).ready(function() {
+      // On form submission, make the login request
       $('#loginForm').on('submit', function(e) {
          e.preventDefault(); // Prevent default form submission
 
+         const formData = {
+            email: $('#email').val(),
+            password: $('#userpassword').val()
+         };
+
          $.ajax({
-            url: 'login.php', // Your PHP script to handle the login
+            url: 'https://api.intencode.com/login', // API endpoint
             type: 'POST',
-            data: $(this).serialize(), // Serialize form data
+            data: formData,
             success: function(response) {
-               // Handle response
-               const data = JSON.parse(response);
-               if (data.success) {
-                  Swal.fire({
-                     position: 'center',
-                     icon: 'success',
-                     title: 'Login successful!',
-                     showConfirmButton: false,
-                     timer: 1500
-                  }).then(() => {
-                     window.location.href = data.redirect; // Redirect to the appropriate page
+               console.log('Response:', response); // Debugging the response
+
+               if (response.status === "success") {
+                  // Prepare user data from response for storing in the session
+                  const userData = {
+                     user_id: response.user.user_id || null,
+                     email: response.user.email || null,
+                     first_name: response.user.first_name || null,
+                     last_name: response.user.last_name || null,
+                     mobile_number: response.user.mobile_number || null,
+                     profile_pic: response.user.profile_pic || null,
+                     user_status: response.user.user_status || null,
+                     otp: response.user.otp || null,
+                     created_at: response.user.created_at || null,
+                     referral_code: response.user.referral_code || null,
+                     referred_by: response.user.referred_by || null,
+                     role_id: response.user.role_id || null
+                  };
+
+                  console.log('User Data to be stored in session:', userData);
+
+                  // Send the data to the store_session.php script
+                  $.ajax({
+                     url: 'store_session.php', // PHP to store session
+                     type: 'POST',
+                     data: userData,
+                     success: function(sessionResponse) {
+                        console.log('Session storage response:', sessionResponse);
+
+                        if (sessionResponse.status === "success") {
+                           // Hide Sign In/Sign Up buttons and show profile dropdown
+                           $('#authButtons').hide();
+                           $('#profileDropdown').show();
+
+                           // Set the profile picture dynamically from the response
+                           $('#profilePic').attr('src', 'uploads/' + response.user.profile_pic);
+
+                           Swal.fire({
+                              position: 'center',
+                              icon: 'success',
+                              title: 'Login successful!',
+                              showConfirmButton: false,
+                              timer: 1500
+                           }).then(() => {
+                              window.location.href = 'index.php'; // Redirect after successful login
+                           });
+                        } else {
+                           Swal.fire({
+                              position: 'center',
+                              icon: 'error',
+                              title: sessionResponse.message || 'Failed to store session data.',
+                              showConfirmButton: false,
+                              timer: 1500
+                           });
+                        }
+                     },
+                     error: function() {
+                        Swal.fire({
+                           position: 'center',
+                           icon: 'error',
+                           title: 'Error storing session data.',
+                           showConfirmButton: false,
+                           timer: 1500
+                        });
+                     }
                   });
                } else {
                   Swal.fire({
                      position: 'center',
                      icon: 'error',
-                     title: data.message,
+                     title: response.message || 'Login failed!',
                      showConfirmButton: false,
                      timer: 1500
                   });
                }
             },
-            error: function() {
+            error: function(xhr, status, error) {
                Swal.fire({
                   position: 'center',
                   icon: 'error',
@@ -123,6 +182,12 @@
       });
    });
 </script>
+
+
+
+
+
+
 <script>
    $(document).ready(function() {
       // Form validation

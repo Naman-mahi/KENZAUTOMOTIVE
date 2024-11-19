@@ -12,6 +12,6 @@ defined('BannerImageUrl') || define('BannerImageUrl', 'https://kenzwheels.com/ma
 if ($environment === 'production') {
     define('BASE_URL', 'https://kenzmarketplace.com/');
 } else {
-    define('BASE_URL', 'http://192.168.1.7/Kenzwheels/KENZAUTOMOTIVE/');
+    define('BASE_URL', 'http://192.168.1.6/Kenzwheels/KENZAUTOMOTIVE/');
 }
 ?>
